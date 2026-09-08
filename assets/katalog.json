@@ -1,0 +1,1421 @@
+{
+ "generirano": "scripts/seed.py",
+ "izvor": [
+  "context.md",
+  "hes-content.md"
+ ],
+ "kategorije": [
+  {
+   "id": "miniserveri",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 0,
+   "naziv_hr": "Miniserveri"
+  },
+  {
+   "id": "upravljacke-jedinice",
+   "vrsta": "loxone",
+   "roditelj_id": "miniserveri",
+   "redoslijed": 0,
+   "naziv_hr": "Upravljačke jedinice"
+  },
+  {
+   "id": "prosirenja",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 1,
+   "naziv_hr": "Proširenja"
+  },
+  {
+   "id": "ulazna-prosirenja",
+   "vrsta": "loxone",
+   "roditelj_id": "prosirenja",
+   "redoslijed": 0,
+   "naziv_hr": "Ulazna proširenja"
+  },
+  {
+   "id": "izlazna-prosirenja",
+   "vrsta": "loxone",
+   "roditelj_id": "prosirenja",
+   "redoslijed": 1,
+   "naziv_hr": "Izlazna proširenja"
+  },
+  {
+   "id": "komunikacijska-prosirenja",
+   "vrsta": "loxone",
+   "roditelj_id": "prosirenja",
+   "redoslijed": 2,
+   "naziv_hr": "Komunikacijska proširenja"
+  },
+  {
+   "id": "specijalizirana-prosirenja",
+   "vrsta": "loxone",
+   "roditelj_id": "prosirenja",
+   "redoslijed": 3,
+   "naziv_hr": "Specijalizirana proširenja"
+  },
+  {
+   "id": "doticajni-uredaji-i-tipkala",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 2,
+   "naziv_hr": "Doticajni uređaji i tipkala"
+  },
+  {
+   "id": "touch-osnovna-serija",
+   "vrsta": "loxone",
+   "roditelj_id": "doticajni-uredaji-i-tipkala",
+   "redoslijed": 0,
+   "naziv_hr": "Touch osnovna serija"
+  },
+  {
+   "id": "touch-pure-serija",
+   "vrsta": "loxone",
+   "roditelj_id": "doticajni-uredaji-i-tipkala",
+   "redoslijed": 1,
+   "naziv_hr": "Touch pure serija"
+  },
+  {
+   "id": "nfc-i-sigurnost",
+   "vrsta": "loxone",
+   "roditelj_id": "doticajni-uredaji-i-tipkala",
+   "redoslijed": 2,
+   "naziv_hr": "NFC i sigurnost"
+  },
+  {
+   "id": "daljinsko-upravljanje",
+   "vrsta": "loxone",
+   "roditelj_id": "doticajni-uredaji-i-tipkala",
+   "redoslijed": 3,
+   "naziv_hr": "Daljinsko upravljanje"
+  },
+  {
+   "id": "senzori",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 3,
+   "naziv_hr": "Senzori"
+  },
+  {
+   "id": "detektori-pokreta-i-prisutnosti",
+   "vrsta": "loxone",
+   "roditelj_id": "senzori",
+   "redoslijed": 0,
+   "naziv_hr": "Detektori pokreta i prisutnosti"
+  },
+  {
+   "id": "senzori-klime-i-kvalitete-zraka",
+   "vrsta": "loxone",
+   "roditelj_id": "senzori",
+   "redoslijed": 1,
+   "naziv_hr": "Senzori klime i kvalitete zraka"
+  },
+  {
+   "id": "ostali-senzori",
+   "vrsta": "loxone",
+   "roditelj_id": "senzori",
+   "redoslijed": 2,
+   "naziv_hr": "Ostali senzori"
+  },
+  {
+   "id": "osvjetljenje",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 4,
+   "naziv_hr": "Osvjetljenje"
+  },
+  {
+   "id": "stropne-svjetljike",
+   "vrsta": "loxone",
+   "roditelj_id": "osvjetljenje",
+   "redoslijed": 0,
+   "naziv_hr": "Stropne svjetljike"
+  },
+  {
+   "id": "visece-svjetljike",
+   "vrsta": "loxone",
+   "roditelj_id": "osvjetljenje",
+   "redoslijed": 1,
+   "naziv_hr": "Viseće svjetljike"
+  },
+  {
+   "id": "stolne-svjetljike",
+   "vrsta": "loxone",
+   "roditelj_id": "osvjetljenje",
+   "redoslijed": 2,
+   "naziv_hr": "Stolne svjetljike"
+  },
+  {
+   "id": "led-trake",
+   "vrsta": "loxone",
+   "roditelj_id": "osvjetljenje",
+   "redoslijed": 3,
+   "naziv_hr": "LED trake"
+  },
+  {
+   "id": "led-bodovi-i-spotovi",
+   "vrsta": "loxone",
+   "roditelj_id": "osvjetljenje",
+   "redoslijed": 4,
+   "naziv_hr": "Led bodovi i spotovi"
+  },
+  {
+   "id": "upravljanje-osvjetljenjem",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 5,
+   "naziv_hr": "Upravljanje osvjetljenjem"
+  },
+  {
+   "id": "upravljaci",
+   "vrsta": "loxone",
+   "roditelj_id": "upravljanje-osvjetljenjem",
+   "redoslijed": 0,
+   "naziv_hr": "Upravljači"
+  },
+  {
+   "id": "regulatori-intenziteta",
+   "vrsta": "loxone",
+   "roditelj_id": "upravljanje-osvjetljenjem",
+   "redoslijed": 1,
+   "naziv_hr": "Regulatori intenziteta"
+  },
+  {
+   "id": "audio-sustavi",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 6,
+   "naziv_hr": "Audio sustavi"
+  },
+  {
+   "id": "zvucnici",
+   "vrsta": "loxone",
+   "roditelj_id": "audio-sustavi",
+   "redoslijed": 0,
+   "naziv_hr": "Zvučnici"
+  },
+  {
+   "id": "centralne-audio-jedinice",
+   "vrsta": "loxone",
+   "roditelj_id": "audio-sustavi",
+   "redoslijed": 1,
+   "naziv_hr": "Centralne audio jedinice"
+  },
+  {
+   "id": "aktuatori-i-pogoni",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 7,
+   "naziv_hr": "Aktuatori i pogoni"
+  },
+  {
+   "id": "zasjenjivanje",
+   "vrsta": "loxone",
+   "roditelj_id": "aktuatori-i-pogoni",
+   "redoslijed": 0,
+   "naziv_hr": "Zasjenjivanje"
+  },
+  {
+   "id": "ventili",
+   "vrsta": "loxone",
+   "roditelj_id": "aktuatori-i-pogoni",
+   "redoslijed": 1,
+   "naziv_hr": "Ventili"
+  },
+  {
+   "id": "pametne-uticnice",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 8,
+   "naziv_hr": "Pametne utičnice"
+  },
+  {
+   "id": "wireless-uticnice",
+   "vrsta": "loxone",
+   "roditelj_id": "pametne-uticnice",
+   "redoslijed": 0,
+   "naziv_hr": "Wireless utičnice"
+  },
+  {
+   "id": "kabeli-i-konektori",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 9,
+   "naziv_hr": "Kabeli i konektori"
+  },
+  {
+   "id": "stezaljke",
+   "vrsta": "loxone",
+   "roditelj_id": "kabeli-i-konektori",
+   "redoslijed": 0,
+   "naziv_hr": "Stezaljke"
+  },
+  {
+   "id": "loxone-tree",
+   "vrsta": "loxone",
+   "roditelj_id": "kabeli-i-konektori",
+   "redoslijed": 1,
+   "naziv_hr": "Loxone tree"
+  },
+  {
+   "id": "dodatni-materijali",
+   "vrsta": "loxone",
+   "roditelj_id": null,
+   "redoslijed": 10,
+   "naziv_hr": "Dodatni materijali"
+  },
+  {
+   "id": "memorija",
+   "vrsta": "loxone",
+   "roditelj_id": "dodatni-materijali",
+   "redoslijed": 0,
+   "naziv_hr": "Memorija"
+  },
+  {
+   "id": "nfc-sustav",
+   "vrsta": "loxone",
+   "roditelj_id": "dodatni-materijali",
+   "redoslijed": 1,
+   "naziv_hr": "NFC sustav"
+  },
+  {
+   "id": "ljestve-i-skele",
+   "vrsta": "alat",
+   "roditelj_id": null,
+   "redoslijed": 0,
+   "naziv_hr": "Ljestve i skele"
+  },
+  {
+   "id": "rezanje-i-brusenje",
+   "vrsta": "alat",
+   "roditelj_id": null,
+   "redoslijed": 1,
+   "naziv_hr": "Rezanje i brušenje"
+  },
+  {
+   "id": "busenje-i-odvijanje",
+   "vrsta": "alat",
+   "roditelj_id": null,
+   "redoslijed": 2,
+   "naziv_hr": "Bušenje i odvijanje"
+  },
+  {
+   "id": "usisavaci-i-otprasivanje",
+   "vrsta": "alat",
+   "roditelj_id": null,
+   "redoslijed": 3,
+   "naziv_hr": "Usisavači i otprašivanje"
+  }
+ ],
+ "artikli": [
+  {
+   "id": "1210",
+   "vrsta": "alat",
+   "naziv": "PROTUBE-F360",
+   "sku": "PROTUBE-F360",
+   "marka": "Protube",
+   "cijena_cents": 5000,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "ljestve-i-skele"
+   ]
+  },
+  {
+   "id": "1209",
+   "vrsta": "alat",
+   "naziv": "K+K 235628",
+   "sku": "K+K 235628",
+   "marka": "K+K",
+   "cijena_cents": 2000,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "ljestve-i-skele"
+   ]
+  },
+  {
+   "id": "1207",
+   "vrsta": "alat",
+   "naziv": "K+K 235636",
+   "sku": "K+K 235636",
+   "marka": "K+K",
+   "cijena_cents": 1600,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "ljestve-i-skele"
+   ]
+  },
+  {
+   "id": "1205",
+   "vrsta": "alat",
+   "naziv": "Bosch GTS 10 J Professional",
+   "sku": "Bosch GTS 10 J Professional",
+   "marka": "Bosch",
+   "cijena_cents": 2800,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "rezanje-i-brusenje"
+   ]
+  },
+  {
+   "id": "1201",
+   "vrsta": "alat",
+   "naziv": "Bosch GAS 12-25 PL",
+   "sku": "Bosch GAS 12-25 PL",
+   "marka": "Bosch",
+   "cijena_cents": 2800,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "usisavaci-i-otprasivanje"
+   ]
+  },
+  {
+   "id": "1197",
+   "vrsta": "alat",
+   "naziv": "Bosch GWS 18V-10",
+   "sku": "Bosch GWS 18V-10",
+   "marka": "Bosch",
+   "cijena_cents": 2200,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "rezanje-i-brusenje"
+   ]
+  },
+  {
+   "id": "1194",
+   "vrsta": "alat",
+   "naziv": "Bosch GSR 18V-55",
+   "sku": "Bosch GSR 18V-55",
+   "marka": "Bosch",
+   "cijena_cents": 1600,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "busenje-i-odvijanje"
+   ]
+  },
+  {
+   "id": "1191",
+   "vrsta": "alat",
+   "naziv": "Bosch GEX 18V-125",
+   "sku": "Bosch GEX 18V-125",
+   "marka": "Bosch",
+   "cijena_cents": 2300,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "rezanje-i-brusenje"
+   ]
+  },
+  {
+   "id": "1188",
+   "vrsta": "alat",
+   "naziv": "Bosch GRO 12V-35",
+   "sku": "Bosch GRO 12V-35",
+   "marka": "Bosch",
+   "cijena_cents": 1600,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "rezanje-i-brusenje"
+   ]
+  },
+  {
+   "id": "1185",
+   "vrsta": "alat",
+   "naziv": "Bosch Professional 12 V System",
+   "sku": "Bosch Professional 12 V System",
+   "marka": "Bosch",
+   "cijena_cents": 2600,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "busenje-i-odvijanje"
+   ]
+  },
+  {
+   "id": "1180",
+   "vrsta": "alat",
+   "naziv": "Bosch GKS 12V-26",
+   "sku": "Bosch GKS 12V-26",
+   "marka": "Bosch",
+   "cijena_cents": 1800,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "rezanje-i-brusenje"
+   ]
+  },
+  {
+   "id": "1177",
+   "vrsta": "alat",
+   "naziv": "Bosch GDS 18V-450 HC",
+   "sku": "Bosch GDS 18V-450 HC",
+   "marka": "Bosch",
+   "cijena_cents": 3300,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "busenje-i-odvijanje"
+   ]
+  },
+  {
+   "id": "1176",
+   "vrsta": "alat",
+   "naziv": "Bosch MA 55 – Nastavak magazina za izvijače",
+   "sku": "ma55",
+   "marka": "Bosch",
+   "cijena_cents": 1000,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "busenje-i-odvijanje"
+   ]
+  },
+  {
+   "id": "1175",
+   "vrsta": "alat",
+   "naziv": "Bosch GDR 12V-110",
+   "sku": "Bosch GDR 12V-110",
+   "marka": "Bosch",
+   "cijena_cents": 1800,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "busenje-i-odvijanje"
+   ]
+  },
+  {
+   "id": "1170",
+   "vrsta": "alat",
+   "naziv": "BOSCH GWS 12V-76",
+   "sku": "gws-18v",
+   "marka": "Bosch",
+   "cijena_cents": 1800,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "rezanje-i-brusenje"
+   ]
+  },
+  {
+   "id": "1134",
+   "vrsta": "alat",
+   "naziv": "Bosch-GSR-12V-15-FC",
+   "sku": "Bosch-GSR-12V-15-FC",
+   "marka": "Bosch",
+   "cijena_cents": 1600,
+   "osnova": "dan",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "busenje-i-odvijanje"
+   ]
+  },
+  {
+   "id": "1808",
+   "vrsta": "loxone",
+   "naziv": "SD kartica s FirmWareom za Miniserver Gen.1",
+   "sku": "SD kartica s FirmWareom za Miniserver Gen.1",
+   "marka": "Loxone",
+   "cijena_cents": 1284,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "dodatni-materijali",
+    "memorija"
+   ]
+  },
+  {
+   "id": "1805",
+   "vrsta": "loxone",
+   "naziv": "NFC Key Fob Set (10)",
+   "sku": "NFC Key Fob Set (10)",
+   "marka": "Loxone",
+   "cijena_cents": 3275,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "dodatni-materijali",
+    "nfc-sustav"
+   ]
+  },
+  {
+   "id": "1802",
+   "vrsta": "loxone",
+   "naziv": "Encrypted NFC Smart Cards Set (10)",
+   "sku": "Encrypted NFC Smart Cards Set (10)",
+   "marka": "Loxone",
+   "cijena_cents": 3275,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "dodatni-materijali",
+    "nfc-sustav"
+   ]
+  },
+  {
+   "id": "1800",
+   "vrsta": "loxone",
+   "naziv": "Clamp Tree for NFC / Flex / Intercom (25)",
+   "sku": "Clamp Tree for NFC / Flex / Intercom (25)",
+   "marka": "Loxone",
+   "cijena_cents": 1725,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "kabeli-i-konektori",
+    "stezaljke"
+   ]
+  },
+  {
+   "id": "1797",
+   "vrsta": "loxone",
+   "naziv": "Turbo Clamp (25)",
+   "sku": "Turbo Clamp (25)",
+   "marka": "Loxone",
+   "cijena_cents": 1207,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "kabeli-i-konektori",
+    "stezaljke"
+   ]
+  },
+  {
+   "id": "1794",
+   "vrsta": "loxone",
+   "naziv": "Loxone Clamp Tree (25)",
+   "sku": "Loxone Clamp Tree (25)",
+   "marka": "Loxone",
+   "cijena_cents": 1207,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "kabeli-i-konektori",
+    "stezaljke"
+   ]
+  },
+  {
+   "id": "1790",
+   "vrsta": "loxone",
+   "naziv": "Tree Cable (200m)",
+   "sku": "Tree Cable (200m)",
+   "marka": "Loxone",
+   "cijena_cents": 34637,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "kabeli-i-konektori",
+    "loxone-tree"
+   ]
+  },
+  {
+   "id": "1786",
+   "vrsta": "loxone",
+   "naziv": "Smart Socket Air Type G",
+   "sku": "Smart Socket Air Type G",
+   "marka": "Loxone",
+   "cijena_cents": 6990,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "pametne-uticnice",
+    "wireless-uticnice"
+   ]
+  },
+  {
+   "id": "1782",
+   "vrsta": "loxone",
+   "naziv": "Smart Socket Air Type J",
+   "sku": "Smart Socket Air Type J",
+   "marka": "Loxone",
+   "cijena_cents": 6990,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "pametne-uticnice",
+    "wireless-uticnice"
+   ]
+  },
+  {
+   "id": "1779",
+   "vrsta": "loxone",
+   "naziv": "Smart Socket Air Type F",
+   "sku": "Smart Socket Air Type F",
+   "marka": "Loxone",
+   "cijena_cents": 7668,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "pametne-uticnice",
+    "wireless-uticnice"
+   ]
+  },
+  {
+   "id": "1776",
+   "vrsta": "loxone",
+   "naziv": "Surface Box For 10 – Nadogradna kutija za zvučnik",
+   "sku": "Surface Box For 10 - Nadogradna kutija za zvučnik",
+   "marka": "Loxone",
+   "cijena_cents": 15000,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "audio-sustavi",
+    "zvucnici"
+   ]
+  },
+  {
+   "id": "1773",
+   "vrsta": "loxone",
+   "naziv": "Surface Box For 7 – Nadogradna kutija za zvučnik",
+   "sku": "Surface Box For 7 - Nadogradna kutija za zvučnik",
+   "marka": "Loxone",
+   "cijena_cents": 13000,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "audio-sustavi",
+    "zvucnici"
+   ]
+  },
+  {
+   "id": "1770",
+   "vrsta": "loxone",
+   "naziv": "Stereo Extension",
+   "sku": "Stereo Extension",
+   "marka": "Loxone",
+   "cijena_cents": 25275,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "audio-sustavi",
+    "centralne-audio-jedinice"
+   ]
+  },
+  {
+   "id": "1767",
+   "vrsta": "loxone",
+   "naziv": "Audio Server",
+   "sku": "Audio Server",
+   "marka": "Loxone",
+   "cijena_cents": 50552,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "audio-sustavi",
+    "centralne-audio-jedinice"
+   ]
+  },
+  {
+   "id": "1762",
+   "vrsta": "loxone",
+   "naziv": "Loxone Shading Actuator Air",
+   "sku": "Loxone Shading Actuator Air",
+   "marka": "Loxone",
+   "cijena_cents": 11409,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "aktuatori-i-pogoni",
+    "zasjenjivanje"
+   ]
+  },
+  {
+   "id": "1759",
+   "vrsta": "loxone",
+   "naziv": "Valve Actuator Air – Motorni pogon za ventile",
+   "sku": "Valve Actuator Air - Motorni pogon za ventile",
+   "marka": "Loxone",
+   "cijena_cents": 10090,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "aktuatori-i-pogoni",
+    "ventili"
+   ]
+  },
+  {
+   "id": "1755",
+   "vrsta": "loxone",
+   "naziv": "Valve Actuator Tree – Motorni pogon za ventile",
+   "sku": "Valve Actuator Tree - Motorni pogon za ventile",
+   "marka": "Loxone",
+   "cijena_cents": 8474,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "aktuatori-i-pogoni",
+    "ventili"
+   ]
+  },
+  {
+   "id": "1746",
+   "vrsta": "loxone",
+   "naziv": "IR Control Air",
+   "sku": "IR Control Air",
+   "marka": "Loxone",
+   "cijena_cents": 11717,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "ostali-senzori",
+    "senzori"
+   ]
+  },
+  {
+   "id": "1743",
+   "vrsta": "loxone",
+   "naziv": "Room Comfort Sensor Air",
+   "sku": "Room Comfort Sensor Air",
+   "marka": "Loxone",
+   "cijena_cents": 9084,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "senzori",
+    "senzori-klime-i-kvalitete-zraka"
+   ]
+  },
+  {
+   "id": "1740",
+   "vrsta": "loxone",
+   "naziv": "Room Comfort Sensor Tree",
+   "sku": "Room Comfort Sensor Tree",
+   "marka": "Loxone",
+   "cijena_cents": 24670,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "senzori",
+    "senzori-klime-i-kvalitete-zraka"
+   ]
+  },
+  {
+   "id": "1737",
+   "vrsta": "loxone",
+   "naziv": "Presence Sensor Air Senzor pristunosti",
+   "sku": "Presence Sensor Air Senzor pristunosti",
+   "marka": "Loxone",
+   "cijena_cents": 10960,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "detektori-pokreta-i-prisutnosti",
+    "senzori"
+   ]
+  },
+  {
+   "id": "1733",
+   "vrsta": "loxone",
+   "naziv": "Presence Sensor Tree Senzor prisutnosti",
+   "sku": "Presence Sensor Tree Senzor prisutnosti",
+   "marka": "Loxone",
+   "cijena_cents": 9807,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "detektori-pokreta-i-prisutnosti",
+    "senzori"
+   ]
+  },
+  {
+   "id": "1729",
+   "vrsta": "loxone",
+   "naziv": "Motion Sensor Tree Senzor pokreta",
+   "sku": "Motion Sensor Tree Senzor pokreta",
+   "marka": "Loxone",
+   "cijena_cents": 10832,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "detektori-pokreta-i-prisutnosti",
+    "senzori"
+   ]
+  },
+  {
+   "id": "1726",
+   "vrsta": "loxone",
+   "naziv": "Remote Air",
+   "sku": "Remote Air",
+   "marka": "Loxone",
+   "cijena_cents": 10900,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "daljinsko-upravljanje",
+    "doticajni-uredaji-i-tipkala"
+   ]
+  },
+  {
+   "id": "1722",
+   "vrsta": "loxone",
+   "naziv": "NFC Code Touch Air",
+   "sku": "NFC Code Touch Air",
+   "marka": "Loxone",
+   "cijena_cents": 30227,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "doticajni-uredaji-i-tipkala",
+    "nfc-i-sigurnost"
+   ]
+  },
+  {
+   "id": "1718",
+   "vrsta": "loxone",
+   "naziv": "NFC Code Touch Tree",
+   "sku": "NFC Code Touch Tree",
+   "marka": "Loxone",
+   "cijena_cents": 30227,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "doticajni-uredaji-i-tipkala",
+    "nfc-i-sigurnost"
+   ]
+  },
+  {
+   "id": "1715",
+   "vrsta": "loxone",
+   "naziv": "Touch Air tipkalo",
+   "sku": "Touch Air tipkalo",
+   "marka": "Loxone",
+   "cijena_cents": 11717,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "doticajni-uredaji-i-tipkala",
+    "touch-osnovna-serija"
+   ]
+  },
+  {
+   "id": "1712",
+   "vrsta": "loxone",
+   "naziv": "Touch Tree tipkalo",
+   "sku": "Touch Tree tipkalo",
+   "marka": "Loxone",
+   "cijena_cents": 9084,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "doticajni-uredaji-i-tipkala",
+    "touch-osnovna-serija"
+   ]
+  },
+  {
+   "id": "1709",
+   "vrsta": "loxone",
+   "naziv": "Touch Pure Flex Air",
+   "sku": "Touch Pure Flex Air",
+   "marka": "Loxone",
+   "cijena_cents": 21900,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "doticajni-uredaji-i-tipkala",
+    "touch-pure-serija"
+   ]
+  },
+  {
+   "id": "1706",
+   "vrsta": "loxone",
+   "naziv": "Touch Pure for Nano tipkalo",
+   "sku": "Touch Pure for Nano tipkalo",
+   "marka": "Loxone",
+   "cijena_cents": 21900,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "doticajni-uredaji-i-tipkala",
+    "touch-pure-serija"
+   ]
+  },
+  {
+   "id": "1702",
+   "vrsta": "loxone",
+   "naziv": "Touch Pure Air stakleno tipkalo",
+   "sku": "Touch Pure Air stakleno tipkalo",
+   "marka": "Loxone",
+   "cijena_cents": 19276,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "doticajni-uredaji-i-tipkala",
+    "touch-pure-serija"
+   ]
+  },
+  {
+   "id": "1700",
+   "vrsta": "loxone",
+   "naziv": "Touch Pure Tree CO2 stakleno tipkalo",
+   "sku": "Touch Pure Tree CO2 stakleno tipkalo",
+   "marka": "Loxone",
+   "cijena_cents": 23362,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "doticajni-uredaji-i-tipkala",
+    "touch-pure-serija"
+   ]
+  },
+  {
+   "id": "1697",
+   "vrsta": "loxone",
+   "naziv": "Nano IO Air",
+   "sku": "Nano IO Air",
+   "marka": "Loxone",
+   "cijena_cents": 11900,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "upravljaci",
+    "upravljanje-osvjetljenjem"
+   ]
+  },
+  {
+   "id": "1693",
+   "vrsta": "loxone",
+   "naziv": "Nano Dimmer Air",
+   "sku": "Nano Dimmer Air",
+   "marka": "Loxone",
+   "cijena_cents": 12110,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "regulatori-intenziteta",
+    "upravljanje-osvjetljenjem"
+   ]
+  },
+  {
+   "id": "1689",
+   "vrsta": "loxone",
+   "naziv": "RGBW 24V Dimmer Air",
+   "sku": "RGBW 24V Dimmer Air",
+   "marka": "Loxone",
+   "cijena_cents": 9203,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "regulatori-intenziteta",
+    "upravljanje-osvjetljenjem"
+   ]
+  },
+  {
+   "id": "1684",
+   "vrsta": "loxone",
+   "naziv": "RGBW 24V Dimmer Tree",
+   "sku": "RGBW 24V Dimmer Tree",
+   "marka": "Loxone",
+   "cijena_cents": 7886,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "regulatori-intenziteta",
+    "upravljanje-osvjetljenjem"
+   ]
+  },
+  {
+   "id": "1520",
+   "vrsta": "loxone",
+   "naziv": "Install Speaker 7 Master",
+   "sku": "Install Speaker 7 Master",
+   "marka": "Loxone",
+   "cijena_cents": 29900,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "audio-sustavi",
+    "zvucnici"
+   ]
+  },
+  {
+   "id": "1516",
+   "vrsta": "loxone",
+   "naziv": "Install speaker 7 passive",
+   "sku": "Install speaker 7 passive",
+   "marka": "Loxone",
+   "cijena_cents": 12743,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "audio-sustavi",
+    "zvucnici"
+   ]
+  },
+  {
+   "id": "1512",
+   "vrsta": "loxone",
+   "naziv": "RS485 extension",
+   "sku": "RS485 extension",
+   "marka": "Loxone",
+   "cijena_cents": 18542,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "prosirenja",
+    "specijalizirana-prosirenja"
+   ]
+  },
+  {
+   "id": "1508",
+   "vrsta": "loxone",
+   "naziv": "LED Pendulum Slim RGBW PWM",
+   "sku": "LED Pendulum Slim RGBW PWM",
+   "marka": "Loxone",
+   "cijena_cents": 24997,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "osvjetljenje",
+    "visece-svjetljike"
+   ]
+  },
+  {
+   "id": "1505",
+   "vrsta": "loxone",
+   "naziv": "Table lamp",
+   "sku": "Table lamp",
+   "marka": "Loxone",
+   "cijena_cents": 19900,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "osvjetljenje",
+    "stolne-svjetljike"
+   ]
+  },
+  {
+   "id": "1502",
+   "vrsta": "loxone",
+   "naziv": "LED strip RGBW",
+   "sku": "LED strip RGBW",
+   "marka": "Loxone",
+   "cijena_cents": 13572,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "led-trake",
+    "osvjetljenje"
+   ]
+  },
+  {
+   "id": "1497",
+   "vrsta": "loxone",
+   "naziv": "LED Ceiling Light RGBW Air",
+   "sku": "LED Ceiling Light RGBW Air",
+   "marka": "Loxone",
+   "cijena_cents": 31552,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "osvjetljenje",
+    "stropne-svjetljike"
+   ]
+  },
+  {
+   "id": "1491",
+   "vrsta": "loxone",
+   "naziv": "LED spot RGBW Tree",
+   "sku": "LED spot RGBW Tree",
+   "marka": "Loxone",
+   "cijena_cents": 8527,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "led-bodovi-i-spotovi",
+    "osvjetljenje"
+   ]
+  },
+  {
+   "id": "1487",
+   "vrsta": "loxone",
+   "naziv": "KNX extension",
+   "sku": "KNX extension",
+   "marka": "Loxone",
+   "cijena_cents": 57388,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "specijalizirana-prosirenja",
+    "prosirenja"
+   ]
+  },
+  {
+   "id": "1482",
+   "vrsta": "loxone",
+   "naziv": "AO extension",
+   "sku": "AO extension",
+   "marka": "Loxone",
+   "cijena_cents": 27096,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "prosirenja",
+    "specijalizirana-prosirenja"
+   ]
+  },
+  {
+   "id": "1478",
+   "vrsta": "loxone",
+   "naziv": "AI extension",
+   "sku": "AI extension",
+   "marka": "Loxone",
+   "cijena_cents": 20322,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "prosirenja",
+    "ulazna-prosirenja"
+   ]
+  },
+  {
+   "id": "1474",
+   "vrsta": "loxone",
+   "naziv": "Dali extension – 10 uređaja",
+   "sku": "Dali extension - 10 uređaja",
+   "marka": "Loxone",
+   "cijena_cents": 20000,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "prosirenja",
+    "specijalizirana-prosirenja"
+   ]
+  },
+  {
+   "id": "1470",
+   "vrsta": "loxone",
+   "naziv": "Dali extension – 64 uređaja",
+   "sku": "Dali extension - 64 uređaja",
+   "marka": null,
+   "cijena_cents": 55445,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "prosirenja",
+    "specijalizirana-prosirenja"
+   ]
+  },
+  {
+   "id": "1467",
+   "vrsta": "loxone",
+   "naziv": "Modbus extension",
+   "sku": "Modbus extension",
+   "marka": "Loxone",
+   "cijena_cents": 25011,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "prosirenja",
+    "specijalizirana-prosirenja"
+   ]
+  },
+  {
+   "id": "1463",
+   "vrsta": "loxone",
+   "naziv": "1-wire extension",
+   "sku": "1-wire extension",
+   "marka": "Loxone",
+   "cijena_cents": 18542,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "prosirenja",
+    "specijalizirana-prosirenja"
+   ]
+  },
+  {
+   "id": "1459",
+   "vrsta": "loxone",
+   "naziv": "DI extension",
+   "sku": "DI extension",
+   "marka": "Loxone",
+   "cijena_cents": 28460,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "prosirenja",
+    "ulazna-prosirenja"
+   ]
+  },
+  {
+   "id": "1455",
+   "vrsta": "loxone",
+   "naziv": "Dimmer extension",
+   "sku": "Dimmer extension",
+   "marka": "Loxone",
+   "cijena_cents": 28460,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "izlazna-prosirenja",
+    "prosirenja"
+   ]
+  },
+  {
+   "id": "1451",
+   "vrsta": "loxone",
+   "naziv": "Relay extension",
+   "sku": "Relay extension",
+   "marka": "Loxone",
+   "cijena_cents": 33757,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "izlazna-prosirenja",
+    "prosirenja"
+   ]
+  },
+  {
+   "id": "1447",
+   "vrsta": "loxone",
+   "naziv": "AIR base extension",
+   "sku": "AIR base extension",
+   "marka": "Loxone",
+   "cijena_cents": 10861,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "komunikacijska-prosirenja",
+    "prosirenja"
+   ]
+  },
+  {
+   "id": "1444",
+   "vrsta": "loxone",
+   "naziv": "Tree extension",
+   "sku": "Tree extension",
+   "marka": "Loxone",
+   "cijena_cents": 10861,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "komunikacijska-prosirenja",
+    "prosirenja"
+   ]
+  },
+  {
+   "id": "1441",
+   "vrsta": "loxone",
+   "naziv": "Miniserver Go",
+   "sku": "Miniserver Go",
+   "marka": "Loxone",
+   "cijena_cents": 39362,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "miniserveri",
+    "upravljacke-jedinice"
+   ]
+  },
+  {
+   "id": "1438",
+   "vrsta": "loxone",
+   "naziv": "Miniserver Compact",
+   "sku": "Miniserver Compact",
+   "marka": "Loxone",
+   "cijena_cents": 49500,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "miniserveri",
+    "upravljacke-jedinice"
+   ]
+  },
+  {
+   "id": "1433",
+   "vrsta": "loxone",
+   "naziv": "Miniserver",
+   "sku": "Miniserver",
+   "marka": "Loxone",
+   "cijena_cents": 65561,
+   "osnova": "kom",
+   "na_stanju": true,
+   "slika": null,
+   "kategorije": [
+    "miniserveri",
+    "upravljacke-jedinice"
+   ]
+  }
+ ]
+}

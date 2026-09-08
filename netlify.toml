@@ -1,0 +1,123 @@
+# Netlify — staticka stranica bez koraka izgradnje.
+#
+# Ako se ikad doda generiranje jezicnih inacica, ovdje ide
+# `command = "node scripts/build.js"`. Do tada Netlify samo posluzuje mapu.
+
+[build]
+  publish = "."
+  command = ""
+
+# -------------------------------------------------------------------
+# Stranice proizvoda
+# -------------------------------------------------------------------
+# Generira ih scripts/stranice.mjs i ima ih 59, pa ovdje stoji uzorak umjesto
+# 118 pojedinacnih pravila. Eksplicitnost se time ne gubi: pravilo i dalje
+# pise u datoteci i prezivi promjenu postavke u sucelju.
+#
+# REDOSLIJED JE BITAN. Netlify uzima prvo pravilo koje se poklopi, pa pravilo
+# za .html mora stajati PRIJE uzorka. Obrnuto bi zahtjev za
+# /proizvodi/miniserver.html usao u uzorak, splat bi uhvatio "miniserver.html"
+# i preusmjerio na /proizvodi/miniserver.html.html — 404 na svakoj stranici
+# kojoj netko dode s nastavkom.
+[[redirects]]
+  from = "/proizvodi/*.html"
+  to = "/proizvodi/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/proizvodi/*"
+  to = "/proizvodi/:splat.html"
+  status = 200
+
+# Miniserver je do sada stajao u korijenu. Adresa je objavljena, pa ostaje
+# zivjeti kao trajno preusmjerenje umjesto da postane 404.
+[[redirects]]
+  from = "/proizvod-miniserver"
+  to = "/proizvodi/miniserver"
+  status = 301
+
+[[redirects]]
+  from = "/proizvod-miniserver.html"
+  to = "/proizvodi/miniserver"
+  status = 301
+
+# -------------------------------------------------------------------
+# Ostale stranice
+# -------------------------------------------------------------------
+# Cisti URL-ovi: /webshop umjesto /webshop.html. Netlify to radi i sam preko
+# "Pretty URLs", ali eksplicitno pravilo prezivi promjenu postavke u sucelju.
+[[redirects]]
+  from = "/webshop"
+  to = "/webshop.html"
+  status = 200
+
+[[redirects]]
+  from = "/najam-alata"
+  to = "/najam-alata.html"
+  status = 200
+
+# Suprotan smjer: ako netko dode na .html adresu, preusmjeri ga na cistu, da
+# se ista stranica ne indeksira dvaput.
+[[redirects]]
+  from = "/webshop.html"
+  to = "/webshop"
+  status = 301
+
+[[redirects]]
+  from = "/najam-alata.html"
+  to = "/najam-alata"
+  status = 301
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+# -------------------------------------------------------------------
+# Zaglavlja
+# -------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+# Fontovi i slike nose sadrzaj u imenu ili se ne mijenjaju, pa smiju stajati
+# u predmemoriji godinu dana.
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Isto vrijedi i za isjecke proizvoda na karticama Loxone skupina: sest
+# datoteka koje se ne mijenjaju, a zajedno teze oko 2 MB.
+[[headers]]
+  for = "/assets/old-products/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# CSS i JS nemaju hash u imenu jer nema bundlera. Kratka predmemorija s
+# obaveznom provjerom: preglednik pita je li se promijenilo, ali ne skida
+# ponovno ako nije.
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cjenik se mijenja pokretanjem seed skripte, pa ne smije zapeti u predmemoriji.
+[[headers]]
+  for = "/assets/katalog.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

@@ -1,0 +1,19 @@
+{
+  "name": "hes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hranj Electrical Services — staticka stranica. Bez bundlera; npm sluzi samo alatima za pripremu.",
+  "type": "module",
+  "scripts": {
+    "posluzi": "python -m http.server 5501 --bind 127.0.0.1",
+    "provjeri": "python scripts/provjere.py && node scripts/provjere.mjs",
+    "katalog": "python scripts/seed.py",
+    "fontovi": "python scripts/fontovi.py",
+    "slike": "node scripts/slike.mjs",
+    "proizvodi": "node scripts/proizvodi.mjs",
+    "stranice": "node scripts/stranice.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

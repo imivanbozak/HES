@@ -1,0 +1,1827 @@
+/**
+ * sekcije.css — sastavni dijelovi pojedinih sekcija.
+ *
+ * app.css nosi ljusku (zaglavlje, podnozje, polja, gumbi); ovdje su stvari
+ * koje postoje samo unutar sadrzaja: hero, kartice, koraci, ljepljivi split,
+ * tablice cinjenica, kontakt.
+ *
+ * Kao i drugdje: nijedna boja nije zapisana doslovno, sve ide kroz var().
+ */
+
+/* ================================================================== */
+/* Zaglavlje sekcije i opci blokovi                                    */
+/* ================================================================== */
+.zaglavlje-sekcije {
+  display: grid;
+  gap: var(--p3);
+  margin-bottom: var(--p7);
+}
+.zaglavlje-sekcije .uvod { margin-top: var(--p1); }
+
+.blok {
+  display: grid;
+  gap: var(--p3);
+  margin-bottom: var(--p6);
+}
+
+.akcije {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--p3);
+  margin-top: var(--p5);
+}
+
+.popis {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--p2);
+}
+.popis li {
+  position: relative;
+  padding-left: var(--p5);
+  color: var(--tekst-2);
+  font-size: var(--vel-malo);
+}
+.popis li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 10px;
+  height: 1px;
+  background: var(--hes-tekst);
+}
+
+/* Varijanta s ikonama: crtica ustupa mjesto znaku, redak postaje flex. */
+.popis--ikone li {
+  display: flex;
+  align-items: center;
+  gap: var(--p3);
+  padding-left: 0;
+  padding-block: var(--p2);
+  font-size: var(--vel-tekst);
+}
+.popis--ikone li::before { content: none; }
+.popis--ikone svg {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  padding: 7px;
+  border-radius: var(--r-mali);
+  background: var(--hes-pranje);
+  border: 1px solid var(--hes-rub);
+  color: var(--hes-tekst);
+}
+
+/* Naglasena fraza unutar naslova. Bojanje je uklonjeno na zahtjev klijenta —
+   klasa ostaji samo zato da <em> ne padne u kurziv. */
+.istaknuto {
+  font-style: normal;
+}
+
+/*
+ * Redovi cinjenica. Citaju se kao specifikacija a ne kao marketing: oznaka
+ * lijevo, vrijednost desno, tanka crta izmedu. Isti sastavni dio koriste
+ * industrial na naslovnici i rental-intro na stranici najma.
+ */
+.cinjenice { margin: 0; }
+.cinjenice > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--p4);
+  padding: var(--p3) 0;
+  border-bottom: 1px solid var(--rub);
+}
+.cinjenice dt {
+  font-size: var(--vel-oznaka);
+  letter-spacing: var(--razmak-oznaka);
+  text-transform: uppercase;
+  color: var(--tekst-4);
+}
+.cinjenice dd {
+  margin: 0;
+  font-size: var(--vel-malo);
+  font-weight: 500;
+  text-align: right;
+}
+.cinjenice--vodoravno {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0 var(--p6);
+  margin-block: var(--p6);
+}
+.cinjenice--vodoravno > div {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--p2);
+}
+.cinjenice--vodoravno dd { text-align: left; }
+
+/* Tvrdi uvjet u boji naglaska; prednosti ostaju prigusene. Kandidat se
+   procijeni u nekoliko sekundi samo ako se "mora" i "dobro je" razlikuju
+   bez citanja. */
+.cinjenice--uvjet dd { color: var(--hes-tekst); font-weight: 600; }
+
+/* Namjerno najtisi element sekcije: nadu ga kandidati, kupci ga preskoce. */
+.uvlaka {
+  max-width: 44ch;
+  padding: var(--p4);
+  border-left: 2px solid var(--rub-jaci);
+  background: var(--plohica);
+  border-radius: 0 var(--r-mali) var(--r-mali) 0;
+  display: grid;
+  gap: var(--p2);
+  margin-bottom: var(--p6);
+}
+
+/* ================================================================== */
+/* Hero                                                                */
+/* ================================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  /* Nize nego prije: nakon uklanjanja natuknica i partnerske pilule sadrzaj
+     je krace, pa isti razlog (gornji rub sljedece sekcije vidljiv pri
+     ucitavanju) sad trazi manju visinu da ne ostane prazan prostor. */
+  min-height: min(72vh, 640px);
+  padding-block: var(--p9) var(--p7);
+  overflow: hidden;
+}
+.hero__slika {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero__slika img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 72% center;
+}
+
+/*
+ * Postupno zamucenje slijeva nadesno. Razbija ravnu plohu bez da dira sam
+ * kadar: maska gasi backdrop-filter prije nego stigne do ormara (koji sjedi
+ * oko 72% pozicije slike), pa ormar ostaje posve ostar, samo je prostor oko
+ * teksta lijevo staklen. Zaseban sloj, ne zamjena za .hero::after ispod —
+ * oba se sloje jedno na drugo, oba iza sadrzaja.
+ */
+.hero__zamucenje {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  isolation: isolate;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(18px) saturate(1.05);
+  backdrop-filter: blur(18px) saturate(1.05);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 36%, transparent 58%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 36%, transparent 58%);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .hero__zamucenje { display: none; }
+}
+
+/*
+ * Kosi zastor: slika je najsvjetlija desno, tekst stoji lijevo.
+ *
+ * Zastor je NEUTRALAN, bez tona. Ranije je bio tealni i bojao je cijelu
+ * fotografiju u plavo — a upravo je boja ormara ono zbog cega ta slika
+ * uopce stoji na stranici. Zatamnjenje sluzi samo citljivosti teksta, pa
+ * je najjace lijevo gdje tekst je, a nad motivom desno ga gotovo nema.
+ */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    100deg,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.62) 30%,
+    rgba(0, 0, 0, 0.22) 58%,
+    rgba(0, 0, 0, 0.10) 78%,
+    rgba(0, 0, 0, 0.30) 100%
+  );
+}
+.hero__sadrzaj {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: var(--p5);
+  justify-items: start;
+}
+.hero .naslov-hero { max-width: 20ch; }
+.hero .uvod { max-width: 54ch; }
+
+/*
+ * Ime tvrtke. Znak plus verzal na punoj boji teksta, s crtom koja se produzuje
+ * udesno — potez koji natpis veze uz rub stupca umjesto da lebdi sam.
+ */
+.hero__marka {
+  display: flex;
+  align-items: center;
+  gap: var(--p3);
+  font-size: var(--vel-malo);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tekst);
+}
+.hero__marka img { height: 26px; width: auto; }
+.hero__marka::after {
+  content: "";
+  width: clamp(24px, 8vw, 88px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--hes-tekst), transparent);
+  background-size: 200% 100%;
+}
+/* Spor sjaj koji putuje niz crtu — jedna od par tocaka na stranici gdje
+   pokret ponavlja u razmacima, umjesto da se odigra jednom i stane. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__marka::after { animation: sjaj-crte 4s ease-in-out infinite alternate; }
+}
+@keyframes sjaj-crte {
+  from { background-position: 0% 0; }
+  to { background-position: 100% 0; }
+}
+
+/*
+ * Dva trzista. Obrisi drzava su maknuti — na 32 px su bili siva mrlja lijevo
+ * od naziva, a naziv je ionako nosio cijelo prepoznavanje. Umjesto njih redak
+ * drzi kratak okomiti potez u boji naglaska: dovoljno da se dvije stavke citaju
+ * kao dva zapisa, a ne kao jedan tekst prelomljen preko dva stupca.
+ */
+.trzista {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rub);
+  border-bottom: 1px solid var(--rub);
+}
+.trzista li {
+  position: relative;
+  display: grid;
+  align-items: center;
+  padding: var(--p4) var(--p5) var(--p4) var(--p4);
+  margin-right: var(--p5);
+}
+/* Potez uz lijevi rub retka. Ne ide preko cijele visine nego kroz sredinu —
+   uz naziv, ne uz razmak iznad i ispod njega. */
+.trzista li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 2.1em;
+  border-radius: var(--r-pilula);
+  background: linear-gradient(180deg, var(--hes-tekst), transparent);
+}
+.trzista__tekst { display: grid; gap: 2px; }
+.trzista__ime {
+  font-size: var(--vel-tekst);
+  font-weight: 600;
+  color: var(--tekst);
+}
+.trzista__opis {
+  font-size: var(--vel-malo);
+  color: var(--tekst-2);
+}
+/* Crta razdvajanja je maknuta: potez naglaska uz svaki redak vec kaze gdje
+   jedan zapis pocinje, a crta uz njega bi bila druga okomita linija na
+   razmaku od 8 px. */
+
+.hero__akcije { display: flex; flex-wrap: wrap; gap: var(--p3); }
+
+@media (max-width: 719px) {
+  .hero { min-height: min(78vh, 560px); padding-block: var(--p8) var(--p6); }
+  .hero__slika img { object-position: center 26%; }
+  .hero__zamucenje { display: none; } /* kadar na mobitelu nema odmaknut motiv koji treba stititi */
+  .trzista li + li { border-top: 1px solid var(--rub); }
+}
+
+/* ================================================================== */
+/* Kartice                                                             */
+/* ================================================================== */
+.kartice {
+  display: grid;
+  gap: var(--p4);
+}
+.kartice--tri { grid-template-columns: repeat(3, 1fr); }
+/*
+ * Kartice pozicija su razlicite duljine (cetiri uvjeta naspram dva) i prije su
+ * se obje rastezale na visinu duze, pa je kraca imala pola prazne plohe.
+ * `start` joj dopusta da bude kratka kolika jest.
+ */
+.kartice--dvije { grid-template-columns: repeat(2, 1fr); align-items: start; }
+
+.kartica {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--p3);
+  padding: var(--p5);
+  background: var(--ploha-2);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  box-shadow: var(--odsjaj-kartice);
+  overflow: hidden;
+  transition:
+    transform var(--srednje) var(--krivulja),
+    border-color var(--srednje) var(--krivulja),
+    background var(--srednje) var(--krivulja);
+}
+/* Tanka crta naglaska preko vrha kartice na hover. */
+.kartica::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--hes), transparent);
+  opacity: 0;
+  transition: opacity var(--srednje) var(--krivulja);
+}
+@media (hover: hover) and (pointer: fine) {
+  .kartica:hover {
+    transform: var(--pomak-kartice);
+    border-color: var(--hes-rub);
+    background: var(--ploha-3);
+  }
+  .kartica:hover::before { opacity: 0.9; }
+}
+/* Pilule vise ne stoje ni na jednoj kartici — trziste na karticama usluga je
+   postalo mjerilo, a oznake zaposlenja plocice. `.pilula` i dalje zivi u
+   webshopu ("Na stanju", js/pogledi.js), ali ne unutar `.kartica`. */
+
+.kartica__cta {
+  justify-self: start;
+  align-self: end;
+  margin-top: var(--p2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: var(--vel-malo);
+  font-weight: 600;
+  color: var(--hes-tekst);
+  text-decoration: none;
+  transition: transform var(--brzo) var(--krivulja);
+}
+.kartica__cta::after {
+  content: "";
+  width: 1.1em;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--srednje) var(--krivulja);
+}
+.kartica__cta.van::after { content: none; }
+@media (hover: hover) and (pointer: fine) {
+  .kartica__cta:hover { transform: var(--pomak-retka); }
+  .kartica__cta:hover::after { width: 1.9em; }
+}
+.kartica__akcije { display: grid; gap: var(--p2); justify-items: start; }
+
+/*
+ * Kartica djelatnosti kao prozor.
+ *
+ * Cetiri poteza koja nosi, i zasto svaki:
+ *  - traka s tri tockice: kartica prestaje biti pravokutnik s tekstom i
+ *    postaje ploha koja nesto sadrzi. Bez naziva datoteke — naziv se drugdje
+ *    na stranici uklanja, pa ga ovdje ne uvodimo.
+ *  - `--vrh`: ikona i naslov U ISTOM RETKU. Prije su stajali jedan ispod
+ *    drugog i kartica je pocinjala s 90 px prije prve rijeci.
+ *  - `--duh`: redni broj krupno i jedva vidljivo, pomaknut ispod trake.
+ *  - lijevi potez koji na hover naraste s 3 na 5 px. Pomak koji se osjeti a
+ *    ne pomakne raspored — kartica ne mijenja sirinu.
+ *
+ * `overflow: hidden` vec stoji na `.kartica` i drzi duh unutar radijusa.
+ */
+.kartica--djelatnost {
+  padding-left: calc(var(--p5) + 3px);
+  /* CTA pada na dno kartice; bez ovoga tri kartice razlicite duljine teksta
+     zavrsavaju s tri poveznice na tri razlicite visine. */
+  align-content: space-between;
+}
+.kartica--djelatnost::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--hes), transparent 85%);
+  transition: width var(--srednje) var(--krivulja);
+  /* Iznad trake prozora, inace ga ona presijece. */
+  z-index: 1;
+}
+/* Traka mora dosegnuti rub kartice, a kartica ima vlastiti padding. Lijevo je
+   za 3 px veci zbog poteza naglaska, pa se i traka mora povuci za toliko. */
+.kartica--djelatnost.prozor .prozor__traka {
+  margin: calc(-1 * var(--p5)) calc(-1 * var(--p5)) 0 calc(-1 * (var(--p5) + 3px));
+}
+.kartica__vrh {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--p3);
+}
+.kartica__vrh .naslov-3 {
+  font-size: var(--vel-tekst);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: var(--razmak-naslov);
+  text-wrap: balance;
+}
+.kartica__duh {
+  position: absolute;
+  top: calc(-1 * var(--p2));
+  right: var(--p3);
+  font-size: clamp(56px, 7vw, 88px);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--hes-tekst);
+  opacity: 0.09;
+  pointer-events: none;
+}
+/* Ispod trake prozora, da ne stoji preko tockica. */
+.kartica--djelatnost .kartica__duh { top: var(--p6); }
+.kartica__ikona {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-tile);
+  background: var(--hes-pranje);
+  border: 1px solid var(--hes-rub);
+  color: var(--hes-tekst);
+  margin-bottom: var(--p1);
+}
+.kartica__ikona svg { width: 22px; height: 22px; }
+/* U retku s naslovom ikona ne treba donji razmak — poravnata je okomito. */
+.kartica__vrh .kartica__ikona { margin-bottom: 0; }
+
+@media (hover: hover) and (pointer: fine) {
+  .kartica--djelatnost:hover::after { width: 5px; }
+  .kartica--djelatnost:hover .kartica__duh { opacity: 0.16; }
+  .kartica--djelatnost:hover .kartica__ikona {
+    background: color-mix(in oklab, var(--hes) 22%, transparent);
+  }
+  /* Traka mjerila se puni do kraja na hover: kartica se javi i prije nego se
+     na nju klikne, a mjerilo je jedini element na njoj koji ima cime. */
+  .kartica--djelatnost:hover .mjerilo__ispuna { --ispuna: 1; }
+}
+
+/* Mjerilo unutar kartice stoji uz dno, iznad poveznice. */
+.kartica .mjerilo { margin-top: var(--p1); }
+
+@media (max-width: 1023px) {
+  .kartice--tri { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 719px) {
+  .kartice--tri,
+  .kartice--dvije { grid-template-columns: 1fr; }
+}
+
+/* ================================================================== */
+/* Koraci — opseg isporuke                                             */
+/* ================================================================== */
+/*
+ * Tri koraka na jednoj neprekinutoj crti. Tvrdnja JEST lanac, i jedna linija
+ * kaze "ovo ne predajemo dalje" ekonomicnije nego tri ikone.
+ *
+ * Cijela sekcija je centrirana i brojevi su krupni. Prije su bili krugici od
+ * 22 px s tekstom od 10 px — mjera na kojoj se lanac uopce nije citao kao
+ * lanac nego kao popis s tockama.
+ */
+.opseg .zaglavlje-sekcije { justify-items: center; text-align: center; }
+.opseg .zaglavlje-sekcije .stupac--tekst { margin-inline: auto; }
+
+.koraci {
+  /*
+   * Mjera brojke stoji OVDJE, a ne na `.korak`: crtu crta `.koraci::before` i
+   * mora znati istu vrijednost da bi je presjekla po sredini. Prilagodena
+   * svojstva se nasljeduju prema dolje, pa je s roditelja vide oboje.
+   */
+  --visina-broja: clamp(44px, 5.5vw, 68px);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--p5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Crta prolazi kroz sredinu brojki, ne iznad njih. */
+.koraci::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--visina-broja) / 2);
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rub-jaci) 12%, var(--rub-jaci) 88%, transparent);
+}
+/*
+ * Ovdje je stajala traka napretka: druga crta preko sive, koja se punila sa
+ * skrolom i skakala na klik po koraku. Maknuta je — s njom i klik, jer bez
+ * trake nije imao sto pokazati osim promjene boje jedne brojke.
+ * Lanac je opet ono sto je i bio: tri koraka na jednoj crti, sva tri
+ * jednako vidljiva od trenutka kad sekcija ude u prikaz.
+ */
+.korak {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--p2);
+}
+.korak__broj {
+  display: grid;
+  place-items: center;
+  height: var(--visina-broja);
+  margin-bottom: var(--p2);
+  padding-inline: var(--p4);
+  /* Brojka sjedi NA crti, pa mora imati vlastitu plohu koja crtu prekida. */
+  background: var(--ploha-1);
+  color: var(--hes-tekst);
+  font-size: var(--visina-broja);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+@media (max-width: 719px) {
+  .koraci { grid-template-columns: 1fr; gap: var(--p6); }
+  /* Na jednom stupcu crta ide okomito kroz sredinu. */
+  .koraci::before {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, transparent, var(--rub-jaci) 8%, var(--rub-jaci) 92%, transparent);
+  }
+}
+
+/* ================================================================== */
+/* Ljepljivi split                                                     */
+/* ================================================================== */
+.split__mreza {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--p8);
+  align-items: start;
+}
+/*
+ * Jedna slika, bez zamjene na hover. Omjer stranica je omjer same uspravne
+ * fotografije, pa `object-fit` nema sto rezati.
+ */
+.split__medij {
+  position: sticky;
+  top: calc(var(--visina-zaglavlja) + var(--p6));
+  aspect-ratio: 1149 / 1369;
+  border-radius: var(--r-ploha);
+  overflow: hidden;
+}
+.split__slika {
+  display: block;
+  height: 100%;
+}
+.split__slika img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.split__sadrzaj > *:last-child { margin-bottom: 0; }
+
+/* Ispod 1024 px split se raspada u sliku pa blokove; ljepljivost se gasi jer
+   bi na uskom ekranu pojela pola vidljive visine. */
+@media (max-width: 1023px) {
+  .split__mreza { grid-template-columns: 1fr; gap: var(--p6); }
+  .split__medij { position: static; aspect-ratio: 4 / 3; max-height: 46vh; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Spec prozor                                                         */
+/* ------------------------------------------------------------------ */
+/*
+ * Prozor sa specifikacijom. Zamjenjuje dva <details> bloka koja su stajala
+ * otvorena od pocetka i nisu skrivala nista — tri retka popisa i tri retka
+ * tablice. Strelica koja obeca sazimanje sadrzaja koji stane na ekran je
+ * obecanje bez pokrica, pa je maknuta zajedno s njima.
+ *
+ * Dvije polovice, odvojene crtom: gore sto se radi, dolje pod kojim uvjetima.
+ */
+.spec {
+  margin-bottom: var(--p6);
+  border-radius: var(--r-kartica);
+}
+.spec__popis {
+  padding: var(--p4) var(--p5);
+}
+.spec__mjerila {
+  display: grid;
+  gap: var(--p3);
+  padding: var(--p4) var(--p5) var(--p5);
+  border-top: 1px solid var(--rub);
+}
+/* Trake se pune tek kad prozor ude u prikaz. `data-otkrij` na prozoru vec
+   pomice cijeli blok, a ovo dodaje da se i mjerila "napune" umjesto da
+   dodu gotova. Pocetno stanje postavlja CSS jer je nula ovdje bezopasna:
+   bez JS-a se `--otkrivanje` prijelaz nikad ne pokrene, ali vrijednost iz
+   markupa (`--ispuna` na samoj ispuni) svejedno vrijedi. */
+.spec .mjerilo__ispuna { transition: transform var(--sporo) var(--krivulja) 120ms; }
+
+@media (max-width: 599px) {
+  .spec__popis { padding: var(--p3) var(--p4); }
+  .spec__mjerila { padding: var(--p3) var(--p4) var(--p4); }
+}
+
+/* ================================================================== */
+/* Zavrsni radovi                                                      */
+/* ================================================================== */
+/*
+ * Asimetricna mreza: uvod lijevo i ljepljiv, kartice radova desno. Sedam
+ * stavki je predugacko da stoji ispod naslova a da naslov ostane na ekranu.
+ */
+.zavrsni__mreza {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--p7);
+  align-items: start;
+}
+/*
+ * Podizanje na hover je maknuto. Ovo je ljepljiv STUPAC, ne kartica — pomicao
+ * se cijeli uvod sekcije zajedno s naslovom i dva gumba cim bi pokazivac
+ * presao preko bilo cega u njemu, i to dok stoji zalijepljen uz vrh prozora.
+ * Hover pripada elementima na koje se klika; ovaj to nije.
+ */
+.zavrsni__uvod {
+  position: sticky;
+  top: calc(var(--visina-zaglavlja) + var(--p6));
+}
+.zavrsni__uvod .zaglavlje-sekcije { margin-bottom: var(--p5); }
+
+/*
+ * Kartica posla. Uze nego prije (190 px umjesto 260) i krupnijeg tipa, pa se
+ * naziv cita kao naslov a ne kao redak popisa. Ikona i duh-broj rade isto sto
+ * i na karticama djelatnosti — daju kartici vrh koji se vidi prije citanja.
+ */
+/*
+ * `auto-fit`, ne `auto-fill`: sedam kartica u mrezi od cetiri stupca ostavlja
+ * tri prazna mjesta u zadnjem redu. `auto-fill` ih drzi kao prazne stupce i
+ * zadnja kartica visi lijevo uz rupu; `auto-fit` prazne stupce urusi, pa se
+ * tri kartice zadnjeg reda rastegnu i red izgleda namjerno.
+ */
+.radovi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--p3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rad {
+  position: relative;
+  display: grid;
+  /* Ikona gore, naziv uz dno: kartice razlicite duljine naziva time dobivaju
+     istu unutarnju crtu umjesto da im tekst pluta na razlicitim visinama. */
+  align-content: space-between;
+  gap: var(--p4);
+  min-height: 156px;
+  padding: var(--p4);
+  overflow: hidden;
+  background: var(--ploha-2);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  box-shadow: var(--odsjaj-kartice);
+  transition:
+    border-color var(--srednje) var(--krivulja),
+    background var(--srednje) var(--krivulja),
+    transform var(--srednje) var(--krivulja);
+}
+/* Brojka je bila odrezana gornjim rubom kartice (`top: -4px`); sad stoji
+   unutar nje, poravnata s ikonom. */
+.rad__broj {
+  position: absolute;
+  top: var(--p3);
+  right: var(--p4);
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 0.8;
+  color: var(--hes-tekst);
+  opacity: 0.1;
+  pointer-events: none;
+}
+.rad__ikona {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--r-mali);
+  background: var(--hes-pranje);
+  border: 1px solid var(--hes-rub);
+  color: var(--hes-tekst);
+}
+.rad__ikona svg { width: 20px; height: 20px; }
+.rad__ime {
+  font-size: var(--vel-tekst);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: var(--razmak-naslov);
+  text-wrap: balance;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rad:hover {
+    border-color: var(--hes-rub);
+    background: var(--ploha-3);
+    transform: var(--pomak-kartice);
+  }
+  .rad:hover .rad__broj { opacity: 0.16; }
+  .rad:hover .rad__ikona { background: color-mix(in oklab, var(--hes) 22%, transparent); }
+}
+
+@media (max-width: 1023px) {
+  .zavrsni__mreza { grid-template-columns: 1fr; gap: var(--p6); }
+  .zavrsni__uvod { position: static; }
+}
+
+/* ================================================================== */
+/* Kucne elektroinstalacije                                            */
+/* ================================================================== */
+/*
+ * Tekst lijevo, jedna fotografija desno s karticom koja joj preklapa donji
+ * rub. Zavrsni radovi iznad koriste ljepljiv uvod i mrezu kartica; da i ova
+ * sekcija radi isto, dvije sekcije iste djelatnosti citale bi se kao jedna
+ * predugacka.
+ */
+.kucne__mreza {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+  gap: var(--p8);
+  align-items: center;
+}
+.kucne__tekst .zaglavlje-sekcije { margin-bottom: var(--p5); }
+
+/* Inline umjesto stupca: tri kratke cinjenice citaju se kao skup pilula
+   u retku, ne kao popis od tri retka. */
+.kucne__natuknice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p2) var(--p3);
+  list-style: none;
+  margin: var(--p3) 0 0;
+  padding: 0;
+}
+.kucne__natuknice li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p2);
+  padding: 5px var(--p3);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  font-size: var(--vel-malo);
+  font-weight: 500;
+  color: var(--tekst-2);
+}
+.kucne__natuknice svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--hes-tekst);
+}
+
+.kucne__medij { position: relative; }
+.kucne__slika { display: block; }
+.kucne__slika img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--r-ploha);
+}
+/*
+ * Kartica preklapa donji rub fotografije. Loxone je ovdje dodatak kucnoj
+ * instalaciji, a ne zasebna ponuda — kartica koja stoji NA slici to kaze bez
+ * recenice, dok bi kartica pokraj slike rekla suprotno.
+ */
+.kucne__kartica {
+  position: relative;
+  z-index: 1;
+  transition:
+    transform var(--srednje) var(--krivulja),
+    border-color var(--srednje) var(--krivulja);
+  display: grid;
+  gap: var(--p2);
+  justify-items: start;
+  width: calc(100% - var(--p7));
+  /* Kartica je nakon micanja tablice cinjenica niza, pa preklapa sliku za
+     manje nego prije — inace bi joj donji rub visio ispod fotografije. */
+  margin: calc(-1 * var(--p7)) auto 0;
+  padding: var(--p5);
+  border-radius: var(--r-ploha);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .kucne__kartica:hover {
+    transform: var(--pomak-kartice);
+    border-color: var(--hes-rub);
+  }
+}
+
+@media (max-width: 1023px) {
+  .kucne__mreza { grid-template-columns: 1fr; gap: var(--p6); }
+}
+@media (max-width: 599px) {
+  /* Na uskom ekranu preklapanje pojede pola fotografije. */
+  .kucne__kartica {
+    width: 100%;
+    margin-top: var(--p4);
+    padding: var(--p4);
+  }
+}
+
+/* ================================================================== */
+/* Loxone pojas                                                        */
+/* ================================================================== */
+.traka-loxone { position: relative; overflow: hidden; }
+/* Slika ide punom jacinom: izboji na njoj su vec tirkizni sami po sebi i ne
+   treba im nikakav ton odozgo. */
+.traka-loxone__slika { position: absolute; inset: 0; z-index: 0; }
+.traka-loxone__slika img { width: 100%; height: 100%; object-fit: cover; }
+/*
+ * Jedini animirani mesh gradijent na stranici. Ovo je otok bez fotografije u
+ * prvom planu, pa pokret ovdje ne otima paznju nicemu — za razliku od heroja
+ * (koji vec dobiva zamucenje) ili industrijske sekcije (koja se cita kao
+ * specifikacija, ne kao ukras).
+ *
+ * VAZNO — redoslijed slaganja, i zasto ima CETIRI sloja a ne dva:
+ *
+ *   0  fotografija
+ *   1  osnovni zastor (.traka-loxone::after)  — spusta cijeli kadar
+ *   2  mesh (mix-blend-mode: screen)          — vraca svjetlo i boju
+ *   3  usmjereni zastor (.traka-loxone__zastor) — stiti tekst
+ *   4  sadrzaj
+ *
+ * Mesh MORA biti iznad osnovnog zastora: ispod njega je `screen` posvijetlio
+ * fotografiju, a zastor bi mu odmah oduzeo sve sto je dodao — to je bio pravi
+ * razlog zasto se gradijent uopce nije vidio (oba sloja su imala `z-index: 1`,
+ * a pseudoelement se crta nakon djece, pa je crnina padala preko mesha).
+ *
+ * Ali cim je mesh iznad zastora, on osvjetljava i plohu ispod teksta. Na
+ * svijetlom izboju fotografije bijeli tekst tako pada na 1.8:1. Zato sloj 3:
+ * jak ondje gdje tekst stoji, gotovo nikakav ondje gdje stoje kartice.
+ */
+.traka-loxone__mreza-boja {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+/*
+ * Sloj mesha. Svaki nosi JEDNU mrlju i giba se po vlastitom rasporedu.
+ * `inset: -25%` prekriva rub tako da translate/scale nikad ne otkrije brid;
+ * animira se iskljucivo `transform`, sto ostaje na kompozitoru.
+ */
+.mreza-boja__sloj {
+  position: absolute;
+  inset: -25%;
+  display: block;
+}
+.mreza-boja__sloj--1 {
+  background-image: radial-gradient(
+    42% 52% at 24% 32%,
+    color-mix(in oklab, var(--hes) 78%, transparent) 0%,
+    transparent 68%
+  );
+}
+.mreza-boja__sloj--2 {
+  background-image: radial-gradient(
+    48% 58% at 78% 68%,
+    color-mix(in oklab, var(--sjaj) 52%, transparent) 0%,
+    transparent 70%
+  );
+}
+.mreza-boja__sloj--3 {
+  background-image: radial-gradient(
+    38% 46% at 58% 16%,
+    color-mix(in oklab, var(--tekst-na-tealu) 22%, transparent) 0%,
+    transparent 64%
+  );
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Tri razlicita trajanja, tri razlicite putanje. Da su ista, tri sloja bi
+     se ponasala kao jedan i cijeli bi trud bio uzalud. */
+  .mreza-boja__sloj--1 { animation: mreza-boja-1 19s ease-in-out infinite alternate; }
+  .mreza-boja__sloj--2 { animation: mreza-boja-2 27s ease-in-out infinite alternate; }
+  .mreza-boja__sloj--3 { animation: mreza-boja-3 35s ease-in-out infinite alternate; }
+}
+@keyframes mreza-boja-1 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(9%, -6%) scale(1.18); }
+}
+@keyframes mreza-boja-2 {
+  from { transform: translate(0, 0) scale(1.1); }
+  to { transform: translate(-11%, 7%) scale(0.94); }
+}
+@keyframes mreza-boja-3 {
+  from { transform: translate(4%, 3%) scale(0.96); }
+  to { transform: translate(-6%, -8%) scale(1.14); }
+}
+/*
+ * Sloj 1 — osnovni zastor. Spusten s .62/.44 na .42/.26 da mesh iznad njega
+ * uopce ima sto posvijetliti; citljivost teksta preuzima sloj 3 ispod.
+ */
+.traka-loxone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.42),
+    rgba(0, 0, 0, 0.26)
+  );
+}
+
+/*
+ * Sloj 3 — usmjereni zastor koji stiti tekst.
+ *
+ * Mjereno na najgorem slucaju (najsvjetlija mrlja mesha na svijetlom izboju
+ * fotografije), s tekstom `--tekst-na-tealu` #F4F1EA:
+ *
+ *            bez ovog sloja   s njim
+ *   naslov       1.79:1        7.56:1
+ *   uvod         1.79:1        5.66:1
+ *
+ * Kut je isti kao na heroju (100deg): tekst je lijevo, kartice desno, pa
+ * zastor pada s .58 na .20 preko sirine. Desnih .20 nije nula jer i kartice
+ * nose tekst — staklo ispod njih dobiva na racun toga jos malo dubine.
+ */
+.traka-loxone__zastor {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    rgba(0, 0, 0, 0.58) 0%,
+    rgba(0, 0, 0, 0.52) 34%,
+    rgba(0, 0, 0, 0.28) 58%,
+    rgba(0, 0, 0, 0.20) 100%
+  );
+}
+/*
+ * Dva dijela: tvrdnja lijevo, sest skupina proizvoda desno. Kartice su
+ * staklene jer leze na fotografiji — neprozirna ploha bi ovdje izgledala kao
+ * zakrpa preko slike, a staklo pusta izboje da se naziru kroz nju.
+ */
+.traka-loxone__sadrzaj {
+  position: relative;
+  /* Sloj 4: iznad usmjerenog zastora (3), mesha (2), zastora (1) i slike (0). */
+  z-index: 4;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--p7);
+  align-items: center;
+}
+.traka-loxone__tekst {
+  display: grid;
+  gap: var(--p4);
+  justify-items: start;
+  max-width: 46ch;
+}
+/* Natpis gumba je bijel, ne --hes-na-plohi: na ovom otoku treba fiksnu
+   bjelinu bez obzira na temu, ne racunicu koja se mijenja s njom. */
+.traka-loxone .gumb--glavni { color: #fff; }
+
+.skupine {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--p3);
+}
+/*
+ * Kartica skupine: BIJELA ploha i CRN tekst, u obje teme, tvrdim
+ * vrijednostima umjesto tokena.
+ *
+ * Razlog je isti onaj koji `--tekst-na-tealu` ima nekoliko stotina redaka
+ * iznad: otok ostaje taman i u svijetloj temi, pa bi token ovdje pod jednom
+ * temom dao pogresnu boju. Ali smjer je obrnut od ostatka otoka — kadrovi
+ * proizvoda su snimljeni na bijeloj plohi, pa kartica mora biti ta ista
+ * bjelina. Staklo bi kroz sebe pustilo teal i fotografiju ispod, i bijeli bi
+ * kadar na njemu izgledao kao izrezan pravokutnik zalijepljen preko.
+ *
+ * Zato kartice vise NEMAJU `staklo` u markupu: ploha je puna, ne zamucena.
+ * Crn tekst na #FFF daje 19.6:1, sto je gornja granica koju kontrast uopce
+ * doseze.
+ */
+.skupina {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--p1);
+  padding: var(--p3);
+  border-radius: var(--r-kartica);
+  text-decoration: none;
+  background: #fff;
+  color: #0A0908;
+  border: 1px solid rgba(10, 9, 8, 0.10);
+  box-shadow: 0 2px 10px -4px rgba(10, 9, 8, 0.35);
+  overflow: hidden;
+  transition:
+    transform var(--srednje) var(--krivulja),
+    border-color var(--srednje) var(--krivulja);
+}
+/* `.jedva` je globalno `--tekst-4`, sto je u tamnoj temi #8B857A — na bijeloj
+   kartici 2.9:1. Ista uloga, vrijednost iz svijetle palete: 5.2:1. */
+.skupina .jedva { color: #6B665D; }
+.skupina__slika {
+  display: block;
+  aspect-ratio: 3 / 2;
+  margin-bottom: var(--p2);
+  border-radius: var(--r-mali);
+  overflow: hidden;
+}
+.skupina__slika img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--sporo) var(--krivulja);
+}
+
+/*
+ * Video u kadru skupine. Ponasa se kao slika: isti okvir, isti radijus, isti
+ * `object-fit`. Razlika je samo u tome sto se na hover pokrene — vidi
+ * pokreniVideoNaHover() u js/interakcije.js.
+ *
+ * Podloga je bijela, ne crna: dok se prvi kadar ne dekodira, prazan <video>
+ * je inace crn pravokutnik nasred bijele kartice.
+ */
+/* Visinu daje `aspect-ratio` iz `.skupina__slika` (video nosi obje klase), pa
+   ovdje NE ide `height: 100%` — postotak visine u gridu bez odredene visine
+   roditelja se ne racuna i tukao bi se s omjerom. */
+.skupina__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  background: #fff;
+  transition: transform var(--sporo) var(--krivulja);
+}
+/* Dok svira, kadar se ne uvecava — mjerilo bi reklo da se nesto dogada, a
+   ovdje se vec dogada. Uvecanje ostaje samo na mirnom videu, kao na slikama. */
+@media (hover: hover) and (pointer: fine) {
+  .skupina:hover .skupina__video:not([data-svira]) { transform: scale(1.06); }
+}
+.skupina__ime {
+  font-size: var(--vel-malo);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skupina:hover { transform: var(--pomak-kartice); border-color: var(--hes-rub); }
+  .skupina:hover .skupina__slika img { transform: scale(1.06); }
+}
+
+@media (max-width: 1023px) {
+  .traka-loxone__sadrzaj { grid-template-columns: 1fr; gap: var(--p6); }
+  .traka-loxone__tekst { max-width: none; }
+  /* Slozeni raspored: tekst vise nije lijevo nego GORE, pa se i zastor
+     okrece. Da ostane vodoravan, stitio bi lijevi rub kartica umjesto
+     naslova iznad njih. */
+  .traka-loxone__zastor {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.58) 0%,
+      rgba(0, 0, 0, 0.52) 38%,
+      rgba(0, 0, 0, 0.28) 62%,
+      rgba(0, 0, 0, 0.20) 100%
+    );
+  }
+}
+@media (max-width: 719px) {
+  .skupine { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Sjaj iza teksta je uklonjen na zahtjev klijenta — vidi i `.cijena` u
+   app.css. Naslovi se sada isticu velicinom i polozajem, ne mrljom iza sebe. */
+
+/* ================================================================== */
+/* Najam alata — teaser na naslovnici                                  */
+/* ================================================================== */
+/*
+ * Galerija kategorija. Zamjenjuje cetiri retka s crtama koji su izgledali kao
+ * izvadak iz tablice: kategorija alata se bira okom, ne citanjem.
+ *
+ * Prva kartica je dvostruko sira. Cetiri jednake plocice se citaju kao mreza
+ * ikona; jedna veca daje redu vrh i kaze da je ovo ponuda, a ne izbornik.
+ */
+/*
+ * Uvodni raspored stranice /najam-alata: tekst lijevo, zaristna brojka desno.
+ * Naslovnica ga vise ne koristi (ondje je galerija), ali cjenik da — i to je
+ * jedino mjesto gdje tablica cinjenica i jedna velika brojka stoje jedna uz
+ * drugu. Ploha panela dolazi iz `.staklo` u markupu.
+ */
+.najam__mreza {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  gap: var(--p8);
+  align-items: start;
+}
+.najam__brojka {
+  display: grid;
+  gap: var(--p2);
+  padding: var(--p5);
+  border-radius: var(--r-ploha);
+}
+@media (max-width: 899px) {
+  .najam__mreza { grid-template-columns: 1fr; gap: var(--p6); }
+}
+
+/*
+ * Vodoravno zaglavlje: tvrdnja lijevo, cjenovni panel desno, na istoj crti.
+ * Panel je prije stajao ispod uvoda i gurao galeriju za cijelu svoju visinu
+ * nize, dok je prostor desno od uvoda stajao prazan.
+ */
+.najam__vrh {
+  display: grid;
+  /* Cjenovni panel je uklonjen; zaglavlje sad samo slobodno zauzima red. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--p8);
+  align-items: end;
+  margin-bottom: var(--p6);
+}
+.najam__zaglavlje {
+  display: grid;
+  gap: var(--p3);
+  justify-items: start;
+  margin-bottom: 0;
+}
+.najam__panel {
+  display: grid;
+  gap: var(--p1);
+  padding: var(--p5);
+  border-radius: var(--r-ploha);
+  white-space: nowrap;
+}
+.cijena--velika { font-size: clamp(22px, 3vw, 30px); }
+.najam__panel .marke { margin-top: var(--p2); }
+
+/*
+ * Cetiri jednaka uspravna kadra u jednom redu. Fotografija je nosivi
+ * element — kategorija alata se bira okom, ne citanjem tablice — a naziv,
+ * broj i raspon stoje na staklenoj traci preko nje.
+ */
+.najam__galerija {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--p3);
+}
+.alat {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--r-kartica);
+  border: 1px solid var(--rub);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--tekst);
+  transition: border-color var(--srednje) var(--krivulja), transform var(--srednje) var(--krivulja);
+}
+.alat__slika { display: block; width: 100%; height: 100%; }
+.alat__slika img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--sporo) var(--krivulja);
+}
+/* Blagi zastor pri dnu: bez njega traka lezi na svijetlom dijelu kadra i
+   staklo nema sto zamutiti. */
+.alat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, .5));
+  pointer-events: none;
+}
+/*
+ * Ikona kategorije. Placeholder fotografije se medusobno jos ne razlikuju,
+ * pa ikona nosi razliku dok ne stignu prave; kad stignu, i dalje pomaze jer
+ * se cita prije nego naziv.
+ */
+.alat__ikona {
+  position: absolute;
+  z-index: 1;
+  top: var(--p3);
+  right: var(--p3);
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-mali);
+  background: color-mix(in oklab, var(--hes) 82%, transparent);
+  color: var(--hes-na-plohi);
+}
+.alat__ikona svg { width: 18px; height: 18px; }
+.alat__traka {
+  position: absolute;
+  left: var(--p3);
+  right: var(--p3);
+  bottom: var(--p3);
+  z-index: 1;
+  display: grid;
+  gap: 2px;
+  padding: var(--p3) var(--p4);
+  border-radius: var(--r-mali);
+}
+.alat__ime { font-size: var(--vel-malo); font-weight: 600; line-height: 1.25; }
+.alat__traka .cijena { font-size: var(--vel-malo); margin-top: var(--p1); }
+
+@media (hover: hover) and (pointer: fine) {
+  .alat:hover { border-color: var(--hes-rub); transform: var(--pomak-kadra); }
+  .alat:hover .alat__slika img { transform: scale(1.06); }
+}
+
+.najam__dno { justify-content: center; margin-top: var(--p6); }
+.marke {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p2);
+  font-size: var(--vel-malo);
+  letter-spacing: 0.06em;
+  color: var(--tekst-4);
+}
+.marke svg { color: var(--hes-tekst); }
+
+@media (max-width: 999px) {
+  .najam__vrh { grid-template-columns: 1fr; gap: var(--p5); align-items: start; }
+  .najam__panel { justify-self: start; white-space: normal; }
+  .najam__galerija { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 599px) {
+  .najam__galerija { grid-template-columns: 1fr; }
+  .alat { aspect-ratio: 4 / 3; }
+}
+
+/* ================================================================== */
+/* Zaposlenje                                                          */
+/* ================================================================== */
+.jobs { position: relative; overflow: hidden; }
+/*
+ * Zastor preko fotografije je uklonjen. Prije je stajala na 20 % neprozirnosti
+ * i izgledala kao siva mrlja; sada ide gotovo puna, ali MASKIRANA — topi se
+ * prema dolje umjesto da je prigusena po cijeloj plohi. Citljivost teksta
+ * rjesavaju staklene plohe ispod, lokalno, tamo gdje tekst stvarno stoji.
+ */
+.jobs__slika { position: absolute; inset: 0 0 auto 0; z-index: 0; opacity: 0.85; }
+.jobs__slika img {
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .45) 46%, transparent 82%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .45) 46%, transparent 82%);
+}
+.jobs > .stupac { position: relative; z-index: 2; }
+
+/*
+ * Luk u zelenom pranju. Jedini cisto dekorativan oblik na stranici: stoji iza
+ * kartica pozicija i daje sekciji dubinu koju ravno polje nema. Namjerno je
+ * ogroman i jedva vidljiv — da se primijeti, citao bi se kao greska.
+ */
+.jobs__luk {
+  position: absolute;
+  z-index: 1;
+  top: 22%;
+  left: 50%;
+  width: min(120vw, 1400px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--hes-pranje) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.jobs__zaglavlje { justify-items: start; }
+/* Sekcija je najtamnije polje na stranici bez obzira na temu (fotografija
+   je uvijek tamna), pa --tekst iz svijetle teme ovdje ne cita se — natpis
+   gumba treba fiksnu bjelinu, ne varijablu koja prati temu stranice. */
+.jobs .gumb--sporedni { color: #fff; }
+
+/*
+ * Tri plocice umjesto tri pilule.
+ *
+ * Pilula je oblik za JEDNU kratku rijec — status, oznaka, filter. Ovdje su
+ * nosile tri para "naziv: vrijednost" i sve se stapalo u jedan redak sitnog
+ * teksta u ovalu: nije se vidjelo gdje prestaje pitanje a pocinje odgovor.
+ * Plocica to razdvaja po visini i svakoj daje vlastiti pokazatelj.
+ */
+.posao__pokazatelji {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--p3);
+  list-style: none;
+  margin: var(--p4) 0 0;
+  padding: 0;
+  width: 100%;
+}
+.pokazatelj {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--p1) var(--p3);
+  padding: var(--p3) var(--p4);
+  border-radius: var(--r-kartica);
+}
+.pokazatelj__ikona {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-mali);
+  background: var(--hes-pranje);
+  border: 1px solid var(--hes-rub);
+  color: var(--hes-tekst);
+}
+.pokazatelj__ikona svg { width: 18px; height: 18px; }
+.pokazatelj__ime {
+  font-size: var(--vel-oznaka);
+  letter-spacing: var(--razmak-oznaka);
+  text-transform: uppercase;
+  color: var(--tekst-4);
+}
+.pokazatelj__vrijednost {
+  font-size: var(--vel-malo);
+  font-weight: 600;
+  color: var(--tekst);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Prijave su trajno otvorene, pa ikona nosi zivu tocku umjesto da ceka svoj
+   red u `pokreniZivot()` — jedini pokazatelj na stranici koji javlja STANJE,
+   a stanje se ne javlja svakih par sekundi nego stalno. */
+.pokazatelj__ikona--zivo {
+  position: relative;
+  color: var(--na-stanju);
+  border-color: color-mix(in oklab, var(--na-stanju) 45%, transparent);
+}
+.pokazatelj__ikona--zivo::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--na-stanju);
+  border: 2px solid var(--ploha-1);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pokazatelj__ikona--zivo::after { animation: puls-zivota 2.2s ease-in-out infinite; }
+}
+
+/*
+ * Satnica: jedina traka na stranici koja prikazuje pravu skalu. Raspon
+ * 10–15 € lezi na ljestvici 0–20 €, pa se vidi i GDJE pocinje, ne samo koliki
+ * je — kandidat odmah zna da donja granica nije pri dnu.
+ *
+ * Plocica je iste sirine kao druge dvije, ne siroka preko dva stupca:
+ * `grid-column: span 2` na trecoj od tri stavke u mrezi koja se sama slozila
+ * u tri stupca trazi cetvrti stupac, dobije ga kao implicitni i cijeli red
+ * izade iz sirine stranice.
+ */
+.pokazatelj__traka {
+  position: relative;
+  grid-column: 2;
+  height: 5px;
+  margin-top: var(--p2);
+  border-radius: var(--r-pilula);
+  background: var(--plohica-2);
+  overflow: hidden;
+}
+.pokazatelj__ispuna {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--od, 0%);
+  width: calc(var(--do, 100%) - var(--od, 0%));
+  border-radius: inherit;
+  background-image: var(--gradijent-sjaj);
+}
+.pokazatelj__skala {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--tekst-4);
+  font-variant-numeric: tabular-nums;
+}
+/* Plocice su iste visine, a sadrzaj im je razlicite duljine — bez ovoga bi
+   ime i vrijednost u prve dvije lebdjeli po sredini prema trecoj. */
+.pokazatelj { align-content: start; }
+
+/*
+ * Kartica pozicije. Padding je spusten s `--p5` na `--p4`, redci cinjenica s
+ * `--p3` na `--p2`: kartica je prije imala vise praznine nego sadrzaja, a
+ * cetiri retka uvjeta i dva naslova ne trebaju 24 px zraka sa svake strane.
+ *
+ * Duh-broj je uklonjen iz markupa, pa nema ni pravila za njega.
+ */
+.kartica--pozicija {
+  padding: var(--p4);
+  gap: var(--p2);
+}
+/* Zelen potez preko vrha stoji odmah, ne tek na hover kao drugdje. */
+.kartica--pozicija::before {
+  opacity: 0.75;
+}
+/* Prozor-traka nadoknadi kartice vlastiti padding negativnom marginom da
+   dosegne rub. */
+.kartica--pozicija.prozor .prozor__traka {
+  margin: calc(-1 * var(--p4)) calc(-1 * var(--p4)) var(--p3);
+}
+.kartica--pozicija .cinjenice > div { padding: var(--p2) 0; }
+.kartica--pozicija .kartica__vrh { margin-bottom: var(--p1); }
+.kartica--pozicija .kartica__vrh .oznaka { display: block; margin-bottom: 2px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .kartica--pozicija:hover { transform: var(--pomak-kartice); }
+  .kartica--pozicija:hover .kartica__ikona {
+    background: color-mix(in oklab, var(--hes) 22%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Provjera uvjeta                                                     */
+/* ------------------------------------------------------------------ */
+/*
+ * Kartica vec kaze "Provjeri ispunjavas li uvjete." — kvadratici to cine
+ * doslovnim. Sve gradi js/interakcije.js; bez njega ovih pravila nema sto
+ * uhvatiti i tablica ostaje tablica.
+ */
+.cinjenice--provjerivo dt {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--p2);
+}
+.uvjet__kvadratic {
+  width: 15px;
+  height: 15px;
+  margin: 1px 0 0;
+  accent-color: var(--hes);
+  cursor: pointer;
+}
+.uvjet__oznaka { cursor: pointer; }
+.uvjet__kvadratic:focus-visible {
+  outline: 2px solid var(--fokus);
+  outline-offset: 2px;
+}
+/* Oznaceni uvjet prelazi iz prigusenog u punu boju teksta: popis se cita kao
+   napredak, a ne kao popis s kvadraticima. */
+.cinjenice--provjerivo:has(.uvjet__kvadratic:checked) dt { color: var(--tekst-2); }
+
+.provjera__mjerilo {
+  margin-top: var(--p2);
+  padding-top: var(--p3);
+  border-top: 1px solid var(--rub);
+}
+.provjera__mjerilo[hidden] { display: none; }
+/* Sve oznaceno: kartica se javi rubom u naglasku. */
+.kartica--spreman { border-color: var(--hes-rub); }
+.kartica--spreman .provjera__mjerilo .mjerilo__vrijednost { color: var(--hes-tekst); }
+
+/* Klijentova vlastita recenica, jedan stupanj krupnije od okolnog teksta —
+   redak koji najvise uvjeri kandidata koji je mislio da nije kvalificiran. */
+.naucit-cemo {
+  margin-top: var(--p2);
+  font-size: var(--vel-tekst);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--tekst);
+}
+
+/*
+ * Sest stavki ponude. Uze kartice nego prije (150 px umjesto 200) i po jedna
+ * ikona iznad naziva: na 200 px su se slagale u dva neujednacena reda, a bez
+ * ikone su izgledale kao sest jednakih pravokutnika s tekstom.
+ */
+.ponuda {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--p3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ponuda li {
+  display: grid;
+  gap: var(--p1);
+  align-content: start;
+  padding: var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  background: var(--ploha-2);
+  box-shadow: var(--odsjaj-kartice);
+  transition:
+    border-color var(--srednje) var(--krivulja),
+    background var(--srednje) var(--krivulja),
+    transform var(--srednje) var(--krivulja);
+}
+.ponuda__ikona {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: var(--p2);
+  border-radius: var(--r-mali);
+  background: var(--hes-pranje);
+  border: 1px solid var(--hes-rub);
+  color: var(--hes-tekst);
+}
+.ponuda__ikona svg { width: 19px; height: 19px; }
+.ponuda__ime { font-weight: 600; font-size: var(--vel-malo); line-height: 1.3; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ponuda li:hover {
+    border-color: var(--hes-rub);
+    background: var(--ploha-3);
+    transform: var(--pomak-kartice);
+  }
+  .ponuda li:hover .ponuda__ikona {
+    background: color-mix(in oklab, var(--hes) 22%, transparent);
+  }
+}
+
+/* Zavrsni poziv: jedini centriran blok u sekciji. */
+.jobs__blok { margin-top: var(--p7); }
+.jobs__cta {
+  justify-items: center;
+  text-align: center;
+  margin-top: var(--p7);
+  margin-bottom: 0;
+}
+.jobs__cta .akcije { justify-content: center; }
+
+/* ================================================================== */
+/* Kontakt                                                             */
+/* ================================================================== */
+/* Jedino pozicioniranje koje je klijent sam napisao. Bez navodnika i bez
+   okvira: tako se cita kao tvrtka koja govori, a ne kao svjedocanstvo. */
+.pozicioniranje {
+  max-width: 22ch;
+  margin-inline: auto;
+  margin-bottom: var(--p9);
+  font-size: var(--vel-h2);
+  font-weight: 600;
+  line-height: var(--red-naslov);
+  letter-spacing: var(--razmak-naslov);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.kontakt__mreza {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--p8);
+  align-items: start;
+}
+.kontakt__kanali {
+  display: grid;
+  gap: var(--p5);
+  align-content: start;
+}
+.kontakt__kanali .zaglavlje-sekcije { margin-bottom: 0; }
+
+/*
+ * Oba kanala u jednom prozoru, kao dva retka.
+ *
+ * Prije su bile dvije zasebne kartice u mrezi 2x1 unutar uzeg stupca. Svaka
+ * je dobila oko 200 px, u koje uz ikonu od 42 px stane jedva 14 znakova — pa
+ * je e-posta prelamala nasred domene (`word-break: break-word` je to i
+ * dopustao), a broj u drugi redak. Puna sirina rjesava oboje, a redak visok
+ * 64 px je veca meta za tap nego pola kartice.
+ */
+.kanali {
+  border-radius: var(--r-ploha);
+}
+.kanal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--p4);
+  min-height: 64px;
+  padding: var(--p4) var(--p5);
+  text-decoration: none;
+  color: var(--tekst);
+  transition: background var(--srednje) var(--krivulja);
+}
+/* Crta izmedu redaka, ne oko svakog: unutar jednog prozora rub po retku bi
+   nacrtao dvije kartice unutar trece. */
+.kanal + .kanal { border-top: 1px solid var(--rub); }
+.kanal__ikona {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-mali);
+  background: var(--hes-pranje);
+  border: 1px solid var(--hes-rub);
+  color: var(--hes-tekst);
+}
+.kanal__ikona svg { width: 21px; height: 21px; }
+.kanal__tekst {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  /* Gura strelicu na desni rub retka. */
+  margin-right: auto;
+}
+.kanal__veza {
+  font-size: var(--vel-h3);
+  font-weight: 600;
+  color: var(--tekst);
+  /* `break-word` je maknut: u punoj sirini se nema sto lomiti, a lomio je
+     e-postu nasred domene. Ako ikad zafali mjesta, lomi se na @ i tockama. */
+  overflow-wrap: anywhere;
+}
+.kanal__strelica {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--tekst-4);
+  transition: transform var(--srednje) var(--krivulja), color var(--srednje) var(--krivulja);
+}
+@media (hover: hover) and (pointer: fine) {
+  /* Podize se PLOHA retka, ne cijela kartica: redak unutar prozora koji se
+     odmakne od susjeda razbio bi prozor kojem pripada. */
+  .kanal:hover { background: var(--plohica); }
+  .kanal:hover .kanal__veza { color: var(--hes-tekst); }
+  .kanal:hover .kanal__strelica { color: var(--hes-tekst); transform: translateX(4px); }
+}
+.kanal:focus-visible {
+  outline: 2px solid var(--fokus);
+  outline-offset: -3px;
+}
+
+@media (max-width: 599px) {
+  .kanal { padding: var(--p3) var(--p4); gap: var(--p3); }
+  .kanal__veza { font-size: var(--vel-tekst); }
+}
+
+/* ------------------------------------------------------------------ */
+/* Obrazac upita                                                       */
+/* ------------------------------------------------------------------ */
+.kontakt__obrazac {
+  display: grid;
+  gap: var(--p4);
+  padding: var(--p6);
+  border-radius: var(--r-ploha);
+}
+.kontakt__obrazac .naslov-3 { margin-bottom: calc(-1 * var(--p2)); }
+.kontakt__obrazac.prozor .prozor__traka {
+  margin: calc(-1 * var(--p6)) calc(-1 * var(--p6)) var(--p6);
+}
+
+.obrazac__vrste {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: var(--p3);
+}
+.obrazac__vrste legend { padding: 0; margin-bottom: var(--p2); }
+
+/*
+ * Sest vrsta kao vidljivi cipovi. Ime je `cip-upita`, a ne `cip`: katalog u
+ * trgovina.css vec ima svoj `.cip` za filtre, a webshop i najam ucitavaju oba
+ * lista stilova., ne kao padajuci izbornik. Usmjeravanje je
+ * cijela svrha bloka, a zatvoren izbornik skriva da tvrtka radi sest
+ * razlicitih stvari upravo od posjetitelja koji nije siguran sto mu treba.
+ *
+ * Stanje nosi `:checked` na skrivenom radiju, pa odabir radi bez ijedne
+ * linije JavaScripta i ispravno se ponasa na tipkovnici.
+ */
+.cipovi-upita { display: flex; flex-wrap: wrap; gap: var(--p2); }
+.cip-upita {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--p2) var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  background: var(--plohica);
+  font-size: var(--vel-malo);
+  font-weight: 500;
+  color: var(--tekst-3);
+  cursor: pointer;
+  transition:
+    background var(--brzo) var(--krivulja),
+    border-color var(--brzo) var(--krivulja),
+    color var(--brzo) var(--krivulja),
+    transform var(--brzo) var(--krivulja);
+}
+.cip-upita__ulaz:checked + .cip-upita {
+  background: var(--hes-ploha);
+  border-color: var(--hes-ploha);
+  color: var(--hes-na-plohi);
+  font-weight: 600;
+}
+/* Fokus mora biti vidljiv iako je sam radio skriven citacu ekrana. */
+.cip-upita__ulaz:focus-visible + .cip-upita {
+  outline: 2px solid var(--fokus);
+  outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cip-upita__ulaz:not(:checked) + .cip-upita:hover {
+    border-color: var(--hes-rub);
+    color: var(--tekst);
+    transform: var(--pomak-kontrole);
+  }
+}
+
+.obrazac__red {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--p3);
+}
+.polje-obrasca { display: grid; gap: var(--p2); margin: 0; }
+.polje-obrasca__oznaka {
+  font-size: var(--vel-oznaka);
+  font-weight: 500;
+  letter-spacing: var(--razmak-oznaka);
+  text-transform: uppercase;
+  color: var(--tekst-4);
+}
+.polje-obrasca__ulaz {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--p3) var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  background: var(--plohica);
+  color: var(--tekst);
+  font-size: var(--vel-malo);
+  transition: border-color var(--brzo) var(--krivulja), background var(--brzo) var(--krivulja);
+}
+.polje-obrasca__ulaz::placeholder { color: var(--tekst-4); }
+.polje-obrasca__ulaz:focus {
+  outline: none;
+  border-color: var(--hes-rub);
+  background: var(--plohica-2);
+}
+.polje-obrasca__ulaz:focus-visible {
+  outline: 2px solid var(--fokus);
+  outline-offset: 1px;
+}
+textarea.polje-obrasca__ulaz { resize: vertical; min-height: 108px; }
+
+/*
+ * Traka napretka obrasca. Broji tri obavezna polja (vrsta je uvijek odabrana,
+ * pa ne ulazi u racun) i puni se dok se popunjavaju. Kad su sva tri gotova,
+ * natpis prelazi u "Spremno za slanje" — gumb ispod time dobiva potvrdu prije
+ * klika, umjesto poruke o gresci poslije njega.
+ */
+.obrazac__napredak {
+  padding-top: var(--p3);
+  border-top: 1px solid var(--rub);
+}
+.obrazac__napredak[hidden] { display: none; }
+.mjerilo--gotovo .mjerilo__vrijednost { color: var(--hes-tekst); }
+
+.obrazac__dno {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--p3) var(--p4);
+  margin-top: var(--p2);
+}
+
+/* Telefonska publika dobiva broj bez skrolanja kroz obrazac. */
+@media (max-width: 899px) {
+  .kontakt__mreza { grid-template-columns: 1fr; gap: var(--p6); }
+  .pozicioniranje { margin-bottom: var(--p7); }
+}
+@media (max-width: 599px) {
+  .kontakt__obrazac { padding: var(--p5); }
+  .kontakt__obrazac.prozor .prozor__traka {
+    margin: calc(-1 * var(--p5)) calc(-1 * var(--p5)) var(--p5);
+  }
+  .obrazac__red { grid-template-columns: 1fr; }
+}

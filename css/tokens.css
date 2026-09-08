@@ -1,0 +1,325 @@
+/**
+ * tokens.css — dizajn sustav HES-a.
+ *
+ * Svaka boja je semanticki token, imenovan po ulozi a ne po vrijednosti:
+ * `--ploha-2` je ploha kartice u obje teme, ne "tamno smeda". Zbog toga
+ * `[data-theme="svijetla"]` redefinira samo ovaj sloj, a nijedan `var()`
+ * poziv u app.css se ne mijenja.
+ *
+ * Vrijednosti dolaze iz hes-style.md §3 (ink / sand / teal ljestvice i
+ * naglasak). Tipografija, razmaci, radijusi i trajanja su neutralni pa ih
+ * tema ne dira — osim trajanja, koja `prefers-reduced-motion` gasi ovdje,
+ * jednom za cijelu stranicu.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Pisma                                                               */
+/* ------------------------------------------------------------------ */
+/*
+ * Datoteka je dogradena skriptom scripts/fontovi.py — izvorni rez nema
+ * ć Ć đ Đ ni tabularne brojke. Detalji i kontrolni list:
+ * provjere/fontovi.html.
+ *
+ * Stranica ima JEDAN glas. Monr je bio drugo, unikamerno display pismo za
+ * natpise bez dijakritike (brojeve, cijene, BOSCH), ali je uz Regrade citao
+ * kao tudi umetak umjesto kao drugi registar istog sustava — pa je maknut.
+ * `--pismo-oznaka` je namjerno ostao kao token: natpisi ga i dalje zovu, samo
+ * sad pokazuje na isti rez, i ako se ikad vrati drugo pismo, vraca se ovdje.
+ * Sama woff2 datoteka ostaje u assets/fonts (scripts/provjere.py je cita).
+ */
+@font-face {
+  font-family: "HES Regrade";
+  src: url("../assets/fonts/hes-regrade.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ------------------------------------------------------------------ */
+/* Tamna tema — zadana                                                 */
+/* ------------------------------------------------------------------ */
+:root {
+  /*
+   * Nativne kontrole koje preglednik crta sam — birac datuma u najmu alata,
+   * scrollbar, autofill — ne znaju za nase tokene. `color-scheme` im je
+   * jedini nagovjestaj; bez njega bi kalendar u tamnoj temi ostao bijel.
+   */
+  color-scheme: dark;
+
+  /* --- plohe ------------------------------------------------------- */
+  --ploha-0: #0A0908;   /* stranica; najdublje polje (hes-style: ink-950) */
+  --ploha-1: #14120F;   /* podignuto polje, podnozje       (ink-900)      */
+  --ploha-2: #201D18;   /* ploha kartice                   (ink-800)      */
+  --ploha-3: #2B2721;   /* kartica na hover, parni red tablice           */
+  --ploha-4: #33302A;   /* najsvjetlija ploha              (ink-700)      */
+
+  /*
+   * Drugo tamno polje. hes-style.md §3 tocno trazi dva razlicita tamna
+   * polja kako bi se izmjena sekcija citala bez ijedne crte razdjelnice.
+   * Tealno nosi dva sticky split-screena i medupojaseve.
+   *
+   * VAZNO: tealna ploha ostaje tamna i u svijetloj temi — slike i tekst na
+   * njoj su kalibrirani za svijetlo pismo. Zato ima vlastite tokene za tekst
+   * koji se NE redefiniraju nize; da nema njih, `--tekst` bi u svijetloj temi
+   * pao na gotovo crno i nestao u plohi (2:1). Isti razlog i isti obrazac
+   * kao `--z-*` u ../split/css/tokens.css.
+   */
+  --ploha-teal: #1E4A5F;
+  --ploha-teal-2: #27586E;
+  --tekst-na-tealu: #F4F1EA;
+  --tekst-2-na-tealu: #C3D6D9;
+  --hes-na-tealu: #3FC7C2;   /* #1B9179 na tealu daje 2.4:1 — premalo */
+
+  /* --- tekst ------------------------------------------------------- */
+  --tekst: #F4F1EA;     /* naslovi i tijelo                (sand-50)      */
+  --tekst-2: #E4DFD3;   /* sekundarno                      (sand-200)     */
+  --tekst-3: #A8A29A;   /* prigusen: opisi, pomocni tekst                 */
+  --tekst-4: #8B857A;   /* jedva: natpisi, mjerne jedinice                */
+
+  /* --- rubovi i plohice -------------------------------------------- */
+  --rub: color-mix(in oklab, var(--ploha-4) 62%, transparent);
+  --rub-jaci: var(--ploha-4);
+  --plohica: color-mix(in oklab, var(--tekst) 5%, transparent);
+  --plohica-2: color-mix(in oklab, var(--tekst) 8%, transparent);
+
+  /* --- naglasak ----------------------------------------------------- */
+  /*
+   * #1B9179 je boja koju klijent najvise koristi i ovdje je nosiva.
+   * `--sjaj` (#3FC7C2) je jedina vrijednost svjetlija od nje i po
+   * hes-style.md §3.3 se pojavljuje samo na: sjaju iza cijene, isticanju
+   * "realna cijena", oznaci vanjske poveznice i fokusu. Nikad kao ispuna.
+   */
+  --hes: #1B9179;
+  --hes-tamniji: #157260;
+  --hes-najtamniji: #0E463A;
+  --hes-prigusen: #3F8880;
+  --sjaj: #3FC7C2;
+
+  /*
+   * Naglasak kao TEKST i naglasak kao ISPUNA nisu ista vrijednost.
+   * #1B9179 je brendovska boja i ostaje ispuna, ali kao tekst na plohi
+   * kartice daje 4.3:1 — ispod AA. Zato je tekstualna varijanta za nijansu
+   * svjetlija, isto kao sto svijetla tema ima svoju, tamniju.
+   */
+  --hes-tekst: #22A88C;                                           /* naglasak kao tekst   */
+  --hes-ploha: var(--hes);                                        /* naglasak kao ispuna  */
+  --hes-na-plohi: #0A0908;                                        /* tekst na toj ispuni  */
+  --hes-rub: color-mix(in oklab, var(--hes) 45%, transparent);
+  --hes-pranje: color-mix(in oklab, var(--hes) 14%, transparent);
+  --fokus: color-mix(in oklab, var(--sjaj) 65%, transparent);
+
+  /*
+   * Dva gradijenta, oba iz hes-style.md §3.4, s razlicitim poslom.
+   * "Sjaj" ide iskljucivo zamucen iza brojke; "dubina" je velika ploha
+   * niskog kontrasta i nikad nema ostar rub.
+   */
+  --gradijent-sjaj: linear-gradient(135deg, #2FD9C0, #1B9179);
+  --gradijent-dubina: linear-gradient(135deg, #1E4A5F, #3E8F86);
+
+  /* --- stanja ------------------------------------------------------- */
+  --na-stanju: #1B9179;
+  --opasnost: #EB5C60;
+  --opasnost-pranje: color-mix(in oklab, #EB5C60 14%, transparent);
+
+  /* --- zrnatost ----------------------------------------------------- */
+  /* Jedan sloj zrna, samo na tamnim poljima, nikad po sekciji. */
+  --zrno: 0.035;
+
+  /* --- sjene -------------------------------------------------------- */
+  /*
+   * Dubina je skupa i zato rijetka: kartice imaju samo 1px rub i unutarnji
+   * odsjaj, a prava sjena postoji na plutajucim plohama (ladica kosarice,
+   * dijalog filtera) i nigdje drugdje.
+   */
+  --odsjaj-kartice: inset 0 1px 0 0 color-mix(in oklab, var(--tekst) 4%, transparent);
+  --sjena-plohe: 0 8px 32px -8px rgba(0, 0, 0, .6), 0 2px 8px -2px rgba(0, 0, 0, .4);
+  --sjena-gumba:
+    inset 0 1px 0 0 color-mix(in oklab, #ffffff 22%, transparent),
+    inset 0 -1px 0 0 color-mix(in oklab, #000000 22%, transparent),
+    0 1px 1px 0 rgba(0, 0, 0, .3),
+    0 4px 12px -3px color-mix(in oklab, var(--hes) 45%, transparent);
+
+  /* --- tipografija -------------------------------------------------- */
+  --pismo: "HES Regrade", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --pismo-oznaka: var(--pismo);
+
+  --vel-hero: clamp(38px, 5.6vw, 66px);
+  --vel-h2: clamp(26px, 3.6vw, 40px);
+  --vel-h3: clamp(19px, 2.2vw, 24px);
+  --vel-uvod: clamp(17px, 1.9vw, 20px);
+  --vel-tekst: clamp(15px, 1.6vw, 17px);
+  --vel-malo: 14px;
+  --vel-oznaka: 12px;
+  --vel-cijena: clamp(17px, 1.8vw, 19px);
+
+  --red-hero: 1.06;
+  --red-naslov: 1.14;
+  --red-tekst: 1.6;
+
+  --razmak-hero: -0.022em;
+  --razmak-naslov: -0.018em;
+  --razmak-oznaka: 0.12em;
+
+  /* --- razmaci, baza 4 px ------------------------------------------- */
+  --p1: 4px;
+  --p2: 8px;
+  --p3: 12px;
+  --p4: 16px;
+  --p5: 24px;
+  --p6: 32px;
+  --p7: 48px;
+  --p8: 64px;
+  --p9: 96px;
+  --p10: 128px;
+
+  /* --- radijusi ------------------------------------------------------ */
+  --r-mali: 8px;
+  --r-tile: 10px;
+  --r-kartica: 14px;
+  --r-ploha: 18px;
+  --r-pilula: 999px;
+
+  /* --- pokret --------------------------------------------------------- */
+  /*
+   * Jedna krivulja na cijeloj stranici, bez odskoka. Referentni projekti
+   * (../split, ../imi-portfolio-netlify) koriste isti pristup i to je ono
+   * sto sitnice drzi da izgledaju kao jedan sustav a ne kao zbirka efekata.
+   */
+  --krivulja: cubic-bezier(0.22, 1, 0.36, 1);
+  --brzo: 120ms;
+  --srednje: 200ms;
+  --sporo: 360ms;
+
+  /*
+   * Pomaci na hover.
+   *
+   * Pet vrijednosti za cijelu stranicu, imenovanih po VRSTI elementa a ne po
+   * mjeri: kartica se dize dijagonalno, redak se gurne udesno, kontrola se
+   * nadigne, ikona se uveca. Dok su ovdje, dvadesetak hover pravila diraju
+   * istu mjeru i nijedno ne moze samo odlutati za piksel.
+   *
+   * Dijagonalni pomak (i x i y) je namjeran: cisti `translateY` se na plohi
+   * bez sjene jedva vidi, a kombinacija se procita kao da se element odvojio
+   * od stranice, sto je ono sto hover treba reci.
+   */
+  --pomak-kartice: translate(-2px, -4px);
+  --pomak-kadra: translate(-3px, -6px);
+  --pomak-retka: translateX(3px);
+  --pomak-kontrole: translateY(-2px);
+  --pop-ikone: scale(1.06);
+
+  /*
+   * Otkrivanje pri skrolanju ima vlastito trajanje: ono ne javlja stanje
+   * kontrole nego uvodi sadrzaj, pa na 200 ms samo blicne. hes-content.md §0.3
+   * trazi 300–400 ms i 60 ms razmaka medu susjedima.
+   */
+  --otkrivanje: 340ms;
+  --otkrivanje-korak: 60ms;
+
+  /* --- mjere ---------------------------------------------------------- */
+  --sirina: 1240px;         /* siroke sekcije: tablice kataloga, rail + sadrzaj */
+  --sirina-uska: 960px;     /* citljivi stupac: tekstualne sekcije              */
+  --sirina-teksta: 68ch;
+  /*
+   * Traka je sira od sadrzaja: logo lijevo, poveznice u sredini i alati desno
+   * trebaju prostor koji citljivi stupac od 1240 px nema. Mjera je postotak,
+   * pa traka prati prozor umjesto da na sirokim ekranima stane u fiksni okvir.
+   *
+   * Donja granica postoji jer 85 % pri 1024 px daje 870 px, a traci treba
+   * 933 px (izmjereno iz metrike pisma: izbornik 525 + alati 2x192 + razmaci).
+   * Ispod otprilike 1130 px zato prevlada granica i traka ide skoro punom
+   * sirinom umjesto da zadnja stavka izleti pod alate.
+   */
+  --sirina-zaglavlja: 85%;
+  --najmanja-sirina-zaglavlja: 960px;
+  --visina-zaglavlja: 64px;
+  --kut-razdjelnice: 2.5deg;
+}
+
+/* ------------------------------------------------------------------ */
+/* Svijetla tema                                                       */
+/* ------------------------------------------------------------------ */
+/*
+ * Nije inverzija nego ponovno sidrenje istih ljestvica na topli papir.
+ * Dvije stvari koje se lako previde, a obje su ovdje namjerne:
+ *
+ *  1. Naglasak se mora zatamniti. #1B9179 na #F4F1EA daje 3.4:1 — dovoljno
+ *     za krupan tekst, premalo za tijelo. Zato `--hes-tekst` ide na tamniju
+ *     vrijednost dok `--hes` ostaje brendovska boja za ispune i poteze.
+ *  2. `--hes-najtamniji` mijenja ulogu: u tamnoj temi je duboka ploha, u
+ *     svijetloj blijedi ton. Tako svaki `color-mix()` s njim radi u obje.
+ */
+:root[data-theme="svijetla"] {
+  color-scheme: light;
+
+  --ploha-0: #F4F1EA;   /* zadana svijetla ploha           (sand-50)  */
+  --ploha-1: #EDE9DE;   /* toplije polje, izmjena sekcija  (sand-100) */
+  --ploha-2: #FAF8F3;   /* kartice i polja obrasca         (sand-25)  */
+  --ploha-3: #E4DFD3;   /* hover kartice, parni red        (sand-200) */
+  --ploha-4: #C9C3B4;   /* rubovi                                     */
+
+  /* Tealna polja i njihov tekst se NE redefiniraju: vidi :root gore. */
+
+  --tekst: #0A0908;
+  --tekst-2: #201D18;
+  --tekst-3: #4A463E;
+  --tekst-4: #6B665D;   /* hes-style: ink-500, prigusen tekst na svijetlom */
+
+  --rub: color-mix(in oklab, var(--ploha-4) 72%, transparent);
+  --rub-jaci: #B4AD9C;
+  --plohica: color-mix(in oklab, var(--tekst) 4%, transparent);
+  --plohica-2: color-mix(in oklab, var(--tekst) 7%, transparent);
+
+  --hes: #1B9179;
+  --hes-tamniji: #12695A;
+  --hes-najtamniji: #DCF0EB;   /* obrnuta uloga: blijedi ton umjesto duboke plohe */
+  --hes-prigusen: #3F8880;
+  --sjaj: #12796A;             /* cijan na papiru nestaje; ista uloga, druga vrijednost */
+
+  --hes-tekst: #12695A;
+  --hes-ploha: #157260;
+  --hes-na-plohi: #FAF8F3;
+  --hes-rub: color-mix(in oklab, var(--hes) 55%, transparent);
+  --hes-pranje: color-mix(in oklab, var(--hes) 12%, transparent);
+  --fokus: color-mix(in oklab, #12695A 70%, transparent);
+
+  --na-stanju: #12695A;
+  --opasnost: #C0272C;
+  --opasnost-pranje: color-mix(in oklab, #C0272C 12%, transparent);
+
+  --zrno: 0;   /* zrno je efekt tamne sobe; na papiru izgleda kao prljavstina */
+
+  --odsjaj-kartice: inset 0 1px 0 0 color-mix(in oklab, #ffffff 70%, transparent);
+  --sjena-plohe: 0 8px 32px -8px rgba(45, 38, 25, .18), 0 2px 8px -2px rgba(45, 38, 25, .10);
+  --sjena-gumba:
+    inset 0 1px 0 0 color-mix(in oklab, #ffffff 26%, transparent),
+    inset 0 -1px 0 0 color-mix(in oklab, #000000 18%, transparent),
+    0 1px 1px 0 rgba(45, 38, 25, .18),
+    0 4px 12px -3px color-mix(in oklab, var(--hes) 32%, transparent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Smanjen pokret                                                      */
+/* ------------------------------------------------------------------ */
+/*
+ * Trajanja se gase na razini tokena, pa vecina app.css-a ne treba vlastito
+ * pravilo. Ono sto se ne da rijesiti ovdje — platno u pozadini, otkrivanje
+ * koje postavlja stilove iz JS-a — provjerava `matchMedia` na svom mjestu.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --brzo: 0.01ms;
+    --srednje: 0.01ms;
+    --sporo: 0.01ms;
+    --otkrivanje: 0.01ms;
+    --otkrivanje-korak: 0ms;
+
+    /* Trajanja su nula, pa bi pomak na hover bio trzaj bez prijelaza. Boja i
+       rub se i dalje mijenjaju — stanje ostaje vidljivo, samo se ne mice. */
+    --pomak-kartice: none;
+    --pomak-kadra: none;
+    --pomak-retka: none;
+    --pomak-kontrole: none;
+    --pop-ikone: none;
+  }
+}

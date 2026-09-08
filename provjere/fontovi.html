@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HES — provjera fontova</title>
+<style>
+  @font-face {
+    font-family: "HES Regrade";
+    src: url("../assets/fonts/hes-regrade.woff2") format("woff2-variations"),
+         url("../assets/fonts/hes-regrade.woff2") format("woff2");
+    font-weight: 300 800;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "HES Monr";
+    src: url("../assets/fonts/hes-monr.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+    /* Monr nema c-caron ni c-acute pa se drzi izvan hrvatskih natpisa;
+       raspon je mreza za slucaj da neki ipak prodje. */
+    unicode-range: U+0000-00FF, U+20AC, U+2013, U+2014;
+  }
+
+  :root {
+    --ink-0:#0A0908; --ink-1:#14120F; --ink-2:#201D18; --ink-4:#33302A;
+    --tekst-1:#F4F1EA; --tekst-3:#A8A29A; --tekst-4:#6B665D;
+    --hes:#1B9179; --hes-300:#3FC7C2; --opasnost:#E5484D;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 48px 32px 96px;
+    background: var(--ink-0); color: var(--tekst-1);
+    font-family: "HES Regrade", system-ui, sans-serif;
+    font-weight: 400; line-height: 1.5;
+  }
+  main { max-width: 1080px; margin-inline: auto; }
+
+  .oznaka {
+    font-family: "HES Monr", monospace;
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--hes); margin: 0 0 8px;
+  }
+  h1 { font-size: 34px; font-weight: 600; letter-spacing: -.02em; margin: 0 0 4px; }
+  .uvod { color: var(--tekst-3); max-width: 62ch; margin: 0 0 48px; }
+  section { border-top: 1px solid var(--ink-4); padding-top: 24px; margin-top: 48px; }
+  h2 { font-size: 13px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+       color: var(--tekst-3); margin: 0 0 20px; }
+  p.napomena { color: var(--tekst-4); font-size: 14px; max-width: 68ch; }
+
+  /* --- dogradeni znakovi: novi uz izvorni, radi usporedbe --- */
+  .parovi { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .par {
+    border: 1px solid var(--ink-4); border-radius: 12px;
+    background: var(--ink-1); padding: 18px 16px 12px; text-align: center;
+  }
+  .par.nov { border-color: color-mix(in oklab, var(--hes) 55%, transparent); }
+  .znak { font-size: 84px; line-height: 1.05; display: block; }
+  .znak.pod { color: var(--tekst-4); }
+  .ime { font-family: "HES Monr", monospace; font-size: 10px; letter-spacing: .1em;
+         text-transform: uppercase; color: var(--tekst-4); margin-top: 8px; }
+  .par.nov .ime { color: var(--hes-300); }
+
+  /* --- tezine --- */
+  .tezine div { font-size: 30px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .tezine span { font-family: "HES Monr", monospace; font-size: 10px; letter-spacing: .12em;
+                 color: var(--tekst-4); margin-left: 14px; vertical-align: middle; }
+
+  /* --- tabularne brojke: stupac cijena mora imati ravan desni rub --- */
+  table { border-collapse: collapse; width: 100%; max-width: 560px; }
+  th, td { padding: 9px 0; border-bottom: 1px solid var(--ink-2); }
+  th { font-family: "HES Monr", monospace; font-size: 10px; letter-spacing: .12em;
+       text-transform: uppercase; color: var(--tekst-4); font-weight: 400; text-align: left; }
+  th:last-child, td.cijena { text-align: right; }
+  td.cijena { font-variant-numeric: tabular-nums; }
+  .lijenjir { border-right: 1px dashed color-mix(in oklab, var(--hes) 60%, transparent); }
+
+  /* --- tekst u sva tri jezika --- */
+  .jezik { margin-bottom: 22px; }
+  .jezik b { display: block; font-family: "HES Monr", monospace; font-size: 10px;
+             letter-spacing: .12em; color: var(--hes); font-weight: 400; margin-bottom: 4px; }
+  .jezik p { margin: 0; font-size: 18px; max-width: 68ch; }
+
+  .krupno { font-size: clamp(28px, 5vw, 54px); font-weight: 600; letter-spacing: -.022em;
+            line-height: 1.08; max-width: 18ch; margin: 0; }
+
+  code { font-family: "HES Monr", monospace; font-size: 12px; color: var(--hes-300); }
+  .upozorenje { color: var(--opasnost); }
+</style>
+</head>
+<body>
+<main>
+  <p class="oznaka">Kontrolni list · 1. faza</p>
+  <h1>Dogradeni fontovi</h1>
+  <p class="uvod">
+    Neue Regrade i Monr nemaju sve znakove koje hrvatski i njemacki tekst trebaju.
+    Nedostajuci znakovi su dograđeni slaganjem iz dijelova koji u fontu već postoje.
+    Ovdje se gleda samo jedno: <b>izgledaju li dograđeni znakovi kao da su oduvijek bili
+    dio pisma</b>. Ako neki strši, ima krivu debljinu ili sjedi previsoko, recite koji.
+  </p>
+
+  <section>
+    <h2>Dograđeni znakovi — Neue Regrade</h2>
+    <div class="parovi">
+      <div class="par"><span class="znak pod">c</span><div class="ime">c · izvorni</div></div>
+      <div class="par nov"><span class="znak">ć</span><div class="ime">ć · dograđen</div></div>
+      <div class="par"><span class="znak pod">č</span><div class="ime">č · izvorni</div></div>
+      <div class="par"><span class="znak pod">d</span><div class="ime">d · izvorni</div></div>
+      <div class="par nov"><span class="znak">đ</span><div class="ime">đ · dograđen</div></div>
+      <div class="par"><span class="znak pod">C</span><div class="ime">C · izvorni</div></div>
+      <div class="par nov"><span class="znak">Ć</span><div class="ime">Ć · dograđen</div></div>
+      <div class="par"><span class="znak pod">Č</span><div class="ime">Č · izvorni</div></div>
+      <div class="par"><span class="znak pod">D</span><div class="ime">D · izvorni</div></div>
+      <div class="par nov"><span class="znak">Đ</span><div class="ime">Đ · dograđen</div></div>
+    </div>
+    <p class="napomena">
+      Akcent na <b>ć</b> i <b>Ć</b> nije centriran nego nagnut udesno, istim odmakom
+      koji font već koristi na <b>ó</b> i <b>Ó</b> (+26 odnosno +22 jedinice).
+      Prečka na <b>đ</b> i <b>Đ</b> je skalirana crtica, pa se zadeblja zajedno s
+      ostatkom pisma kad se poveća težina — provjerite to u sljedećem odjeljku.
+    </p>
+  </section>
+
+  <section>
+    <h2>Ista slova kroz os težine — prečka se mora debljati s njima</h2>
+    <div class="tezine">
+      <div style="font-weight:300">Kućne elektroinstalacije · građevinski · ključ<span>300 Light</span></div>
+      <div style="font-weight:400">Kućne elektroinstalacije · građevinski · ključ<span>400 Regular</span></div>
+      <div style="font-weight:500">Kućne elektroinstalacije · građevinski · ključ<span>500 Medium</span></div>
+      <div style="font-weight:600">Kućne elektroinstalacije · građevinski · ključ<span>600 Semibold</span></div>
+      <div style="font-weight:700">Kućne elektroinstalacije · građevinski · ključ<span>700 Bold</span></div>
+      <div style="font-weight:800">Kućne elektroinstalacije · građevinski · ključ<span>800 Extrabold</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Dograđeni znakovi — Monr</h2>
+    <div class="parovi">
+      <div class="par" style="font-family:'HES Monr',monospace"><span class="znak pod">c</span><div class="ime">c · izvorni</div></div>
+      <div class="par nov" style="font-family:'HES Monr',monospace"><span class="znak">&#x107;</span><div class="ime">ć · dograđen</div></div>
+      <div class="par nov" style="font-family:'HES Monr',monospace"><span class="znak">&#x10D;</span><div class="ime">č · dograđen</div></div>
+      <div class="par" style="font-family:'HES Monr',monospace"><span class="znak pod">&#x161;</span><div class="ime">š · izvorni</div></div>
+      <div class="par" style="font-family:'HES Monr',monospace"><span class="znak pod">d</span><div class="ime">d · izvorni</div></div>
+      <div class="par nov" style="font-family:'HES Monr',monospace"><span class="znak">&#x111;</span><div class="ime">đ · dograđen</div></div>
+    </div>
+    <p class="napomena">
+      Monr je unikamerno pismo — <code>c</code> i <code>C</code> su isti oblik — pa su
+      i dograđene verzije iste. Karon je izvađen iz postojećeg <b>š</b>, akut iz <b>á</b>.
+      Monr se na stranici koristi samo na natpisima bez dijakritike (brojevi, cijene,
+      <code>BOSCH</code>, <code>LOXONE</code>), pa je ovo pojas i naramenice.
+    </p>
+  </section>
+
+  <section>
+    <h2>Tabularne brojke — desni rub i zarezi moraju stajati u liniji</h2>
+    <table>
+      <tr><th>Artikl</th><th>Cijena</th></tr>
+      <tr><td>Miniserver</td><td class="cijena lijenjir">655,61 €</td></tr>
+      <tr><td>Miniserver Compact</td><td class="cijena lijenjir">495,00 €</td></tr>
+      <tr><td>KNX extension</td><td class="cijena lijenjir">573,88 €</td></tr>
+      <tr><td>Touch Tree tipkalo</td><td class="cijena lijenjir">90,84 €</td></tr>
+      <tr><td>Turbo Clamp (25)</td><td class="cijena lijenjir">12,07 €</td></tr>
+      <tr><td>Tree Cable (200m)</td><td class="cijena lijenjir">346,37 €</td></tr>
+      <tr><td>SD kartica s FirmWareom</td><td class="cijena lijenjir">12,84 €</td></tr>
+      <tr><td>Presence Sensor Tree</td><td class="cijena lijenjir">98,07 €</td></tr>
+      <tr><td>Bosch MA 55</td><td class="cijena lijenjir">10,00 €</td></tr>
+      <tr><td>PROTUBE-F360</td><td class="cijena lijenjir">50,00 €</td></tr>
+    </table>
+    <p class="napomena">
+      Iscrtkana linija je ravnalo. Znamenke su izjednačene na najširu (674 jedinice),
+      pa je <b>1</b> zračniji nego u tekstu — to je normalno ponašanje tabularnih brojki
+      i cijena je za poravnat stupac. Brojka <code>111,11 €</code> i <code>888,88 €</code>
+      moraju zauzimati istu širinu: <span style="font-variant-numeric:tabular-nums">111,11 €</span>
+      / <span style="font-variant-numeric:tabular-nums">888,88 €</span>
+    </p>
+  </section>
+
+  <section>
+    <h2>Tekst u sva tri jezika</h2>
+    <div class="jezik">
+      <b>hr</b>
+      <p>Specijalizirani smo za električne instalacije i Loxone smarthome sisteme.
+      U Hrvatskoj radimo završne građevinske radove, kućne elektroinstalacije te
+      prodaju i montažu Loxone sustava. Ključ u ruke, uz đon i sve prečke.</p>
+    </div>
+    <div class="jezik">
+      <b>de</b>
+      <p>Wir sind auf Elektroinstallationen und Loxone-Smarthome-Systeme spezialisiert.
+      Industrielle Elektroinstallationen führen wir in Deutschland aus — Schaltschränke
+      für Anlagen und Verbraucher, von der Planung über die Montage bis zur
+      Inbetriebnahme. Bodenbeläge, Trockenbau, Türen.</p>
+    </div>
+    <div class="jezik">
+      <b>en</b>
+      <p>We specialise in electrical installations and Loxone smart home systems.
+      Industrial electrical work is carried out in Germany; in Croatia we do finishing
+      construction works, residential electrical installations and Loxone.</p>
+    </div>
+    <p class="napomena upozorenje">
+      Njemački <b>ß</b> namjerno nije dograđen u Neue Regrade — nije složiv iz postojećih
+      dijelova, a crtanje bi bilo nagađanje. Njemački tekst se piše bez njega
+      (<code>Schliessen</code>, <code>Bodenbeläge</code>) i skripta provjere ruši build
+      ako se ipak pojavi. Ovdje ga za kontrolu ipak prikazujemo: „Straße&#8221; — ako je
+      ovo slovo vidljivo drugačijim pismom, mehanizam zamjene radi kako treba.
+    </p>
+  </section>
+
+  <section>
+    <h2>Naslov u stvarnoj veličini</h2>
+    <p class="krupno">Industrijske instalacije u Njemačkoj. Završni radovi, kućne
+    instalacije i Loxone u Hrvatskoj.</p>
+    <p class="napomena">
+      Ovo je predložena varijanta naslova s naslovnice (varijanta B iz
+      <code>hes-content.md</code>). Sadrži <b>č</b>, <b>ć</b> i <b>đ</b> — sva tri se
+      moraju čitati kao isti rez pisma.
+    </p>
+  </section>
+</main>
+</body>
+</html>

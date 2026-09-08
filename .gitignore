@@ -1,0 +1,19 @@
+node_modules/
+.firecrawl/
+
+# Izvorne fotografije za scripts/slike.mjs — zajedno oko 143 MB, pojedinacne
+# do 30 MB. Stranica ih ne posluzuje: slike.mjs iz njih radi assets/img/
+# (5 MB, avif + webp) i to je ono sto ide na mrezu.
+#
+# Drze se izvan repozitorija jer bi ih inace svaki klon i svaki push nosio.
+# POSLJEDICA: postoje samo na disku, pa im treba zasebna sigurnosna kopija —
+# bez njih se assets/img/ ne moze ponovno izgraditi.
+assets/images/
+
+# Instalacijske datoteke i arhive nisu materijal stranice. Pravilo stoji jer
+# je jedan ovakav .exe (644 MB, u mapi s fotografijama alata) vec jednom usao
+# u commit i sam bio 79 % repozitorija — GitHub odbija sve preko 100 MB, pa
+# push ne bi ni prosao.
+*.exe
+*.zip
+*.msi

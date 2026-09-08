@@ -1,0 +1,152 @@
+/**
+ * main.js — jedina ulazna tocka za sve tri stranice.
+ *
+ * Sve se vezuje delegiranim slusacima na dokumentu, ne po jedan po elementu:
+ * dijelovi stranice se docrtavaju kasnije (tablica kataloga, rail, ladica
+ * kosarice), pa slusac vezan pri ucitavanju ne bi znao za njih.
+ *
+ * Moduli kataloga se ucitavaju tek ako stranica ima katalog. Naslovnica tako
+ * ne placa ni bajt za trgovinu.
+ */
+
+import { pokreniTemu, obrniTemu, naPromjenuTeme } from "./tema.js";
+import {
+  pokreniOtkrivanje,
+  pokreniRaspad,
+  pokreniSpy,
+  pokreniParalaksu,
+  pokreniSkrolTraku,
+  pokreniZivot,
+} from "./pokret.js";
+import { pokreniProvjeruUvjeta, pokreniNapredakObrasca, pokreniVideoNaHover } from "./interakcije.js";
+import { pokreniPlatno } from "./platno.js";
+import { pokreniZaglavlje } from "./zaglavlje.js";
+
+/* ------------------------------------------------------------------ */
+/* Mobilni izbornik                                                    */
+/* ------------------------------------------------------------------ */
+function pokreniMobilniIzbornik() {
+  const prekidac = document.querySelector("[data-izbornik-prekidac]");
+  const izbornik = document.querySelector("[data-mobilni-izbornik]");
+  const zastor = document.querySelector("[data-izbornik-zastor]");
+  if (!prekidac || !izbornik) return;
+
+  const postavi = (otvoren) => {
+    izbornik.hidden = !otvoren;
+    if (zastor) zastor.hidden = !otvoren;
+    prekidac.setAttribute("aria-expanded", String(otvoren));
+    prekidac.setAttribute("aria-label", otvoren ? "Zatvori izbornik" : "Otvori izbornik");
+  };
+
+  prekidac.addEventListener("click", () => postavi(izbornik.hidden));
+  zastor?.addEventListener("click", () => postavi(false));
+
+  // Klik na vezu vodi na sidro — izbornik se mora sam maknuti, inace pokrije
+  // sekciju do koje je upravo doveo.
+  izbornik.addEventListener("click", (dogadaj) => {
+    if (dogadaj.target.closest("a")) postavi(false);
+  });
+
+  document.addEventListener("keydown", (dogadaj) => {
+    if (dogadaj.key === "Escape" && !izbornik.hidden) {
+      postavi(false);
+      prekidac.focus();
+    }
+  });
+}
+
+/* ------------------------------------------------------------------ */
+/* Mobilni list s filtrima                                             */
+/* ------------------------------------------------------------------ */
+function pokreniFiltarList(katalogSekcija) {
+  const dijalog = document.querySelector("[data-filtar-dijalog]");
+  const traka = document.querySelector("[data-filtar-traka]");
+  if (!dijalog || !traka || !katalogSekcija) return;
+
+  document.addEventListener("click", (dogadaj) => {
+    if (dogadaj.target.closest("[data-filtar-otvori]")) {
+      if (!dijalog.open) dijalog.showModal();
+    } else if (dogadaj.target.closest("[data-filtar-zatvori]")) {
+      dijalog.close();
+    }
+  });
+
+  dijalog.addEventListener("click", (dogadaj) => {
+    if (dogadaj.target === dijalog) dijalog.close();
+  });
+
+  // Traka se pojavljuje samo dok je katalog u vidokrugu. Da stalno stoji,
+  // pokrivala bi podnozje i hero bez ijednog razloga.
+  const promatrac = new IntersectionObserver(
+    ([unos]) => {
+      traka.hidden = !unos.isIntersecting;
+    },
+    { rootMargin: "-20% 0px -10% 0px" }
+  );
+  promatrac.observe(katalogSekcija);
+}
+
+/* ------------------------------------------------------------------ */
+/* Pokretanje                                                          */
+/* ------------------------------------------------------------------ */
+async function pokreni() {
+  pokreniTemu();
+  pokreniZaglavlje();
+  pokreniMobilniIzbornik();
+  pokreniSpy();
+  pokreniOtkrivanje();
+  pokreniRaspad();
+  pokreniParalaksu();
+  pokreniSkrolTraku();
+  pokreniZivot();
+
+  // Interaktivni dijelovi naslovnice. Svaka funkcija sama provjeri postoji li
+  // njezin dio stranice, pa webshop i najam alata ne placu nista za njih.
+  pokreniProvjeruUvjeta();
+  pokreniNapredakObrasca();
+  pokreniVideoNaHover();
+
+  const platno = pokreniPlatno(document.querySelector("[data-platno]"));
+  naPromjenuTeme(() => platno.osvjeziBoje?.());
+
+  document.addEventListener("click", (dogadaj) => {
+    if (dogadaj.target.closest("[data-tema-gumb]")) obrniTemu();
+  });
+
+  // Kosarica postoji na svakoj stranici — brojac u zaglavlju mora biti tocan
+  // i na naslovnici, gdje kataloga nema.
+  const { pokreniLadicu } = await import("./ladica.js");
+  pokreniLadicu();
+
+  const katalogSekcija = document.querySelector("[data-trgovina]");
+  if (katalogSekcija) {
+    const { pokreniTrgovinu } = await import("./trgovina.js");
+    await pokreniTrgovinu(katalogSekcija);
+    pokreniFiltarList(katalogSekcija);
+  }
+
+  // Stranica jednog artikla. Ucitava se samo ondje gdje postoji, kao i
+  // trgovina — naslovnica ne placa ni bajt ni za jedno ni za drugo.
+  const proizvodSekcija = document.querySelector("[data-proizvod]");
+  if (proizvodSekcija) {
+    const { pokreniStranicuProizvoda } = await import("./proizvod.js");
+    await pokreniStranicuProizvoda(proizvodSekcija);
+  }
+
+  // Iz ladice se trazi ponuda: obrazac zivi u sekciji kontakta na naslovnici,
+  // pa se s kataloga do njega ide navigacijom. Jedan obrazac, jedno mjesto.
+  document.addEventListener("hes:zatrazi-ponudu", () => {
+    const obrazac = document.querySelector("[data-obrazac-upita]");
+    if (obrazac) {
+      obrazac.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      location.href = "/#kontakt";
+    }
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", pokreni, { once: true });
+} else {
+  pokreni();
+}

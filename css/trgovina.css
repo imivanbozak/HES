@@ -1,0 +1,1214 @@
+/**
+ * trgovina.css — katalog, filtri, kosarica.
+ *
+ * Ucitavaju je samo /webshop i /najam-alata. Naslovnica ne treba nista odavde,
+ * pa ne placa ni bajt.
+ *
+ * Obje zalihe dijele jednu tablicu i jedan rail. hes-style.md §5 to trazi
+ * izricito: dvije zalihe na jednoj stranici moraju se citati kao jedan sustav,
+ * a jedina razlika koju smiju nositi je natpis stupca cijene.
+ */
+
+/* ================================================================== */
+/* Raspored kataloga                                                   */
+/* ================================================================== */
+.katalog__mreza {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: var(--p7);
+  align-items: start;
+}
+.katalog__sadrzaj { min-width: 0; }
+
+/* ================================================================== */
+/* Rail                                                                */
+/* ================================================================== */
+.rail {
+  position: sticky;
+  top: calc(var(--visina-zaglavlja) + var(--p4));
+  display: grid;
+  gap: var(--p5);
+  align-content: start;
+  max-height: calc(100dvh - var(--visina-zaglavlja) - var(--p6));
+  overflow-y: auto;
+  padding-right: var(--p2);
+  /* Traka za klizanje unutar raila ne smije se vidjeti dok nije potrebna. */
+  scrollbar-width: thin;
+}
+.rail__skupina { display: grid; gap: var(--p2); }
+.rail__popis { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
+.rail__stavka { display: grid; }
+
+.rail__gumb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p2);
+  width: 100%;
+  padding: var(--p2) var(--p3);
+  border: 0;
+  border-radius: var(--r-mali);
+  background: none;
+  color: var(--tekst-2);
+  font-size: var(--vel-malo);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--brzo) var(--krivulja),
+    color var(--brzo) var(--krivulja),
+    transform var(--brzo) var(--krivulja);
+}
+.rail__gumb.je-odabran {
+  background: var(--hes-pranje);
+  color: var(--hes-tekst);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--hes-rub);
+}
+@media (hover: hover) and (pointer: fine) {
+  .rail__gumb:not(.je-odabran):hover {
+    background: var(--plohica);
+    color: var(--tekst);
+    transform: var(--pomak-retka);
+  }
+}
+.rail__ime { min-width: 0; }
+.rail__broj {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--tekst-4);
+  font-variant-numeric: tabular-nums;
+}
+.rail__gumb.je-odabran .rail__broj { color: inherit; }
+
+/*
+ * Podskupine se otvaraju KLIKOM na nadskupinu, ne prelaskom misa. Hover je
+ * neupotrebljiv na dodirniku, nevidljiv tipkovnici i nestabilan na touchpadu;
+ * uz to bi 28 podskupina odjednom bilo losiji kazalo od 11 skupina koje
+ * zamjenjuje.
+ */
+.rail__pod {
+  list-style: none;
+  margin: var(--p1) 0 var(--p2);
+  padding-left: var(--p3);
+  border-left: 1px solid var(--rub);
+  display: grid;
+  gap: 1px;
+}
+.rail__pod[hidden] { display: none; }
+.rail__gumb--pod { font-size: 13px; color: var(--tekst-3); }
+
+.rail__prekidac {
+  display: flex;
+  align-items: center;
+  gap: var(--p2);
+  padding: var(--p2) var(--p3);
+  font-size: var(--vel-malo);
+  color: var(--tekst-2);
+  cursor: pointer;
+}
+.rail__prekidac input { accent-color: var(--hes); width: 16px; height: 16px; }
+.rail__ocisti { justify-self: start; }
+.rail__ocisti[disabled] { opacity: 0.4; cursor: default; }
+
+/* ================================================================== */
+/* Trgovina — pretraga, trake, mreza kartica                           */
+/* ================================================================== */
+/*
+ * Loxone katalog ne koristi rail sa strane nego dvije vodoravne trake iznad
+ * mreze: ikone skupina, pa pilule podskupina. Najam alata i dalje koristi
+ * rail i tablicu iznad — oba skupa pravila zive u ovoj datoteci jer ih
+ * pokrece isti modul.
+ */
+.trgovina__glava {
+  display: grid;
+  gap: var(--p3);
+  justify-items: start;
+  margin-bottom: var(--p6);
+}
+
+/* --- pretraga ----------------------------------------------------- */
+/*
+ * Sirina je ogranicena na 560 px, ne na cijeli stupac od 1240 px: polje za
+ * pretragu preko cijele sirine ekrana izgleda kao traka preglednika, a upit
+ * je ionako dvije rijeci. `justify-self` je nuzan jer glava ima
+ * `justify-items: start`, pa bi se inace stisnula na sirinu sadrzaja.
+ */
+.trazilica {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-self: stretch;
+  width: min(100%, 560px);
+  margin-top: var(--p2);
+}
+.trazilica__ikona {
+  position: absolute;
+  left: var(--p4);
+  width: 18px;
+  height: 18px;
+  color: var(--tekst-4);
+  pointer-events: none;
+}
+.trazilica input {
+  width: 100%;
+  padding: var(--p3) var(--p5) var(--p3) calc(var(--p4) + 18px + var(--p3));
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  background: var(--ploha-2);
+  color: var(--tekst);
+  /* 16 px sprjecava iOS da sam zumira pri fokusu polja. */
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color var(--brzo) var(--krivulja), background var(--brzo) var(--krivulja);
+}
+.trazilica input::placeholder { color: var(--tekst-4); }
+.trazilica input:focus-visible { outline: 2px solid var(--fokus); outline-offset: 2px; }
+/* Nativni "x" u Chromeu je siv kvadratic koji ne prati temu; Esc radi isti
+   posao i opisan je u trgovina.js. */
+.trazilica input::-webkit-search-cancel-button { display: none; }
+
+/* --- traka skupina s ikonama --------------------------------------- */
+/*
+ * Ljepljiva je, jer je ovo jedina navigacija kataloga: dok se pregledava 59
+ * kartica, skok u drugu skupinu ne smije traziti povratak na vrh stranice.
+ */
+/*
+ * Traka NIJE ljepljiva. Zaglavlje se pri skrolanju vec suzava i vraca, pa bi
+ * druga traka koja se lijepi ispod njega znacila dvije plohe koje se pomicu
+ * jedna ispod druge — a mreza kartica bi na mobitelu ostala bez trecine
+ * vidljive visine.
+ */
+.kat-traka {
+  margin-bottom: var(--p4);
+  border-bottom: 1px solid var(--rub);
+}
+.kat-traka__popis {
+  display: flex;
+  gap: var(--p1);
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--p2);
+  /* Jedanaest skupina ne stane na uski ekran; klize umjesto da se lome u
+     cetiri reda ikona koji bi pojeli cijeli prvi zaslon. */
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+.kat-traka__popis::-webkit-scrollbar { display: none; }
+
+.kat {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  min-width: 84px;
+  padding: var(--p3) var(--p2) var(--p2);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: var(--r-mali) var(--r-mali) 0 0;
+  background: none;
+  color: var(--tekst-3);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition:
+    color var(--brzo) var(--krivulja),
+    background var(--brzo) var(--krivulja),
+    border-color var(--brzo) var(--krivulja);
+}
+.kat__ikona { display: grid; place-items: center; width: 28px; height: 28px; }
+.kat__ikona svg { width: 100%; height: 100%; }
+.kat__ime { max-width: 11ch; }
+.kat__broj { font-size: 11px; color: var(--tekst-4); font-variant-numeric: tabular-nums; }
+
+.kat.je-odabran {
+  color: var(--hes-tekst);
+  border-bottom-color: var(--hes);
+  font-weight: 600;
+}
+.kat.je-odabran .kat__broj { color: inherit; }
+@media (hover: hover) and (pointer: fine) {
+  .kat:not(.je-odabran):hover { color: var(--tekst); background: var(--plohica); }
+}
+
+/* --- traka podskupina i sortiranje --------------------------------- */
+.pod-traka {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--p3);
+  margin-bottom: var(--p5);
+}
+.pod-traka__popis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.pod-traka__sazetak { margin: 0; }
+
+.pod-cip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p2);
+  padding: 7px var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  background: var(--ploha-2);
+  color: var(--tekst-2);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--brzo) var(--krivulja),
+    border-color var(--brzo) var(--krivulja),
+    color var(--brzo) var(--krivulja),
+    transform var(--brzo) var(--krivulja);
+}
+.pod-cip__broj { font-size: 11px; color: var(--tekst-4); font-variant-numeric: tabular-nums; }
+.pod-cip.je-odabran {
+  background: var(--hes-ploha);
+  border-color: transparent;
+  color: var(--hes-na-plohi);
+}
+.pod-cip.je-odabran .pod-cip__broj { color: inherit; opacity: 0.75; }
+@media (hover: hover) and (pointer: fine) {
+  .pod-cip:not(.je-odabran):hover {
+    border-color: var(--hes-rub);
+    color: var(--tekst);
+    transform: var(--pomak-kontrole);
+  }
+}
+
+/* --- padajuci izbornik sortiranja ---------------------------------- */
+/*
+ * Nije `<select>`: panel nativnog birca crta operativni sustav i ne da se
+ * oblikovati, pa bi uz padajuci izbornik iz navigacije stajao drugi, sivi.
+ * Ovo je isti obrazac kao `.izbornik__pod` u app.css — ista ploha, isti rub,
+ * isti radijus, ista sjena, isti pomak retka na hover.
+ */
+.sort {
+  position: relative;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.sort__gumb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p2);
+  padding: 7px var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  background: var(--ploha-2);
+  color: var(--tekst-2);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color var(--brzo) var(--krivulja),
+    color var(--brzo) var(--krivulja),
+    transform var(--brzo) var(--krivulja);
+}
+.sort__gumb svg { width: 16px; height: 16px; flex-shrink: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .sort__gumb:hover {
+    border-color: var(--hes-rub);
+    color: var(--tekst);
+    transform: var(--pomak-kontrole);
+  }
+}
+.sort__gumb[aria-expanded="true"] { border-color: var(--hes-rub); color: var(--tekst); }
+
+.sort__popis {
+  position: absolute;
+  top: calc(100% + var(--p2));
+  right: 0;
+  z-index: 30;
+  min-width: 220px;
+  padding: var(--p3);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  background: var(--ploha-1);
+  box-shadow: var(--sjena-plohe);
+  list-style: none;
+  margin: 0;
+}
+.sort__popis[hidden] { display: none; }
+
+.sort__opcija {
+  display: block;
+  width: 100%;
+  padding: var(--p2) var(--p3);
+  border: 0;
+  border-radius: var(--r-mali);
+  background: none;
+  color: var(--tekst-2);
+  font-family: inherit;
+  font-size: var(--vel-malo);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--brzo) var(--krivulja),
+    color var(--brzo) var(--krivulja),
+    transform var(--brzo) var(--krivulja);
+}
+@media (hover: hover) and (pointer: fine) {
+  .sort__opcija:hover {
+    background: var(--plohica);
+    color: var(--tekst);
+    transform: var(--pomak-retka);
+  }
+}
+/* Odabrana opcija nosi kvacicu, ne ispunu: popis od cetiri retka s jednim
+   punim pravokutnikom cita se kao gumb, a ovo je stanje. */
+.sort__opcija.je-odabran {
+  color: var(--hes-tekst);
+  font-weight: 600;
+}
+.sort__opcija.je-odabran::after {
+  content: "";
+  float: right;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: currentColor;
+  -webkit-mask: no-repeat center / contain
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E");
+  mask: no-repeat center / contain
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E");
+}
+
+/* ================================================================== */
+/* Mreza kartica                                                       */
+/* ================================================================== */
+.mreza-proizvoda {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--p4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * BIJELA KARTICA U OBJE TEME.
+ *
+ * Sve fotografije proizvoda i svih 28 videa isporuceni su na bijeloj
+ * pozadini. Na tamnoj plohi bi svaka kartica bila bijeli pravokutnik koji
+ * pluta u tamnom okviru — pa je ploha bijela, a proizvod se stapa s njom.
+ *
+ * Boje se ne pisu rucno po pravilu nego se LOKALNO REDEFINIRAJU TOKENI, isti
+ * obrazac koji app.css vec koristi za `.polje--teal` (polje koje ostaje tamno
+ * i u svijetloj temi). Zbog toga svaki `var()` unutar kartice — cijena,
+ * pilula stanja, brojac, rubovi — sam sjedne na bijelo, bez ijednog
+ * prepisanog pravila po komponenti.
+ *
+ * Omjeri su izmjereni, ne procijenjeni:
+ *   --tekst      #14120F na #FFF   16.7:1
+ *   --tekst-3    #55504A na #FFF    7.4:1
+ *   --tekst-4    #6B665D na #FFF    5.4:1
+ *   --na-stanju  #12695A na #FFF    5.6:1   (#1B9179 bi dao 3.6:1 — premalo)
+ */
+.proizvod {
+  --ploha-0: #FFFFFF;
+  --ploha-2: #FFFFFF;
+  --ploha-3: #F4F1EA;
+  --tekst: #14120F;
+  --tekst-2: #201D18;
+  --tekst-3: #55504A;
+  --tekst-4: #6B665D;
+  --rub: #E4DFD3;
+  --rub-jaci: #C9C3B4;
+  --plohica: color-mix(in oklab, #14120F 5%, transparent);
+  --na-stanju: #12695A;
+  --hes-ploha: #1B9179;
+  --hes-na-plohi: #FFFFFF;
+  --hes-rub: color-mix(in oklab, #1B9179 45%, transparent);
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  background: #FFFFFF;
+  color: var(--tekst);
+  transition:
+    border-color var(--srednje) var(--krivulja),
+    box-shadow var(--srednje) var(--krivulja),
+    transform var(--srednje) var(--krivulja);
+}
+@media (hover: hover) and (pointer: fine) {
+  .proizvod:hover {
+    border-color: var(--hes-rub);
+    box-shadow: 0 10px 30px -12px rgba(10, 9, 8, 0.28);
+    transform: var(--pomak-kartice);
+  }
+}
+
+/* --- kadar --------------------------------------------------------- */
+/*
+ * Jedan omjer za sve. Sve fotografije i svi videi su 3:2, pa kadar nikad ne
+ * mijenja visinu i mreza se ne trese dok se slike ucitavaju.
+ */
+.proizvod__kadar {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+.proizvod__kadar--prazan { background: #F4F1EA; }
+
+.proizvod__kadar img,
+.proizvod__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* `contain`, ne `cover`: proizvod se ne smije odrezati zbog kadra. */
+  object-fit: contain;
+}
+
+/*
+ * Druga fotografija na hover — kartice koje nemaju video.
+ *
+ * Time SVAKA kartica ima odgovor na pokazivac: one s videom sviraju, one bez
+ * njega mijenjaju kadar. Bez ovoga bi mreza izgledala kao da polovica kartica
+ * ne radi.
+ */
+.proizvod__slika {
+  display: block;
+  height: 100%;
+  transition: opacity var(--srednje) var(--krivulja);
+}
+.proizvod__slika--druga {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .proizvod:hover .proizvod__slika--druga { opacity: 1; }
+  .proizvod:focus-within .proizvod__slika--druga { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Ista postavka koja gasi video u interakcije.js gasi i zamjenu kadra. */
+  .proizvod__slika--druga { display: none; }
+}
+
+/* --- tijelo -------------------------------------------------------- */
+.proizvod__tijelo {
+  display: grid;
+  gap: var(--p2);
+  align-content: start;
+  padding: var(--p4);
+  border-top: 1px solid var(--rub);
+}
+.proizvod__ime {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+.proizvod__vrsta { margin: 0; font-size: 13px; color: var(--tekst-3); }
+.proizvod__cijena {
+  display: flex;
+  align-items: baseline;
+  gap: var(--p2);
+  flex-wrap: wrap;
+  margin: var(--p2) 0 0;
+}
+
+.proizvod__akcije {
+  display: flex;
+  align-items: center;
+  gap: var(--p2);
+  margin-top: var(--p1);
+}
+.proizvod__akcije .brojac { flex: 1; justify-content: space-between; }
+.proizvod .brojac button[disabled] { opacity: 0.35; cursor: default; }
+
+/* Kvadratni gumb s ikonom kosarice — brza akcija sa screenshota. */
+.u-kosaricu {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: var(--r-mali);
+  background: var(--hes-ploha);
+  color: var(--hes-na-plohi);
+  cursor: pointer;
+  transition:
+    background var(--srednje) var(--krivulja),
+    color var(--srednje) var(--krivulja),
+    transform var(--brzo) var(--krivulja);
+}
+.u-kosaricu svg { width: 18px; height: 18px; }
+/* Artikl koji je vec u kosarici: kvacica i tiha ploha, jer gumb tada vise ne
+   dodaje nego otvara kosaricu. */
+.u-kosaricu.je-u-kosarici {
+  background: color-mix(in oklab, #1B9179 14%, #FFFFFF);
+  border-color: var(--hes-rub);
+  color: #12695A;
+}
+@media (hover: hover) and (pointer: fine) {
+  .u-kosaricu:hover { background: color-mix(in oklab, var(--hes-ploha) 86%, #000); transform: var(--pomak-kontrole); }
+  .u-kosaricu.je-u-kosarici:hover { background: color-mix(in oklab, #1B9179 22%, #FFFFFF); }
+}
+.u-kosaricu:active { transform: scale(0.96); }
+
+.proizvod__stanje { margin: var(--p1) 0 0; }
+
+@media (max-width: 520px) {
+  .mreza-proizvoda { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--p3); }
+  .proizvod__tijelo { padding: var(--p3); }
+  .proizvod__ime { font-size: 14px; }
+  .u-kosaricu { width: 40px; }
+}
+
+/* ================================================================== */
+/* Stranica proizvoda                                                  */
+/* ================================================================== */
+.mrvice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--p2);
+  margin-bottom: var(--p5);
+  font-size: 13px;
+  color: var(--tekst-4);
+}
+.mrvice a { color: var(--tekst-3); text-decoration: none; }
+.mrvice a:hover { color: var(--hes-tekst); }
+.mrvice [aria-current] { color: var(--tekst-2); }
+
+.proizvod-stranica__mreza {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--p8);
+  align-items: start;
+}
+.proizvod-stranica__podaci { display: grid; gap: var(--p3); align-content: start; }
+.proizvod-stranica__podaci h1 { margin: 0; }
+.proizvod-stranica__cijena { display: grid; gap: 2px; margin-top: var(--p2); }
+.cijena--velika { font-size: clamp(26px, 3.2vw, 34px); }
+
+.proizvod-stranica__akcije {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p3);
+  margin: var(--p3) 0;
+}
+.brojac--veliki { padding: 4px; }
+.brojac--veliki button { width: 36px; height: 36px; font-size: 18px; }
+.brojac--veliki span { min-width: 32px; font-size: var(--vel-tekst); }
+.gumb--siroki { flex: 1; min-width: 200px; }
+
+/* Oznaka suradnje. Neutralna je namjerno — sluzbeni Appleov znak je zasticen
+   i nije medu dostavljenim materijalima. */
+.znak-suradnje {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p2);
+  padding: var(--p2) var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  justify-self: start;
+  font-size: 13px;
+  color: var(--tekst-2);
+}
+.znak-suradnje svg { width: 18px; height: 18px; color: var(--tekst-3); }
+
+/* --- galerija ------------------------------------------------------ */
+/*
+ * Kadar je BIJEL u obje teme, iz istog razloga kao i kartica u mrezi:
+ * fotografije i videi su isporuceni na bijeloj pozadini.
+ */
+.galerija { display: grid; gap: var(--p3); }
+.galerija__glavni {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--rub);
+  border-radius: var(--r-ploha);
+  background: #FFFFFF;
+}
+.galerija__kadar { position: absolute; inset: 0; }
+.galerija__kadar[hidden] { display: none; }
+.galerija__kadar img,
+.galerija__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.galerija__kadar picture { display: block; height: 100%; }
+
+.galerija__traka {
+  display: flex;
+  gap: var(--p2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.galerija__slicica {
+  position: relative;
+  display: block;
+  width: 84px;
+  flex-shrink: 0;
+  aspect-ratio: 3 / 2;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: border-color var(--brzo) var(--krivulja), transform var(--brzo) var(--krivulja);
+}
+.galerija__slicica img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.galerija__slicica.je-odabran { border-color: var(--hes); box-shadow: 0 0 0 1px var(--hes); }
+@media (hover: hover) and (pointer: fine) {
+  .galerija__slicica:not(.je-odabran):hover { border-color: var(--hes-rub); transform: var(--pomak-kontrole); }
+}
+/* Znak da je taj kadar video, a ne fotografija. */
+.galerija__znak {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: color-mix(in oklab, #0A0908 34%, transparent);
+  color: #FFFFFF;
+}
+.galerija__znak svg { width: 22px; height: 22px; }
+
+/* --- opis, znacajke, tehnicki podaci -------------------------------- */
+.proizvod-opis { display: grid; gap: var(--p7); }
+.proizvod-opis__stupci {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--p7);
+}
+.proizvod-opis__stupci h2 { margin: 0 0 var(--p3); }
+
+.popis-znacajki { list-style: none; margin: 0; padding: 0; display: grid; }
+.popis-znacajki li {
+  display: flex;
+  gap: var(--p3);
+  padding: var(--p3) 0;
+  border-bottom: 1px solid var(--rub);
+  font-size: var(--vel-malo);
+  color: var(--tekst-2);
+}
+/* Kvacica umjesto tocke: ovo su ukljucene mogucnosti, ne nabrajanje. */
+.popis-znacajki li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  background: var(--hes-tekst);
+  -webkit-mask: no-repeat center / contain
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E");
+  mask: no-repeat center / contain
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 899px) {
+  .proizvod-stranica__mreza { grid-template-columns: 1fr; gap: var(--p6); }
+  .proizvod-opis { gap: var(--p6); }
+  .proizvod-opis__stupci { gap: var(--p6); }
+}
+
+/* ================================================================== */
+/* Karusel preporuka                                                   */
+/* ================================================================== */
+/*
+ * Staza je obican element koji klizi kotacicem, povlacenjem i tipkovnicom i
+ * bez ijednog reda JS-a. Strelice dodaje js/proizvod.js i to tek kad ima sto
+ * pomicati — dva gumba koja ne rade nista su gori od nijednog.
+ */
+.karusel { position: relative; }
+.karusel__staza {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap: var(--p4);
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--p3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+.karusel__staza > .proizvod { scroll-snap-align: start; }
+
+.karusel__strelica {
+  position: absolute;
+  top: calc(50% - var(--p6));
+  z-index: 5;
+  display: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--rub);
+  border-radius: 50%;
+  background: var(--ploha-1);
+  color: var(--tekst-2);
+  box-shadow: var(--sjena-plohe);
+  cursor: pointer;
+  transition: background var(--brzo) var(--krivulja), color var(--brzo) var(--krivulja), opacity var(--brzo) var(--krivulja);
+}
+.karusel--klizi .karusel__strelica { display: grid; }
+.karusel__strelica svg { width: 20px; height: 20px; }
+.karusel__strelica--natrag { left: calc(var(--p5) * -1); }
+.karusel__strelica--naprijed { right: calc(var(--p5) * -1); }
+.karusel__strelica[disabled] { opacity: 0.3; cursor: default; }
+@media (hover: hover) and (pointer: fine) {
+  .karusel__strelica:not([disabled]):hover { background: var(--ploha-3); color: var(--tekst); }
+}
+/* Na uskom ekranu nema mjesta za strelice izvan stupca; ondje klizanje
+   prstom ionako radi bolje od dva gumba. */
+@media (max-width: 1340px) {
+  .karusel--klizi .karusel__strelica { display: none; }
+}
+
+/* Naziv na kartici postaje poveznica kad stranica proizvoda postoji. */
+.proizvod__veza { color: inherit; text-decoration: none; }
+.proizvod__veza:hover { color: var(--hes-tekst); }
+.proizvod__kadar--veza { display: block; }
+
+/* ================================================================== */
+/* Sazetak iznad tablice                                               */
+/* ================================================================== */
+.sazetak {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--p3);
+  padding-bottom: var(--p3);
+  margin-bottom: var(--p3);
+  border-bottom: 1px solid var(--rub);
+}
+.sazetak__lijevo { display: flex; align-items: baseline; gap: var(--p3); }
+.sortiranje { margin-left: auto; }
+.sortiranje select {
+  padding: var(--p2) var(--p3);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  background: var(--ploha-2);
+  color: var(--tekst-2);
+  font-size: var(--vel-malo);
+  cursor: pointer;
+}
+
+/* Aktivni filtri kao cipovi: najcesci potez je maknuti jedan filtar, a to
+   ovdje ne trazi ni otvaranje raila ni lista. */
+.cipovi { display: flex; flex-wrap: wrap; gap: var(--p2); list-style: none; margin: 0; padding: 0; }
+.cip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p2);
+  padding: 4px var(--p3);
+  border: 1px solid var(--hes-rub);
+  border-radius: var(--r-pilula);
+  background: var(--hes-pranje);
+  color: var(--hes-tekst);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--brzo) var(--krivulja), transform var(--brzo) var(--krivulja);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cip:hover {
+    background: color-mix(in oklab, var(--hes) 22%, transparent);
+    transform: var(--pomak-kontrole);
+  }
+}
+
+/* ================================================================== */
+/* Tablica                                                             */
+/* ================================================================== */
+.tablica {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tablica th {
+  padding: var(--p2) var(--p3);
+  border-bottom: 1px solid var(--rub-jaci);
+  font-size: var(--vel-oznaka);
+  font-weight: 500;
+  letter-spacing: var(--razmak-oznaka);
+  text-transform: uppercase;
+  color: var(--tekst-4);
+  text-align: left;
+}
+.tablica th:nth-child(3) { text-align: right; }
+.tablica td {
+  padding: var(--p3);
+  border-bottom: 1px solid var(--rub);
+  vertical-align: middle;
+}
+.tablica tbody tr {
+  transition: background var(--brzo) var(--krivulja);
+}
+@media (hover: hover) and (pointer: fine) {
+  /*
+   * Redak tablice mijenja samo plohu, bez pomaka. `transform` na <tr> je
+   * dopusten, ali odvaja redak od okvira tablice i na 59 redaka daje
+   * poskakivanje rubova; ovdje je ploha dovoljna.
+   *
+   * Sjaj iza cijene koji se ovdje nekad palio je uklonjen zajedno s
+   * `.cijena::before` u app.css.
+   */
+  .tablica tbody tr:hover { background: var(--plohica); }
+}
+
+.tablica__naziv { display: grid; gap: 2px; }
+.tablica__ime { font-weight: 500; }
+.tablica__meta { font-size: 11px; color: var(--tekst-4); letter-spacing: 0.04em; }
+.tablica__stanje { width: 1%; white-space: nowrap; }
+.tablica__cijena { width: 1%; white-space: nowrap; text-align: right; }
+.tablica__akcija { width: 1%; text-align: right; }
+.gumb--usko { padding-inline: var(--p3); min-height: 36px; font-size: 13px; }
+
+.prazno {
+  display: grid;
+  gap: var(--p4);
+  justify-items: start;
+  padding: var(--p8) var(--p5);
+  border: 1px dashed var(--rub-jaci);
+  border-radius: var(--r-ploha);
+}
+
+/*
+ * Ispod 900 px tablica se pretvara u kartice. Vodoravno klizanje tablice je
+ * gore od preslagivanja: cijena i gumb zavrse izvan ekrana, a to su tocno
+ * dvije stvari zbog kojih je posjetitelj i dosao.
+ */
+@media (max-width: 899px) {
+  .katalog__mreza { grid-template-columns: 1fr; gap: var(--p5); }
+  .rail { display: none; }
+
+  .tablica thead { display: none; }
+  .tablica,
+  .tablica tbody,
+  .tablica tr,
+  .tablica td { display: block; width: auto; }
+  .tablica tr {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--p2) var(--p3);
+    align-items: center;
+    padding: var(--p4);
+    margin-bottom: var(--p3);
+    border: 1px solid var(--rub);
+    border-radius: var(--r-kartica);
+    background: var(--ploha-2);
+  }
+  .tablica td { padding: 0; border: 0; }
+  .tablica__naziv { grid-column: 1 / -1; }
+  .tablica__stanje { grid-column: 1; text-align: left; }
+  .tablica__cijena { grid-column: 2; grid-row: 2; text-align: right; }
+  .tablica__akcija { grid-column: 1 / -1; text-align: left; }
+  .tablica__akcija .gumb { width: 100%; }
+}
+
+/* ================================================================== */
+/* Mobilna traka i list s filtrima                                     */
+/* ================================================================== */
+/*
+ * Prijedlog iz dokumentacije bio je vodoravni red cipova pod zaglavljem. To
+ * se raspada na 11 skupina i 28 podskupina — cipovi bi trazili vodoravno
+ * klizanje kroz cetrdesetak stavki. Umjesto toga: prikvacena traka na dnu s
+ * brojem aktivnih filtera, koja otvara list s cijelim stablom.
+ */
+.filtar-traka {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: none;
+  justify-content: center;
+  padding: var(--p3) var(--p4) calc(var(--p3) + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--ploha-0) 62%, transparent);
+  pointer-events: none;
+}
+.filtar-traka > * { pointer-events: auto; }
+.filtar-traka[hidden] { display: none; }
+
+@media (max-width: 899px) {
+  .filtar-traka:not([hidden]) { display: flex; }
+}
+
+.filtar-brojac {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding-inline: 5px;
+  margin-left: var(--p2);
+  border-radius: var(--r-pilula);
+  background: color-mix(in oklab, var(--hes-na-plohi) 22%, transparent);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.filtar-brojac[hidden] { display: none; }
+
+.list {
+  width: 100%;
+  max-width: 100%;
+  max-height: 88dvh;
+  margin: auto auto 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-ploha) var(--r-ploha) 0 0;
+  background: var(--ploha-1);
+  color: var(--tekst);
+  box-shadow: var(--sjena-plohe);
+}
+.list::backdrop {
+  background: color-mix(in oklab, #000 45%, transparent);
+  backdrop-filter: blur(3px);
+}
+/* Tri retka: vrh i dno se ne smiju odskrolati, jer je gumb "Prikazite
+   rezultate" jedini izlaz iz lista. */
+.list[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+.list__vrh,
+.list__dno {
+  display: flex;
+  align-items: center;
+  gap: var(--p3);
+  padding: var(--p4) var(--p5);
+}
+.list__vrh { border-bottom: 1px solid var(--rub); justify-content: space-between; }
+.list__dno { border-top: 1px solid var(--rub); }
+.list__dno .gumb { width: 100%; }
+.list__tijelo { overflow-y: auto; padding: var(--p5); display: grid; gap: var(--p5); }
+.list__tijelo .rail { position: static; max-height: none; overflow: visible; }
+
+/* ================================================================== */
+/* Ladica kosarice                                                     */
+/* ================================================================== */
+.ladica {
+  width: min(440px, 100%);
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid var(--rub);
+  background: var(--ploha-1);
+  color: var(--tekst);
+  box-shadow: var(--sjena-plohe);
+}
+.ladica::backdrop {
+  background: color-mix(in oklab, #000 45%, transparent);
+  backdrop-filter: blur(3px);
+}
+/* Dva retka, tijelo klizi: gumb "Zatrazite ponudu" na dnu tijela mora biti
+   dohvatljiv i kad je kosarica duga. */
+.ladica[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+.ladica__vrh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p3);
+  padding: var(--p4) var(--p5);
+  border-bottom: 1px solid var(--rub);
+}
+.ladica__tijelo { overflow-y: auto; padding: var(--p5); display: grid; gap: var(--p6); align-content: start; }
+
+.ladica__skupina { display: grid; gap: var(--p3); }
+.ladica__zaglavlje { display: flex; align-items: baseline; justify-content: space-between; gap: var(--p3); }
+.ladica__popis { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--p3); }
+
+.ladica__stavka {
+  display: grid;
+  gap: var(--p2);
+  padding: var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  background: var(--ploha-2);
+}
+
+/*
+ * Stavka sa slicicom: slika lijevo, podaci desno.
+ *
+ * Stavke bez slike (najam alata — ondje nema nijedne fotografije) zadrzavaju
+ * stari jednostupacni raspored umjesto da dobiju prazan kvadrat, pa se dvije
+ * skupine u kosarici i dalje citaju kao dvije stvari.
+ */
+.ladica__stavka--sa-slikom {
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: var(--p3);
+  align-items: start;
+}
+.ladica__podaci { display: grid; gap: var(--p2); min-width: 0; }
+
+/*
+ * Slicica je BIJELA u obje teme, iz istog razloga iz kojeg i kartica u mrezi:
+ * fotografije su isporucene na bijeloj pozadini. Na tamnoj plohi bi svaka
+ * stavka kosarice bila bijeli kvadrat u tamnom okviru.
+ */
+.ladica__slika {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  background: #FFFFFF;
+}
+.ladica__slika img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.ladica__glava { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--p3); }
+.ladica__ime { font-weight: 500; font-size: var(--vel-malo); }
+.ladica__red { display: flex; align-items: center; gap: var(--p3); flex-wrap: wrap; }
+.ladica__red .cijena { margin-left: auto; }
+.ladica__dana { white-space: nowrap; }
+
+.ladica__datumi { display: grid; grid-template-columns: 1fr 1fr; gap: var(--p2); }
+.ladica__datumi label { display: grid; gap: 2px; }
+.ladica__datumi input {
+  padding: var(--p2) var(--p3);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  background: var(--ploha-0);
+  color: var(--tekst);
+  /* 16 px sprjecava iOS da sam zumira pri fokusu polja. */
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.brojac {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p1);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  padding: 2px;
+}
+.brojac button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--tekst-2);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--brzo) var(--krivulja), color var(--brzo) var(--krivulja), transform var(--brzo) var(--krivulja);
+}
+@media (hover: hover) and (pointer: fine) {
+  .brojac button:hover {
+    background: var(--plohica);
+    color: var(--tekst);
+    transform: var(--pop-ikone);
+  }
+}
+.brojac span { min-width: 22px; text-align: center; font-size: var(--vel-malo); font-variant-numeric: tabular-nums; }
+
+.ladica__zbroj {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--p3);
+  padding-top: var(--p3);
+  border-top: 1px solid var(--rub);
+}
+.ladica__ograda { font-size: 13px; }
+.ladica__upozorenje { color: var(--opasnost); font-size: 13px; font-weight: 500; }
+.ladica__dno { display: grid; gap: var(--p2); }
+.ladica__dno .gumb { width: 100%; }
+.ladica__dno .gumb[disabled] { opacity: 0.45; cursor: default; }
+.ladica__prazno { display: grid; gap: var(--p3); justify-items: start; }
+
+.ikona-gumb--sitni { width: 28px; height: 28px; border: 0; }
+.ikona-gumb--sitni svg { width: 14px; height: 14px; }
+
+/* ================================================================== */
+/* Sitno                                                               */
+/* ================================================================== */
+.hero--niski { min-height: min(60vh, 560px); }
+
+.hero__cinjenice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--p6);
+  width: min(100%, 720px);
+  padding-top: var(--p5);
+  border-top: 1px solid var(--rub);
+}
+.hero__blok { display: grid; gap: var(--p2); justify-items: start; }
+.hero__blok + .hero__blok { padding-left: var(--p6); border-left: 1px solid var(--rub); }
+
+@media (max-width: 719px) {
+  .hero__cinjenice { grid-template-columns: 1fr; gap: var(--p5); }
+  .hero__blok + .hero__blok { padding-left: 0; border-left: 0; padding-top: var(--p5); border-top: 1px solid var(--rub); }
+}
+
+/* Dva jednaka stupca s jednom okomitom crtom, bez kartica. */
+.dva-stupca {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--p8);
+}
+.dva-stupca > * { display: grid; gap: var(--p3); align-content: start; justify-items: start; }
+.dva-stupca > * + * { padding-left: var(--p8); border-left: 1px solid var(--rub); }
+@media (max-width: 899px) {
+  .dva-stupca { grid-template-columns: 1fr; gap: var(--p6); }
+  .dva-stupca > * + * { padding-left: 0; border-left: 0; padding-top: var(--p6); border-top: 1px solid var(--rub); }
+}
+
+.obitelji {
+  list-style: none;
+  margin: 0 0 var(--p4);
+  padding: 0;
+  display: grid;
+}
+.obitelji li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--p3);
+  padding: var(--p3) 0;
+  border-bottom: 1px solid var(--rub);
+  font-size: var(--vel-malo);
+  font-weight: 500;
+}
+.obitelji__broj { font-size: 11px; color: var(--hes-tekst); }
+
+.putovi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--p4);
+}
+.putovi .kartica__cta {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.napomena-cijene { max-width: 56ch; }

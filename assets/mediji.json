@@ -1,0 +1,2066 @@
+{
+ "generirano": "scripts/proizvodi.mjs",
+ "izvor": [
+  "assets/Loxone",
+  "assets/old-products"
+ ],
+ "sirine": [
+  480,
+  720
+ ],
+ "proizvodi": {
+  "1433": {
+   "slika": {
+    "id": "1433-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1433-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1433-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1433-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/Miniserver.webm"
+  },
+  "1438": {
+   "slika": {
+    "id": "1438-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1438-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1438-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1438-3",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-miniserver-compact-overview-100512-01.webm"
+  },
+  "1441": {
+   "slika": {
+    "id": "1441-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1441-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1441-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1441-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1444": {
+   "slika": {
+    "id": "1444-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1444-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1444-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1444-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100218-tree-extension.webm"
+  },
+  "1447": {
+   "slika": {
+    "id": "1447-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1447-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1447-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1447-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1447-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100114-air-base-extension.webm"
+  },
+  "1451": {
+   "slika": {
+    "id": "1451-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1451-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1451-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1451-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1451-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100038-relay-extension.webm"
+  },
+  "1455": {
+   "slika": {
+    "id": "1455-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1455-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1455-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1455-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1455-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100029-dimmer-extension.webm"
+  },
+  "1459": {
+   "slika": {
+    "id": "1459-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1459-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1459-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1459-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1459-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100283-di-extension.webm"
+  },
+  "1463": {
+   "slika": {
+    "id": "1463-1",
+    "sirine": [
+     480
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1463-1",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1463-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1463-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1463-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1463-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1467": {
+   "slika": {
+    "id": "1467-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1467-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1467-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1467-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100124-modbus-extension.webm"
+  },
+  "1470": {
+   "slika": {
+    "id": "1470-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1470-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1470-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1470-3",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1470-4",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100200-dali-extension.webm"
+  },
+  "1474": {
+   "slika": {
+    "id": "1474-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1474-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1474-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1474-3",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1474-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1478": {
+   "slika": {
+    "id": "1478-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1478-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1478-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1478-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1478-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100471-ai-extension.webm"
+  },
+  "1482": {
+   "slika": {
+    "id": "1482-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1482-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1482-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1482-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1482-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1482-5",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100382-ao-extension.webm"
+  },
+  "1487": {
+   "slika": {
+    "id": "1487-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1487-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1487-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1487-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1487-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100322-knx-extension.webm"
+  },
+  "1491": {
+   "slika": {
+    "id": "1491-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1491-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1491-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1491-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1491-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1491-5",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1491-6",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100330-led-spot-rgbw-tree-white.webm"
+  },
+  "1497": {
+   "slika": {
+    "id": "1497-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1497-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1497-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1497-3",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1497-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1497-5",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100286-ceiling-light-air-white.webm"
+  },
+  "1502": {
+   "slika": {
+    "id": "1502-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1502-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1502-2",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1502-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1505": {
+   "slika": {
+    "id": "1505-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1505-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1505-2",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1505-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1508": {
+   "slika": {
+    "id": "1508-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1508-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1508-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1508-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1512": {
+   "slika": {
+    "id": "1512-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1512-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1512-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1512-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1512-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100011-rs-485-extension.webm"
+  },
+  "1516": {
+   "slika": {
+    "id": "1516-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1516-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1516-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1516-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1516-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100497-install-speaker-7-passive.webm"
+  },
+  "1520": {
+   "slika": {
+    "id": "1520-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1520-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1520-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1520-3",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1520-4",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-610149-install-speaker-7-master.webm"
+  },
+  "1684": {
+   "slika": {
+    "id": "1684-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1684-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1684-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1684-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1684-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1684-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1689": {
+   "slika": {
+    "id": "1689-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1689-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1689-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1689-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1689-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1693": {
+   "slika": {
+    "id": "1693-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1693-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1693-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1693-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1693-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1697": {
+   "slika": {
+    "id": "1697-1",
+    "sirine": [
+     480
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1697-1",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1697-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1697-3",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1697-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1700": {
+   "slika": {
+    "id": "1700-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1700-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1700-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "video": "assets/old-products/Touch_Pure_CO2_Icons_SignalWhite_Overview.webm"
+  },
+  "1702": {
+   "slika": {
+    "id": "1702-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1702-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1702-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1702-3",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1702-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1706": {
+   "slika": {
+    "id": "1706-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1706-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1706-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1706-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1709": {
+   "slika": {
+    "id": "1709-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1709-1",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ]
+  },
+  "1712": {
+   "slika": {
+    "id": "1712-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1712-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1712-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1712-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100221-touch-tree-white.webm"
+  },
+  "1715": {
+   "slika": {
+    "id": "1715-1",
+    "sirine": [
+     480
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1715-1",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1715-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1715-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1715-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1718": {
+   "slika": {
+    "id": "1718-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1718-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1718-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1718-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1718-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100483-nfc-code-touch-white.webm"
+  },
+  "1722": {
+   "slika": {
+    "id": "1722-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1722-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1722-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1722-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1722-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/NFC_Code_Touch_SignalWhite_Overview.webm"
+  },
+  "1726": {
+   "slika": {
+    "id": "1726-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1726-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1726-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1726-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1729": {
+   "slika": {
+    "id": "1729-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1729-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1729-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1729-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100466-flushmounted-presence-sensor-tree-white.webm"
+  },
+  "1733": {
+   "slika": {
+    "id": "1733-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1733-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1733-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1733-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1733-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100422-presence-sensor-tree-white.webm"
+  },
+  "1737": {
+   "slika": {
+    "id": "1737-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1737-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1737-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1737-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100420-presence-sensor-air-white.webm"
+  },
+  "1740": {
+   "slika": {
+    "id": "1740-1",
+    "sirine": [
+     480
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1740-1",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1740-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1740-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1740-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1743": {
+   "slika": {
+    "id": "1743-1",
+    "sirine": [
+     480
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1743-1",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1743-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1743-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1743-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1746": {
+   "slika": {
+    "id": "1746-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1746-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1746-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1746-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1755": {
+   "slika": {
+    "id": "1755-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1755-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1755-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1755-3",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1755-4",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100602-valve-actuator.webm"
+  },
+  "1759": {
+   "slika": {
+    "id": "1759-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1759-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1759-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1759-3",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100603-valve-actuator.webm"
+  },
+  "1762": {
+   "slika": {
+    "id": "1762-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1762-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1762-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1762-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1762-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1762-5",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1762-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1767": {
+   "slika": {
+    "id": "1767-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1767-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1767-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1767-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100428-audioserver.webm"
+  },
+  "1770": {
+   "slika": {
+    "id": "1770-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1770-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1770-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1770-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "video": "assets/old-products/vi-overview-100429-stereo-extension.webm"
+  },
+  "1773": {
+   "slika": {
+    "id": "1773-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1773-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1773-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1773-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1776": {
+   "slika": {
+    "id": "1776-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1776-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1776-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1776-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1779": {
+   "slika": {
+    "id": "1779-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1779-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1779-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1779-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1779-4",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1779-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1782": {
+   "slika": {
+    "id": "1782-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1782-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1782-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1782-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1782-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1786": {
+   "slika": {
+    "id": "1786-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1786-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1786-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1786-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1786-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1790": {
+   "slika": {
+    "id": "1790-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1790-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1790-2",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1790-3",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1790-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1794": {
+   "slika": {
+    "id": "1794-1",
+    "sirine": [
+     480
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1794-1",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1794-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1794-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1797": {
+   "slika": {
+    "id": "1797-1",
+    "sirine": [
+     480
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1797-1",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1797-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1797-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1800": {
+   "slika": {
+    "id": "1800-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1800-1",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ]
+  },
+  "1802": {
+   "slika": {
+    "id": "1802-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1802-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1802-2",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1802-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1805": {
+   "slika": {
+    "id": "1805-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1805-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1805-2",
+     "sirine": [
+      480
+     ]
+    }
+   ],
+   "slika2": {
+    "id": "1805-2",
+    "sirine": [
+     480
+    ]
+   }
+  },
+  "1808": {
+   "slika": {
+    "id": "1808-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1808-1",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ]
+  }
+ }
+}
