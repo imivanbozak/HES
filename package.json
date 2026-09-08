@@ -10,6 +10,7 @@
     "katalog": "python scripts/seed.py",
     "fontovi": "python scripts/fontovi.py",
     "slike": "node scripts/slike.mjs",
+    "trgovina": "python scripts/loxone-trgovina.py",
     "proizvodi": "node scripts/proizvodi.mjs",
     "stranice": "node scripts/stranice.mjs"
   },

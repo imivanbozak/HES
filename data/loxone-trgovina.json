@@ -1,0 +1,1580 @@
+{
+ "generirano": ".firecrawl/slike-izvor.py + .firecrawl/skini.py",
+ "izvor": "https://shop.loxone.com/enen",
+ "skinuto": "2026-09-08",
+ "proizvodi": {
+  "1433": {
+   "naziv": "Miniserver",
+   "stranica": "https://shop.loxone.com/enen/product/100335-miniserver",
+   "mapa_u_pim": "Basics & Accessories/100335 - Miniserver",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-600x400-miniserver.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100335%20-%20Miniserver/Images/PH-Shop-600x400-Miniserver.jpg"
+    },
+    {
+     "ime": "02-ig-connections-100335-miniserver.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100335%20-%20Miniserver/Images/ig-connections-100335-miniserver.png"
+    },
+    {
+     "ime": "03-ph-shop-100335-miniserver-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100335%20-%20Miniserver/Images/ph-shop-100335-miniserver-06.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100335-miniserver-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100335%20-%20Miniserver/Images/ph-shop-100335-miniserver-02.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100335-miniserver-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100335%20-%20Miniserver/Images/ph-shop-100335-miniserver-03.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100335-miniserver-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100335%20-%20Miniserver/Images/ph-shop-100335-miniserver-04.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100335-miniserver-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100335%20-%20Miniserver/Images/ph-shop-100335-miniserver-05.jpg"
+    },
+    {
+     "ime": "08-ph-shop-100335-miniserver-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100335%20-%20Miniserver/Images/ph-shop-100335-miniserver-01.jpg"
+    }
+   ]
+  },
+  "1438": {
+   "naziv": "Miniserver Compact",
+   "stranica": "https://shop.loxone.com/enen/product/100512-miniserver-compact",
+   "mapa_u_pim": "Basics & Accessories/100512 - Miniserver Compact",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-ms-compact-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100512%20-%20Miniserver%20Compact/NEW%20Images/PH-Shop-MS-Compact-1.jpg"
+    },
+    {
+     "ime": "02-ph-shop-ms-compact-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100512%20-%20Miniserver%20Compact/NEW%20Images/PH-Shop-MS-Compact-2.jpg"
+    },
+    {
+     "ime": "03-ph-shop-ms-compact-6.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100512%20-%20Miniserver%20Compact/NEW%20Images/PH-Shop-MS-Compact-6.jpg"
+    },
+    {
+     "ime": "04-ph-shop-ms-compact-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100512%20-%20Miniserver%20Compact/NEW%20Images/PH-Shop-MS-Compact-3.jpg"
+    },
+    {
+     "ime": "05-ph-shop-ms-compact-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100512%20-%20Miniserver%20Compact/NEW%20Images/PH-Shop-MS-Compact-4.jpg"
+    },
+    {
+     "ime": "06-ph-shop-ms-compact-5.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100512%20-%20Miniserver%20Compact/NEW%20Images/PH-Shop-MS-Compact-5.jpg"
+    }
+   ]
+  },
+  "1441": {
+   "naziv": "Miniserver Go",
+   "stranica": "https://shop.loxone.com/enen/product/100336-miniserver-go",
+   "mapa_u_pim": "Basics & Accessories/100336 - Miniserver Go",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100336-miniserver-go-16.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100336%20-%20Miniserver%20Go/Images/ph-shop-100336-miniserver-go-16.jpg"
+    },
+    {
+     "ime": "02-ig-connections-100336-miniserver-go.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100336%20-%20Miniserver%20Go/Images/ig-connections-100336-miniserver-go.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100336-miniserver-go-14.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100336%20-%20Miniserver%20Go/Images/ph-shop-100336-miniserver-go-14.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100336-miniserver-go-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100336%20-%20Miniserver%20Go/Images/ph-shop-100336-miniserver-go-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100336-miniserver-go-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100336%20-%20Miniserver%20Go/Images/ph-shop-100336-miniserver-go-06.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100336-miniserver-go-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100336%20-%20Miniserver%20Go/Images/ph-shop-100336-miniserver-go-05.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100336-miniserver-go-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100336%20-%20Miniserver%20Go/Images/ph-shop-100336-miniserver-go-03.jpg"
+    },
+    {
+     "ime": "08-ph-shop-100336-miniserver-go-02.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100336%20-%20Miniserver%20Go/Images/ph-shop-100336-miniserver-go-02.png"
+    }
+   ]
+  },
+  "1444": {
+   "naziv": "Tree extension",
+   "stranica": "https://shop.loxone.com/enen/product/100218-tree-extension",
+   "mapa_u_pim": "Basics & Accessories/100218 - Tree Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100218-tree-extension-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100218%20-%20Tree%20Extension/Images/ph-shop-100218-tree-extension-08.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100218-tree-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100218%20-%20Tree%20Extension/Images/ph-shop-100218-tree-extension-02.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100218-tree-extension-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100218%20-%20Tree%20Extension/Images/ph-shop-100218-tree-extension-03.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100218-tree-extension-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100218%20-%20Tree%20Extension/Images/ph-shop-100218-tree-extension-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100218-tree-extension-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100218%20-%20Tree%20Extension/Images/ph-shop-100218-tree-extension-07.jpg"
+    }
+   ]
+  },
+  "1447": {
+   "naziv": "AIR base extension",
+   "stranica": "https://shop.loxone.com/enen/product/100114-air-base-extension",
+   "mapa_u_pim": "Basics & Accessories/100114 - Air Base Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100114-air-base.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100114%20-%20Air%20Base%20Extension/Images/PH-Shop-100114-Air%20Base.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100114-air-base-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100114%20-%20Air%20Base%20Extension/Images/ph-shop-100114-air-base-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100114-air-base-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100114%20-%20Air%20Base%20Extension/Images/ph-shop-100114-air-base-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100114-air-base-extension-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100114%20-%20Air%20Base%20Extension/Images/ph-shop-100114-air-base-extension-03.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100114-air-base-extension-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100114%20-%20Air%20Base%20Extension/Images/ph-shop-100114-air-base-extension-05.jpg"
+    }
+   ]
+  },
+  "1451": {
+   "naziv": "Relay extension",
+   "stranica": "https://shop.loxone.com/enen/product/100038-relay-extension",
+   "mapa_u_pim": "Basics & Accessories/100038 - Relay Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-10038-relay-extension-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100038%20-%20Relay%20Extension/Images/ph-shop-10038-relay-extension-06.jpg"
+    },
+    {
+     "ime": "02-ph-shop-10038-relay-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100038%20-%20Relay%20Extension/Images/ph-shop-10038-relay-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-10038-relay-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100038%20-%20Relay%20Extension/Images/ph-shop-10038-relay-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-10038-relay-extension-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100038%20-%20Relay%20Extension/Images/ph-shop-10038-relay-extension-05.jpg"
+    }
+   ]
+  },
+  "1455": {
+   "naziv": "Dimmer extension",
+   "stranica": "https://shop.loxone.com/enen/product/100029-dimmer-extension",
+   "mapa_u_pim": "Lighting/100029 - Dimmer Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100029-dimmer-extension-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100029%20-%20Dimmer%20Extension/Images/ph-shop-100029-dimmer-extension-08.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100029-dimmer-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100029%20-%20Dimmer%20Extension/Images/ph-shop-100029-dimmer-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100029-dimmer-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100029%20-%20Dimmer%20Extension/Images/ph-shop-100029-dimmer-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100029-dimmer-extension-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100029%20-%20Dimmer%20Extension/Images/ph-shop-100029-dimmer-extension-03.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100029-dimmer-extension-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100029%20-%20Dimmer%20Extension/Images/ph-shop-100029-dimmer-extension-04.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100029-dimmer-extension-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100029%20-%20Dimmer%20Extension/Images/ph-shop-100029-dimmer-extension-05.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100029-dimmer-extension-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100029%20-%20Dimmer%20Extension/Images/ph-shop-100029-dimmer-extension-07.jpg"
+    }
+   ]
+  },
+  "1459": {
+   "naziv": "DI extension",
+   "stranica": "https://shop.loxone.com/enen/product/100283-di-extension",
+   "mapa_u_pim": "Basics & Accessories/100283 - DI Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100283-di-extension-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100283%20-%20DI%20Extension/Images/ph-shop-100283-di-extension-07.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100283-di-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100283%20-%20DI%20Extension/Images/ph-shop-100283-di-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100283-di-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100283%20-%20DI%20Extension/Images/ph-shop-100283-di-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100283-di-extension-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100283%20-%20DI%20Extension/Images/ph-shop-100283-di-extension-03.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100283-di-extension-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100283%20-%20DI%20Extension/Images/ph-shop-100283-di-extension-06.jpg"
+    }
+   ]
+  },
+  "1463": {
+   "naziv": "1-wire extension",
+   "stranica": "https://shop.loxone.com/enen/product/100014-1-wire-extension",
+   "mapa_u_pim": "Climate/100014 - 1-Wire Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100014-one-wire-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100014%20-%201-Wire%20Extension/Images/ph-shop-100014-one-wire-extension-01.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100014-one-wire-extension-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100014%20-%201-Wire%20Extension/Images/ph-shop-100014-one-wire-extension-03.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100014-one-wire-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100014%20-%201-Wire%20Extension/Images/ph-shop-100014-one-wire-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100014-one-wire-extension-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100014%20-%201-Wire%20Extension/Images/ph-shop-100014-one-wire-extension-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100014-one-wire-extension-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100014%20-%201-Wire%20Extension/Images/ph-shop-100014-one-wire-extension-05.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100014-one-wire-extension-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100014%20-%201-Wire%20Extension/Images/ph-shop-100014-one-wire-extension-08.jpg"
+    }
+   ]
+  },
+  "1467": {
+   "naziv": "Modbus extension",
+   "stranica": "https://shop.loxone.com/enen/product/100124-modbus-extension",
+   "mapa_u_pim": "Basics & Accessories/100124 - Modbus Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100124-modbus-extension-10.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100124%20-%20Modbus%20Extension/Images/ph-shop-100124-modbus-extension-10.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100124-modbus-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100124%20-%20Modbus%20Extension/Images/ph-shop-100124-modbus-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100124-modbus-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100124%20-%20Modbus%20Extension/Images/ph-shop-100124-modbus-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100124-modbus-extension-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100124%20-%20Modbus%20Extension/Images/ph-shop-100124-modbus-extension-03.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100124-modbus-extension-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100124%20-%20Modbus%20Extension/Images/ph-shop-100124-modbus-extension-04.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100124-modbus-extension-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100124%20-%20Modbus%20Extension/Images/ph-shop-100124-modbus-extension-09.jpg"
+    }
+   ]
+  },
+  "1470": {
+   "naziv": "Dali extension – 64 uređaja",
+   "stranica": "https://shop.loxone.com/enen/product/100200-dali-extension-64-devices",
+   "mapa_u_pim": "Lighting/100200 - DALI Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100623-dali-64-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100200%20-%20DALI%20Extension/Images/PH-Shop-100623-DALI-64-2.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100623-dali-64-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100200%20-%20DALI%20Extension/Images/PH-Shop-100623-DALI-64-3.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100623-dali-64-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100200%20-%20DALI%20Extension/Images/PH-Shop-100623-DALI-64-4.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100623-dali-64-5.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100200%20-%20DALI%20Extension/Images/PH-Shop-100623-DALI-64-5.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100623-dali-64-6.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100200%20-%20DALI%20Extension/Images/PH-Shop-100623-DALI-64-6.jpg"
+    }
+   ]
+  },
+  "1474": {
+   "naziv": "Dali extension – 10 uređaja",
+   "stranica": "https://shop.loxone.com/enen/product/100623-dali-extension-10-devices",
+   "mapa_u_pim": "Basics & Accessories/100623 - DALI Extension für 10 Geräte",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100200-dali-10-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100623%20-%20DALI%20Extension%20f%C3%BCr%2010%20Ger%C3%A4te/Images/PH-Shop-100200-DALI-10-1.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100200-dali-10-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100623%20-%20DALI%20Extension%20f%C3%BCr%2010%20Ger%C3%A4te/Images/PH-Shop-100200-DALI-10-2.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100200-dali-10-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100623%20-%20DALI%20Extension%20f%C3%BCr%2010%20Ger%C3%A4te/Images/PH-Shop-100200-DALI-10-3.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100200-dali-10-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100623%20-%20DALI%20Extension%20f%C3%BCr%2010%20Ger%C3%A4te/Images/PH-Shop-100200-DALI-10-4.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100200-dali-10-5.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100623%20-%20DALI%20Extension%20f%C3%BCr%2010%20Ger%C3%A4te/Images/PH-Shop-100200-DALI-10-5.jpg"
+    }
+   ]
+  },
+  "1478": {
+   "naziv": "AI extension",
+   "stranica": "https://shop.loxone.com/enen/product/100471-ai-extension",
+   "mapa_u_pim": "Basics & Accessories/100471 - AI Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100471-ai-extension-10.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100471%20-%20AI%20Extension/Images/ph-shop-100471-ai-extension-10.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100471-ai-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100471%20-%20AI%20Extension/Images/ph-shop-100471-ai-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100471-ai-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100471%20-%20AI%20Extension/Images/ph-shop-100471-ai-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100471-ai-extension-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100471%20-%20AI%20Extension/Images/ph-shop-100471-ai-extension-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100471-ai-extension-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100471%20-%20AI%20Extension/Images/ph-shop-100471-ai-extension-05.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100471-ai-extension-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100471%20-%20AI%20Extension/Images/ph-shop-100471-ai-extension-06.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100471-ai-extension-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100471%20-%20AI%20Extension/Images/ph-shop-100471-ai-extension-07.jpg"
+    },
+    {
+     "ime": "08-ph-shop-100471-ai-extension-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100471%20-%20AI%20Extension/Images/ph-shop-100471-ai-extension-09.jpg"
+    }
+   ]
+  },
+  "1482": {
+   "naziv": "AO extension",
+   "stranica": "https://shop.loxone.com/enen/product/100382-ao-extension",
+   "mapa_u_pim": "Basics & Accessories/100382 - AO Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100382-ao-extension-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100382%20-%20AO%20Extension/Images/ph-shop-100382-ao-extension-07.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100382-ao-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100382%20-%20AO%20Extension/Images/ph-shop-100382-ao-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100382-ao-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100382%20-%20AO%20Extension/Images/ph-shop-100382-ao-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100382-ao-extension-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100382%20-%20AO%20Extension/Images/ph-shop-100382-ao-extension-03.jpg"
+    }
+   ]
+  },
+  "1487": {
+   "naziv": "KNX extension",
+   "stranica": "https://shop.loxone.com/enen/product/100322-knx-extension",
+   "mapa_u_pim": "Basics & Accessories/100322 - KNX Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100322-knx-extension-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100322%20-%20KNX%20Extension/Images/ph-shop-100322-knx-extension-06.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100322-knx-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100322%20-%20KNX%20Extension/Images/ph-shop-100322-knx-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100322-knx-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100322%20-%20KNX%20Extension/Images/ph-shop-100322-knx-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100322-knx-extension-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100322%20-%20KNX%20Extension/Images/ph-shop-100322-knx-extension-05.jpg"
+    }
+   ]
+  },
+  "1512": {
+   "naziv": "RS485 extension",
+   "stranica": "https://shop.loxone.com/enen/product/100011-rs485-extension",
+   "mapa_u_pim": "Basics & Accessories/100011 - RS485 Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100011-rs485-extension-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100011%20-%20RS485%20Extension/Images/ph-shop-100011-rs485-extension-09.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100011-rs485-extension-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100011%20-%20RS485%20Extension/Images/ph-shop-100011-rs485-extension-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100011-rs485-extension-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100011%20-%20RS485%20Extension/Images/ph-shop-100011-rs485-extension-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100011-rs485-extension-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100011%20-%20RS485%20Extension/Images/ph-shop-100011-rs485-extension-03.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100011-rs485-extension-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100011%20-%20RS485%20Extension/Images/ph-shop-100011-rs485-extension-08.jpg"
+    }
+   ]
+  },
+  "1491": {
+   "naziv": "LED spot RGBW Tree",
+   "stranica": "https://shop.loxone.com/enen/product/100330-led-spot-rgbw-tree-white",
+   "mapa_u_pim": "Lighting/100330 - LED Spot RGBW Tree Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100330-led-spot-tree-white-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100330%20-%20LED%20Spot%20RGBW%20Tree%20Wei%C3%9F/Images/ph-shop-100330-led-spot-tree-white-01.jpg"
+    },
+    {
+     "ime": "02-ph-shop-led-spot-rgbw-tree-weiss-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100330%20-%20LED%20Spot%20RGBW%20Tree%20Wei%C3%9F/Images/PH-Shop-LED%20Spot%20RGBW%20Tree%20Wei%C3%9F-1.jpg"
+    },
+    {
+     "ime": "03-ph-shop-led-spot-rgbw-tree-weiss-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100330%20-%20LED%20Spot%20RGBW%20Tree%20Wei%C3%9F/Images/PH-Shop-LED%20Spot%20RGBW%20Tree%20Wei%C3%9F-3.jpg"
+    },
+    {
+     "ime": "04-ph-shop-led-spot-rgbw-tree-weiss-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100330%20-%20LED%20Spot%20RGBW%20Tree%20Wei%C3%9F/Images/PH-Shop-LED%20Spot%20RGBW%20Tree%20Wei%C3%9F-2.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100330-led-spot-tree-white-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100330%20-%20LED%20Spot%20RGBW%20Tree%20Wei%C3%9F/Images/ph-shop-100330-led-spot-tree-white-02.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100330-led-spot-tree-white-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100330%20-%20LED%20Spot%20RGBW%20Tree%20Wei%C3%9F/Images/ph-shop-100330-led-spot-tree-white-03.jpg"
+    }
+   ]
+  },
+  "1497": {
+   "naziv": "LED Ceiling Light RGBW Air",
+   "stranica": "https://shop.loxone.com/enen/product/100286-led-ceiling-light-rgbw-air-white",
+   "mapa_u_pim": "Lighting/100286 - LED Ceiling Light RGBW Air Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100286-led-ceiling-light-air-white-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100286%20-%20LED%20Ceiling%20Light%20RGBW%20Air%20Wei%C3%9F/Images/ph-shop-100286-led-ceiling-light-air-white-04.jpg"
+    },
+    {
+     "ime": "02-ph-shop-led-ceiling-light-rgbw-weiss-5.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100286%20-%20LED%20Ceiling%20Light%20RGBW%20Air%20Wei%C3%9F/Images/PH-Shop-LED%20Ceiling%20Light%20RGBW%20Wei%C3%9F-5.jpg"
+    },
+    {
+     "ime": "03-ph-shop-led-ceiling-light-rgbw-weiss-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100286%20-%20LED%20Ceiling%20Light%20RGBW%20Air%20Wei%C3%9F/Images/PH-Shop-LED%20Ceiling%20Light%20RGBW%20Wei%C3%9F-3.jpg"
+    },
+    {
+     "ime": "04-ph-shop-led-ceiling-light-rgbw-weiss-6.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100286%20-%20LED%20Ceiling%20Light%20RGBW%20Air%20Wei%C3%9F/Images/PH-Shop-LED%20Ceiling%20Light%20RGBW%20Wei%C3%9F-6.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100286-led-ceiling-light-air-white-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100286%20-%20LED%20Ceiling%20Light%20RGBW%20Air%20Wei%C3%9F/Images/ph-shop-100286-led-ceiling-light-air-white-01.jpg"
+    }
+   ]
+  },
+  "1502": {
+   "naziv": "LED strip RGBW",
+   "stranica": "https://shop.loxone.com/enen/product/200098-rgbw-led-strips-5m-ip20",
+   "mapa_u_pim": "Lighting/200098 - RGBW LED Streifen 5m IP20 (berührungssicher)",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-200098-rgbw-led-strip-ip20-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/200098%20-%20RGBW%20LED%20Streifen%205m%20IP20%20%28ber%C3%BChrungssicher%29/Images/ph-shop-200098-rgbw-led-strip-ip20-02.jpg"
+    },
+    {
+     "ime": "02-ph-shop-led-strip-rgbw-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/200098%20-%20RGBW%20LED%20Streifen%205m%20IP20%20%28ber%C3%BChrungssicher%29/Images/PH-Shop-LED%20Strip%20RGBW-1.jpg"
+    },
+    {
+     "ime": "03-ph-shop-led-strip-rgbw-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/200098%20-%20RGBW%20LED%20Streifen%205m%20IP20%20%28ber%C3%BChrungssicher%29/Images/PH-Shop-LED%20Strip%20RGBW-2.jpg"
+    },
+    {
+     "ime": "04-ph-shop-led-strip-rgbw-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/200098%20-%20RGBW%20LED%20Streifen%205m%20IP20%20%28ber%C3%BChrungssicher%29/Images/PH-Shop-LED%20Strip%20RGBW-3.jpg"
+    },
+    {
+     "ime": "05-ph-shop-led-strip-rgbw-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/200098%20-%20RGBW%20LED%20Streifen%205m%20IP20%20%28ber%C3%BChrungssicher%29/Images/PH-Shop-LED%20Strip%20RGBW-4.jpg"
+    },
+    {
+     "ime": "06-ph-shop-200098-rgbw-led-strip-ip20-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/200098%20-%20RGBW%20LED%20Streifen%205m%20IP20%20%28ber%C3%BChrungssicher%29/Images/ph-shop-200098-rgbw-led-strip-ip20-01.jpg"
+    }
+   ]
+  },
+  "1505": {
+   "naziv": "Table lamp",
+   "stranica": "https://shop.loxone.com/enen/product/100550-table-lamp-air-white",
+   "mapa_u_pim": "Lighting/100550 - Table Lamp Air Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100550-table-lamp-air-white-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100550%20-%20Table%20Lamp%20Air%20Wei%C3%9F/Images/ph-shop-100550-table-lamp-air-white-01.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100550-table-lamp-air-white-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100550%20-%20Table%20Lamp%20Air%20Wei%C3%9F/Images/ph-shop-100550-table-lamp-air-white-04.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100550-table-lamp-air-white-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100550%20-%20Table%20Lamp%20Air%20Wei%C3%9F/Images/ph-shop-100550-table-lamp-air-white-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100550-table-lamp-air-white-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100550%20-%20Table%20Lamp%20Air%20Wei%C3%9F/Images/ph-shop-100550-table-lamp-air-white-03.jpg"
+    }
+   ]
+  },
+  "1508": {
+   "naziv": "LED Pendulum Slim RGBW PWM",
+   "stranica": "https://shop.loxone.com/enen/product/100274-pendulum-slim-rgbw-white",
+   "mapa_u_pim": "Lighting/100274 - LED Pendulum Slim PWM Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100274-led-pendulum-slim-white-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100274%20-%20LED%20Pendulum%20Slim%20PWM%20Wei%C3%9F/Images/ph-shop-100274-led-pendulum-slim-white-01.jpg"
+    },
+    {
+     "ime": "02-ph-shop-led-pendulum-slim-pwm-weiss-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100274%20-%20LED%20Pendulum%20Slim%20PWM%20Wei%C3%9F/Images/PH-Shop-LED%20Pendulum%E2%80%A8Slim%20PWM%20Wei%C3%9F-1.jpg"
+    }
+   ]
+  },
+  "1684": {
+   "naziv": "RGBW 24V Dimmer Tree",
+   "stranica": "https://shop.loxone.com/enen/product/100239-rgbw-24-dimmer-tree",
+   "mapa_u_pim": "Lighting/100239 - RGBW 24V Dimmer Tree",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100239-rgbw-tree-dimmer.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100239%20-%20RGBW%2024V%20Dimmer%20Tree/Images/ph-shop-100239-rgbw-tree-dimmer.png"
+    },
+    {
+     "ime": "02-ph-shop-rgbw-dimmer-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100239%20-%20RGBW%2024V%20Dimmer%20Tree/Images/PH-Shop-RGBW-Dimmer-1.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100239-rgbw-24v-dimmer-tree-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100239%20-%20RGBW%2024V%20Dimmer%20Tree/Images/ph-shop-100239-rgbw-24v-dimmer-tree-04.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100239-rgbw-24v-dimmer-tree-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100239%20-%20RGBW%2024V%20Dimmer%20Tree/Images/ph-shop-100239-rgbw-24v-dimmer-tree-05.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100239-rgbw-24v-dimmer-tree-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100239%20-%20RGBW%2024V%20Dimmer%20Tree/Images/ph-shop-100239-rgbw-24v-dimmer-tree-06.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100239-rgbw-24v-dimmer-tree-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100239%20-%20RGBW%2024V%20Dimmer%20Tree/Images/ph-shop-100239-rgbw-24v-dimmer-tree-07.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100239-rgbw-24v-dimmer-tree-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100239%20-%20RGBW%2024V%20Dimmer%20Tree/Images/ph-shop-100239-rgbw-24v-dimmer-tree-09.jpg"
+    }
+   ]
+  },
+  "1689": {
+   "naziv": "RGBW 24V Dimmer Air",
+   "stranica": "https://shop.loxone.com/enen/product/100125-rgbw-24v-dimmer-air",
+   "mapa_u_pim": "Lighting/100125 - RGBW 24V Dimmer Air",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100125-rgbw-24v-dimmer-air-10.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100125%20-%20RGBW%2024V%20Dimmer%20Air/Images/ph-shop-100125-rgbw-24v-dimmer-air-10.jpg"
+    },
+    {
+     "ime": "02-ph-shop-rgbw-dimmer-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100125%20-%20RGBW%2024V%20Dimmer%20Air/Images/PH-Shop-RGBW-Dimmer-1.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100125-rgbw-24v-dimmer-air-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100125%20-%20RGBW%2024V%20Dimmer%20Air/Images/ph-shop-100125-rgbw-24v-dimmer-air-04.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100125-rgbw-24v-dimmer-air-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100125%20-%20RGBW%2024V%20Dimmer%20Air/Images/ph-shop-100125-rgbw-24v-dimmer-air-05.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100125-rgbw-24v-dimmer-air-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100125%20-%20RGBW%2024V%20Dimmer%20Air/Images/ph-shop-100125-rgbw-24v-dimmer-air-06.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100125-rgbw-24v-dimmer-air-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100125%20-%20RGBW%2024V%20Dimmer%20Air/Images/ph-shop-100125-rgbw-24v-dimmer-air-07.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100125-rgbw-24v-dimmer-air-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Lighting/100125%20-%20RGBW%2024V%20Dimmer%20Air/Images/ph-shop-100125-rgbw-24v-dimmer-air-09.jpg"
+    }
+   ]
+  },
+  "1693": {
+   "naziv": "Nano Dimmer Air",
+   "stranica": "https://shop.loxone.com/enen/product/100212-nano-dimmer-air",
+   "mapa_u_pim": "Basics & Accessories/100212 - Nano Dimmer Air",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100212-nano-dimmer-air-10.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100212%20-%20Nano%20Dimmer%20Air/Images/ph-shop-100212-nano-dimmer-air-10.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100212-nano-dimmer-air-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100212%20-%20Nano%20Dimmer%20Air/Images/ph-shop-100212-nano-dimmer-air-04.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100212-nano-dimmer-air-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100212%20-%20Nano%20Dimmer%20Air/Images/ph-shop-100212-nano-dimmer-air-06.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100212-nano-dimmer-air-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100212%20-%20Nano%20Dimmer%20Air/Images/ph-shop-100212-nano-dimmer-air-08.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100212-nano-dimmer-air-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100212%20-%20Nano%20Dimmer%20Air/Images/ph-shop-100212-nano-dimmer-air-09.jpg"
+    }
+   ]
+  },
+  "1697": {
+   "naziv": "Nano IO Air",
+   "stranica": "https://shop.loxone.com/enen/product/100153-nano-io-air",
+   "mapa_u_pim": "Basics & Accessories/100153 - Nano IO Air",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100153-nano-io-air.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100153%20-%20Nano%20IO%20Air/Images/PH-Shop-100153-Nano-IO-Air.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100153-nano-io-air-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100153%20-%20Nano%20IO%20Air/Images/PH-Shop-100153-Nano-IO-Air-3.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100153-nano-io-air-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100153%20-%20Nano%20IO%20Air/Images/PH-Shop-100153-Nano-IO-Air-4.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100153-nano-io-air-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100153%20-%20Nano%20IO%20Air/Images/PH-Shop-100153-Nano-IO-Air-2.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100153-nano-io-air-5.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100153%20-%20Nano%20IO%20Air/Images/PH-Shop-100153-Nano-IO-Air-5.jpg"
+    }
+   ]
+  },
+  "1700": {
+   "naziv": "Touch Pure Tree CO2 stakleno tipkalo",
+   "stranica": "https://shop.loxone.com/enen/product/100517-touch-pure-co2-tree-white",
+   "mapa_u_pim": "Basics & Accessories/100517 - Touch Pure CO2 Tree weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100517-touch-pure-co2-tree-weiss.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100517%20-%20Touch%20Pure%20CO2%20Tree%20wei%C3%9F/Images/PH-Shop-100517-Touch%20Pure%20CO2%20Tree%20Wei%C3%9F.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100517-touch-pure-co2-tree-white-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100517%20-%20Touch%20Pure%20CO2%20Tree%20wei%C3%9F/Images/ph-shop-100517-touch-pure-co2-tree-white-06.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100517-touch-pure-co2-tree-white-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100517%20-%20Touch%20Pure%20CO2%20Tree%20wei%C3%9F/Images/ph-shop-100517-touch-pure-co2-tree-white-03.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100517-touch-pure-co2-tree-white-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100517%20-%20Touch%20Pure%20CO2%20Tree%20wei%C3%9F/Images/ph-shop-100517-touch-pure-co2-tree-white-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100517-touch-pure-co2-tree-white-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100517%20-%20Touch%20Pure%20CO2%20Tree%20wei%C3%9F/Images/ph-shop-100517-touch-pure-co2-tree-white-05.jpg"
+    }
+   ]
+  },
+  "1702": {
+   "naziv": "Touch Pure Air stakleno tipkalo",
+   "stranica": "https://shop.loxone.com/enen/product/100463-touch-pure-air-white",
+   "mapa_u_pim": "Basics & Accessories/100463 - Touch Pure Air Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100463-touch-pure-air-white-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100463%20-%20Touch%20Pure%20Air%20Wei%C3%9F/Images/ph-shop-100463-touch-pure-air-white-09.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100463-touch-pure-air-white-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100463%20-%20Touch%20Pure%20Air%20Wei%C3%9F/Images/ph-shop-100463-touch-pure-air-white-08.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100463-touch-pure-air-white-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100463%20-%20Touch%20Pure%20Air%20Wei%C3%9F/Images/ph-shop-100463-touch-pure-air-white-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100463-touch-pure-air-white-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100463%20-%20Touch%20Pure%20Air%20Wei%C3%9F/Images/ph-shop-100463-touch-pure-air-white-03.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100463-touch-pure-air-white-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100463%20-%20Touch%20Pure%20Air%20Wei%C3%9F/Images/ph-shop-100463-touch-pure-air-white-04.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100463-touch-pure-air-white-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100463%20-%20Touch%20Pure%20Air%20Wei%C3%9F/Images/ph-shop-100463-touch-pure-air-white-05.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100463-touch-pure-air-white-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100463%20-%20Touch%20Pure%20Air%20Wei%C3%9F/Images/ph-shop-100463-touch-pure-air-white-07.jpg"
+    }
+   ]
+  },
+  "1706": {
+   "naziv": "Touch Pure for Nano tipkalo",
+   "stranica": "https://shop.loxone.com/enen/product/100661-touch-pure-for-nano-white",
+   "mapa_u_pim": "Basics & Accessories/100207 - Touch Pure for Nano Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100463-touch-pure-for-nano-white-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100207%20-%20Touch%20Pure%20for%20Nano%20Wei%C3%9F/Images/ph-shop-100463-touch-pure-for-nano-white-09.jpg"
+    }
+   ]
+  },
+  "1709": {
+   "naziv": "Touch Pure Flex Air",
+   "stranica": "https://shop.loxone.com/enen/product/100542-touch-pure-flex-standard-air-white",
+   "mapa_u_pim": "Basics & Accessories/100542 - Touch Pure Flex Standard Air Weiss",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100542-touch-pure-flex-standard-air-white.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100542%20-%20Touch%20Pure%20Flex%20Standard%20Air%20Weiss/Images/ph-shop-100542-touch-pure-flex-standard-air-white.jpg"
+    }
+   ]
+  },
+  "1712": {
+   "naziv": "Touch Tree tipkalo",
+   "stranica": "https://shop.loxone.com/enen/product/100221-touch-tree-white",
+   "mapa_u_pim": "Basics & Accessories/100221 - Touch Tree Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100221-touch-weiss.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100221%20-%20Touch%20Tree%20Wei%C3%9F/Images/PH-Shop-100221-Touch-Wei%C3%9F.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100221-touch-tree-white-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100221%20-%20Touch%20Tree%20Wei%C3%9F/Images/ph-shop-100221-touch-tree-white-05.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100221-touch-tree-white-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100221%20-%20Touch%20Tree%20Wei%C3%9F/Images/ph-shop-100221-touch-tree-white-09.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100221-touch-tree-white-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100221%20-%20Touch%20Tree%20Wei%C3%9F/Images/ph-shop-100221-touch-tree-white-06.jpg"
+    }
+   ]
+  },
+  "1715": {
+   "naziv": "Touch Air tipkalo",
+   "stranica": "https://shop.loxone.com/enen/product/100155-touch-air-white",
+   "mapa_u_pim": "Basics & Accessories/100155 - Touch Air Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100155-touch-air-white-10.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100155%20-%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100155-touch-air-white-10.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100155-touch-air-white-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100155%20-%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100155-touch-air-white-05.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100155-touch-air-white-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100155%20-%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100155-touch-air-white-04.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100155-touch-air-white-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100155%20-%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100155-touch-air-white-09.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100155-touch-air-white-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100155%20-%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100155-touch-air-white-06.jpg"
+    }
+   ]
+  },
+  "1718": {
+   "naziv": "NFC Code Touch Tree",
+   "stranica": "https://shop.loxone.com/enen/product/100481-nfc-code-touch-tree-white",
+   "mapa_u_pim": "Access/100481 - NFC Code Touch Tree Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100481-nfc-code-touch-tree-weiss-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/100481%20-%20NFC%20Code%20Touch%20Tree%20Wei%C3%9F/Images/ph-shop-100481-NFC-Code-Touch-Tree-Wei%C3%9F-09.jpg"
+    },
+    {
+     "ime": "02-ig-connection-100481-nfc-code-touch-tree-weiss.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/100481%20-%20NFC%20Code%20Touch%20Tree%20Wei%C3%9F/Images/ig-connection-100481-NFC-Code-Touch-Tree-Wei%C3%9F.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100481-nfc-code-touch-tree-weiss-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/100481%20-%20NFC%20Code%20Touch%20Tree%20Wei%C3%9F/Images/ph-shop-100481-NFC-Code-Touch-Tree-Wei%C3%9F-08.jpg"
+    }
+   ]
+  },
+  "1722": {
+   "naziv": "NFC Code Touch Air",
+   "stranica": "https://shop.loxone.com/enen/product/100483-nfc-code-touch-air-white",
+   "mapa_u_pim": "Access/100483 - NFC Code Touch Air Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100483-nfc-code-touch-air-weiss-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/100483%20-%20NFC%20Code%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100483-NFC-Code-Touch-Air-Wei%C3%9F-06.jpg"
+    },
+    {
+     "ime": "02-ig-connection-100483-nfc-code-touch-air-weiss.jpeg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/100483%20-%20NFC%20Code%20Touch%20Air%20Wei%C3%9F/Images/ig-connection-100483-NFC-Code-Touch-Air-Wei%C3%9F.jpeg"
+    },
+    {
+     "ime": "03-ph-shop-100483-nfc-code-touch-air-weiss-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/100483%20-%20NFC%20Code%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100483-NFC-Code-Touch-Air-Wei%C3%9F-03.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100483-nfc-code-touch-air-weiss-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/100483%20-%20NFC%20Code%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100483-NFC-Code-Touch-Air-Wei%C3%9F-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100483-nfc-code-touch-air-weiss-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/100483%20-%20NFC%20Code%20Touch%20Air%20Wei%C3%9F/Images/ph-shop-100483-NFC-Code-Touch-Air-Wei%C3%9F-05.jpg"
+    }
+   ]
+  },
+  "1726": {
+   "naziv": "Remote Air",
+   "stranica": "https://shop.loxone.com/enen/product/100140-remote-air",
+   "mapa_u_pim": "Basics & Accessories/100140 - Remote Mini Air",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100140-remote-air-14.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-14.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100140-remote-air-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-08.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100140-remote-air-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-09.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100140-remote-air-11.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-11.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100140-remote-air-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-07.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100140-remote-air-13.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-13.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100140-remote-air-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-01.jpg"
+    },
+    {
+     "ime": "08-ph-shop-100140-remote-air-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-05.jpg"
+    },
+    {
+     "ime": "09-ph-shop-100140-remote-air-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100140%20-%20Remote%20Mini%20Air/Images/ph-shop-100140-remote-air-06.jpg"
+    }
+   ]
+  },
+  "1729": {
+   "naziv": "Motion Sensor Tree Senzor pokreta",
+   "stranica": "https://shop.loxone.com/enen/product/100466-flush-mounted-presence-sensor-tree-white",
+   "mapa_u_pim": "Basics & Accessories/100466 - Präsenzmelder Deckeneinbau Tree Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100466-presence-sensor-ceiling-tree-white-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100466%20-%20Pr%C3%A4senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F/Images/ph-shop-100466-presence-sensor-ceiling-tree-white-03.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100466-pra-senzmelder-deckeneinbau-tree-weiss-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100466%20-%20Pr%C3%A4senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F/Images/PH-Shop-100466-Pra%CC%88senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F-2.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100466-pra-senzmelder-deckeneinbau-tree-weiss-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100466%20-%20Pr%C3%A4senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F/Images/PH-Shop-100466-Pra%CC%88senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F-1.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100466-presence-sensor-ceiling-tree-white-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100466%20-%20Pr%C3%A4senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F/Images/ph-shop-100466-presence-sensor-ceiling-tree-white-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100466-presence-sensor-ceiling-tree-white-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100466%20-%20Pr%C3%A4senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F/Images/ph-shop-100466-presence-sensor-ceiling-tree-white-06.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100466-presence-sensor-ceiling-tree-white-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100466%20-%20Pr%C3%A4senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F/Images/ph-shop-100466-presence-sensor-ceiling-tree-white-05.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100466-presence-sensor-ceiling-tree-white-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100466%20-%20Pr%C3%A4senzmelder%20Deckeneinbau%20Tree%20Wei%C3%9F/Images/ph-shop-100466-presence-sensor-ceiling-tree-white-09.jpg"
+    }
+   ]
+  },
+  "1733": {
+   "naziv": "Presence Sensor Tree Senzor prisutnosti",
+   "stranica": "https://shop.loxone.com/enen/product/100422-presence-sensor-tree-white",
+   "mapa_u_pim": "Basics & Accessories/100422 - Präsenzmelder Tree Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100422-presence-sensor-tree-white-10.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100422%20-%20Pr%C3%A4senzmelder%20Tree%20Wei%C3%9F/Images/ph-shop-100422-presence-sensor-tree-white-10.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100422-presence-sensor-tree-white-14.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100422%20-%20Pr%C3%A4senzmelder%20Tree%20Wei%C3%9F/Images/ph-shop-100422-presence-sensor-tree-white-14.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100422-presence-sensor-tree-white-12.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100422%20-%20Pr%C3%A4senzmelder%20Tree%20Wei%C3%9F/Images/ph-shop-100422-presence-sensor-tree-white-12.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100422-presence-sensor-tree-white-13.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100422%20-%20Pr%C3%A4senzmelder%20Tree%20Wei%C3%9F/Images/ph-shop-100422-presence-sensor-tree-white-13.jpg"
+    }
+   ]
+  },
+  "1737": {
+   "naziv": "Presence Sensor Air Senzor pristunosti",
+   "stranica": "https://shop.loxone.com/enen/product/100420-presence-sensor-air-white",
+   "mapa_u_pim": "Basics & Accessories/100420 - Präsenzmelder Air Weiß",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100420-presence-sensor-air-white-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100420%20-%20Pr%C3%A4senzmelder%20Air%20Wei%C3%9F/Images/ph-shop-100420-presence-sensor-air-white-07.jpg"
+    },
+    {
+     "ime": "02-ph-shop-10042-pra-senzmelder-tree-weiss-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100420%20-%20Pr%C3%A4senzmelder%20Air%20Wei%C3%9F/Images/PH-Shop-10042-Pra%CC%88senzmelder%20Tree%20Wei%C3%9F-1.jpg"
+    },
+    {
+     "ime": "03-ph-shop-10042-pra-senzmelder-tree-weiss-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100420%20-%20Pr%C3%A4senzmelder%20Air%20Wei%C3%9F/Images/PH-Shop-10042-Pra%CC%88senzmelder%20Tree%20Wei%C3%9F-2.jpg"
+    },
+    {
+     "ime": "04-ph-shop-10042-pra-senzmelder-tree-weiss-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100420%20-%20Pr%C3%A4senzmelder%20Air%20Wei%C3%9F/Images/PH-Shop-10042-Pra%CC%88senzmelder%20Tree%20Wei%C3%9F-3.jpg"
+    }
+   ]
+  },
+  "1740": {
+   "naziv": "Room Comfort Sensor Tree",
+   "stranica": "https://shop.loxone.com/enen/product/100276-room-comfort-sensor-tree-white",
+   "mapa_u_pim": "Climate/100276 - Raumklima Sensor Tree Weiß (CO2, Temperatur, Feuchte)",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100276-raumklima-sensor-tree-weiss-co2-temperatur-feuchte-.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100276%20-%20Raumklima%20Sensor%20Tree%20Wei%C3%9F%20%28CO2%2C%20Temperatur%2C%20Feuchte%29/Images/PH-Shop-100276-Raumklima%20Sensor%20Tree%20Wei%C3%9F%20%28CO2%2CTemperatur%2C%20Feuchte%29.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100276-sensor-tree-white-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100276%20-%20Raumklima%20Sensor%20Tree%20Wei%C3%9F%20%28CO2%2C%20Temperatur%2C%20Feuchte%29/Images/ph-shop-100276-sensor-tree-white-03.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100276-sensor-tree-white-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100276%20-%20Raumklima%20Sensor%20Tree%20Wei%C3%9F%20%28CO2%2C%20Temperatur%2C%20Feuchte%29/Images/ph-shop-100276-sensor-tree-white-04.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100276-sensor-tree-white-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100276%20-%20Raumklima%20Sensor%20Tree%20Wei%C3%9F%20%28CO2%2C%20Temperatur%2C%20Feuchte%29/Images/ph-shop-100276-sensor-tree-white-06.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100276-sensor-tree-white-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100276%20-%20Raumklima%20Sensor%20Tree%20Wei%C3%9F%20%28CO2%2C%20Temperatur%2C%20Feuchte%29/Images/ph-shop-100276-sensor-tree-white-08.jpg"
+    }
+   ]
+  },
+  "1743": {
+   "naziv": "Room Comfort Sensor Air",
+   "stranica": "https://shop.loxone.com/enen/product/100264-room-comfort-sensor-air-white",
+   "mapa_u_pim": "Climate/100264 - Raumklima Sensor Air Weiß (Temperatur, Feuchte)",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100264-rk-sensor-air-white-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100264%20-%20Raumklima%20Sensor%20Air%20Wei%C3%9F%20%28Temperatur%2C%20Feuchte%29/Images/ph-shop-100264-rk-sensor-air-white-01.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100264-rk-sensor-air-white-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100264%20-%20Raumklima%20Sensor%20Air%20Wei%C3%9F%20%28Temperatur%2C%20Feuchte%29/Images/ph-shop-100264-rk-sensor-air-white-09.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100264-rk-sensor-air-white-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100264%20-%20Raumklima%20Sensor%20Air%20Wei%C3%9F%20%28Temperatur%2C%20Feuchte%29/Images/ph-shop-100264-rk-sensor-air-white-03.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100264-rk-sensor-air-white-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100264%20-%20Raumklima%20Sensor%20Air%20Wei%C3%9F%20%28Temperatur%2C%20Feuchte%29/Images/ph-shop-100264-rk-sensor-air-white-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100264-rk-sensor-air-white-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100264%20-%20Raumklima%20Sensor%20Air%20Wei%C3%9F%20%28Temperatur%2C%20Feuchte%29/Images/ph-shop-100264-rk-sensor-air-white-05.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100264-rk-sensor-air-white-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100264%20-%20Raumklima%20Sensor%20Air%20Wei%C3%9F%20%28Temperatur%2C%20Feuchte%29/Images/ph-shop-100264-rk-sensor-air-white-07.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100264-rk-sensor-air-white-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100264%20-%20Raumklima%20Sensor%20Air%20Wei%C3%9F%20%28Temperatur%2C%20Feuchte%29/Images/ph-shop-100264-rk-sensor-air-white-02.jpg"
+    },
+    {
+     "ime": "08-ph-shop-100264-rk-sensor-air-white-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100264%20-%20Raumklima%20Sensor%20Air%20Wei%C3%9F%20%28Temperatur%2C%20Feuchte%29/Images/ph-shop-100264-rk-sensor-air-white-08.jpg"
+    }
+   ]
+  },
+  "1746": {
+   "naziv": "IR Control Air",
+   "stranica": "https://shop.loxone.com/enen/product/100141-ir-control-air",
+   "mapa_u_pim": "Audio/100141 - IR Control Air",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100141-ir-control-air-16.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-16.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100141-ir-control-air-13.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-13.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100141-ir-control-air-14.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-14.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100141-ir-control-air-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-02.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100141-ir-control-air-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-03.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100141-ir-control-air-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-04.jpg"
+    },
+    {
+     "ime": "07-ph-shop-100141-ir-control-air-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-05.jpg"
+    },
+    {
+     "ime": "08-ph-shop-100141-ir-control-air-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-06.jpg"
+    },
+    {
+     "ime": "09-ph-shop-100141-ir-control-air-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-08.jpg"
+    },
+    {
+     "ime": "10-ph-shop-100141-ir-control-air-09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-09.jpg"
+    },
+    {
+     "ime": "11-ph-shop-100141-ir-control-air-10.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-10.jpg"
+    },
+    {
+     "ime": "12-ph-shop-100141-ir-control-air-11.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-11.jpg"
+    },
+    {
+     "ime": "13-ph-shop-100141-ir-control-air-12.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-12.jpg"
+    },
+    {
+     "ime": "14-ph-shop-100141-ir-control-air-15.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100141%20-%20IR%20Control%20Air/Images/ph-shop-100141-ir-control-air-15.jpg"
+    }
+   ]
+  },
+  "1755": {
+   "naziv": "Valve Actuator Tree – Motorni pogon za ventile",
+   "stranica": "https://shop.loxone.com/enen/product/100602-valve-actuator-tree",
+   "mapa_u_pim": "Climate/100602 - Stellantrieb Tree",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-valve-actuator-tree-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100602%20-%20Stellantrieb%20Tree/Images/PH-Shop-Valve-Actuator-Tree-1.jpg"
+    },
+    {
+     "ime": "02-ph-shop-valve-actuator-tree-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100602%20-%20Stellantrieb%20Tree/Images/PH-Shop-Valve-Actuator-Tree-4.jpg"
+    },
+    {
+     "ime": "03-ph-shop-valve-actuator-tree-5.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100602%20-%20Stellantrieb%20Tree/Images/PH-Shop-Valve-Actuator-Tree-5.jpg"
+    },
+    {
+     "ime": "04-ph-shop-valve-actuator-tree-6.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100602%20-%20Stellantrieb%20Tree/Images/PH-Shop-Valve-Actuator-Tree-6.jpg"
+    }
+   ]
+  },
+  "1759": {
+   "naziv": "Valve Actuator Air – Motorni pogon za ventile",
+   "stranica": "https://shop.loxone.com/enen/product/100603-valve-actuator-air",
+   "mapa_u_pim": "Climate/100603 - Stellantrieb Air",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-valve-actuator-air-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100603%20-%20Stellantrieb%20Air/Images/PH-Shop-Valve-Actuator-Air-1.jpg"
+    },
+    {
+     "ime": "02-ph-valve-actuator-air-shop.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100603%20-%20Stellantrieb%20Air/Images/PH-Valve-Actuator-Air-Shop.jpg"
+    },
+    {
+     "ime": "03-ph-shop-valve-actuator-air-5.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Climate/100603%20-%20Stellantrieb%20Air/Images/PH-Shop-Valve-Actuator-Air-5.jpg"
+    }
+   ]
+  },
+  "1762": {
+   "naziv": "Loxone Shading Actuator Air",
+   "stranica": "https://shop.loxone.com/enen/product/100290-shading-actuator-air",
+   "mapa_u_pim": "Shading/100290 - Shading Actuator Air",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100290-shading-actuator-air-08.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Shading/100290%20-%20Shading%20Actuator%20Air/Images/ph-shop-100290-shading-actuator-air-08.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100290-shading-actuator-air-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Shading/100290%20-%20Shading%20Actuator%20Air/Images/ph-shop-100290-shading-actuator-air-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100290-shading-actuator-air-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Shading/100290%20-%20Shading%20Actuator%20Air/Images/ph-shop-100290-shading-actuator-air-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100290-shading-actuator-air-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Shading/100290%20-%20Shading%20Actuator%20Air/Images/ph-shop-100290-shading-actuator-air-03.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100290-shading-actuator-air-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Shading/100290%20-%20Shading%20Actuator%20Air/Images/ph-shop-100290-shading-actuator-air-04.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100290-shading-actuator-air-07.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Shading/100290%20-%20Shading%20Actuator%20Air/Images/ph-shop-100290-shading-actuator-air-07.jpg"
+    }
+   ]
+  },
+  "1767": {
+   "naziv": "Audio Server",
+   "stranica": "https://shop.loxone.com/enen/product/100428-audioserver",
+   "mapa_u_pim": "Audio/100428 - Audioserver",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100428-audioserver-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100428%20-%20Audioserver/Images/ph-shop-100428-audioserver-02.jpg"
+    },
+    {
+     "ime": "02-ig-100428-audioserver.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100428%20-%20Audioserver/Images/ig-100428-audioserver.jpg"
+    },
+    {
+     "ime": "03-mu-iphone-music-100428-audioserver.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100428%20-%20Audioserver/Images/mu-iphone-music-100428-audioserver.png"
+    }
+   ]
+  },
+  "1770": {
+   "naziv": "Stereo Extension",
+   "stranica": "https://shop.loxone.com/enen/product/100429-stereo-extension",
+   "mapa_u_pim": "Audio/100429 - Stereo Extension",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100429-stereo-extensions-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100429%20-%20Stereo%20Extension/Images/ph-shop-100429-stereo-extensions-02.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100429-stereo-extensions-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100429%20-%20Stereo%20Extension/Images/ph-shop-100429-stereo-extensions-01.jpg"
+    }
+   ]
+  },
+  "1773": {
+   "naziv": "Surface Box For 7 – Nadogradna kutija za zvučnik",
+   "stranica": "https://shop.loxone.com/enen/product/610158-surface-box-install-7",
+   "mapa_u_pim": "Audio/610158 - Aufbaubox für 7'' Install Speaker",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-surface-box-install-7-anthracite-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610158%20-%20Aufbaubox%20f%C3%BCr%207%27%27%20Install%20Speaker/Images/PH-Shop-Surface-Box-Install-7-Anthracite-1.jpg"
+    },
+    {
+     "ime": "02-ph-shop-surface-box-install-7-anthracite-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610158%20-%20Aufbaubox%20f%C3%BCr%207%27%27%20Install%20Speaker/Images/PH-Shop-Surface-Box-Install-7-Anthracite-2.jpg"
+    },
+    {
+     "ime": "03-ph-shop-surface-box-install-7-anthracite-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610158%20-%20Aufbaubox%20f%C3%BCr%207%27%27%20Install%20Speaker/Images/PH-Shop-Surface-Box-Install-7-Anthracite-3.jpg"
+    },
+    {
+     "ime": "04-ph-shop-surface-box-install-7-anthracite-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610158%20-%20Aufbaubox%20f%C3%BCr%207%27%27%20Install%20Speaker/Images/PH-Shop-Surface-Box-Install-7-Anthracite-4.jpg"
+    }
+   ]
+  },
+  "1776": {
+   "naziv": "Surface Box For 10 – Nadogradna kutija za zvučnik",
+   "stranica": "https://shop.loxone.com/enen/product/610159-surface-box-install-10",
+   "mapa_u_pim": "Audio/610159 - Aufbaubox für 10'' Install Speaker",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-surface-box-install-10-anthracite-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610159%20-%20Aufbaubox%20f%C3%BCr%2010%27%27%20Install%20Speaker/Images/PH-Shop-Surface-Box-Install-10-Anthracite-1.jpg"
+    },
+    {
+     "ime": "02-ph-shop-surface-box-install-10-anthracite-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610159%20-%20Aufbaubox%20f%C3%BCr%2010%27%27%20Install%20Speaker/Images/PH-Shop-Surface-Box-Install-10-Anthracite-2.jpg"
+    },
+    {
+     "ime": "03-ph-shop-surface-box-install-10-anthracite-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610159%20-%20Aufbaubox%20f%C3%BCr%2010%27%27%20Install%20Speaker/Images/PH-Shop-Surface-Box-Install-10-Anthracite-3.jpg"
+    },
+    {
+     "ime": "04-ph-shop-surface-box-install-10-anthracite-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610159%20-%20Aufbaubox%20f%C3%BCr%2010%27%27%20Install%20Speaker/Images/PH-Shop-Surface-Box-Install-10-Anthracite-4.jpg"
+    }
+   ]
+  },
+  "1516": {
+   "naziv": "Install speaker 7 passive",
+   "stranica": "https://shop.loxone.com/enen/product/100497-install-speaker-7-passive",
+   "mapa_u_pim": "Audio/100497 - Install Speaker 7 Passive",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100497-speaker7-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100497%20-%20Install%20Speaker%207%20Passive/Images/ph-shop-100497-speaker7-03.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100497-speaker7-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100497%20-%20Install%20Speaker%207%20Passive/Images/ph-shop-100497-speaker7-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100497-speaker7-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100497%20-%20Install%20Speaker%207%20Passive/Images/ph-shop-100497-speaker7-05.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100497-speaker7-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100497%20-%20Install%20Speaker%207%20Passive/Images/ph-shop-100497-speaker7-02.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100497-speaker7-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100497%20-%20Install%20Speaker%207%20Passive/Images/ph-shop-100497-speaker7-04.jpg"
+    },
+    {
+     "ime": "06-ph-shop-100497-speaker7-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/100497%20-%20Install%20Speaker%207%20Passive/Images/ph-shop-100497-speaker7-06.jpg"
+    }
+   ]
+  },
+  "1520": {
+   "naziv": "Install Speaker 7 Master",
+   "stranica": "https://shop.loxone.com/enen/product/610149-install-speaker-7-master",
+   "mapa_u_pim": "Audio/610149 - Install Speaker 7 Master",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-install-speaker-7-master-3.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610149%20-%20Install%20Speaker%207%20Master/Images/PH-Shop-Install-Speaker-7-Master-3.jpg"
+    },
+    {
+     "ime": "02-ph-shop-install-speaker-7-master-1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610149%20-%20Install%20Speaker%207%20Master/Images/PH-Shop-Install-Speaker-7-Master-1.jpg"
+    },
+    {
+     "ime": "03-ph-shop-install-speaker-7-master-5.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610149%20-%20Install%20Speaker%207%20Master/Images/PH-Shop-Install-Speaker-7-Master-5.jpg"
+    },
+    {
+     "ime": "04-ph-shop-install-speaker-7-master-2.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610149%20-%20Install%20Speaker%207%20Master/Images/PH-Shop-Install-Speaker-7-Master-2.jpg"
+    },
+    {
+     "ime": "05-ph-shop-install-speaker-7-master-4.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Audio/610149%20-%20Install%20Speaker%207%20Master/Images/PH-Shop-Install-Speaker-7-Master-4.jpg"
+    }
+   ]
+  },
+  "1779": {
+   "naziv": "Smart Socket Air Type F",
+   "stranica": "https://shop.loxone.com/enen/product/100115-smart-socket-air-type-f",
+   "mapa_u_pim": "Energy/100115 - Smart Socket Air Typ F",
+   "datoteke": [
+    {
+     "ime": "01-c-loxone_smart-socket-air_09.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100115%20-%20Smart%20Socket%20Air%20Typ%20F/Images/%28c%29Loxone_Smart-Socket-Air_09.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100115-smart-socket-air-typ-f-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100115%20-%20Smart%20Socket%20Air%20Typ%20F/Images/ph-shop-100115-smart-socket-air-typ-f-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100115-smart-socket-air-typ-f-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100115%20-%20Smart%20Socket%20Air%20Typ%20F/Images/ph-shop-100115-smart-socket-air-typ-f-02.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100115-smart-socket-air-typ-f-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100115%20-%20Smart%20Socket%20Air%20Typ%20F/Images/ph-shop-100115-smart-socket-air-typ-f-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100115-smart-socket-air-typ-f-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100115%20-%20Smart%20Socket%20Air%20Typ%20F/Images/ph-shop-100115-smart-socket-air-typ-f-05.jpg"
+    }
+   ]
+  },
+  "1782": {
+   "naziv": "Smart Socket Air Type J",
+   "stranica": "https://shop.loxone.com/enen/product/100119-smart-socket-air-type-j",
+   "mapa_u_pim": "Energy/100119 - Smart Socket Air Typ J",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100119_smart-socket-air-typ-j-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100119%20-%20Smart%20Socket%20Air%20Typ%20J/Images/ph-shop-100119_smart-socket-air-typ-J-03.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100119_smart-socket-air-typ-j-02.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100119%20-%20Smart%20Socket%20Air%20Typ%20J/Images/ph-shop-100119_smart-socket-air-typ-J-02.png"
+    },
+    {
+     "ime": "03-ph-shop-100119_smart-socket-air-typ-j-01.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100119%20-%20Smart%20Socket%20Air%20Typ%20J/Images/ph-shop-100119_smart-socket-air-typ-J-01.png"
+    }
+   ]
+  },
+  "1786": {
+   "naziv": "Smart Socket Air Type G",
+   "stranica": "https://shop.loxone.com/enen/product/100121-smart-socket-air-type-g",
+   "mapa_u_pim": "Energy/100121 - Smart Socket Air Typ G",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100121-smart-socket-air-typ-g-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100121%20-%20Smart%20Socket%20Air%20Typ%20G/Images/ph-shop-100121-smart-socket-air-typ-g-03.jpg"
+    },
+    {
+     "ime": "02-c-loxone_smart-socket-air_04.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100121%20-%20Smart%20Socket%20Air%20Typ%20G/Images/%28c%29Loxone_Smart-Socket-Air_04.png"
+    },
+    {
+     "ime": "03-ph-shop-100121-smart-socket-air-typ-g-01.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100121%20-%20Smart%20Socket%20Air%20Typ%20G/Images/ph-shop-100121-smart-socket-air-typ-g-01.png"
+    },
+    {
+     "ime": "04-ph-shop-100121-smart-socket-air-typ-g-02.png",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Energy/100121%20-%20Smart%20Socket%20Air%20Typ%20G/Images/ph-shop-100121-smart-socket-air-typ-g-02.png"
+    }
+   ]
+  },
+  "1790": {
+   "naziv": "Tree Cable (200m)",
+   "stranica": "https://shop.loxone.com/enen/product/100637-tree-cable",
+   "mapa_u_pim": "Basics & Accessories/100394 - Tree Cable LSZH (200m)",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100394-tree-cable-lszh-200m-06.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100394%20-%20Tree%20Cable%20LSZH%20%28200m%29/Images/ph-shop-100394-tree-cable-lszh-200m-06.jpg"
+    },
+    {
+     "ime": "02-ph-shop-100394-tree-cable-lszh-200m-10.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100394%20-%20Tree%20Cable%20LSZH%20%28200m%29/Images/ph-shop-100394-tree-cable-lszh-200m-10.jpg"
+    },
+    {
+     "ime": "03-ph-shop-100394-tree-cable-lszh-200m-11.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100394%20-%20Tree%20Cable%20LSZH%20%28200m%29/Images/ph-shop-100394-tree-cable-lszh-200m-11.jpg"
+    },
+    {
+     "ime": "04-ph-shop-100394-tree-cable-lszh-200m-12.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100394%20-%20Tree%20Cable%20LSZH%20%28200m%29/Images/ph-shop-100394-tree-cable-lszh-200m-12.jpg"
+    },
+    {
+     "ime": "05-ph-shop-100394-tree-cable-lszh-200m-13.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100394%20-%20Tree%20Cable%20LSZH%20%28200m%29/Images/ph-shop-100394-tree-cable-lszh-200m-13.jpg"
+    }
+   ]
+  },
+  "1794": {
+   "naziv": "Loxone Clamp Tree (25)",
+   "stranica": "https://shop.loxone.com/enen/product/200358-connectors-for-loxone-tree-25-pcs",
+   "mapa_u_pim": "Basics & Accessories/200358 - Loxone Klemme Tree (25 Stk.)",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-200358-loxone-klemme-tree-25-stk.-.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/200358%20-%20Loxone%20Klemme%20Tree%20%2825%20Stk.%29/Images/PH-Shop-200358-Loxone%20Klemme%20Tree%20%2825%20Stk.%29.jpg"
+    },
+    {
+     "ime": "02-ph-shop-200358-clamp-01.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/200358%20-%20Loxone%20Klemme%20Tree%20%2825%20Stk.%29/Images/ph-shop-200358-clamp-01.jpg"
+    },
+    {
+     "ime": "03-ph-shop-200358-clamp-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/200358%20-%20Loxone%20Klemme%20Tree%20%2825%20Stk.%29/Images/ph-shop-200358-clamp-03.jpg"
+    }
+   ]
+  },
+  "1797": {
+   "naziv": "Turbo Clamp (25)",
+   "stranica": "https://shop.loxone.com/enen/product/200406-tree-turbo-connector-25-pcs",
+   "mapa_u_pim": "Basics & Accessories/200406 - Tree Turbo Klemme (25 Stk.)",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-200406-tree-turbo-klemme-25-stk.-.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/200406%20-%20Tree%20Turbo%20Klemme%20%2825%20Stk.%29/Images/PH-Shop-200406-Tree%20Turbo%20Klemme%20%2825%20Stk.%29.jpg"
+    },
+    {
+     "ime": "02-ph-shop-200406-clamps-tree-turbo-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/200406%20-%20Tree%20Turbo%20Klemme%20%2825%20Stk.%29/Images/ph-shop-200406-clamps-tree-turbo-02.jpg"
+    },
+    {
+     "ime": "03-ph-shop-200406-clamps-tree-turbo-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/200406%20-%20Tree%20Turbo%20Klemme%20%2825%20Stk.%29/Images/ph-shop-200406-clamps-tree-turbo-03.jpg"
+    }
+   ]
+  },
+  "1800": {
+   "naziv": "Clamp Tree for NFC / Flex / Intercom (25)",
+   "stranica": "https://shop.loxone.com/enen/product/000567-loxone-clamp-tree-for-nfc-flex-intercom-25-stk",
+   "mapa_u_pim": "Basics & Accessories/000567 - Loxone Klemme Tree für NFCFlexIntercom (25 Stk.)",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-000567-loxone-klemme-tree-fu-r-nfc-flex-intercom-25-stk.-.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/000567%20-%20Loxone%20Klemme%20Tree%20f%C3%BCr%20NFCFlexIntercom%20%2825%20Stk.%29/Images/PH-Shop-000567-Loxone%20Klemme%20Tree%20fu%CC%88r%20NFC-Flex-Intercom%20%2825%20Stk.%29.jpg"
+    }
+   ]
+  },
+  "1802": {
+   "naziv": "Encrypted NFC Smart Cards Set (10)",
+   "stranica": "https://shop.loxone.com/enen/product/200446-nfc-smart-cards-encrypted",
+   "mapa_u_pim": "Access/200446 - Verschlüsselte NFC Smart Cards Set - 10 Stück",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-200446-verschlu-sselte-nfc-smart-cards-set---10-stu-ck.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/200446%20-%20Verschl%C3%BCsselte%20NFC%20Smart%20Cards%20Set%20-%2010%20St%C3%BCck/Images/PH-Shop-200446-Verschlu%CC%88sselte%20NFC%20Smart%20Cards%20Set%20-%2010%20Stu%CC%88ck.jpg"
+    },
+    {
+     "ime": "02-ph-shop-nfc_smart_cards-02.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/200446%20-%20Verschl%C3%BCsselte%20NFC%20Smart%20Cards%20Set%20-%2010%20St%C3%BCck/Images/PH-Shop-NFC_Smart_Cards-02.jpg"
+    },
+    {
+     "ime": "03-ph-shop-nfc_smart_cards-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/200446%20-%20Verschl%C3%BCsselte%20NFC%20Smart%20Cards%20Set%20-%2010%20St%C3%BCck/Images/PH-Shop-NFC_Smart_Cards-03.jpg"
+    },
+    {
+     "ime": "04-ph-shop-nfc_smart_cards-04.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/200446%20-%20Verschl%C3%BCsselte%20NFC%20Smart%20Cards%20Set%20-%2010%20St%C3%BCck/Images/PH-Shop-NFC_Smart_Cards-04.jpg"
+    },
+    {
+     "ime": "05-ph-shop-nfc_smart_cards-05.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/200446%20-%20Verschl%C3%BCsselte%20NFC%20Smart%20Cards%20Set%20-%2010%20St%C3%BCck/Images/PH-Shop-NFC_Smart_Cards-05.jpg"
+    }
+   ]
+  },
+  "1805": {
+   "naziv": "NFC Key Fob Set (10)",
+   "stranica": "https://shop.loxone.com/enen/product/200318-nfc-key-fob-set",
+   "mapa_u_pim": "Access/200318 - NFC Key Fob Set - 10 Stück",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-200318-nfc-key-fob-set---10-stu-ck.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/200318%20-%20NFC%20Key%20Fob%20Set%20-%2010%20St%C3%BCck/Images/PH-Shop-200318-NFC%20Key%20Fob%20Set%20-%2010%20Stu%CC%88ck.jpg"
+    },
+    {
+     "ime": "02-ph-shop-200318-nfc-key-fob-set-02.jpeg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/200318%20-%20NFC%20Key%20Fob%20Set%20-%2010%20St%C3%BCck/Images/ph-shop-200318-nfc-key-fob-set-02.jpeg"
+    },
+    {
+     "ime": "03-ph-shop-200318-nfc-key-fob-set-03.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Access/200318%20-%20NFC%20Key%20Fob%20Set%20-%2010%20St%C3%BCck/Images/ph-shop-200318-nfc-key-fob-set-03.jpg"
+    }
+   ]
+  },
+  "1808": {
+   "naziv": "SD kartica s FirmWareom za Miniserver Gen.1",
+   "stranica": "https://shop.loxone.com/enen/product/100008-micro-sd-card-firmware-miniserver-gen-1",
+   "mapa_u_pim": "Basics & Accessories/100008 - SD-Karte mit Firmware Miniserver Gen. 1",
+   "datoteke": [
+    {
+     "ime": "01-ph-shop-100008-sd-card-gen1.jpg",
+     "url": "https://pim.loxone.com//01%20Product%20Data/01%20Products/Basics%20%26%20Accessories/100008%20-%20SD-Karte%20mit%20Firmware%20Miniserver%20Gen.%201/Images/ph-shop-100008-sd-card-gen1.jpg"
+    }
+   ]
+  }
+ }
+}

@@ -2,7 +2,8 @@
  "generirano": "scripts/proizvodi.mjs",
  "izvor": [
   "assets/Loxone",
-  "assets/old-products"
+  "assets/old-products",
+  "assets/loxone-trgovina"
  ],
  "sirine": [
   480,
@@ -37,7 +38,69 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1433-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1433-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1433-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1433-7",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1433-8",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1433-9",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1433-10",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1433-11",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:Miniserver.webm",
+    "Loxone/Miniserver/miniserver.jpg",
+    "Loxone/Miniserver/miniserver2.jpg",
+    "loxone-trgovina/1433/01-ph-shop-600x400-miniserver.jpg",
+    "loxone-trgovina/1433/02-ig-connections-100335-miniserver.png",
+    "loxone-trgovina/1433/03-ph-shop-100335-miniserver-06.jpg",
+    "loxone-trgovina/1433/04-ph-shop-100335-miniserver-02.jpg",
+    "loxone-trgovina/1433/05-ph-shop-100335-miniserver-03.jpg",
+    "loxone-trgovina/1433/06-ph-shop-100335-miniserver-04.jpg",
+    "loxone-trgovina/1433/07-ph-shop-100335-miniserver-05.jpg",
+    "loxone-trgovina/1433/08-ph-shop-100335-miniserver-01.jpg"
    ],
    "video": "assets/old-products/Miniserver.webm"
   },
@@ -70,7 +133,20 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1438-4",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-miniserver-compact-overview-100512-01.webm",
+    "Loxone/Miniserver compact/MiniserverC1.jpg",
+    "Loxone/Miniserver compact/MiniserverC2.jpg",
+    "loxone-trgovina/1438/01-ph-shop-ms-compact-1.jpg"
    ],
    "video": "assets/old-products/vi-miniserver-compact-overview-100512-01.webm"
   },
@@ -96,7 +172,53 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1441-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1441-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1441-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1441-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1441-7",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1441-8",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Miniserver Go/MiniserverG1.jpg",
+    "Loxone/Miniserver Go/MiniserverG2.jpg",
+    "loxone-trgovina/1441/03-ph-shop-100336-miniserver-go-14.jpg",
+    "loxone-trgovina/1441/04-ph-shop-100336-miniserver-go-04.jpg",
+    "loxone-trgovina/1441/05-ph-shop-100336-miniserver-go-06.jpg",
+    "loxone-trgovina/1441/06-ph-shop-100336-miniserver-go-05.jpg",
+    "loxone-trgovina/1441/07-ph-shop-100336-miniserver-go-03.jpg",
+    "loxone-trgovina/1441/08-ph-shop-100336-miniserver-go-02.png"
    ],
    "slika2": {
     "id": "1441-2",
@@ -134,7 +256,33 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1444-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1444-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1444-6",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100218-tree-extension.webm",
+    "Loxone/Tree extension/TreeE1.jpg",
+    "Loxone/Tree extension/TreeE2.jpg",
+    "loxone-trgovina/1444/02-ph-shop-100218-tree-extension-02.jpg",
+    "loxone-trgovina/1444/04-ph-shop-100218-tree-extension-04.jpg",
+    "loxone-trgovina/1444/05-ph-shop-100218-tree-extension-07.jpg"
    ],
    "video": "assets/old-products/vi-overview-100218-tree-extension.webm"
   },
@@ -171,7 +319,20 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1447-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100114-air-base-extension.webm",
+    "Loxone/Air Base/AirB1.jpg",
+    "Loxone/Air Base/AirB2.jpg",
+    "Loxone/Air Base/AirB3.jpg",
+    "loxone-trgovina/1447/05-ph-shop-100114-air-base-extension-05.jpg"
    ],
    "video": "assets/old-products/vi-overview-100114-air-base-extension.webm"
   },
@@ -209,7 +370,20 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1451-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100038-relay-extension.webm",
+    "Loxone/Relay extension/RelayE1.jpg",
+    "Loxone/Relay extension/RelayE2.jpg",
+    "Loxone/Relay extension/RelayE3.jpg",
+    "loxone-trgovina/1451/04-ph-shop-10038-relay-extension-05.jpg"
    ],
    "video": "assets/old-products/vi-overview-100038-relay-extension.webm"
   },
@@ -247,7 +421,41 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1455-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1455-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1455-7",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1455-8",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100029-dimmer-extension.webm",
+    "Loxone/Dimmer Extension/DImmerE1.jpg",
+    "Loxone/Dimmer Extension/DImmerE2.jpg",
+    "Loxone/Dimmer Extension/DImmerE3.jpg",
+    "loxone-trgovina/1455/04-ph-shop-100029-dimmer-extension-03.jpg",
+    "loxone-trgovina/1455/05-ph-shop-100029-dimmer-extension-04.jpg",
+    "loxone-trgovina/1455/06-ph-shop-100029-dimmer-extension-05.jpg",
+    "loxone-trgovina/1455/07-ph-shop-100029-dimmer-extension-07.jpg"
    ],
    "video": "assets/old-products/vi-overview-100029-dimmer-extension.webm"
   },
@@ -285,7 +493,27 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1459-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1459-6",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100283-di-extension.webm",
+    "Loxone/DI Extension/DIE1.jpg",
+    "Loxone/DI Extension/DIE2.jpg",
+    "Loxone/DI Extension/DIE3.jpg",
+    "loxone-trgovina/1459/04-ph-shop-100283-di-extension-03.jpg",
+    "loxone-trgovina/1459/05-ph-shop-100283-di-extension-06.jpg"
    ],
    "video": "assets/old-products/vi-overview-100283-di-extension.webm"
   },
@@ -320,7 +548,20 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1463-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "old-products/ph-shop-100014-one-wire-extension-01.jpg",
+    "Loxone/1Wire Extension/1WIreE1.jpg",
+    "Loxone/1Wire Extension/1WIreE2.jpg",
+    "Loxone/1Wire Extension/1WIreE3.jpg",
+    "loxone-trgovina/1463/06-ph-shop-100014-one-wire-extension-08.jpg"
    ],
    "slika2": {
     "id": "1463-2",
@@ -357,7 +598,40 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1467-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1467-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1467-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1467-7",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100124-modbus-extension.webm",
+    "Loxone/Modbus Extension/ModbusE1.jpg",
+    "Loxone/Modbus Extension/ModbusE2.jpg",
+    "loxone-trgovina/1467/03-ph-shop-100124-modbus-extension-02.jpg",
+    "loxone-trgovina/1467/04-ph-shop-100124-modbus-extension-03.jpg",
+    "loxone-trgovina/1467/05-ph-shop-100124-modbus-extension-04.jpg",
+    "loxone-trgovina/1467/06-ph-shop-100124-modbus-extension-09.jpg"
    ],
    "video": "assets/old-products/vi-overview-100124-modbus-extension.webm"
   },
@@ -397,7 +671,29 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1470-5",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1470-6",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100200-dali-extension.webm",
+    "Loxone/Dali Extension/DaliE1.jpg",
+    "Loxone/Dali Extension/DaliE2.jpg",
+    "Loxone/Dali Extension/DaliE3.jpg",
+    "loxone-trgovina/1470/02-ph-shop-100623-dali-64-3.jpg",
+    "loxone-trgovina/1470/05-ph-shop-100623-dali-64-6.jpg"
    ],
    "video": "assets/old-products/vi-overview-100200-dali-extension.webm"
   },
@@ -430,7 +726,28 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1474-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1474-5",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Dali Extension 10/DaliE101.jpg",
+    "Loxone/Dali Extension 10/DaliE102.jpg",
+    "Loxone/Dali Extension 10/DaliE103.jpg",
+    "loxone-trgovina/1474/02-ph-shop-100200-dali-10-2.jpg",
+    "loxone-trgovina/1474/05-ph-shop-100200-dali-10-5.jpg"
    ],
    "slika2": {
     "id": "1474-2",
@@ -474,7 +791,48 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1478-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1478-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1478-7",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1478-8",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1478-9",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100471-ai-extension.webm",
+    "Loxone/AI Extension/AiE1.jpg",
+    "Loxone/AI Extension/AiE2.jpg",
+    "Loxone/AI Extension/AiE3.jpg",
+    "loxone-trgovina/1478/03-ph-shop-100471-ai-extension-02.jpg",
+    "loxone-trgovina/1478/05-ph-shop-100471-ai-extension-05.jpg",
+    "loxone-trgovina/1478/06-ph-shop-100471-ai-extension-06.jpg",
+    "loxone-trgovina/1478/07-ph-shop-100471-ai-extension-07.jpg",
+    "loxone-trgovina/1478/08-ph-shop-100471-ai-extension-09.jpg"
    ],
    "video": "assets/old-products/vi-overview-100471-ai-extension.webm"
   },
@@ -520,6 +878,13 @@
      ]
     }
    ],
+   "izvori": [
+    "video:vi-overview-100382-ao-extension.webm",
+    "Loxone/AO Extenssion/AOE1.jpg",
+    "Loxone/AO Extenssion/AOE2.jpg",
+    "Loxone/AO Extenssion/AOE3.jpg",
+    "Loxone/AO Extenssion/AOE4.jpg"
+   ],
    "video": "assets/old-products/vi-overview-100382-ao-extension.webm"
   },
   "1487": {
@@ -556,7 +921,20 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1487-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100322-knx-extension.webm",
+    "Loxone/KXN Extension/KXNE1.jpg",
+    "Loxone/KXN Extension/KXNE2.jpg",
+    "Loxone/KXN Extension/KXNE3.jpg",
+    "loxone-trgovina/1487/04-ph-shop-100322-knx-extension-05.jpg"
    ],
    "video": "assets/old-products/vi-overview-100322-knx-extension.webm"
   },
@@ -586,13 +964,15 @@
     {
      "id": "1491-3",
      "sirine": [
-      480
+      480,
+      720
      ]
     },
     {
      "id": "1491-4",
      "sirine": [
-      480
+      480,
+      720
      ]
     },
     {
@@ -605,10 +985,24 @@
     {
      "id": "1491-6",
      "sirine": [
-      480,
-      720
+      480
+     ]
+    },
+    {
+     "id": "1491-7",
+     "sirine": [
+      480
      ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100330-led-spot-rgbw-tree-white.webm",
+    "loxone-trgovina/1491/01-ph-shop-100330-led-spot-tree-white-01.jpg",
+    "loxone-trgovina/1491/02-ph-shop-led-spot-rgbw-tree-weiss-1.jpg",
+    "loxone-trgovina/1491/03-ph-shop-led-spot-rgbw-tree-weiss-3.jpg",
+    "loxone-trgovina/1491/04-ph-shop-led-spot-rgbw-tree-weiss-2.jpg",
+    "loxone-trgovina/1491/05-ph-shop-100330-led-spot-tree-white-02.jpg",
+    "loxone-trgovina/1491/06-ph-shop-100330-led-spot-tree-white-03.jpg"
    ],
    "video": "assets/old-products/vi-overview-100330-led-spot-rgbw-tree-white.webm"
   },
@@ -645,7 +1039,8 @@
     {
      "id": "1497-4",
      "sirine": [
-      480
+      480,
+      720
      ]
     },
     {
@@ -654,7 +1049,21 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1497-6",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100286-ceiling-light-air-white.webm",
+    "loxone-trgovina/1497/01-ph-shop-100286-led-ceiling-light-air-white-04.jpg",
+    "loxone-trgovina/1497/02-ph-shop-led-ceiling-light-rgbw-weiss-5.jpg",
+    "loxone-trgovina/1497/03-ph-shop-led-ceiling-light-rgbw-weiss-3.jpg",
+    "loxone-trgovina/1497/04-ph-shop-led-ceiling-light-rgbw-weiss-6.jpg",
+    "loxone-trgovina/1497/05-ph-shop-100286-led-ceiling-light-air-white-01.jpg"
    ],
    "video": "assets/old-products/vi-overview-100286-ceiling-light-air-white.webm"
   },
@@ -679,7 +1088,43 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1502-3",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1502-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1502-5",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1502-6",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/LED Strip RGBW/LedStrip1.jpg",
+    "Loxone/LED Strip RGBW/LedStrip2.jpg",
+    "loxone-trgovina/1502/02-ph-shop-led-strip-rgbw-1.jpg",
+    "loxone-trgovina/1502/03-ph-shop-led-strip-rgbw-2.jpg",
+    "loxone-trgovina/1502/04-ph-shop-led-strip-rgbw-3.jpg",
+    "loxone-trgovina/1502/05-ph-shop-led-strip-rgbw-4.jpg"
    ],
    "slika2": {
     "id": "1502-2",
@@ -709,7 +1154,25 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1505-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1505-4",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "loxone-trgovina/1505/01-ph-shop-100550-table-lamp-air-white-01.jpg",
+    "loxone-trgovina/1505/02-ph-shop-100550-table-lamp-air-white-04.jpg",
+    "loxone-trgovina/1505/03-ph-shop-100550-table-lamp-air-white-02.jpg",
+    "loxone-trgovina/1505/04-ph-shop-100550-table-lamp-air-white-03.jpg"
    ],
    "slika2": {
     "id": "1505-2",
@@ -740,7 +1203,19 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1508-3",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Led Pendulum RGBW/LEDPendulum1.jpg",
+    "Loxone/Led Pendulum RGBW/LEDPendulum2.jpg",
+    "loxone-trgovina/1508/02-ph-shop-led-pendulum-slim-pwm-weiss-1.jpg"
    ],
    "slika2": {
     "id": "1508-2",
@@ -783,7 +1258,28 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1512-5",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1512-6",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100011-rs-485-extension.webm",
+    "Loxone/RS485 Extension/RS485E1.jpg",
+    "Loxone/RS485 Extension/RS485E2.jpg",
+    "Loxone/RS485 Extension/RS485E3.jpg",
+    "loxone-trgovina/1512/01-ph-shop-100011-rs485-extension-09.jpg",
+    "loxone-trgovina/1512/05-ph-shop-100011-rs485-extension-08.jpg"
    ],
    "video": "assets/old-products/vi-overview-100011-rs-485-extension.webm"
   },
@@ -820,7 +1316,27 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1516-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1516-6",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100497-install-speaker-7-passive.webm",
+    "Loxone/Install Speaker Passive/SpeakerPassive1.jpg",
+    "Loxone/Install Speaker Passive/SpeakerPassive2.jpg",
+    "Loxone/Install Speaker Passive/SpeakerPassive3.jpg",
+    "loxone-trgovina/1516/03-ph-shop-100497-speaker7-05.jpg",
+    "loxone-trgovina/1516/04-ph-shop-100497-speaker7-02.jpg"
    ],
    "video": "assets/old-products/vi-overview-100497-install-speaker-7-passive.webm"
   },
@@ -860,7 +1376,21 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1520-5",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-610149-install-speaker-7-master.webm",
+    "Loxone/Install Speaker Master/SpeakerMaster1.jpg",
+    "Loxone/Install Speaker Master/SpeakerMaster2.jpg",
+    "Loxone/Install Speaker Master/SpeakerMaster3.jpg",
+    "loxone-trgovina/1520/04-ph-shop-install-speaker-7-master-2.jpg"
    ],
    "video": "assets/old-products/vi-overview-610149-install-speaker-7-master.webm"
   },
@@ -897,7 +1427,35 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1684-5",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1684-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1684-7",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/RBGW Dimmer Tree 24V/Dimmer24Tree1.jpg",
+    "Loxone/RBGW Dimmer Tree 24V/Dimmer24Tree2.jpg",
+    "Loxone/RBGW Dimmer Tree 24V/Dimmer24Tree3.jpg",
+    "Loxone/RBGW Dimmer Tree 24V/Dimmer24Tree4.jpg",
+    "loxone-trgovina/1684/02-ph-shop-rgbw-dimmer-1.jpg",
+    "loxone-trgovina/1684/05-ph-shop-100239-rgbw-24v-dimmer-tree-06.jpg",
+    "loxone-trgovina/1684/07-ph-shop-100239-rgbw-24v-dimmer-tree-09.jpg"
    ],
    "slika2": {
     "id": "1684-2",
@@ -933,7 +1491,41 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1689-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1689-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1689-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1689-7",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/RBGW Dimmer Air 24V/Dimmer24Air1.jpg",
+    "Loxone/RBGW Dimmer Air 24V/Dimmer24Air2.jpg",
+    "Loxone/RBGW Dimmer Air 24V/Dimmer24Air3.jpg",
+    "loxone-trgovina/1689/02-ph-shop-rgbw-dimmer-1.jpg",
+    "loxone-trgovina/1689/04-ph-shop-100125-rgbw-24v-dimmer-air-05.jpg",
+    "loxone-trgovina/1689/05-ph-shop-100125-rgbw-24v-dimmer-air-06.jpg",
+    "loxone-trgovina/1689/07-ph-shop-100125-rgbw-24v-dimmer-air-09.jpg"
    ],
    "slika2": {
     "id": "1689-2",
@@ -969,7 +1561,26 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1693-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1693-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Nano Dimmer Air/NanoDimmer1.jpg",
+    "Loxone/Nano Dimmer Air/NanoDimmer2.jpg",
+    "Loxone/Nano Dimmer Air/NanoDimmer3.jpg",
+    "loxone-trgovina/1693/04-ph-shop-100212-nano-dimmer-air-08.jpg",
+    "loxone-trgovina/1693/05-ph-shop-100212-nano-dimmer-air-09.jpg"
    ],
    "slika2": {
     "id": "1693-2",
@@ -1005,7 +1616,28 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1697-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1697-5",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "old-products/PH-Shop-100153-Nano-IO-Air.bf944ac6.jpg",
+    "Loxone/Nano IO Air/NanoIOAir1.jpg",
+    "Loxone/Nano IO Air/NanoIOAir2.jpg",
+    "loxone-trgovina/1697/03-ph-shop-100153-nano-io-air-4.jpg",
+    "loxone-trgovina/1697/05-ph-shop-100153-nano-io-air-5.jpg"
    ],
    "slika2": {
     "id": "1697-2",
@@ -1037,7 +1669,39 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1700-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1700-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1700-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1700-6",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:Touch_Pure_CO2_Icons_SignalWhite_Overview.webm",
+    "Loxone/TouchPureTree/TouchPureTree1.jpg",
+    "loxone-trgovina/1700/02-ph-shop-100517-touch-pure-co2-tree-white-06.jpg",
+    "loxone-trgovina/1700/03-ph-shop-100517-touch-pure-co2-tree-white-03.jpg",
+    "loxone-trgovina/1700/04-ph-shop-100517-touch-pure-co2-tree-white-04.jpg",
+    "loxone-trgovina/1700/05-ph-shop-100517-touch-pure-co2-tree-white-05.jpg"
    ],
    "video": "assets/old-products/Touch_Pure_CO2_Icons_SignalWhite_Overview.webm"
   },
@@ -1060,23 +1724,53 @@
     {
      "id": "1702-2",
      "sirine": [
-      480,
-      720
+      480
      ]
     },
     {
      "id": "1702-3",
      "sirine": [
-      480,
-      720
+      480
+     ]
+    },
+    {
+     "id": "1702-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1702-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1702-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1702-7",
+     "sirine": [
+      480
      ]
     }
+   ],
+   "izvori": [
+    "loxone-trgovina/1702/01-ph-shop-100463-touch-pure-air-white-09.jpg",
+    "loxone-trgovina/1702/02-ph-shop-100463-touch-pure-air-white-08.jpg",
+    "loxone-trgovina/1702/03-ph-shop-100463-touch-pure-air-white-02.jpg",
+    "loxone-trgovina/1702/04-ph-shop-100463-touch-pure-air-white-03.jpg",
+    "loxone-trgovina/1702/05-ph-shop-100463-touch-pure-air-white-04.jpg",
+    "loxone-trgovina/1702/06-ph-shop-100463-touch-pure-air-white-05.jpg",
+    "loxone-trgovina/1702/07-ph-shop-100463-touch-pure-air-white-07.jpg"
    ],
    "slika2": {
     "id": "1702-2",
     "sirine": [
-     480,
-     720
+     480
     ]
    }
   },
@@ -1095,39 +1789,29 @@
       480,
       720
      ]
-    },
-    {
-     "id": "1706-2",
-     "sirine": [
-      480,
-      720
-     ]
     }
    ],
-   "slika2": {
-    "id": "1706-2",
-    "sirine": [
-     480,
-     720
-    ]
-   }
+   "izvori": [
+    "loxone-trgovina/1706/01-ph-shop-100463-touch-pure-for-nano-white-09.jpg"
+   ]
   },
   "1709": {
    "slika": {
     "id": "1709-1",
     "sirine": [
-     480,
-     720
+     480
     ]
    },
    "galerija": [
     {
      "id": "1709-1",
      "sirine": [
-      480,
-      720
+      480
      ]
     }
+   ],
+   "izvori": [
+    "loxone-trgovina/1709/01-ph-shop-100542-touch-pure-flex-standard-air-white.jpg"
    ]
   },
   "1712": {
@@ -1157,7 +1841,27 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1712-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1712-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100221-touch-tree-white.webm",
+    "Loxone/Touch Tree/TouchTree1.jpg",
+    "Loxone/Touch Tree/TouchTree2.jpg",
+    "loxone-trgovina/1712/01-ph-shop-100221-touch-weiss.jpg",
+    "loxone-trgovina/1712/03-ph-shop-100221-touch-tree-white-09.jpg"
    ],
    "video": "assets/old-products/vi-overview-100221-touch-tree-white.webm"
   },
@@ -1186,7 +1890,41 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1715-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1715-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1715-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1715-7",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "old-products/PH-Shop-100221-Touch-Weiß.2537ab89.jpg",
+    "Loxone/Touch Air/TouchAir1.jpg",
+    "Loxone/Touch Air/TouchAir2.jpg",
+    "loxone-trgovina/1715/01-ph-shop-100155-touch-air-white-10.jpg",
+    "loxone-trgovina/1715/03-ph-shop-100155-touch-air-white-04.jpg",
+    "loxone-trgovina/1715/04-ph-shop-100155-touch-air-white-09.jpg",
+    "loxone-trgovina/1715/05-ph-shop-100155-touch-air-white-06.jpg"
    ],
    "slika2": {
     "id": "1715-2",
@@ -1223,13 +1961,12 @@
      "sirine": [
       480
      ]
-    },
-    {
-     "id": "1718-4",
-     "sirine": [
-      480
-     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100483-nfc-code-touch-white.webm",
+    "loxone-trgovina/1718/01-ph-shop-100481-nfc-code-touch-tree-weiss-09.jpg",
+    "loxone-trgovina/1718/03-ph-shop-100481-nfc-code-touch-tree-weiss-08.jpg"
    ],
    "video": "assets/old-products/vi-overview-100483-nfc-code-touch-white.webm"
   },
@@ -1266,7 +2003,35 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1722-5",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1722-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1722-7",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:NFC_Code_Touch_SignalWhite_Overview.webm",
+    "Loxone/NFC Code Touch Air/NFCAirCode1.jpg",
+    "Loxone/NFC Code Touch Air/NFCAirCode2.jpg",
+    "Loxone/NFC Code Touch Air/NFCAirCode4.jpg",
+    "loxone-trgovina/1722/01-ph-shop-100483-nfc-code-touch-air-weiss-06.jpg",
+    "loxone-trgovina/1722/04-ph-shop-100483-nfc-code-touch-air-weiss-04.jpg",
+    "loxone-trgovina/1722/05-ph-shop-100483-nfc-code-touch-air-weiss-05.jpg"
    ],
    "video": "assets/old-products/NFC_Code_Touch_SignalWhite_Overview.webm"
   },
@@ -1289,16 +2054,67 @@
     {
      "id": "1726-2",
      "sirine": [
-      480,
-      720
+      480
+     ]
+    },
+    {
+     "id": "1726-3",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1726-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1726-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1726-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1726-7",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1726-8",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1726-9",
+     "sirine": [
+      480
      ]
     }
+   ],
+   "izvori": [
+    "loxone-trgovina/1726/01-ph-shop-100140-remote-air-14.jpg",
+    "loxone-trgovina/1726/02-ph-shop-100140-remote-air-08.jpg",
+    "loxone-trgovina/1726/03-ph-shop-100140-remote-air-09.jpg",
+    "loxone-trgovina/1726/04-ph-shop-100140-remote-air-11.jpg",
+    "loxone-trgovina/1726/05-ph-shop-100140-remote-air-07.jpg",
+    "loxone-trgovina/1726/06-ph-shop-100140-remote-air-13.jpg",
+    "loxone-trgovina/1726/07-ph-shop-100140-remote-air-01.jpg",
+    "loxone-trgovina/1726/08-ph-shop-100140-remote-air-05.jpg",
+    "loxone-trgovina/1726/09-ph-shop-100140-remote-air-06.jpg"
    ],
    "slika2": {
     "id": "1726-2",
     "sirine": [
-     480,
-     720
+     480
     ]
    }
   },
@@ -1321,15 +2137,58 @@
     {
      "id": "1729-2",
      "sirine": [
-      480
+      480,
+      720
      ]
     },
     {
      "id": "1729-3",
      "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1729-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1729-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1729-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1729-7",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1729-8",
+     "sirine": [
       480
      ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100466-flushmounted-presence-sensor-tree-white.webm",
+    "loxone-trgovina/1729/01-ph-shop-100466-presence-sensor-ceiling-tree-white-03.jpg",
+    "loxone-trgovina/1729/02-ph-shop-100466-pra-senzmelder-deckeneinbau-tree-weiss-2.jpg",
+    "loxone-trgovina/1729/03-ph-shop-100466-pra-senzmelder-deckeneinbau-tree-weiss-1.jpg",
+    "loxone-trgovina/1729/04-ph-shop-100466-presence-sensor-ceiling-tree-white-04.jpg",
+    "loxone-trgovina/1729/05-ph-shop-100466-presence-sensor-ceiling-tree-white-06.jpg",
+    "loxone-trgovina/1729/06-ph-shop-100466-presence-sensor-ceiling-tree-white-05.jpg",
+    "loxone-trgovina/1729/07-ph-shop-100466-presence-sensor-ceiling-tree-white-09.jpg"
    ],
    "video": "assets/old-products/vi-overview-100466-flushmounted-presence-sensor-tree-white.webm"
   },
@@ -1367,7 +2226,20 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1733-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100422-presence-sensor-tree-white.webm",
+    "loxone-trgovina/1733/01-ph-shop-100422-presence-sensor-tree-white-10.jpg",
+    "loxone-trgovina/1733/02-ph-shop-100422-presence-sensor-tree-white-14.jpg",
+    "loxone-trgovina/1733/03-ph-shop-100422-presence-sensor-tree-white-12.jpg",
+    "loxone-trgovina/1733/04-ph-shop-100422-presence-sensor-tree-white-13.jpg"
    ],
    "video": "assets/old-products/vi-overview-100422-presence-sensor-tree-white.webm"
   },
@@ -1390,15 +2262,38 @@
     {
      "id": "1737-2",
      "sirine": [
-      480
+      480,
+      720
      ]
     },
     {
      "id": "1737-3",
      "sirine": [
-      480
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1737-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1737-5",
+     "sirine": [
+      480,
+      720
      ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100420-presence-sensor-air-white.webm",
+    "loxone-trgovina/1737/01-ph-shop-100420-presence-sensor-air-white-07.jpg",
+    "loxone-trgovina/1737/02-ph-shop-10042-pra-senzmelder-tree-weiss-1.jpg",
+    "loxone-trgovina/1737/03-ph-shop-10042-pra-senzmelder-tree-weiss-2.jpg",
+    "loxone-trgovina/1737/04-ph-shop-10042-pra-senzmelder-tree-weiss-3.jpg"
    ],
    "video": "assets/old-products/vi-overview-100420-presence-sensor-air-white.webm"
   },
@@ -1406,14 +2301,16 @@
    "slika": {
     "id": "1740-1",
     "sirine": [
-     480
+     480,
+     720
     ]
    },
    "galerija": [
     {
      "id": "1740-1",
      "sirine": [
-      480
+      480,
+      720
      ]
     },
     {
@@ -1427,7 +2324,26 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1740-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1740-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "loxone-trgovina/1740/01-ph-shop-100276-raumklima-sensor-tree-weiss-co2-temperatur-feuchte-.jpg",
+    "loxone-trgovina/1740/02-ph-shop-100276-sensor-tree-white-03.jpg",
+    "loxone-trgovina/1740/03-ph-shop-100276-sensor-tree-white-04.jpg",
+    "loxone-trgovina/1740/04-ph-shop-100276-sensor-tree-white-06.jpg",
+    "loxone-trgovina/1740/05-ph-shop-100276-sensor-tree-white-08.jpg"
    ],
    "slika2": {
     "id": "1740-2",
@@ -1440,14 +2356,16 @@
    "slika": {
     "id": "1743-1",
     "sirine": [
-     480
+     480,
+     720
     ]
    },
    "galerija": [
     {
      "id": "1743-1",
      "sirine": [
-      480
+      480,
+      720
      ]
     },
     {
@@ -1461,7 +2379,47 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1743-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1743-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1743-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1743-7",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1743-8",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "loxone-trgovina/1743/01-ph-shop-100264-rk-sensor-air-white-01.jpg",
+    "loxone-trgovina/1743/02-ph-shop-100264-rk-sensor-air-white-09.jpg",
+    "loxone-trgovina/1743/03-ph-shop-100264-rk-sensor-air-white-03.jpg",
+    "loxone-trgovina/1743/04-ph-shop-100264-rk-sensor-air-white-04.jpg",
+    "loxone-trgovina/1743/05-ph-shop-100264-rk-sensor-air-white-05.jpg",
+    "loxone-trgovina/1743/06-ph-shop-100264-rk-sensor-air-white-07.jpg",
+    "loxone-trgovina/1743/07-ph-shop-100264-rk-sensor-air-white-02.jpg",
+    "loxone-trgovina/1743/08-ph-shop-100264-rk-sensor-air-white-08.jpg"
    ],
    "slika2": {
     "id": "1743-2",
@@ -1497,7 +2455,89 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1746-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-7",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-8",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-9",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-10",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-11",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-12",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-13",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1746-14",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/IR Control Air/IRControlAir1.jpg",
+    "Loxone/IR Control Air/IRControlAir2.jpg",
+    "Loxone/IR Control Air/IRControlAir3.jpg",
+    "loxone-trgovina/1746/04-ph-shop-100141-ir-control-air-02.jpg",
+    "loxone-trgovina/1746/05-ph-shop-100141-ir-control-air-03.jpg",
+    "loxone-trgovina/1746/06-ph-shop-100141-ir-control-air-04.jpg",
+    "loxone-trgovina/1746/07-ph-shop-100141-ir-control-air-05.jpg",
+    "loxone-trgovina/1746/08-ph-shop-100141-ir-control-air-06.jpg",
+    "loxone-trgovina/1746/09-ph-shop-100141-ir-control-air-08.jpg",
+    "loxone-trgovina/1746/10-ph-shop-100141-ir-control-air-09.jpg",
+    "loxone-trgovina/1746/11-ph-shop-100141-ir-control-air-10.jpg",
+    "loxone-trgovina/1746/12-ph-shop-100141-ir-control-air-11.jpg",
+    "loxone-trgovina/1746/13-ph-shop-100141-ir-control-air-12.jpg",
+    "loxone-trgovina/1746/14-ph-shop-100141-ir-control-air-15.jpg"
    ],
    "slika2": {
     "id": "1746-2",
@@ -1542,7 +2582,21 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1755-5",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100602-valve-actuator.webm",
+    "Loxone/Valve aActuator Tree/ValveActuatorTree1.jpg",
+    "Loxone/Valve aActuator Tree/ValveActuatorTree2.jpg",
+    "Loxone/Valve aActuator Tree/ValveActuatorTree3.jpg",
+    "loxone-trgovina/1755/02-ph-shop-valve-actuator-tree-4.jpg"
    ],
    "video": "assets/old-products/vi-overview-100602-valve-actuator.webm"
   },
@@ -1575,7 +2629,20 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1759-4",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100603-valve-actuator.webm",
+    "Loxone/Valve Actuator Air/ValveActuatorAir1.jpg",
+    "Loxone/Valve Actuator Air/ValveActuatorAir2.jpg",
+    "loxone-trgovina/1759/03-ph-shop-valve-actuator-air-5.jpg"
    ],
    "video": "assets/old-products/vi-overview-100603-valve-actuator.webm"
   },
@@ -1619,7 +2686,28 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1762-6",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1762-7",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Shading Actuator Air/Picture6.jpg",
+    "Loxone/Shading Actuator Air/ShadingActuatorTree.jpg",
+    "Loxone/Shading Actuator Air/ShadingActuatorTree2.jpg",
+    "Loxone/Shading Actuator Air/ShadingActuatorTree3.jpg",
+    "Loxone/Shading Actuator Air/ShadingActuatorTree4.jpg",
+    "loxone-trgovina/1762/02-ph-shop-100290-shading-actuator-air-01.jpg",
+    "loxone-trgovina/1762/06-ph-shop-100290-shading-actuator-air-07.jpg"
    ],
    "slika2": {
     "id": "1762-2",
@@ -1656,7 +2744,28 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1767-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1767-5",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "video:vi-overview-100428-audioserver.webm",
+    "Loxone/Audio Server/AudioServer1.jpg",
+    "Loxone/Audio Server/AudioServer2.jpg",
+    "loxone-trgovina/1767/01-ph-shop-100428-audioserver-02.jpg",
+    "loxone-trgovina/1767/02-ig-100428-audioserver.jpg"
    ],
    "video": "assets/old-products/vi-overview-100428-audioserver.webm"
   },
@@ -1690,6 +2799,11 @@
      ]
     }
    ],
+   "izvori": [
+    "video:vi-overview-100429-stereo-extension.webm",
+    "Loxone/Stereo Extension/StereoExtension1.jpg",
+    "Loxone/Stereo Extension/StereoExtension2.jpg"
+   ],
    "video": "assets/old-products/vi-overview-100429-stereo-extension.webm"
   },
   "1773": {
@@ -1714,7 +2828,27 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1773-3",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1773-4",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Surface Box for 7/SurfaceBox71.jpg",
+    "Loxone/Surface Box for 7/SurfaceBox72.jpg",
+    "loxone-trgovina/1773/02-ph-shop-surface-box-install-7-anthracite-2.jpg",
+    "loxone-trgovina/1773/04-ph-shop-surface-box-install-7-anthracite-4.jpg"
    ],
    "slika2": {
     "id": "1773-2",
@@ -1746,7 +2880,19 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1776-3",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "loxone-trgovina/1776/01-ph-shop-surface-box-install-10-anthracite-1.jpg",
+    "loxone-trgovina/1776/02-ph-shop-surface-box-install-10-anthracite-2.jpg",
+    "loxone-trgovina/1776/04-ph-shop-surface-box-install-10-anthracite-4.jpg"
    ],
    "slika2": {
     "id": "1776-2",
@@ -1789,7 +2935,27 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1779-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1779-6",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "old-products/(c)Loxone_Smart-Socket-Air_09.jpg",
+    "Loxone/Smart Socket Air F/Picture19.jpg",
+    "Loxone/Smart Socket Air F/SmartSocketF1.jpg",
+    "Loxone/Smart Socket Air F/SmartSocketF2.jpg",
+    "loxone-trgovina/1779/04-ph-shop-100115-smart-socket-air-typ-f-04.jpg",
+    "loxone-trgovina/1779/05-ph-shop-100115-smart-socket-air-typ-f-05.jpg"
    ],
    "slika2": {
     "id": "1779-2",
@@ -1825,7 +2991,19 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1782-4",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Smart Socket Air J/SmartSocketJ1.jpg",
+    "Loxone/Smart Socket Air J/SmartSocketJ2.jpg",
+    "Loxone/Smart Socket Air J/SmartSocketJ3.jpg",
+    "loxone-trgovina/1782/02-ph-shop-100119_smart-socket-air-typ-j-02.png"
    ],
    "slika2": {
     "id": "1782-2",
@@ -1861,7 +3039,34 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1786-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1786-5",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1786-6",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Smart Socket Air G/SmartSocketG1.jpg",
+    "Loxone/Smart Socket Air G/SmartSocketG2.jpg",
+    "Loxone/Smart Socket Air G/SmartSocketG3.jpg",
+    "loxone-trgovina/1786/02-c-loxone_smart-socket-air_04.png",
+    "loxone-trgovina/1786/03-ph-shop-100121-smart-socket-air-typ-g-01.png",
+    "loxone-trgovina/1786/04-ph-shop-100121-smart-socket-air-typ-g-02.png"
    ],
    "slika2": {
     "id": "1786-2",
@@ -1897,7 +3102,26 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1790-4",
+     "sirine": [
+      480
+     ]
+    },
+    {
+     "id": "1790-5",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Tree Cable 200/TreeCable2.jpg",
+    "Loxone/Tree Cable 200/TreeCable1.jpg",
+    "Loxone/Tree Cable 200/TreeCable3.jpg",
+    "loxone-trgovina/1790/04-ph-shop-100394-tree-cable-lszh-200m-12.jpg",
+    "loxone-trgovina/1790/05-ph-shop-100394-tree-cable-lszh-200m-13.jpg"
    ],
    "slika2": {
     "id": "1790-2",
@@ -1926,7 +3150,18 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1794-3",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Clamp Tree 25/ClampTree1.jpg",
+    "Loxone/Clamp Tree 25/ClampTree2.jpg",
+    "loxone-trgovina/1794/03-ph-shop-200358-clamp-03.jpg"
    ],
    "slika2": {
     "id": "1794-2",
@@ -1956,7 +3191,18 @@
       480,
       720
      ]
+    },
+    {
+     "id": "1797-3",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Turbo Clamp 25/TurboClamp1.jpg",
+    "Loxone/Turbo Clamp 25/TurboClamp2.jpg",
+    "loxone-trgovina/1797/03-ph-shop-200406-clamps-tree-turbo-03.jpg"
    ],
    "slika2": {
     "id": "1797-2",
@@ -1982,6 +3228,9 @@
       720
      ]
     }
+   ],
+   "izvori": [
+    "Loxone/Clamp Tree for NFC Flex Intercom 25/ClampNFC1.jpg"
    ]
   },
   "1802": {
@@ -2005,7 +3254,35 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1802-3",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1802-4",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1802-5",
+     "sirine": [
+      480,
+      720
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/Encypted NFC Smart Cards Set/NFCSmartCards1.jpg",
+    "Loxone/Encypted NFC Smart Cards Set/NFCSmartCards2.jpg",
+    "loxone-trgovina/1802/03-ph-shop-nfc_smart_cards-03.jpg",
+    "loxone-trgovina/1802/04-ph-shop-nfc_smart_cards-04.jpg",
+    "loxone-trgovina/1802/05-ph-shop-nfc_smart_cards-05.jpg"
    ],
    "slika2": {
     "id": "1802-2",
@@ -2035,7 +3312,18 @@
      "sirine": [
       480
      ]
+    },
+    {
+     "id": "1805-3",
+     "sirine": [
+      480
+     ]
     }
+   ],
+   "izvori": [
+    "Loxone/NFC Key Fob Set/KeyFobSet1.jpg",
+    "Loxone/NFC Key Fob Set/KeyFobSet2.jpg",
+    "loxone-trgovina/1805/03-ph-shop-200318-nfc-key-fob-set-03.jpg"
    ],
    "slika2": {
     "id": "1805-2",
@@ -2060,6 +3348,9 @@
       720
      ]
     }
+   ],
+   "izvori": [
+    "Loxone/SD kartica s firmwareom za miniserver/SDFirmware1.jpg"
    ]
   }
  }
