@@ -112,6 +112,12 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.55L21 8H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></svg>
         <span class="kosarica-brojac monr" data-kosarica-brojac hidden>0</span>
       </button>
+      <!-- Tema i jezik se ispod 1024 px sklanjaju u dijalog postavki: u traci
+           od 64 px uz kosaricu i izbornik za njih nema mjesta, a znak se od
+           gnjecenja spljosti. Iznad 1024 px ovaj gumb ne postoji. -->
+      <button class="ikona-gumb postavke-gumb" type="button" data-postavke-otvori aria-controls="postavke" aria-label="Otvori postavke">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.1"/><path d="M19.5 12a7.5 7.5 0 0 0-.13-1.36l2-1.55-1.9-3.3-2.36.95a7.5 7.5 0 0 0-2.36-1.36L14.4 2.9h-3.8l-.35 2.48a7.5 7.5 0 0 0-2.36 1.36L5.53 5.79l-1.9 3.3 2 1.55a7.5 7.5 0 0 0 0 2.72l-2 1.55 1.9 3.3 2.36-.95a7.5 7.5 0 0 0 2.36 1.36l.35 2.48h3.8l.35-2.48a7.5 7.5 0 0 0 2.36-1.36l2.36.95 1.9-3.3-2-1.55c.09-.44.13-.9.13-1.36z"/></svg>
+      </button>
       <button class="ikona-gumb otvori-izbornik" type="button" data-izbornik-prekidac aria-expanded="false" aria-controls="mobilni-izbornik" aria-label="Otvori izbornik">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
@@ -121,37 +127,85 @@
 
 <div class="zastor" data-izbornik-zastor hidden></div>
 <nav class="mobilni-izbornik" id="mobilni-izbornik" data-mobilni-izbornik hidden aria-label="Glavni izbornik">
-  <p class="oznaka">Tri kategorije usluga</p>
-  <a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a>
-  <a href="/#zavrsni-radovi">Završni radovi</a>
-  <a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a>
-  <a href="/webshop">Loxone smart home</a>
-  <p class="oznaka">Skupine proizvoda</p>
-  <div class="mob-cipovi">
-    <a class="mob-cip" href="/webshop?skupina=miniserveri">Miniserveri</a>
-    <a class="mob-cip" href="/webshop?skupina=prosirenja">Proširenja</a>
-    <a class="mob-cip" href="/webshop?skupina=doticajni-uredaji-i-tipkala">Doticajni uređaji i tipkala</a>
-    <a class="mob-cip" href="/webshop?skupina=senzori">Senzori</a>
-    <a class="mob-cip" href="/webshop?skupina=osvjetljenje">Osvjetljenje</a>
-    <a class="mob-cip" href="/webshop?skupina=upravljanje-osvjetljenjem">Upravljanje osvjetljenjem</a>
-    <a class="mob-cip" href="/webshop?skupina=audio-sustavi">Audio sustavi</a>
-    <a class="mob-cip" href="/webshop?skupina=aktuatori-i-pogoni">Aktuatori i pogoni</a>
-    <a class="mob-cip" href="/webshop?skupina=pametne-uticnice">Pametne utičnice</a>
-    <a class="mob-cip" href="/webshop?skupina=kabeli-i-konektori">Kabeli i konektori</a>
-    <a class="mob-cip" href="/webshop?skupina=dodatni-materijali">Dodatni materijali</a>
-  </div>
-  <a href="/najam-alata">Najam alata</a>
-  <p class="oznaka">Kategorije alata</p>
-  <div class="mob-cipovi">
-    <a class="mob-cip" href="/najam-alata?skupina=ljestve-i-skele">Ljestve i skele</a>
-    <a class="mob-cip" href="/najam-alata?skupina=rezanje-i-brusenje">Rezanje i brušenje</a>
-    <a class="mob-cip" href="/najam-alata?skupina=busenje-i-odvijanje">Bušenje i odvijanje</a>
-    <a class="mob-cip" href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a>
-  </div>
+  <details class="mob-skupina">
+    <summary class="mob-skupina__naslov">Usluge <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="mob-skupina__sadrzaj">
+      <a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a>
+      <a href="/#zavrsni-radovi">Završni radovi</a>
+      <a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a>
+    </div>
+  </details>
+  <details class="mob-skupina">
+    <summary class="mob-skupina__naslov">Loxone smart home <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="mob-skupina__sadrzaj">
+      <a href="/webshop">Cijeli katalog</a>
+      <p class="oznaka">Skupine proizvoda</p>
+      <div class="mob-cipovi">
+        <a class="mob-cip" href="/webshop?skupina=miniserveri">Miniserveri</a>
+        <a class="mob-cip" href="/webshop?skupina=prosirenja">Proširenja</a>
+        <a class="mob-cip" href="/webshop?skupina=doticajni-uredaji-i-tipkala">Doticajni uređaji i tipkala</a>
+        <a class="mob-cip" href="/webshop?skupina=senzori">Senzori</a>
+        <a class="mob-cip" href="/webshop?skupina=osvjetljenje">Osvjetljenje</a>
+        <a class="mob-cip" href="/webshop?skupina=upravljanje-osvjetljenjem">Upravljanje osvjetljenjem</a>
+        <a class="mob-cip" href="/webshop?skupina=audio-sustavi">Audio sustavi</a>
+        <a class="mob-cip" href="/webshop?skupina=aktuatori-i-pogoni">Aktuatori i pogoni</a>
+        <a class="mob-cip" href="/webshop?skupina=pametne-uticnice">Pametne utičnice</a>
+        <a class="mob-cip" href="/webshop?skupina=kabeli-i-konektori">Kabeli i konektori</a>
+        <a class="mob-cip" href="/webshop?skupina=dodatni-materijali">Dodatni materijali</a>
+      </div>
+    </div>
+  </details>
+  <details class="mob-skupina">
+    <summary class="mob-skupina__naslov">Najam alata <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <div class="mob-skupina__sadrzaj">
+      <a href="/najam-alata">Cijeli cjenik</a>
+      <p class="oznaka">Kategorije alata</p>
+      <div class="mob-cipovi">
+        <a class="mob-cip" href="/najam-alata?skupina=ljestve-i-skele">Ljestve i skele</a>
+        <a class="mob-cip" href="/najam-alata?skupina=rezanje-i-brusenje">Rezanje i brušenje</a>
+        <a class="mob-cip" href="/najam-alata?skupina=busenje-i-odvijanje">Bušenje i odvijanje</a>
+        <a class="mob-cip" href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a>
+      </div>
+    </div>
+  </details>
   <a href="/#zaposlenje">Zaposlenje</a>
-  <a href="/#kontakt">Kontakt</a>
-  <a href="tel:0038599 2057845"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.4a12 12 0 0 0 5.6 5.6L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.2 2 2 0 0 1 5.5 3z"/></svg> <span data-i18n="opce.nazovite">Nazovite</span></a>
+  <div class="mob-red">
+    <a href="/#kontakt">Kontakt</a>
+    <a href="tel:0038599 2057845"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.4a12 12 0 0 0 5.6 5.6L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.2 2 2 0 0 1 5.5 3z"/></svg> <span data-i18n="opce.nazovite">Nazovite</span></a>
+  </div>
 </nav>
+
+<!--
+  Postavke. Sadrzaj su ISTE kontrole koje stoje u traci, ne njihova kopija:
+  temu i dalje vodi js/tema.js preko delegiranog slusaca, a jezicna traka su
+  i ovdje obicne poveznice.
+-->
+<dialog class="postavke prozor" id="postavke" data-postavke aria-label="Postavke">
+  <div class="prozor__traka" data-zivo="crta">
+    <span class="prozor__tocka"></span><span class="prozor__tocka"></span><span class="prozor__tocka"></span>
+    <span class="prozor__naslov">postavke.hes</span>
+    <button class="ikona-gumb ikona-gumb--sitni prozor__zatvori" type="button" data-postavke-zatvori aria-label="Zatvori postavke">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="postavke__tijelo">
+    <div class="postavke__red">
+      <span class="oznaka">Tema</span>
+      <button class="ikona-gumb tema-gumb" type="button" data-tema-gumb aria-label="Prebaci temu">
+        <svg class="ikona-sunce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ikona-mjesec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <div class="postavke__red">
+      <span class="oznaka">Jezik</span>
+      <nav class="jezici staklo" aria-label="Jezik">
+        <a href="/proizvodi/touch-pure-for-nano" hreflang="hr" aria-current="true">hr</a>
+        <a href="/de/proizvodi/touch-pure-for-nano" hreflang="de">de</a>
+        <a href="/en/proizvodi/touch-pure-for-nano" hreflang="en">en</a>
+      </nav>
+    </div>
+  </div>
+</dialog>
 
 <main id="sadrzaj">
 
@@ -189,7 +243,10 @@
     <div class="proizvod-stranica__mreza">
 
       <!-- Galerija: video + fotografije, crta je js/proizvod.js -->
-      <div class="proizvod-stranica__medij" data-galerija-nosac></div>
+      <!-- Kadar se pokrece sam svakih 10 s dok je galerija u vidokrugu; ciklus
+           vodi js/interakcije.js, a klik po videu ga pauzira. Atribut stoji na
+           NOSACU jer njega js/proizvod.js ne zamjenjuje, nego mu puni sadrzaj. -->
+      <div class="proizvod-stranica__medij" data-galerija-nosac data-video-ciklus="10000"></div>
 
       <div class="proizvod-stranica__podaci">
         <p class="oznaka">Doticajni uređaji i tipkala · Touch pure serija</p>
@@ -260,7 +317,6 @@
           </dl>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -315,18 +371,15 @@
           <li><a href="/#zaposlenje">Zaposlenje</a></li>
         </ul>
       </div>
-      <div>
-        <h3>Adresa</h3>
-        <p class="podnozje__rupa">Adresa, sjedište, OIB i radno vrijeme još nisu dostavljeni.</p>
-      </div>
     </div>
     <div class="podnozje__dno">
       <span>Hranj electrical services d.o.o.</span>
-      <nav class="jezici staklo" aria-label="Jezik">
-        <a href="/proizvodi/touch-pure-for-nano" hreflang="hr" aria-current="true">hr</a>
-        <a href="/de/proizvodi/touch-pure-for-nano" hreflang="de">de</a>
-        <a href="/en/proizvodi/touch-pure-for-nano" hreflang="en">en</a>
-      </nav>
+      <!-- Jezicna traka je odavde maknuta: ista stoji u zaglavlju, a na dnu
+           duge stranice korisnija je tipka koja vraca na vrh. -->
+      <button class="na-vrh" type="button" data-na-vrh>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+        <span>Na vrh</span>
+      </button>
     </div>
   </div>
 </footer>

@@ -119,36 +119,53 @@
  * rail i tablicu iznad — oba skupa pravila zive u ovoj datoteci jer ih
  * pokrece isti modul.
  */
+/*
+ * Mreza 2x2, izricito rasporedena:
+ *
+ *   naslov      pretraga
+ *   napomena    (prazno)
+ *
+ * Polje je time u ISTOM retku kao naslov i `center` ga poravna na njegovu
+ * sredinu, pa stoji na crti naslova bez obzira koliko se napomena ispod
+ * prelomi. Automatsko slaganje bi napomenu gurnulo u drugi stupac.
+ */
 .trgovina__glava {
   display: grid;
-  gap: var(--p3);
-  justify-items: start;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--p3) var(--p6);
   margin-bottom: var(--p6);
 }
+.trgovina__glava > .naslov-2 { grid-area: 1 / 1; }
+.trgovina__glava > .trazilica { grid-area: 1 / 2; }
+.trgovina__glava > .napomena-cijene { grid-area: 2 / 1; }
 
 /* --- pretraga ----------------------------------------------------- */
 /*
- * Sirina je ogranicena na 560 px, ne na cijeli stupac od 1240 px: polje za
- * pretragu preko cijele sirine ekrana izgleda kao traka preglednika, a upit
- * je ionako dvije rijeci. `justify-self` je nuzan jer glava ima
- * `justify-items: start`, pa bi se inace stisnula na sirinu sadrzaja.
+ * Sirina je 380 px, ne cijeli stupac: polje preko cijele sirine izgleda kao
+ * traka preglednika, a upit je ionako dvije rijeci. Stoji u desnom stupcu
+ * glave, u istom retku s naslovom.
  */
 .trazilica {
   position: relative;
   display: flex;
   align-items: center;
-  justify-self: stretch;
-  width: min(100%, 560px);
-  margin-top: var(--p2);
+  justify-self: end;
+  width: min(100%, 380px);
 }
 .trazilica__ikona {
   position: absolute;
   left: var(--p4);
+  display: grid;
+  place-items: center;
   width: 18px;
   height: 18px;
   color: var(--tekst-4);
+  /* Klik prolazi kroz ikonu do polja — osim na mobitelu, gdje je ona jedino
+     sto se vidi i mora primiti dodir (vidi mobilni blok nize). */
   pointer-events: none;
 }
+.trazilica__ikona svg { width: 18px; height: 18px; }
 .trazilica input {
   width: 100%;
   padding: var(--p3) var(--p5) var(--p3) calc(var(--p4) + 18px + var(--p3));
@@ -245,6 +262,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--p2);
+  min-width: 0;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -568,11 +586,16 @@
 
 .proizvod__stanje { margin: var(--p1) 0 0; }
 
-@media (max-width: 520px) {
-  .mreza-proizvoda { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--p3); }
-  .proizvod__tijelo { padding: var(--p3); }
-  .proizvod__ime { font-size: 14px; }
-  .u-kosaricu { width: 40px; }
+/*
+ * Ispod 600 px jedan proizvod po retku (zahtjev klijenta).
+ *
+ * Dva u redu na 360 px dala su karticu od 150 px: kadar 3:2 visok 100 px,
+ * naziv prelomljen na tri retka i brojac uz gumb koji se dodiruje jedva. Puna
+ * sirina vraca kadru mjeru na kojoj se proizvod prepozna.
+ */
+@media (max-width: 599px) {
+  .mreza-proizvoda { grid-template-columns: 1fr; gap: var(--p3); }
+  .proizvod__tijelo { padding: var(--p4); }
 }
 
 /* ================================================================== */
@@ -749,9 +772,14 @@
   padding: 0 0 var(--p3);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
+  /* Traka je skrivena na zahtjev klijenta. Klizanje ostaje — prstom, kotacicem
+     i strelicama — a `scroll-snap` na svakom zaustavljanju pokaze da se staza
+     mice, pa se ne gubi nagovjestaj koji je traka nosila. Isti postupak kao na
+     `.kat-traka__popis`. */
+  scrollbar-width: none;
   overscroll-behavior-x: contain;
 }
+.karusel__staza::-webkit-scrollbar { display: none; }
 .karusel__staza > .proizvod { scroll-snap-align: start; }
 
 .karusel__strelica {
@@ -790,7 +818,7 @@
 .proizvod__kadar--veza { display: block; }
 
 /* ================================================================== */
-/* Sazetak iznad tablice                                               */
+/* Sazetak iznad mreze cjenika                                         */
 /* ================================================================== */
 .sazetak {
   display: flex;
@@ -802,16 +830,10 @@
   border-bottom: 1px solid var(--rub);
 }
 .sazetak__lijevo { display: flex; align-items: baseline; gap: var(--p3); }
-.sortiranje { margin-left: auto; }
-.sortiranje select {
-  padding: var(--p2) var(--p3);
-  border: 1px solid var(--rub);
-  border-radius: var(--r-mali);
-  background: var(--ploha-2);
-  color: var(--tekst-2);
-  font-size: var(--vel-malo);
-  cursor: pointer;
-}
+/* `.sortiranje` s nativnim <select> je obrisan: cjenik sada koristi isti
+   `.sort` izbornik kao webshop, pa se dvije zalihe ne razlikuju ni u jednoj
+   kontroli. U sazetku ga treba gurnuti udesno. */
+.sazetak .sort { margin-left: auto; }
 
 /* Aktivni filtri kao cipovi: najcesci potez je maknuti jedan filtar, a to
    ovdje ne trazi ni otvaranje raila ni lista. */
@@ -837,93 +859,125 @@
   }
 }
 
-/* ================================================================== */
-/* Tablica                                                             */
-/* ================================================================== */
-.tablica {
-  width: 100%;
-  border-collapse: collapse;
-}
-.tablica th {
-  padding: var(--p2) var(--p3);
-  border-bottom: 1px solid var(--rub-jaci);
-  font-size: var(--vel-oznaka);
-  font-weight: 500;
-  letter-spacing: var(--razmak-oznaka);
-  text-transform: uppercase;
-  color: var(--tekst-4);
-  text-align: left;
-}
-.tablica th:nth-child(3) { text-align: right; }
-.tablica td {
-  padding: var(--p3);
-  border-bottom: 1px solid var(--rub);
-  vertical-align: middle;
-}
-.tablica tbody tr {
-  transition: background var(--brzo) var(--krivulja);
-}
-@media (hover: hover) and (pointer: fine) {
-  /*
-   * Redak tablice mijenja samo plohu, bez pomaka. `transform` na <tr> je
-   * dopusten, ali odvaja redak od okvira tablice i na 59 redaka daje
-   * poskakivanje rubova; ovdje je ploha dovoljna.
-   *
-   * Sjaj iza cijene koji se ovdje nekad palio je uklonjen zajedno s
-   * `.cijena::before` u app.css.
-   */
-  .tablica tbody tr:hover { background: var(--plohica); }
-}
-
-.tablica__naziv { display: grid; gap: 2px; }
-.tablica__ime { font-weight: 500; }
-.tablica__meta { font-size: 11px; color: var(--tekst-4); letter-spacing: 0.04em; }
-.tablica__stanje { width: 1%; white-space: nowrap; }
-.tablica__cijena { width: 1%; white-space: nowrap; text-align: right; }
-.tablica__akcija { width: 1%; text-align: right; }
-.gumb--usko { padding-inline: var(--p3); min-height: 36px; font-size: 13px; }
-
-.prazno {
-  display: grid;
-  gap: var(--p4);
-  justify-items: start;
-  padding: var(--p8) var(--p5);
-  border: 1px dashed var(--rub-jaci);
-  border-radius: var(--r-ploha);
-}
-
 /*
- * Ispod 900 px tablica se pretvara u kartice. Vodoravno klizanje tablice je
- * gore od preslagivanja: cijena i gumb zavrse izvan ekrana, a to su tocno
- * dvije stvari zbog kojih je posjetitelj i dosao.
+ * Ispod 900 px rail nestaje i filtri se sele u donji list. Pravila koja su
+ * ovdje pretvarala tablicu u kartice obrisana su zajedno s tablicom: cjenik
+ * sada crta istu mrezu kartica kao i webshop, pa i ovdje vrijedi ono sto pise
+ * za `.mreza-proizvoda`.
  */
 @media (max-width: 899px) {
   .katalog__mreza { grid-template-columns: 1fr; gap: var(--p5); }
   .rail { display: none; }
+}
 
-  .tablica thead { display: none; }
-  .tablica,
-  .tablica tbody,
-  .tablica tr,
-  .tablica td { display: block; width: auto; }
-  .tablica tr {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--p2) var(--p3);
-    align-items: center;
-    padding: var(--p4);
-    margin-bottom: var(--p3);
-    border: 1px solid var(--rub);
-    border-radius: var(--r-kartica);
-    background: var(--ploha-2);
+/* ================================================================== */
+/* Katalog na mobitelu                                                 */
+/* ================================================================== */
+/*
+ * Ispod 720 px glava kataloga se svodi na jednu kontrolu.
+ *
+ * Naslov "Loxone komponente" i napomena o cijenama izlaze (zahtjev klijenta):
+ * traka skupina ispod njih kaze isto, a na ekranu na kojem stanu dvije
+ * kartice pet redaka uvoda je peti dio prvog zaslona.
+ *
+ * Pretraga se skupi u samu ikonu i siri se na `:focus-within`. Ikona je
+ * <label for>, pa je klik po njoj ujedno i fokus polja — cijelo otvaranje
+ * radi bez ijednog reda JS-a i bez stanja koje bi se moglo raspetljati.
+ */
+/*
+ * Traka kategorija u cjeniku najma postoji samo dok rail ne postoji. Iznad
+ * 900 px oba bi izbornika radila isti posao, a dva mjesta na koja se klika
+ * isto uvijek se raziđu.
+ */
+.kat-traka--mobilna { display: none; }
+@media (max-width: 899px) {
+  .kat-traka--mobilna { display: block; }
+}
+
+@media (max-width: 719px) {
+  /* Naslov i napomena izlaze; pretraga preuzima cijelu glavu. */
+  .trgovina__glava > .naslov-2,
+  .trgovina__glava > .napomena-cijene { display: none; }
+  .trgovina__glava { grid-template-columns: 1fr; }
+  .trgovina__glava > .trazilica { grid-area: auto; }
+
+  /*
+   * Bez naslova gornji razmak sekcije (48 px) stoji nad ikonom od 44 px i
+   * cita se kao rupa izmedu trake i kataloga. Naslov ga je prije popunjavao;
+   * sada ga nema pa se i razmak skracuje na pola.
+   */
+  .trgovina.polje--zbijeno { padding-top: var(--p5); }
+  .trgovina__glava { margin-bottom: var(--p3); }
+  .trgovina__glava { margin-bottom: var(--p4); }
+
+  .trazilica {
+    width: 44px;
+    transition: width var(--srednje) var(--krivulja);
   }
-  .tablica td { padding: 0; border: 0; }
-  .tablica__naziv { grid-column: 1 / -1; }
-  .tablica__stanje { grid-column: 1; text-align: left; }
-  .tablica__cijena { grid-column: 2; grid-row: 2; text-align: right; }
-  .tablica__akcija { grid-column: 1 / -1; text-align: left; }
-  .tablica__akcija .gumb { width: 100%; }
+  .trazilica__ikona {
+    left: 0;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--rub);
+    border-radius: var(--r-pilula);
+    background: var(--ploha-2);
+    color: var(--tekst-2);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .trazilica input {
+    padding-inline: 0;
+    border-color: transparent;
+    background: transparent;
+    opacity: 0;
+  }
+
+  .trazilica:focus-within { width: 100%; }
+  .trazilica:focus-within .trazilica__ikona {
+    left: var(--p4);
+    width: 18px;
+    height: 18px;
+    border: 0;
+    background: none;
+    color: var(--tekst-4);
+    pointer-events: none;
+  }
+  .trazilica:focus-within input {
+    padding-inline: calc(var(--p4) + 18px + var(--p3)) var(--p5);
+    border-color: var(--rub);
+    background: var(--ploha-2);
+    opacity: 1;
+  }
+
+  /*
+   * Podkategorije u JEDNOM redu koji klizi vodoravno, bez vidljive trake.
+   * U prelamanju je 12 pilula zauzimalo tri retka i guralo mrezu ispod
+   * vidljivog dijela ekrana. Isti postupak kao na traci skupina iznad.
+   */
+  /*
+   * Pilule i sortiranje NE dijele redak.
+   *
+   * Kad su stajali jedan uz drugoga, klizna traka pilula i izbornik
+   * sortiranja borili su se za istu sirinu, a otvoreni izbornik je padao
+   * preko trake kategorija iznad. Pilule sada uzimaju cijeli redak (`100%`
+   * na `flex-basis` prelama redak i bez `nowrap` na roditelju), a izbornik
+   * stoji sam ispod njih, poravnat udesno.
+   */
+  .pod-traka { flex-wrap: wrap; gap: var(--p2); }
+  .pod-traka__popis {
+    flex: 1 1 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    padding-bottom: var(--p1);
+  }
+  .pod-traka .sort { margin-left: auto; }
+  /* Ploca izbornika ne smije izaci iz ekrana kad se otvori uz desni rub. */
+  .sort__popis { max-width: calc(100vw - 2 * var(--p5)); }
+  .pod-traka__popis::-webkit-scrollbar { display: none; }
+  .pod-cip { scroll-snap-align: start; }
 }
 
 /* ================================================================== */
@@ -1004,153 +1058,10 @@
 .list__tijelo .rail { position: static; max-height: none; overflow: visible; }
 
 /* ================================================================== */
-/* Ladica kosarice                                                     */
-/* ================================================================== */
-.ladica {
-  width: min(440px, 100%);
-  max-width: 100%;
-  height: 100dvh;
-  max-height: 100dvh;
-  margin: 0 0 0 auto;
-  padding: 0;
-  border: 0;
-  border-left: 1px solid var(--rub);
-  background: var(--ploha-1);
-  color: var(--tekst);
-  box-shadow: var(--sjena-plohe);
-}
-.ladica::backdrop {
-  background: color-mix(in oklab, #000 45%, transparent);
-  backdrop-filter: blur(3px);
-}
-/* Dva retka, tijelo klizi: gumb "Zatrazite ponudu" na dnu tijela mora biti
-   dohvatljiv i kad je kosarica duga. */
-.ladica[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
-.ladica__vrh {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--p3);
-  padding: var(--p4) var(--p5);
-  border-bottom: 1px solid var(--rub);
-}
-.ladica__tijelo { overflow-y: auto; padding: var(--p5); display: grid; gap: var(--p6); align-content: start; }
-
-.ladica__skupina { display: grid; gap: var(--p3); }
-.ladica__zaglavlje { display: flex; align-items: baseline; justify-content: space-between; gap: var(--p3); }
-.ladica__popis { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--p3); }
-
-.ladica__stavka {
-  display: grid;
-  gap: var(--p2);
-  padding: var(--p4);
-  border: 1px solid var(--rub);
-  border-radius: var(--r-kartica);
-  background: var(--ploha-2);
-}
-
-/*
- * Stavka sa slicicom: slika lijevo, podaci desno.
- *
- * Stavke bez slike (najam alata — ondje nema nijedne fotografije) zadrzavaju
- * stari jednostupacni raspored umjesto da dobiju prazan kvadrat, pa se dvije
- * skupine u kosarici i dalje citaju kao dvije stvari.
- */
-.ladica__stavka--sa-slikom {
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: var(--p3);
-  align-items: start;
-}
-.ladica__podaci { display: grid; gap: var(--p2); min-width: 0; }
-
-/*
- * Slicica je BIJELA u obje teme, iz istog razloga iz kojeg i kartica u mrezi:
- * fotografije su isporucene na bijeloj pozadini. Na tamnoj plohi bi svaka
- * stavka kosarice bila bijeli kvadrat u tamnom okviru.
- */
-.ladica__slika {
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  border: 1px solid var(--rub);
-  border-radius: var(--r-mali);
-  background: #FFFFFF;
-}
-.ladica__slika img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.ladica__glava { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--p3); }
-.ladica__ime { font-weight: 500; font-size: var(--vel-malo); }
-.ladica__red { display: flex; align-items: center; gap: var(--p3); flex-wrap: wrap; }
-.ladica__red .cijena { margin-left: auto; }
-.ladica__dana { white-space: nowrap; }
-
-.ladica__datumi { display: grid; grid-template-columns: 1fr 1fr; gap: var(--p2); }
-.ladica__datumi label { display: grid; gap: 2px; }
-.ladica__datumi input {
-  padding: var(--p2) var(--p3);
-  border: 1px solid var(--rub);
-  border-radius: var(--r-mali);
-  background: var(--ploha-0);
-  color: var(--tekst);
-  /* 16 px sprjecava iOS da sam zumira pri fokusu polja. */
-  font-size: 16px;
-  font-variant-numeric: tabular-nums;
-}
-
-.brojac {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--p1);
-  border: 1px solid var(--rub);
-  border-radius: var(--r-pilula);
-  padding: 2px;
-}
-.brojac button {
-  width: 28px;
-  height: 28px;
-  border: 0;
-  border-radius: 50%;
-  background: none;
-  color: var(--tekst-2);
-  font-size: 16px;
-  line-height: 1;
-  cursor: pointer;
-  transition: background var(--brzo) var(--krivulja), color var(--brzo) var(--krivulja), transform var(--brzo) var(--krivulja);
-}
-@media (hover: hover) and (pointer: fine) {
-  .brojac button:hover {
-    background: var(--plohica);
-    color: var(--tekst);
-    transform: var(--pop-ikone);
-  }
-}
-.brojac span { min-width: 22px; text-align: center; font-size: var(--vel-malo); font-variant-numeric: tabular-nums; }
-
-.ladica__zbroj {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--p3);
-  padding-top: var(--p3);
-  border-top: 1px solid var(--rub);
-}
-.ladica__ograda { font-size: 13px; }
-.ladica__upozorenje { color: var(--opasnost); font-size: 13px; font-weight: 500; }
-.ladica__dno { display: grid; gap: var(--p2); }
-.ladica__dno .gumb { width: 100%; }
-.ladica__dno .gumb[disabled] { opacity: 0.45; cursor: default; }
-.ladica__prazno { display: grid; gap: var(--p3); justify-items: start; }
-
-.ikona-gumb--sitni { width: 28px; height: 28px; border: 0; }
-.ikona-gumb--sitni svg { width: 14px; height: 14px; }
-
-/* ================================================================== */
 /* Sitno                                                               */
 /* ================================================================== */
-.hero--niski { min-height: min(60vh, 560px); }
+/* `.hero--niski` je obrisan s herojem /najam-alata; bio je jedini koji ga je
+   koristio. */
 
 .hero__cinjenice {
   display: grid;
@@ -1198,17 +1109,6 @@
 }
 .obitelji__broj { font-size: 11px; color: var(--hes-tekst); }
 
-.putovi {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--p4);
-}
-.putovi .kartica__cta {
-  border: 0;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
-}
+/* `.putovi` je obrisan sa sekcijom "Zatrazite ponudu za najam". */
 
 .napomena-cijene { max-width: 56ch; }

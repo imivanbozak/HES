@@ -37,6 +37,7 @@ const KORIJEN = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const IZVOR_SLIKA = path.join(KORIJEN, "assets", "Loxone");
 const IZVOR_VIDEA = path.join(KORIJEN, "assets", "old-products");
 const IZVOR_TRGOVINE = path.join(KORIJEN, "assets", "loxone-trgovina");
+const IZVOR_ALATA = path.join(KORIJEN, "assets", "Alati");
 const IZLAZ = path.join(KORIJEN, "assets", "proizvodi");
 const MANIFEST = path.join(KORIJEN, "assets", "mediji.json");
 const PRISILNO = process.argv.includes("--force");
@@ -244,6 +245,49 @@ const MAPA = [
  * "Videos" je duplikat jednog videa koji vec stoji u old-products; "New folder"
  * je prazan. Bez ovog popisa bi provjera potpunosti javila dva laznja.
  */
+/**
+ * Alat -> fotografije. Isti razlog za rucnu tablicu kao gore, plus dva svoja:
+ *
+ *  1. Imena mapa nose zagrade i napone ("Bosch GEX 18V-125 (18V)"), a nazivi u
+ *     katalogu ne ("Bosch GEX 18V-125"). Poklapanje po imenu bi promasilo
+ *     upravo ondje gdje se najlakse ne primijeti.
+ *  2. Tri artikla NEMAJU svoju fotografiju. Umjesto praznog kadra dobivaju
+ *     najblizu srodnu, a koja je to pise ovdje uz svaki — da se pri sljedecoj
+ *     posiljci zna sto treba zamijeniti.
+ *
+ * Mape "Bosch GBH 18V-21" i "Bosch GST 18V-125 S" namjerno stoje neupotrijebljene:
+ * ta dva alata nisu u cjeniku. Ako udu, ovdje im je mjesto.
+ */
+const MAPA_ALATA = [
+  /* --- ljestve i skele ---------------------------------------------- */
+  { id: "1210", slike: ["PROTUBE-F360/PROTUBE-F360.jpg", "PROTUBE-F360/PROTUBE-F360 2.jpg"] },
+  // Srodna: K+K 235628 nema svoju snimku, a 235636 su iste ljestve drugog broja.
+  { id: "1209", slike: ["k+k 235636.jpeg"] },
+  { id: "1207", slike: ["k+k 235636.jpeg"] },
+
+  /* --- rezanje i brusenje ------------------------------------------- */
+  { id: "1205", slike: ["Bosch GTS 10 J Professional/Bosch GTS 10 J Professional.jpg"] },
+  { id: "1197", slike: ["Bosch GWS 18V-10/Bosch GWS 18V-10.webp", "Bosch GWS 18V-10/Bosch GWS 18V-10 2.jpg", "Bosch GWS 18V-10/Bosch GWS 18V-10 3.jpg"] },
+  { id: "1191", slike: ["Bosch GEX 18V-125 (18V)/Bosch GEX 18V-125 (18V).jpeg", "Bosch GEX 18V-125 (18V)/Bosch GEX 18V-125 (18V) 2.jpg"] },
+  { id: "1188", slike: ["Bosch GRO 12V-35 (12V)/Bosch GRO 12V-35 (12V).jpg", "Bosch GRO 12V-35 (12V)/Bosch GRO 12V-35 (12V) 2.jpg"] },
+  { id: "1180", slike: ["Bosch GKS 12V-26 (12V)/Bosch GKS 12V-26 (12V).jpg", "Bosch GKS 12V-26 (12V)/Bosch GKS 12V-26 (12V) 2.jpg"] },
+  { id: "1170", slike: ["GWS 12V-76/GWS 12V-76.jpg", "GWS 12V-76/GWS 12V-76 2.jpg"] },
+
+  /* --- busenje i odvijanje ------------------------------------------ */
+  { id: "1194", slike: ["Bosch GSR 18V-55/Bosch GSR 18V-55.jpg", "Bosch GSR 18V-55/Bosch GSR 18V-55 2.jpg"] },
+  { id: "1177", slike: ["Bosch GDS 18V-450 HC (18V)/Bosch GDS 18V-450 HC (18V).jpg", "Bosch GDS 18V-450 HC (18V)/Bosch GDS 18V-450 HC (18V) 2.jpg"] },
+  { id: "1175", slike: ["Bosch GDR/Bosch GDR.jpeg", "Bosch GDR/Bosch GDR 2.jpeg"] },
+  { id: "1134", slike: ["Bosch GSR 12V-15 FC/Bosch GSR 12V-15 FC.jpeg", "Bosch GSR 12V-15 FC/Bosch GSR 12V-15 FC 2.jpeg"] },
+  // Srodna: nastavak magazina MA 55 stoji na snimci GSR 6-25 TE + MA.
+  { id: "1176", slike: ["Bosch GDR/Bosch GSR 6-25 TE + MA.jpeg"] },
+  // Srodna: "12 V System" je oznaka platforme, ne jedan artikl; stoji joj
+  // najprodavaniji predstavnik iz iste serije.
+  { id: "1185", slike: ["Bosch GSR 12V-15 FC/Bosch GSR 12V-15 FC.jpeg"] },
+
+  /* --- usisavaci i otprasivanje ------------------------------------- */
+  { id: "1201", slike: ["Bosch GAS 12-25 PL/Bosch GAS 12-25 PL.png", "Bosch GAS 12-25 PL/Bosch GAS 12-25 PL2.jpg"] },
+];
+
 const NIJE_PROIZVOD = new Set(["Videos", "New folder"]);
 
 /* ================================================================== */
@@ -352,6 +396,36 @@ function kadarIzVidea(putanjaVidea) {
     ["-v", "error", "-i", putanjaVidea, "-frames:v", "1", "-f", "image2pipe", "-vcodec", "png", "-"],
     { maxBuffer: 64 * 1024 * 1024 }
   );
+}
+
+/**
+ * Ujednacavanje fotografije alata.
+ *
+ * Klijentove snimke jesu sve na bijelom, ali tu slicnost prestaje: 432x528,
+ * 1000x1000, 786x600, jedna .png s alfom, i svaka sa svojim rubom praznine.
+ * U mrezi kartica to izgleda kao da su slike iz cetiri razlicita izvora —
+ * jedan alat ispuni kadar, susjedni pluta u sredini.
+ *
+ * Cetiri koraka, tim redom:
+ *   flatten  .png s alfom dobiva bijelo, da trim ima sto rezati
+ *   trim     odsijeca postojeci bijeli rub, koliki god bio
+ *   resize   uklapa predmet u 1104x736 bez rezanja (fit: contain)
+ *   extend   dodaje ISTU marginu svima -> 1200x800, tocno 3:2
+ *
+ * 3:2 nije proizvoljno: to je omjer svih 59 Loxone fotografija i svih videa,
+ * pa alati sjednu u istu mrezu bez ijednog novog pravila u CSS-u.
+ *
+ * Prag od 12 (od 255) je za JPEG sum oko predmeta — na 0 trim ne bi odrezao
+ * nista jer "bijelo" u JPEG-u nije #FFFFFF.
+ */
+function ujednaciAlat(putanja) {
+  return sharp(putanja)
+    .flatten({ background: "#ffffff" })
+    .trim({ background: "#ffffff", threshold: 12 })
+    .resize({ width: 1104, height: 736, fit: "contain", background: "#ffffff" })
+    .extend({ top: 32, bottom: 32, left: 48, right: 48, background: "#ffffff" })
+    .png()
+    .toBuffer();
 }
 
 // `izvor` je putanja do fotografije ILI buffer s kadrom izvucenim iz videa —
@@ -469,6 +543,23 @@ async function provjeriPotpunost(katalog) {
         greske.push(
           `pocetna: ${zapis.pocetna} izvan raspona za ${zapis.mapa} (ima ${koliko} fotografija)`
         );
+      }
+    }
+  }
+
+  /* --- alati ------------------------------------------------------- */
+  const idAlata = new Set(katalog.artikli.filter((a) => a.vrsta === "alat").map((a) => String(a.id)));
+  const mapiraniAlati = new Set(MAPA_ALATA.map((z) => z.id));
+
+  for (const id of idAlata) {
+    if (!mapiraniAlati.has(id)) greske.push(`alat iz cjenika nije u tablici: ${id}`);
+  }
+  for (const zapis of MAPA_ALATA) {
+    if (!idAlata.has(zapis.id)) greske.push(`tablica alata ima id kojeg nema u cjeniku: ${zapis.id}`);
+    if (!zapis.slike?.length) greske.push(`alat ${zapis.id} nema nijednu fotografiju u tablici`);
+    for (const relativna of zapis.slike ?? []) {
+      if (!existsSync(path.join(IZVOR_ALATA, relativna))) {
+        greske.push(`nema fotografije alata: assets/Alati/${relativna}`);
       }
     }
   }
@@ -639,6 +730,35 @@ async function glavno() {
   }
 
   /*
+   * Alati. Odvojena petlja jer im je ulaz drugaciji u svemu osim u izlazu:
+   * nema videa, nema trgovine, nema dvojnika koje treba prepoznati — ali
+   * svaka fotografija prolazi kroz `ujednaciAlat` prije nego dotakne isti
+   * cjevovod. Manifest je isti, pa ih `js/katalog.js` pripaja artiklima bez
+   * ijednog reda razlike prema Loxone artiklima.
+   */
+  let alata = 0;
+  for (const zapis of MAPA_ALATA) {
+    const oznake = zapis.slike.map((r) => `Alati/${r}`);
+    const promijenjen =
+      JSON.stringify(prijasnji[zapis.id]?.izvori ?? null) !== JSON.stringify(oznake);
+
+    const galerija = [];
+    for (const [i, relativna] of zapis.slike.entries()) {
+      const ujednacena = await ujednaciAlat(path.join(IZVOR_ALATA, relativna));
+      const kadar = await pretvori(ujednacena, `${zapis.id}-${i + 1}`, PRISILNO || promijenjen);
+      varijanti += kadar.napravljeno;
+      bajtova += kadar.bajtovaUkupno;
+      omjeri.add((kadar.sirina / kadar.visina).toFixed(2));
+      galerija.push({ id: kadar.osnova, sirine: kadar.sirine });
+    }
+
+    const unos = { slika: galerija[0], galerija, izvori: oznake };
+    if (galerija.length > 1) unos.slika2 = galerija[1];
+    manifest[zapis.id] = unos;
+    alata += 1;
+  }
+
+  /*
    * Kad se galerija skrati (Touch Pure for Nano je s dvije fotografije pao na
    * jednu), datoteke s visim rednim brojem ostaju lezati u izlazu. Nitko ih
    * vise ne trazi, ali stoje u repozitoriju i citaju se kao da su zive.
@@ -665,7 +785,7 @@ async function glavno() {
     JSON.stringify(
       {
         generirano: "scripts/proizvodi.mjs",
-        izvor: ["assets/Loxone", "assets/old-products", "assets/loxone-trgovina"],
+        izvor: ["assets/Loxone", "assets/old-products", "assets/loxone-trgovina", "assets/Alati"],
         sirine: SIRINE,
         proizvodi: manifest,
       },
@@ -689,6 +809,7 @@ async function glavno() {
   if (prezidanih) {
     console.log(`      ${prezidanih} artikla sa svjezim popisom izvora — njima su datoteke prezidane`);
   }
+  console.log(`      ${alata} alata iz najma, ujednacenih na 1200x800 na bijelom`);
   console.log(`      ${varijanti} novih varijanti · ${kb(bajtova)} ukupno u assets/proizvodi/`);
   console.log(
     `      omjer izvora: ${[...omjeri].join(", ")}  ${BOJA.sivo}(1.50 = 3:2, isti kao videi)${BOJA.kraj}`

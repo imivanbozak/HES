@@ -15,14 +15,15 @@ import { adresaProizvoda } from "./adrese.js";
 import { stvoriFiltre } from "./filtri.js";
 import {
   railHtml,
-  tablicaHtml,
   mrezaHtml,
   trakaKategorijaHtml,
   trakaPodskupinaHtml,
+  sortHtml,
   sBrojem,
   esc,
 } from "./pogledi.js";
 import * as kosarica from "./kosarica.js";
+import * as potvrda from "./potvrda.js";
 import { otvori as otvoriLadicu } from "./ladica.js";
 import { pokreniOtkrivanje } from "./pokret.js";
 import { pokreniVideoNaHover } from "./interakcije.js";
@@ -65,6 +66,19 @@ export async function pokreniTrgovinu(korijen) {
 
   const filtri = stvoriFiltre({ katalog, vrsta, naPromjenu: crtaj });
 
+  /*
+   * Webshop uvijek stoji na jednoj skupini.
+   *
+   * Kartica "Sve" je maknuta na zahtjev klijenta, pa katalog vise nema stanje
+   * "nijedna skupina" — pri dolasku na /webshop zakvaci se prva (Miniserveri).
+   * Postavlja se OVDJE, u pogledu, a ne u js/filtri.js: ondje je zadano stanje
+   * "bez filtera = svih 59" i na tome vise scripts/provjere.mjs, pa bi promjena
+   * u motoru srusila dvije provjere zbog odluke koja je cisto stvar prikaza.
+   *
+   * Najam ostaje bez zakvacene skupine: ondje rail slijeva ima svoju "Sve".
+   */
+  const prvaSkupina = vrsta === "loxone" ? katalog.obitelji("loxone")[0]?.id ?? null : null;
+
   /**
    * Naziv podskupine artikla — drugi redak kartice.
    *
@@ -85,7 +99,7 @@ export async function pokreniTrgovinu(korijen) {
   function crtaj(popis, stanje) {
     if (vrsta === "loxone") {
       popisSpremnik.innerHTML = mrezaHtml(popis, {
-        uKosarici: (id) => kosarica.sadrzi(id),
+        potvrden: (id) => potvrda.jePotvrden(id),
         kolicine,
         podskupinaZa,
         // Ime i fotografija vode na stranicu artikla; gumbi za kolicinu i
@@ -109,15 +123,33 @@ export async function pokreniTrgovinu(korijen) {
       // prethodni <video> cvorovi upravo zamijenjeni.
       pokreniVideoNaHover(popisSpremnik);
     } else {
-      popisSpremnik.innerHTML = tablicaHtml(popis, {
-        osnova: vrsta === "alat" ? "dan" : "kom",
-        uKosarici: (id) => kosarica.sadrzi(id),
+      // Ista mreza kartica kao na webshopu. Tablica je ovdje stajala dok alati
+      // nisu imali nijednu fotografiju; sada ih imaju svih sesnaest
+      // (scripts/proizvodi.mjs), pa nema razloga da cjenik izgleda kao drugi
+      // proizvod. Alati nemaju svoju stranicu, pa `veza` izostaje i naziv
+      // ostaje obican tekst.
+      popisSpremnik.innerHTML = mrezaHtml(popis, {
+        potvrden: (id) => potvrda.jePotvrden(id),
+        kolicine,
+        podskupinaZa,
+        osnova: "dan",
       });
 
       const railKod = railHtml(katalog, filtri, vrsta);
       if (railSpremnik) railSpremnik.innerHTML = railKod;
       if (listSpremnik) listSpremnik.innerHTML = railKod;
       if (sazetakSpremnik) sazetakSpremnik.innerHTML = sazetakHtml(popis, stanje);
+
+      // Traka kategorija postoji samo u cjeniku i samo na mobitelu (CSS je
+      // gasi iznad 900 px). Ista funkcija kao na webshopu, pa se cetiri
+      // kategorije alata ponasaju kao jedanaest Loxone skupina.
+      if (katTraka) {
+        const popisIkona = katTraka.querySelector(".kat-traka__popis");
+        const pomak = popisIkona ? popisIkona.scrollLeft : 0;
+        katTraka.innerHTML = trakaKategorijaHtml(katalog, filtri, vrsta);
+        const novi = katTraka.querySelector(".kat-traka__popis");
+        if (novi) novi.scrollLeft = pomak;
+      }
     }
 
     if (filtarBrojac) {
@@ -171,15 +203,7 @@ export async function pokreniTrgovinu(korijen) {
           : ""
       }
 
-      <label class="sortiranje">
-        <span class="samo-citac">Poredaj</span>
-        <select data-akcija="sort">
-          <option value="zadano"${stanje.sort === "zadano" ? " selected" : ""}>Zadano</option>
-          <option value="cijena-asc"${stanje.sort === "cijena-asc" ? " selected" : ""}>Cijena rastuće</option>
-          <option value="cijena-desc"${stanje.sort === "cijena-desc" ? " selected" : ""}>Cijena padajuće</option>
-          <option value="naziv-asc"${stanje.sort === "naziv-asc" ? " selected" : ""}>Naziv A–Ž</option>
-        </select>
-      </label>`;
+      ${sortHtml(stanje)}`;
   }
 
   /* ---------------------------------------------------------------- */
@@ -229,7 +253,9 @@ export async function pokreniTrgovinu(korijen) {
         break;
       }
       case "skupina":
-        filtri.postavi({ skupina: vrijednost || null, podskupina: null });
+        // Pretraga se cisti: skupina i upit su dva nacina da se dode do istog
+        // popisa, a zajedno daju presjek koji nitko nije trazio.
+        filtri.postavi({ skupina: vrijednost || null, podskupina: null, pretraga: null });
         break;
       case "podskupina":
         // Prazna vrijednost je pilula "Sve" u traci podskupina; ponovni klik
@@ -282,15 +308,18 @@ export async function pokreniTrgovinu(korijen) {
       case "dodaj": {
         const nadeni = filtri.svi.find((a) => a.id === artikl);
         if (!nadeni) break;
-        if (kosarica.sadrzi(nadeni.id)) {
-          otvoriLadicu();
-        } else {
-          kosarica.dodaj(nadeni, { kolicina: kolicine.get(nadeni.id) ?? 1 });
-          // Najam bez datuma se ne moze procijeniti, pa se ladica otvara
-          // odmah — tu su polja datuma i tu se posao dovrsava.
-          if (nadeni.osnova === "dan") otvoriLadicu();
-          crtaj(filtri.rezultat(), filtri.stanje);
-        }
+
+        // Gumb uvijek DODAJE. `kosarica.dodaj` sam povecava kolicinu ako
+        // artikl vec stoji unutra, pa drugi klik znaci drugi komad — a ne
+        // otvaranje ladice, kako je stajalo dok je gumb trajno pisao
+        // "U kosarici".
+        const ishod = kosarica.dodaj(nadeni, { kolicina: kolicine.get(nadeni.id) ?? 1 });
+        if (!ishod.ok) break;
+        potvrda.potvrdi(nadeni.id);
+
+        // Najam bez datuma se ne moze procijeniti, pa se ladica otvara
+        // odmah — tu su polja datuma i tu se posao dovrsava.
+        if (nadeni.osnova === "dan") otvoriLadicu();
         break;
       }
       default:
@@ -324,11 +353,25 @@ export async function pokreniTrgovinu(korijen) {
   if (trazilica) {
     let odgoda = null;
 
+    /*
+     * Pretraga se trazi po CIJELOM katalogu, ne unutar zakvacene skupine.
+     * Bez ovoga bi netko tko stoji na Senzorima i upise "miniserver" dobio
+     * praznu mrezu — i to bez ijednog vidljivog razloga, jer je skupina koja
+     * ga filtrira gore u traci, a ne u polju u koje upisuje.
+     *
+     * Kad se polje isprazni, skupina se vraca na onu s kojom katalog inace
+     * stoji. Prazna traka bez ijedne odabrane skupine bila bi stanje koje
+     * korisnik vise ne moze proizvesti klikom.
+     */
     trazilica.addEventListener("input", () => {
       clearTimeout(odgoda);
       odgoda = setTimeout(() => {
         const upit = trazilica.value.trim();
-        filtri.postavi({ pretraga: upit || null });
+        filtri.postavi(
+          upit
+            ? { pretraga: upit, skupina: null, podskupina: null }
+            : { pretraga: null, skupina: prvaSkupina }
+        );
       }, 180);
     });
 
@@ -339,7 +382,7 @@ export async function pokreniTrgovinu(korijen) {
         dogadaj.preventDefault();
         trazilica.value = "";
         clearTimeout(odgoda);
-        filtri.postavi({ pretraga: null });
+        filtri.postavi({ pretraga: null, skupina: prvaSkupina });
       }
     });
 
@@ -348,13 +391,22 @@ export async function pokreniTrgovinu(korijen) {
 
     // "Ocistite filtre" cisti i pretragu u stanju; polje mora poci za njim.
     document.addEventListener("click", (dogadaj) => {
-      if (dogadaj.target.closest('[data-akcija="ocisti"]')) trazilica.value = "";
+      if (dogadaj.target.closest('[data-akcija="ocisti"], [data-akcija="skupina"]')) {
+        trazilica.value = "";
+      }
     });
   }
 
-  // Gumb "Dodaj" mijenja natpis kad artikl ude u kosaricu, pa popis mora
-  // znati za promjene koje su se dogodile u ladici.
-  kosarica.naPromjenu(() => crtaj(filtri.rezultat(), filtri.stanje));
+  // Popis mora znati za promjene koje su se dogodile u ladici, i za istek
+  // petosekundne potvrde na gumbu — inace bi kvacica ostala stajati.
+  const precrtaj = () => crtaj(filtri.rezultat(), filtri.stanje);
+  kosarica.naPromjenu(precrtaj);
+  potvrda.naPromjenu(precrtaj);
 
-  crtaj(filtri.rezultat(), filtri.stanje);
+  // Tek nakon sto je sve gore definirano: `postavi` odmah zove crtaj().
+  if (prvaSkupina && !filtri.stanje.skupina && !filtri.stanje.pretraga) {
+    filtri.postavi({ skupina: prvaSkupina });
+  } else {
+    crtaj(filtri.rezultat(), filtri.stanje);
+  }
 }

@@ -201,6 +201,19 @@ const IKONE = {
   "kabeli-i-konektori": '<path d="M4 16c4 0 4-8 8-8s4 8 8 8"/><rect x="2" y="14" width="4" height="4" rx="1"/><rect x="18" y="14" width="4" height="4" rx="1"/>',
   // Kutija sitnog materijala.
   "dodatni-materijali": '<path d="M3 8l9-4 9 4v8l-9 4-9-4z"/><path d="M3 8l9 4 9-4M12 12v8"/>',
+
+  /* --- najam alata -------------------------------------------------- */
+  // Iste ikone kakve nose kartice kategorija na naslovnici (index.html,
+  // `.alat__ikona`), da se ista cetiri pojma prepoznaju na obje stranice.
+  // Ljestve.
+  "ljestve-i-skele": '<path d="M7 3v18M17 3v18M7 7h10M7 12h10M7 17h10"/>',
+  // Brusni disk.
+  "rezanje-i-brusenje": '<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2"/>',
+  // Busilica.
+  "busenje-i-odvijanje": '<path d="M4 7h9v6H4z"/><path d="M13 9h4l3 3-3 3h-4"/><path d="M6 13v7"/>',
+  // Usisavac s crijevom.
+  "usisavaci-i-otprasivanje": '<path d="M5 20v-6a6 6 0 0 1 12 0v2"/><path d="M17 16h3v4h-5"/><circle cx="8" cy="20" r="1.6"/>',
+
   zadana: '<circle cx="12" cy="12" r="8"/>',
 };
 
@@ -231,9 +244,21 @@ export function trakaKategorijaHtml(katalog, filtri, vrsta) {
       </button>
     </li>`;
 
+  /*
+   * "Sve" postoji samo u cjeniku najma. Webshop stoji na TOCNO jednoj od
+   * jedanaest skupina (js/trgovina.js zakvaci prvu pri dolasku), pa bi
+   * dvanaesta kartica koja iskljucuje sve ostale ondje bila stanje kojeg
+   * traka inace nikad nema. Najam ju zadrzava jer njegov rail slijeva ima
+   * svoju "Sve" i to dvoje mora govoriti isto.
+   *
+   * Iznimka je pretraga: dok ona traje nijedna skupina nije odabrana, jer se
+   * trazi po cijelom katalogu.
+   */
+  const sveSkupine = vrsta !== "loxone" ? stavka("", "Sve", filtri.brojBezKategorije(), !stanje.skupina) : "";
+
   return `
     <ul class="kat-traka__popis">
-      ${stavka("", "Sve", filtri.brojBezKategorije(), !stanje.skupina)}
+      ${sveSkupine}
       ${obitelji
         .map((obitelj) =>
           stavka(
@@ -279,7 +304,7 @@ const SORTOVI_NATPISI = [
  * Nativna dostupnost se ne gubi: gumb nosi `aria-expanded`, popis je
  * `role="listbox"`, a svaka opcija `role="option"` s `aria-selected`.
  */
-function sortHtml(stanje) {
+export function sortHtml(stanje) {
   const aktivni = SORTOVI_NATPISI.find(([kljucSorta]) => kljucSorta === stanje.sort);
   const natpis = !aktivni || aktivni[0] === "zadano" ? "Poredaj" : aktivni[1];
 
@@ -414,11 +439,13 @@ function kadarHtml(artikl, adresa = null) {
  *
  * Izvoz kataloga ne navodi ni PDV, ni uvjete dostave, ni je li ugradnja u
  * cijeni (hes-content.md, marker 16 / §8.8), pa u mrezi stoji samo ono sto
- * izvor doista kaze: cijena je po komadu. Stranice proizvoda idu dalje od
- * toga jer za svih 59 artikala postoji podatak iz Loxoneova kataloga
- * (LOXONE-PROIZVODI.md) — vidi `proizvodi/*.html`.
+ * izvor doista kaze: cijena je po komadu, a kod alata po danu. Stranice
+ * proizvoda idu dalje od toga jer za svih 59 artikala postoji podatak iz
+ * Loxoneova kataloga (LOXONE-PROIZVODI.md) — vidi `proizvodi/*.html`.
+ *
+ * Osnova dolazi izvana (`postavke.osnova`) jer istu karticu crtaju i katalog
+ * po komadu i cjenik najma po danu.
  */
-const OSNOVA_NATPIS = "po komadu";
 
 /**
  * Jedna kartica proizvoda.
@@ -436,9 +463,13 @@ const OSNOVA_NATPIS = "po komadu";
  * na kartici je namjera, ne stanje narudzbe: dok se ne pritisne gumb, kosarica
  * za njega ne zna. Suprotno bi znacilo da svaki dodir na "+" mijenja sadrzaj
  * kosarice, a brojac u zaglavlju bi rastao bez ijednog dodavanja.
+ *
+ * `potvrden` NIJE "je li artikl u kosarici" nego "je li upravo dodan": vidi
+ * js/potvrda.js. Gumb se zato nakon pet sekundi vrati u stanje koje poziva na
+ * dodavanje, a ne ostane trajno zakljucan u "U kosarici".
  */
-export function karticaHtml(artikl, { uKosarici, kolicine, podskupinaZa, veza = null }) {
-  const jeU = uKosarici(artikl.id);
+export function karticaHtml(artikl, { potvrden, kolicine, podskupinaZa, osnova = "kom", veza = null }) {
+  const jeDodan = potvrden(artikl.id);
   const kolicina = kolicine.get(artikl.id) ?? 1;
   const podskupina = podskupinaZa(artikl);
   const adresa = veza?.(artikl) ?? null;
@@ -457,7 +488,7 @@ export function karticaHtml(artikl, { uKosarici, kolicine, podskupinaZa, veza = 
 
         <p class="proizvod__cijena">
           <span class="cijena">${formatCijene(artikl.cijenaCents)}</span>
-          <span class="cijena__osnova">${OSNOVA_NATPIS}</span>
+          <span class="cijena__osnova">${osnova === "dan" ? "po danu" : "po komadu"}</span>
         </p>
 
         <div class="proizvod__akcije">
@@ -469,11 +500,11 @@ export function karticaHtml(artikl, { uKosarici, kolicine, podskupinaZa, veza = 
                     aria-label="Više ${esc(artikl.naziv)}">+</button>
           </div>
 
-          <button class="u-kosaricu${jeU ? " je-u-kosarici" : ""}" type="button"
+          <button class="u-kosaricu${jeDodan ? " je-u-kosarici" : ""}" type="button"
                   data-akcija="dodaj" data-artikl="${esc(artikl.id)}"
-                  aria-label="${jeU ? "Otvorite košaricu" : `Dodajte ${esc(artikl.naziv)} u košaricu`}">
+                  aria-label="${jeDodan ? "Dodano u košaricu" : `Dodajte ${esc(artikl.naziv)} u košaricu`}">
             ${
-              jeU
+              jeDodan
                 ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>'
                 : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.55L21 8H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></svg>'
             }
@@ -492,10 +523,13 @@ export function karticaHtml(artikl, { uKosarici, kolicine, podskupinaZa, veza = 
 }
 
 /**
- * Mreza proizvodnih kartica — Loxone katalog.
+ * Mreza proizvodnih kartica — Loxone katalog I cjenik najma.
  *
- * Tablica (`tablicaHtml` nize) ostaje za najam alata: ondje nema nijedne
- * fotografije, a mreza praznih kadrova bi bila tablica s vise praznine.
+ * Do sada je cjenik crtala zasebna `tablicaHtml`, jer alati nisu imali
+ * nijednu fotografiju i mreza praznih kadrova bi bila tablica s vise
+ * praznine. Otkako ih imaju svih sesnaest (scripts/proizvodi.mjs), tablica
+ * je obrisana i obje zalihe idu kroz istu komponentu — sto hes-style.md §5 i
+ * trazi. Jedina razlika je `osnova`, koja mijenja natpis ispod cijene.
  */
 export function mrezaHtml(popis, postavke) {
   if (!popis.length) {
@@ -536,10 +570,11 @@ export function karuselHtml(popis, postavke) {
 /**
  * Galerija: veliki kadar plus traka slicica.
  *
- * Video, kad postoji, stoji PRVI i jedini je kadar koji se sam pokrece. Na
- * stranici proizvoda svira na klik, ne na hover kao na kartici: ovdje je
- * posjetitelj dosao gledati bas taj proizvod, pa se pokret ne smije ni
- * dogoditi slucajno ni propustiti ako mis nije prosao preko kadra.
+ * Video, kad postoji, stoji PRVI. Kontrole su maknute na zahtjev klijenta i
+ * s njima `loop`: kadar se sada pokrece SAM, svakih deset sekundi dok je
+ * galerija u vidokrugu (`data-video-ciklus` na nosacu, js/interakcije.js), a
+ * klik po kadru ga pauzira i nastavlja. Traka s kontrolama je preko isjecka
+ * od cetiri sekunde bila veca od onoga sto pokazuje.
  *
  * `galerija` iz manifesta nosi SVE fotografije mape, ne samo dvije koje treba
  * kartica — zato je scripts/proizvodi.mjs i pretvara sve.
@@ -571,7 +606,7 @@ export function galerijaHtml(artikl) {
       ? `<div class="galerija__kadar" data-kadar="${esc(kadar.kljuc)}"${i ? " hidden" : ""}>
            <video class="galerija__video" data-galerija-video
                   poster="${esc(kadar.poster)}" width="1200" height="800"
-                  muted playsinline loop preload="none" controls
+                  muted playsinline preload="none"
                   aria-label="${opis} — videoprikaz">
              <source src="${esc(medij(mediji.video))}" type="video/webm">
            </video>
@@ -612,77 +647,6 @@ export function galerijaHtml(artikl) {
           : ""
       }
     </div>`;
-}
-
-/* ================================================================== */
-/* Tablica artikala                                                    */
-/* ================================================================== */
-/**
- * Jedna komponenta tablice za obje zalihe. Razlikuje ih samo natpis stupca
- * cijene — `Cijena` ili `Cijena/dan`. hes-style.md §5 to trazi izricito: dvije
- * zalihe na jednoj stranici moraju se citati kao jedan sustav, a razlika
- * osnove cijene je jedina razlika koju tekst smije nositi.
- */
-export function tablicaHtml(popis, { osnova, uKosarici }) {
-  if (!popis.length) {
-    return `
-      <div class="prazno">
-        <p class="naslov-3">Nema artikala za odabrane filtre.</p>
-        <button class="gumb gumb--sporedni" type="button" data-akcija="ocisti">Očistite filtre</button>
-      </div>`;
-  }
-
-  const natpisCijene = osnova === "dan" ? "Cijena/dan" : "Cijena";
-
-  const redak = (artikl) => {
-    const jeU = uKosarici(artikl.id);
-    return `
-      <tr data-artikl="${esc(artikl.id)}">
-        <td class="tablica__naziv">
-          <span class="tablica__ime">${esc(artikl.naziv)}</span>
-          ${
-            artikl.marka || artikl.sku
-              ? `<span class="tablica__meta monr">${[
-                  artikl.marka ? esc(artikl.marka) : null,
-                  // SKU se ispisuje samo kad se stvarno razlikuje od naziva:
-                  // u izvozu ga vecina artikala samo ponavlja.
-                  artikl.sku && artikl.sku !== artikl.naziv ? esc(artikl.sku) : null,
-                ]
-                  .filter(Boolean)
-                  .join(" · ")}</span>`
-              : ""
-          }
-        </td>
-        <td class="tablica__stanje">
-          ${artikl.naStanju ? '<span class="pilula pilula--stanje">Na stanju</span>' : ""}
-        </td>
-        <td class="tablica__cijena">
-          <span class="cijena">${formatCijene(artikl.cijenaCents)}</span>
-          ${osnova === "dan" ? '<span class="cijena__osnova"> / dan</span>' : ""}
-        </td>
-        <td class="tablica__akcija">
-          <button class="gumb ${jeU ? "gumb--sporedni" : "gumb--glavni"} gumb--usko"
-                  type="button" data-akcija="dodaj" data-artikl="${esc(artikl.id)}">
-            ${jeU ? "U košarici" : "Dodaj"}
-          </button>
-        </td>
-      </tr>`;
-  };
-
-  return `
-    <table class="tablica">
-      <thead>
-        <tr>
-          <th scope="col">Artikl</th>
-          <th scope="col"><span class="samo-citac">Stanje</span></th>
-          <th scope="col">${natpisCijene}</th>
-          <th scope="col"><span class="samo-citac">Radnja</span></th>
-        </tr>
-      </thead>
-      <tbody data-stepenica>
-        ${popis.map(redak).join("")}
-      </tbody>
-    </table>`;
 }
 
 /* ================================================================== */

@@ -11,6 +11,7 @@
  *   4. tipografske uloge  oznaka, naslovi, cijena
  *   5. kontrole           gumbi, veze
  *   6. zaglavlje          sticky traka, izbornik, mobilni izbornik
+ *   6b. plutajuce plohe   ladica kosarice, dijalog postavki
  *   7. podnozje
  *   8. otkrivanje         pocetna stanja za pokret pri skrolanju
  */
@@ -361,11 +362,12 @@ button, input, select, textarea {
 /*
  * Vizualna razdjelnica.
  *
- * Stoji na TOCNO dva mjesta na naslovnici — izmedu heroja i podrucja rada, i
- * izmedu Loxonea i najma alata. To su dva mjesta gdje se izmjena pozadine ne
- * dogada (polje ostaje isto s obje strane), pa granicu nema sto drugo
- * oznaciti. Da stoji izmedu svake dvije sekcije, prestala bi bilo sto znaciti
- * i stranica bi se procitala kao niz odvojenih letaka.
+ * Stoji na cetiri mjesta na naslovnici, i svaki put iz istog razloga: ondje
+ * gdje se pozadina NE mijenja, pa granicu nema sto drugo oznaciti. To su
+ * heroj/podrucja rada, Loxone/najam alata, te obje strane kucnih
+ * elektroinstalacija — one dijele podignuto polje sa zavrsnim radovima iznad
+ * i s otokom ispod. Da stoji izmedu svake dvije sekcije, prestala bi bilo sto
+ * znaciti i stranica bi se procitala kao niz odvojenih letaka.
  *
  * Ploha se navodi klasom jer razdjelnica lezi IZMEDU sekcija i mora nastaviti
  * boju polja koje slijedi — inace se u njezinoj visini vidi treca boja.
@@ -407,8 +409,11 @@ button, input, select, textarea {
  * Sekcija iza razdjelnice skracuje svoj gornji razmak. Bez ovoga se zbroje
  * puni razmak sekcije i visina razdjelnice, pa izmedu heroja i prve kartice
  * ostane preko 250 px praznine i granica se procita kao rupa u prijelomu.
+ *
+ * Otok nosi svoj razmak u sekciji unutar nosaca, pa mu se skracuje ondje.
  */
 .razdjelnica-polje + .polje { padding-top: var(--p6); }
+.razdjelnica-polje + .otok-nosac > .polje { padding-top: var(--p6); }
 
 .hairline {
   border: 0;
@@ -851,7 +856,7 @@ button, input, select, textarea {
  * traku, sidra bi slijetala prekratko cim se traka prosiri natrag.
  */
 .zaglavlje--zbijeno {
-  height: 52px;
+  height: 58px;
   background: color-mix(in oklab, var(--ploha-0) 72%, transparent);
   -webkit-backdrop-filter: blur(14px) saturate(1.15);
   backdrop-filter: blur(14px) saturate(1.15);
@@ -861,12 +866,12 @@ button, input, select, textarea {
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .zaglavlje--zbijeno { background: var(--ploha-0); }
 }
-/* Suzeno stanje ide na 68 %: isti odnos prema 85 % kakav je prije bio
-   1180 px prema 1560 px, pa se suzavanje osjeti jednako na svakom ekranu. */
+/* Suzeno stanje ide na 78 %: suzavanje se vidi, ali se traka ne trza. Prije je
+   stajalo na 68 %, sto je na sirokom ekranu bio skok od preko 200 px. */
 .zaglavlje--zbijeno .zaglavlje__sadrzaj {
-  width: min(100% - 2 * var(--p5), max(68%, var(--najmanja-sirina-zaglavlja)));
+  width: min(100% - 2 * var(--p5), max(78%, var(--najmanja-sirina-zaglavlja)));
 }
-.zaglavlje--zbijeno .znak img { height: 26px; }
+.zaglavlje--zbijeno .znak img { height: 30px; }
 
 /* Bez pokreta traka ne treperi: klasa se i dalje dodaje, ali bez prijelaza. */
 @media (prefers-reduced-motion: reduce) {
@@ -886,6 +891,13 @@ button, input, select, textarea {
 .znak img {
   height: 34px;
   width: auto;
+  /*
+   * `max-width: none` ponistava globalno pravilo iz odjeljka 1. Bez njega se
+   * znak u uskoj traci ne suzi nego SPLJOSTI: visina ostaje 34 px, a sirinu
+   * odrezuje stupac mreze, pa logo izgleda razvucen po vodoravnoj osi. Vidi
+   * se samo na mobitelu, gdje alati desno pojedu polovicu trake.
+   */
+  max-width: none;
   transition:
     height var(--srednje) var(--krivulja),
     transform var(--brzo) var(--krivulja);
@@ -1152,7 +1164,8 @@ button, input, select, textarea {
   }
 }
 
-.otvori-izbornik { display: none; }
+.otvori-izbornik,
+.postavke-gumb { display: none; }
 
 /*
  * Uska desktop traka, 1024-1279 px.
@@ -1171,7 +1184,21 @@ button, input, select, textarea {
 /* --- mobilno zaglavlje ------------------------------------------------ */
 @media (max-width: 1023px) {
   .izbornik { display: none; }
-  .otvori-izbornik { display: inline-flex; }
+  .otvori-izbornik,
+  .postavke-gumb { display: inline-flex; }
+
+  /*
+   * Tema i jezik se sele u dijalog postavki. U traci ostaju tri mete —
+   * kosarica, postavke, izbornik — i znak lijevo. Sa svih pet kontrola je
+   * stupac znaka na 360 px padao ispod njegove vlastite sirine.
+   */
+  .alati-zaglavlja .jezici,
+  .alati-zaglavlja .tema-gumb { display: none; }
+
+  /* Bez izbornika u sredini mreza `1fr auto 1fr` dijeli traku na pola i
+     znaku daje tocno onoliko koliko mu alati ostave. `auto 1fr` mu daje
+     njegovu sirinu, a alatima sve ostalo. */
+  .zaglavlje__sadrzaj { grid-template-columns: auto 1fr; }
   /* Suzavanje je potez za misa i dugi skrol; na mobitelu bi traka poskakivala
      pri svakom trzaju prsta, pa ondje stoji mirno. */
   .zaglavlje--zbijeno { height: var(--visina-zaglavlja); }
@@ -1240,6 +1267,47 @@ button, input, select, textarea {
     transform: var(--pomak-kontrole);
   }
 }
+/*
+ * Skupine u mobilnom izborniku.
+ *
+ * Ravan popis od dvadesetak redaka trazio je skrolanje da bi se doslo do
+ * "Kontakt". Tri sazeta <details> daju istu strukturu koju desktop ima u
+ * padajucim izbornicima, a izbornik stane u jedan ekran. Bez JS-a: stanje
+ * nosi sam element.
+ */
+.mob-skupina {
+  border-bottom: 1px solid var(--rub);
+}
+.mob-skupina__naslov {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p3);
+  padding: var(--p4) var(--p5);
+  font-size: 16px;
+  color: var(--tekst-2);
+  cursor: pointer;
+  list-style: none;
+}
+.mob-skupina__naslov::-webkit-details-marker { display: none; }
+.mob-skupina__naslov::marker { content: ""; }
+.mob-skupina[open] .mob-skupina__naslov { color: var(--hes-tekst); }
+.mob-skupina[open] .mob-skupina__naslov .chevron { transform: rotate(180deg); }
+/* Zadnji redak skupine ne crta svoju crtu: nosi je sama skupina. */
+.mob-skupina__sadrzaj > :last-child { border-bottom: 0; }
+.mob-skupina__sadrzaj .oznaka { padding-top: var(--p2); }
+
+/*
+ * Kontakt i telefon stoje u istom retku. Dvije kratke mete jedna do druge
+ * citaju se kao par, a izbornik time gubi jedan redak visine.
+ */
+.mob-red {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.mob-red a { justify-content: center; }
+.mob-red a + a { border-left: 1px solid var(--rub); }
+
 .zastor {
   position: fixed;
   inset: var(--visina-zaglavlja) 0 0 0;
@@ -1254,6 +1322,235 @@ html:has(.mobilni-izbornik:not([hidden])),
 html:has(dialog[open]) {
   overflow: hidden;
 }
+
+/* ================================================================== */
+/* 6b. Plutajuce plohe — kosarica                                      */
+/* ================================================================== */
+/*
+ * Ladica kosarice stoji OVDJE, a ne u trgovina.css, iz jednog razloga:
+ * kosarica postoji na svakoj stranici (js/main.js je uvijek ucitava), a
+ * trgovina.css se ucitava samo na webshopu, najmu i stranicama proizvoda.
+ * Dok su ova pravila stajala ondje, ladica se na naslovnici otvarala kao
+ * goli <dialog> — centrirana kutija s dvopikselnim rubom.
+ */
+.ladica {
+  width: min(440px, 100%);
+  max-width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid var(--rub);
+  background: var(--ploha-1);
+  color: var(--tekst);
+  box-shadow: var(--sjena-plohe);
+}
+.ladica::backdrop {
+  background: color-mix(in oklab, #000 45%, transparent);
+  backdrop-filter: blur(3px);
+}
+/* Dva retka, tijelo klizi: gumb "Zatrazite ponudu" na dnu tijela mora biti
+   dohvatljiv i kad je kosarica duga. */
+.ladica[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+.ladica__vrh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p3);
+  padding: var(--p4) var(--p5);
+  border-bottom: 1px solid var(--rub);
+}
+.ladica__tijelo { overflow-y: auto; padding: var(--p5); display: grid; gap: var(--p6); align-content: start; }
+
+.ladica__skupina { display: grid; gap: var(--p3); }
+.ladica__zaglavlje { display: flex; align-items: baseline; justify-content: space-between; gap: var(--p3); }
+.ladica__popis { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--p3); }
+
+.ladica__stavka {
+  display: grid;
+  gap: var(--p2);
+  padding: var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  background: var(--ploha-2);
+}
+
+/*
+ * Stavka sa slicicom: slika lijevo, podaci desno.
+ *
+ * Stavke bez slike (najam alata — ondje nema nijedne fotografije) zadrzavaju
+ * stari jednostupacni raspored umjesto da dobiju prazan kvadrat, pa se dvije
+ * skupine u kosarici i dalje citaju kao dvije stvari.
+ */
+.ladica__stavka--sa-slikom {
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: var(--p3);
+  align-items: start;
+}
+.ladica__podaci { display: grid; gap: var(--p2); min-width: 0; }
+
+/*
+ * Slicica je BIJELA u obje teme, iz istog razloga iz kojeg i kartica u mrezi:
+ * fotografije su isporucene na bijeloj pozadini. Na tamnoj plohi bi svaka
+ * stavka kosarice bila bijeli kvadrat u tamnom okviru.
+ */
+.ladica__slika {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  background: #FFFFFF;
+}
+.ladica__slika img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.ladica__glava { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--p3); }
+.ladica__ime { font-weight: 500; font-size: var(--vel-malo); }
+.ladica__red { display: flex; align-items: center; gap: var(--p3); flex-wrap: wrap; }
+.ladica__red .cijena { margin-left: auto; }
+.ladica__dana { white-space: nowrap; }
+
+.ladica__datumi { display: grid; grid-template-columns: 1fr 1fr; gap: var(--p2); }
+.ladica__datumi label { display: grid; gap: 2px; }
+.ladica__datumi input {
+  padding: var(--p2) var(--p3);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  background: var(--ploha-0);
+  color: var(--tekst);
+  /* 16 px sprjecava iOS da sam zumira pri fokusu polja. */
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.brojac {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p1);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  padding: 2px;
+}
+.brojac button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--tekst-2);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--brzo) var(--krivulja), color var(--brzo) var(--krivulja), transform var(--brzo) var(--krivulja);
+}
+@media (hover: hover) and (pointer: fine) {
+  .brojac button:hover {
+    background: var(--plohica);
+    color: var(--tekst);
+    transform: var(--pop-ikone);
+  }
+}
+.brojac span { min-width: 22px; text-align: center; font-size: var(--vel-malo); font-variant-numeric: tabular-nums; }
+
+.ladica__zbroj {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--p3);
+  padding-top: var(--p3);
+  border-top: 1px solid var(--rub);
+}
+.ladica__ograda { font-size: 13px; }
+.ladica__upozorenje { color: var(--opasnost); font-size: 13px; font-weight: 500; }
+.ladica__dno { display: grid; gap: var(--p2); }
+.ladica__dno .gumb { width: 100%; }
+.ladica__dno .gumb[disabled] { opacity: 0.45; cursor: default; }
+.ladica__prazno { display: grid; gap: var(--p3); justify-items: start; }
+
+.ikona-gumb--sitni { width: 28px; height: 28px; border: 0; }
+.ikona-gumb--sitni svg { width: 14px; height: 14px; }
+
+/* Prazno stanje popisa — dijele ga katalog i ladica. */
+.prazno {
+  display: grid;
+  gap: var(--p4);
+  justify-items: start;
+  padding: var(--p8) var(--p5);
+  border: 1px dashed var(--rub-jaci);
+  border-radius: var(--r-ploha);
+}
+
+
+/* --- prozor na mobitelu ------------------------------------------------ */
+/*
+ * Ispod 1024 px kosarica prestaje biti bocna ploca. Puna visina ekrana s
+ * rubom slijeva ondje izgleda kao stranica koja se ucitala preko stranice;
+ * prozor nasred ekrana s trakom od tri tocke kaze da je privremen i da se
+ * zatvara. Isti okvir nosi i dijalog postavki, pa se to dvoje ne cita kao
+ * dvije razlicite vrste sadrzaja.
+ */
+.ladica > .prozor__traka { display: none; }
+
+@media (max-width: 1023px) {
+  .ladica {
+    width: min(440px, calc(100% - 2 * var(--p4)));
+    height: auto;
+    max-height: 86dvh;
+    margin: auto;
+    border: 1px solid var(--rub);
+    border-radius: var(--r-ploha);
+  }
+  .ladica > .prozor__traka { display: flex; }
+  .ladica[open] { grid-template-rows: auto auto minmax(0, 1fr); }
+  /* Naslov "Kosarica" bi uz traku s natpisom kosarica.hes bio isti podatak
+     dvaput; ostaje gumb za zatvaranje, poravnat udesno. */
+  .ladica__vrh h2 { font-size: var(--vel-tekst); }
+}
+
+/* --- dijalog postavki --------------------------------------------------- */
+/*
+ * Postoji samo na mobitelu. Iznad 1024 px tema i jezik stoje u traci, pa se
+ * dijalog ne otvara — gumb koji ga otvara ondje nije ni iscrtan.
+ */
+.postavke {
+  width: min(360px, calc(100% - 2 * var(--p4)));
+  max-width: 100%;
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--rub);
+  border-radius: var(--r-ploha);
+  background: var(--ploha-1);
+  color: var(--tekst);
+  box-shadow: var(--sjena-plohe);
+}
+.postavke::backdrop {
+  background: color-mix(in oklab, #000 45%, transparent);
+  backdrop-filter: blur(3px);
+}
+.postavke[open] { display: block; }
+.postavke__tijelo {
+  display: grid;
+  gap: var(--p3);
+  padding: var(--p5);
+}
+.postavke__red {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p4);
+  min-height: 44px;
+}
+.postavke__red + .postavke__red {
+  padding-top: var(--p3);
+  border-top: 1px solid var(--rub);
+}
+/* Traka prozora nosi i gumb za zatvaranje: gura se skroz udesno, jer tri
+   tocke i natpis stoje slijeva. */
+.prozor__zatvori { margin-left: auto; }
 
 /* ================================================================== */
 /* 7. Podnozje                                                         */
@@ -1271,10 +1568,17 @@ html:has(dialog[open]) {
  * nosi puna sekcija; u podnozju je bila treci put da se izgovori.
  */
 
+/*
+ * Tri stupca, centrirana. Cetvrti (Adresa) je maknut na zahtjev klijenta, a s
+ * njim i `auto-fit`: tri stupca rastegnuta na punu sirinu ostavljaju rupu
+ * nasred podnozja, pa stupci sada nose svoju sirinu i stoje u sredini.
+ */
 .podnozje__stupci {
   display: grid;
-  gap: var(--p6);
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, max-content));
+  justify-content: center;
+  gap: var(--p6) var(--p9);
+  text-align: center;
 }
 .podnozje__stupci h3 {
   font-size: var(--vel-oznaka);
@@ -1303,19 +1607,6 @@ html:has(dialog[open]) {
   .podnozje__stupci a:hover { color: var(--hes-tekst); transform: var(--pomak-retka); }
 }
 
-/*
- * Prazno mjesto adrese. Izvor nema ni adresu ni sjediste ni radno vrijeme
- * (hes-content.md, marker 2), pa rupa ostaje vidljiva umjesto da se tiho
- * zatvori. Kad klijent posalje podatke, ovo se popuni i klasa nestaje.
- */
-.podnozje__rupa {
-  border: 1px dashed var(--rub-jaci);
-  border-radius: var(--r-mali);
-  padding: var(--p3);
-  font-size: var(--vel-malo);
-  color: var(--tekst-4);
-}
-
 .podnozje__dno {
   display: flex;
   flex-wrap: wrap;
@@ -1327,7 +1618,64 @@ html:has(dialog[open]) {
   font-size: var(--vel-malo);
   color: var(--tekst-4);
 }
-.podnozje__dno .jezici { margin-left: auto; }
+
+/*
+ * Na mjestu jezicne trake sada stoji povratak na vrh. Na stranici od preko
+ * deset sekcija to je jedina kontrola koja u podnozju ima sto raditi —
+ * jezicna traka je ista ona koja stoji u zaglavlju, dva metra iznad.
+ */
+.na-vrh {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p2);
+  margin-left: auto;
+  padding: var(--p2) var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  background: var(--plohica);
+  font-size: var(--vel-malo);
+  color: var(--tekst-2);
+  cursor: pointer;
+  transition:
+    color var(--brzo) var(--krivulja),
+    border-color var(--brzo) var(--krivulja),
+    transform var(--brzo) var(--krivulja);
+}
+.na-vrh svg { width: 16px; height: 16px; }
+.na-vrh:active { transform: scale(0.96); }
+@media (hover: hover) and (pointer: fine) {
+  .na-vrh:hover {
+    color: var(--hes-tekst);
+    border-color: var(--hes-rub);
+    transform: var(--pomak-kontrole);
+  }
+}
+
+/*
+ * Mobilno podnozje. Tri stupca jedan ispod drugoga davala su preko 600 px
+ * praznog hoda prije kraja stranice. Popisi ovdje leze VODORAVNO i lome se u
+ * dva-tri retka, pa podnozje stane u pola ekrana umjesto u cijeli.
+ */
+@media (max-width: 719px) {
+  .podnozje { padding-block: var(--p6) var(--p5); }
+  .podnozje__stupci {
+    grid-template-columns: 1fr;
+    gap: var(--p5);
+  }
+  .podnozje__stupci ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--p2) var(--p4);
+  }
+  .podnozje__stupci h3 { margin-bottom: var(--p2); }
+  .podnozje__dno {
+    justify-content: center;
+    margin-top: var(--p5);
+    padding-top: var(--p4);
+  }
+  .podnozje__dno .na-vrh { margin-left: 0; }
+}
 
 /* ================================================================== */
 /* 8. Ambijentalni pokret                                              */

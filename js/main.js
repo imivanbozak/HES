@@ -18,7 +18,13 @@ import {
   pokreniSkrolTraku,
   pokreniZivot,
 } from "./pokret.js";
-import { pokreniProvjeruUvjeta, pokreniNapredakObrasca, pokreniVideoNaHover } from "./interakcije.js";
+import {
+  pokreniProvjeruUvjeta,
+  pokreniNapredakObrasca,
+  pokreniVrsteUpita,
+  pokreniVideoNaHover,
+  pokreniVideoNaInterval,
+} from "./interakcije.js";
 import { pokreniPlatno } from "./platno.js";
 import { pokreniZaglavlje } from "./zaglavlje.js";
 
@@ -52,6 +58,49 @@ function pokreniMobilniIzbornik() {
       postavi(false);
       prekidac.focus();
     }
+  });
+}
+
+/* ------------------------------------------------------------------ */
+/* Dijalog postavki                                                    */
+/* ------------------------------------------------------------------ */
+/*
+ * Tema i jezik na mobitelu. Isti obrazac kao list s filtrima nize:
+ * `showModal()`, klik na pozadinu zatvara, Esc dolazi od <dialog>-a.
+ *
+ * Klik na gumb teme NE zatvara dijalog — promjena teme se vidi iza njega, pa
+ * bi zatvaranje sakrilo upravo ono zbog cega je korisnik gumb i pritisnuo.
+ * Klik na jezik zatvara sam po sebi, jer vodi na drugu adresu.
+ */
+function pokreniPostavke() {
+  const dijalog = document.querySelector("[data-postavke]");
+  if (!dijalog) return;
+
+  document.addEventListener("click", (dogadaj) => {
+    if (dogadaj.target.closest("[data-postavke-otvori]")) {
+      if (!dijalog.open) dijalog.showModal();
+    } else if (dogadaj.target.closest("[data-postavke-zatvori]")) {
+      dijalog.close();
+    }
+  });
+
+  dijalog.addEventListener("click", (dogadaj) => {
+    if (dogadaj.target === dijalog) dijalog.close();
+  });
+}
+
+/* ------------------------------------------------------------------ */
+/* Povratak na vrh                                                     */
+/* ------------------------------------------------------------------ */
+/*
+ * `scroll-behavior: smooth` stoji na <html> (app.css, odjeljak 1) i vec ga
+ * gasi `prefers-reduced-motion`, pa ovdje nema sto provjeravati — dovoljno je
+ * ne navoditi `behavior` i pustiti da vrijedi ono sto pise u CSS-u.
+ */
+function pokreniPovratakNaVrh() {
+  document.addEventListener("click", (dogadaj) => {
+    if (!dogadaj.target.closest("[data-na-vrh]")) return;
+    window.scrollTo({ top: 0 });
   });
 }
 
@@ -93,6 +142,8 @@ async function pokreni() {
   pokreniTemu();
   pokreniZaglavlje();
   pokreniMobilniIzbornik();
+  pokreniPostavke();
+  pokreniPovratakNaVrh();
   pokreniSpy();
   pokreniOtkrivanje();
   pokreniRaspad();
@@ -104,7 +155,9 @@ async function pokreni() {
   // njezin dio stranice, pa webshop i najam alata ne placu nista za njih.
   pokreniProvjeruUvjeta();
   pokreniNapredakObrasca();
+  pokreniVrsteUpita();
   pokreniVideoNaHover();
+  pokreniVideoNaInterval();
 
   const platno = pokreniPlatno(document.querySelector("[data-platno]"));
   naPromjenuTeme(() => platno.osvjeziBoje?.());

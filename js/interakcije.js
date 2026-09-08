@@ -127,6 +127,48 @@ export function pokreniNapredakObrasca(korijen = document) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Vrsta upita — sklopivi izbornik na mobitelu                          */
+/* ------------------------------------------------------------------ */
+/**
+ * Sest cipova vrste upita ispod 600 px stane u cetiri retka usred obrasca.
+ * Omot je `<details>` koji ondje stoji zatvoren i u summaryju pokazuje sto je
+ * odabrano; iznad 600 px je otvoren, a summary skriven CSS-om.
+ *
+ * Radio gumbi ostaju netaknuti — stanje i dalje vodi `:checked`, a ovo samo
+ * prepisuje natpis i zatvara popis nakon odabira. Bez JS-a popis ostane
+ * otvoren, sto je i dalje upotrebljiv obrazac.
+ */
+export function pokreniVrsteUpita() {
+  const omot = document.querySelector("[data-vrste]");
+  if (!omot) return;
+
+  const natpis = omot.querySelector("[data-vrste-natpis]");
+  const usko = window.matchMedia("(max-width: 599px)");
+
+  const osvjezi = () => {
+    const odabran = omot.querySelector(".cip-upita__ulaz:checked");
+    if (!odabran || !natpis) return;
+    const oznaka = omot.querySelector(`label[for="${odabran.id}"]`);
+    if (oznaka) natpis.textContent = oznaka.textContent.trim();
+  };
+
+  // Na sirokom ekranu popis mora biti otvoren: ondje summary ne postoji, pa
+  // zatvoren <details> ne bi imao cime biti otvoren.
+  const uskladi = () => {
+    omot.open = !usko.matches;
+  };
+
+  omot.addEventListener("change", () => {
+    osvjezi();
+    if (usko.matches) omot.open = false;
+  });
+
+  usko.addEventListener("change", uskladi);
+  osvjezi();
+  uskladi();
+}
+
+/* ------------------------------------------------------------------ */
 /* Video koji se pokrece na hover                                      */
 /* ------------------------------------------------------------------ */
 /**
@@ -149,6 +191,32 @@ export function pokreniNapredakObrasca(korijen = document) {
  *  - `focusin` uz `mouseenter`: kartica je poveznica i do nje se stize i
  *    tabulatorom, pa isti kadar dobiva i tko ne koristi mis.
  */
+/**
+ * Pusti kadar i pobrini se da se po zavrsetku vrati na pocetak.
+ *
+ * Zajednicko hoveru i ciklusu nize, pa se `data-svira` postavlja na jednom
+ * mjestu: dva slusaca koja bi svaki za sebe vodila isto stanje razisla bi se
+ * prvim sljedecim uredivanjem.
+ */
+function pustiKadar(video) {
+  // Vec svira — pusti ga da dovrsi, ne pipaj po njemu.
+  if (video.dataset.svira !== undefined) return;
+
+  if (video.dataset.vracaSe === undefined) {
+    video.dataset.vracaSe = "";
+    video.addEventListener("ended", () => {
+      delete video.dataset.svira;
+      video.currentTime = 0;
+    });
+  }
+
+  video.dataset.svira = "";
+  const obecanje = video.play();
+  if (obecanje && typeof obecanje.catch === "function") {
+    obecanje.catch(() => delete video.dataset.svira);
+  }
+}
+
 export function pokreniVideoNaHover(korijen = document) {
   const videi = [...korijen.querySelectorAll("video[data-video-hover]")];
   if (!videi.length) return;
@@ -159,23 +227,75 @@ export function pokreniVideoNaHover(korijen = document) {
 
   for (const video of videi) {
     const nosac = video.closest("a, li, article") || video;
-
-    const pokreni = () => {
-      // Vec svira — pusti ga da dovrsi, ne pipaj po njemu.
-      if (video.dataset.svira !== undefined) return;
-      video.dataset.svira = "";
-      const obecanje = video.play();
-      if (obecanje && typeof obecanje.catch === "function") {
-        obecanje.catch(() => delete video.dataset.svira);
-      }
-    };
-
-    video.addEventListener("ended", () => {
-      delete video.dataset.svira;
-      video.currentTime = 0;
-    });
+    const pokreni = () => pustiKadar(video);
 
     nosac.addEventListener("mouseenter", pokreni);
     nosac.addEventListener("focusin", pokreni);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Video koji se pokrece sam, u ciklusu                                */
+/* ------------------------------------------------------------------ */
+/**
+ * Kadrovi se izmjenjuju JEDAN PO JEDAN, svakih N milisekundi.
+ *
+ * Razmak nosi `data-video-ciklus` na spremniku (15000 na naslovnici i
+ * webshopu, 10000 na stranici proizvoda). Rotacija, a ne "svi odjednom": na
+ * webshopu su u mrezi do 28 kartica s videom, i istovremeno dekodiranje svih
+ * zaustavi mobitel na nekoliko sekundi. Ovako u svakom trenutku svira tocno
+ * jedan isjecak od cetiri sekunde.
+ *
+ * Cetiri stvari koje ovo mora izdrzati, i kako:
+ *
+ *  - Popis se precrtava (filtar, pretraga, kosarica). Zato se videi traze
+ *    IZNOVA na svaki otkucaj, a ne jednom pri vezanju: spremnik s atributom
+ *    je onaj koji stoji u HTML-u i preživi svako `innerHTML`.
+ *  - Kadar izvan vidokruga ne treba svirati. `IntersectionObserver` gasi i
+ *    pali sam otkucaj, ne samo reprodukciju.
+ *  - Kartica u pozadini preglednika ne treba nista. `document.hidden` se
+ *    provjerava u otkucaju — jeftinije od jos jednog slusaca po spremniku.
+ *  - Skriveni kadrovi galerije nisu na redu. Video ispod `[hidden]` se
+ *    preskace, inace bi galerija svirala kadar koji nitko ne gleda.
+ *
+ * Hover i dalje radi i ima prednost: `pustiKadar` nece dirati video koji vec
+ * svira, pa se ta dva nikad ne sudare.
+ */
+export function pokreniVideoNaInterval(korijen = document) {
+  const spremnici = [...korijen.querySelectorAll("[data-video-ciklus]")];
+  if (!spremnici.length) return;
+
+  // Automatski pokrenut video je tocno ono sto `prefers-reduced-motion` trazi
+  // da izostane — jos i vise nego hover, koji korisnik barem sam izazove.
+  if (smanjenPokret) return;
+
+  for (const spremnik of spremnici) {
+    const razmak = Number(spremnik.dataset.videoCiklus) || 15000;
+    let na = -1;
+    let tajmer = null;
+
+    const otkucaj = () => {
+      if (document.hidden) return;
+      const videi = [...spremnik.querySelectorAll("video")].filter((v) => !v.closest("[hidden]"));
+      if (!videi.length) return;
+      na = (na + 1) % videi.length;
+      pustiKadar(videi[na]);
+    };
+
+    const kreni = () => {
+      if (tajmer !== null) return;
+      otkucaj();
+      tajmer = setInterval(otkucaj, razmak);
+    };
+
+    const stani = () => {
+      if (tajmer === null) return;
+      clearInterval(tajmer);
+      tajmer = null;
+    };
+
+    new IntersectionObserver(([unos]) => (unos.isIntersecting ? kreni() : stani()), {
+      threshold: 0.2,
+    }).observe(spremnik);
   }
 }

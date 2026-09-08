@@ -21,9 +21,16 @@ function stvori() {
   if (dijalog) return dijalog;
 
   dijalog = document.createElement("dialog");
-  dijalog.className = "ladica";
+  dijalog.className = "ladica prozor";
   dijalog.setAttribute("aria-label", "Košarica");
+  // Traka s tri tocke stoji u markupu uvijek, a vidi se tek ispod 1024 px:
+  // ondje ladica prestaje biti bocna ploca i postaje prozor nasred ekrana,
+  // pa joj treba vrh koji to i kaze. Na desktopu je CSS gasi.
   dijalog.innerHTML = `
+    <div class="prozor__traka" data-zivo="crta" aria-hidden="true">
+      <span class="prozor__tocka"></span><span class="prozor__tocka"></span><span class="prozor__tocka"></span>
+      <span class="prozor__naslov">kosarica.hes</span>
+    </div>
     <header class="ladica__vrh">
       <h2 class="naslov-3">Košarica</h2>
       <button class="ikona-gumb" type="button" data-akcija="zatvori" aria-label="Zatvori košaricu">

@@ -89,6 +89,18 @@ const POSAO = {
     svrha: "cesticno polje, hero webshopa",
   },
 
+  /*
+   * Loxone komponente na PROZIRNOJ podlozi (izvor ima alfu, provjereno).
+   * Zato ide bez ikakvog tona odozgo: polozena na tamno tirkizno polje otoka
+   * daje kadar koji nijedna od postojecih tekstura ne moze — stvarne uredaje
+   * koje ta sekcija prodaje, a ne apstraktni sum.
+   */
+  "loxone": {
+    sirine: [640, 1000],
+    kvaliteta: { avif: 50, webp: 74 },
+    svrha: "komponente na prozirnom, pozadina Loxone otoka",
+  },
+
   /* --- teksture sekcija -------------------------------------------- */
   // Jedina prava fotografija u kompletu i jedina koja doista prikazuje
   // predmet posla. Zato ide na sekciju usluga, ne u ukras.

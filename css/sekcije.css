@@ -305,7 +305,15 @@
   .hero { min-height: min(78vh, 560px); padding-block: var(--p8) var(--p6); }
   .hero__slika img { object-position: center 26%; }
   .hero__zamucenje { display: none; } /* kadar na mobitelu nema odmaknut motiv koji treba stititi */
-  .trzista li + li { border-top: 1px solid var(--rub); }
+
+  /*
+   * Znak s natpisom i traka trzista izlaze iz mobilnog heroja (zahtjev
+   * klijenta). Oboje je ponavljanje: znak stoji u traci dva centimetra iznad,
+   * a dva trzista zauzimaju cetiri retka na ekranu na kojem naslov, uvod i
+   * dva gumba tek stanu. Na desktopu oboje ostaje.
+   */
+  .hero__marka,
+  .trzista { display: none; }
 }
 
 /* ================================================================== */
@@ -486,11 +494,6 @@
 @media (max-width: 1023px) {
   .kartice--tri { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 719px) {
-  .kartice--tri,
-  .kartice--dvije { grid-template-columns: 1fr; }
-}
-
 /* ================================================================== */
 /* Koraci — opseg isporuke                                             */
 /* ================================================================== */
@@ -609,7 +612,12 @@
    bi na uskom ekranu pojela pola vidljive visine. */
 @media (max-width: 1023px) {
   .split__mreza { grid-template-columns: 1fr; gap: var(--p6); }
-  .split__medij { position: static; aspect-ratio: 4 / 3; max-height: 46vh; }
+  /*
+   * Kvadratni kadar, ne 4:3. Fotografija je 1149x1369 (uspravna); u 4:3 se
+   * gubilo oko 37 % njezine visine, pa se od ormara vidjela samo sredina.
+   * Kvadrat odrezuje oko 15 % i ostavlja i vrh i dno.
+   */
+  .split__medij { position: static; aspect-ratio: 1 / 1; max-height: 56vh; }
 }
 
 /* ------------------------------------------------------------------ */
@@ -667,10 +675,13 @@
  * presao preko bilo cega u njemu, i to dok stoji zalijepljen uz vrh prozora.
  * Hover pripada elementima na koje se klika; ovaj to nije.
  */
-.zavrsni__uvod {
-  position: sticky;
-  top: calc(var(--visina-zaglavlja) + var(--p6));
-}
+/*
+ * Ljepljivi uvod je UKLONJEN na zahtjev klijenta. Naslov je stajao prikovan uz
+ * vrh prozora dok bi sedam kartica promicalo pokraj njega; efekt je bio
+ * namjeran, ali se citao kao da se stranica zaglavila. Stupac sada skrola sa
+ * svime ostalim, a mreza kartica desno ostaje kakva jest.
+ */
+.zavrsni__uvod { position: static; }
 .zavrsni__uvod .zaglavlje-sekcije { margin-bottom: var(--p5); }
 
 /*
@@ -755,7 +766,27 @@
 
 @media (max-width: 1023px) {
   .zavrsni__mreza { grid-template-columns: 1fr; gap: var(--p6); }
-  .zavrsni__uvod { position: static; }
+}
+
+/*
+ * Sedam poslova na mobitelu: dva u redu, bez duh-brojeva.
+ *
+ * `auto-fit, minmax(200px, 1fr)` je ispod 440 px padao na JEDAN stupac, pa je
+ * sekcija bila sedam kartica visoka. Dva fiksna stupca stanu jer kartica
+ * ovdje nosi samo ikonu i naziv — broj 01–07 je maknut (zahtjev klijenta) i
+ * time je nestala i jedina stvar koja je trazila sirinu.
+ */
+@media (max-width: 719px) {
+  .radovi { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--p2); }
+  .rad {
+    min-height: 0;
+    gap: var(--p3);
+    padding: var(--p3);
+  }
+  .rad__broj { display: none; }
+  .rad__ikona { width: 32px; height: 32px; }
+  .rad__ikona svg { width: 16px; height: 16px; }
+  .rad__ime { font-size: var(--vel-malo); }
 }
 
 /* ================================================================== */
@@ -857,10 +888,28 @@
 /* Loxone pojas                                                        */
 /* ================================================================== */
 .traka-loxone { position: relative; overflow: hidden; }
-/* Slika ide punom jacinom: izboji na njoj su vec tirkizni sami po sebi i ne
-   treba im nikakav ton odozgo. */
-.traka-loxone__slika { position: absolute; inset: 0; z-index: 0; }
-.traka-loxone__slika img { width: 100%; height: 100%; object-fit: cover; }
+/*
+ * Slika komponenata. Prozirna je, pa ispod nje ostaje tirkizno polje otoka i
+ * nije joj potrebna nikakva ploha ispod.
+ *
+ * `contain` umjesto `cover`: izvor je kvadrat, a pojas je sirok — `cover` bi
+ * od skupa odrezao gornju i donju trecinu i ostavio pola uredaja presjecenih
+ * na pola. Ovako skup stoji cijel.
+ *
+ * LIJEVO, ne desno. Udesno je zavrsio iza sest kartica skupina i vidjeli su
+ * se samo rubovi izmedu njih. Lijevo je iza teksta, gdje ga pokriva samo
+ * usmjereni zastor — a njega se smije popustiti, sto se ispod i radi.
+ *
+ * 0.6 je gornja granica koju zastor jos podnosi: mjereno na najgorem pikselu
+ * (bijelo tipkalo) tekst i na njoj ostaje na 6.0:1.
+ */
+.traka-loxone__slika { position: absolute; inset: 0; z-index: 0; opacity: 0.6; }
+.traka-loxone__slika img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
 /*
  * Jedini animirani mesh gradijent na stranici. Ovo je otok bez fotografije u
  * prvom planu, pa pokret ovdje ne otima paznju nicemu — za razliku od heroja
@@ -944,8 +993,10 @@
   to { transform: translate(-6%, -8%) scale(1.14); }
 }
 /*
- * Sloj 1 — osnovni zastor. Spusten s .62/.44 na .42/.26 da mesh iznad njega
- * uopce ima sto posvijetliti; citljivost teksta preuzima sloj 3 ispod.
+ * Sloj 1 — osnovni zastor. Bio je .42/.26 dok je ispod stajala svijetla
+ * fotografija izboja; sada je ondje prozirna slika na tamnom polju, pa se
+ * spusta na .26/.16 — inace bi zastor pojeo upravo uredaje zbog kojih je
+ * slika i dodana. Citljivost teksta i dalje nosi sloj 3 ispod.
  */
 .traka-loxone::after {
   content: "";
@@ -954,24 +1005,27 @@
   z-index: 1;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.42),
-    rgba(0, 0, 0, 0.26)
+    rgba(0, 0, 0, 0.26),
+    rgba(0, 0, 0, 0.16)
   );
 }
 
 /*
  * Sloj 3 — usmjereni zastor koji stiti tekst.
  *
- * Mjereno na najgorem slucaju (najsvjetlija mrlja mesha na svijetlom izboju
- * fotografije), s tekstom `--tekst-na-tealu` #F4F1EA:
- *
- *            bez ovog sloja   s njim
- *   naslov       1.79:1        7.56:1
- *   uvod         1.79:1        5.66:1
- *
  * Kut je isti kao na heroju (100deg): tekst je lijevo, kartice desno, pa
- * zastor pada s .58 na .20 preko sirine. Desnih .20 nije nula jer i kartice
- * nose tekst — staklo ispod njih dobiva na racun toga jos malo dubine.
+ * zastor pada preko sirine. Desni kraj nije nula jer i kartice nose tekst —
+ * staklo ispod njih dobiva na racun toga jos malo dubine.
+ *
+ * Lijevi kraj je popusten s .58 na .50 otkako slika komponenata stoji ondje:
+ * na .58 se od uredaja iza teksta vidio samo obris. Mjereno na najgorem
+ * pikselu (bijelo tipkalo ispod mesha), s tekstom `--tekst-na-tealu`:
+ *
+ *              .58     .50
+ *   kontrast   7.6:1   6.0:1
+ *
+ * Oboje je iznad AA praga od 4.5:1, pa je razlika cisto na racun toga koliko
+ * se pozadine vidi.
  */
 .traka-loxone__zastor {
   position: absolute;
@@ -980,8 +1034,8 @@
   pointer-events: none;
   background: linear-gradient(
     100deg,
-    rgba(0, 0, 0, 0.58) 0%,
-    rgba(0, 0, 0, 0.52) 34%,
+    rgba(0, 0, 0, 0.50) 0%,
+    rgba(0, 0, 0, 0.46) 34%,
     rgba(0, 0, 0, 0.28) 58%,
     rgba(0, 0, 0, 0.20) 100%
   );
@@ -1108,16 +1162,14 @@
   .traka-loxone__zastor {
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.58) 0%,
-      rgba(0, 0, 0, 0.52) 38%,
+      rgba(0, 0, 0, 0.50) 0%,
+      rgba(0, 0, 0, 0.46) 38%,
       rgba(0, 0, 0, 0.28) 62%,
       rgba(0, 0, 0, 0.20) 100%
     );
   }
 }
-@media (max-width: 719px) {
-  .skupine { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
+
 
 /* Sjaj iza teksta je uklonjen na zahtjev klijenta — vidi i `.cijena` u
    app.css. Naslovi se sada isticu velicinom i polozajem, ne mrljom iza sebe. */
@@ -1133,26 +1185,10 @@
  * ikona; jedna veca daje redu vrh i kaze da je ovo ponuda, a ne izbornik.
  */
 /*
- * Uvodni raspored stranice /najam-alata: tekst lijevo, zaristna brojka desno.
- * Naslovnica ga vise ne koristi (ondje je galerija), ali cjenik da — i to je
- * jedino mjesto gdje tablica cinjenica i jedna velika brojka stoje jedna uz
- * drugu. Ploha panela dolazi iz `.staklo` u markupu.
+ * `.najam__mreza` i `.najam__brojka` su obrisani zajedno sa sekcijom "Ponuda"
+ * na /najam-alata: ta je stranica svedena na cjenik, a naslovnica taj raspored
+ * nikad nije koristila (ondje stoji galerija kategorija).
  */
-.najam__mreza {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-  gap: var(--p8);
-  align-items: start;
-}
-.najam__brojka {
-  display: grid;
-  gap: var(--p2);
-  padding: var(--p5);
-  border-radius: var(--r-ploha);
-}
-@media (max-width: 899px) {
-  .najam__mreza { grid-template-columns: 1fr; gap: var(--p6); }
-}
 
 /*
  * Vodoravno zaglavlje: tvrdnja lijevo, cjenovni panel desno, na istoj crti.
@@ -1193,37 +1229,47 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--p3);
 }
+/*
+ * Kadar je 4:5, ne 3:4. Fotografije alata su 3:2 na bijelom i stoje u kadru
+ * CIJELE (`contain`) — rezanje bi brusilici odsjeklo rucku, a skeli vrh. U
+ * uspravnijem 3:4 kadru bi oko slike ostalo previse prazne plohe.
+ */
 .alat {
   position: relative;
   display: block;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
+  /* Fotografije alata dolaze ujednacene na bijelom (scripts/proizvodi.mjs),
+     pa i kartica mora biti bijela — inace se vidi bijeli pravokutnik na
+     pjescanom polju. Bijela je ista u obje teme, kao i na karticama
+     Loxone skupina; s njom i rub i tekst moraju izaci iz tokena. */
+  background: #FFFFFF;
   border-radius: var(--r-kartica);
-  border: 1px solid var(--rub);
+  border: 1px solid rgba(10, 9, 8, 0.10);
+  box-shadow: 0 2px 10px -4px rgba(10, 9, 8, 0.35);
   overflow: hidden;
   text-decoration: none;
-  color: var(--tekst);
+  color: #0A0908;
   transition: border-color var(--srednje) var(--krivulja), transform var(--srednje) var(--krivulja);
 }
 .alat__slika { display: block; width: 100%; height: 100%; }
 .alat__slika img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  /* Alat sjedi iznad sredine, da ga staklena traka pri dnu ne presijeca. */
+  object-position: center 38%;
   transition: transform var(--sporo) var(--krivulja);
 }
-/* Blagi zastor pri dnu: bez njega traka lezi na svijetlom dijelu kadra i
-   staklo nema sto zamutiti. */
-.alat::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, .5));
-  pointer-events: none;
-}
 /*
- * Ikona kategorije. Placeholder fotografije se medusobno jos ne razlikuju,
- * pa ikona nosi razliku dok ne stignu prave; kad stignu, i dalje pomaze jer
- * se cita prije nego naziv.
+ * Zastor pri dnu je UKLONJEN zajedno sa staklom. Oboje je postojalo zbog
+ * tamnih tekstura koje su ovdje stajale kao placeholder: staklo je trebalo
+ * imati sto zamutiti, zastor mu je davao dubinu. Preko bijele plohe crnina
+ * izgleda kao mrlja, a staklo kao zaprljano staklo — traka je sada puna
+ * ploha odvojena vlasnom crtom, isto kao kartice Loxone skupina.
+ */
+/*
+ * Ikona kategorije. Cita se prije nego naziv i razlikuje kategorije na jedan
+ * pogled, i sada kad su fotografije prave.
  */
 .alat__ikona {
   position: absolute;
@@ -1241,17 +1287,22 @@
 .alat__ikona svg { width: 18px; height: 18px; }
 .alat__traka {
   position: absolute;
-  left: var(--p3);
-  right: var(--p3);
-  bottom: var(--p3);
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 1;
   display: grid;
   gap: 2px;
   padding: var(--p3) var(--p4);
-  border-radius: var(--r-mali);
+  background: #FFFFFF;
+  border-top: 1px solid rgba(10, 9, 8, 0.10);
 }
-.alat__ime { font-size: var(--vel-malo); font-weight: 600; line-height: 1.25; }
-.alat__traka .cijena { font-size: var(--vel-malo); margin-top: var(--p1); }
+/* Tekst na bijeloj plohi ne smije ici kroz tokene: u tamnoj temi bi
+   `--tekst` bio svijetao i traka bi ostala prazna. Ista odluka i isti
+   brojevi kao na `.skupina` iznad. */
+.alat__ime { font-size: var(--vel-malo); font-weight: 600; line-height: 1.25; color: #0A0908; }
+.alat .jedva { color: #6B665D; }
+.alat__traka .cijena { font-size: var(--vel-malo); margin-top: var(--p1); color: #12695A; }
 
 @media (hover: hover) and (pointer: fine) {
   .alat:hover { border-color: var(--hes-rub); transform: var(--pomak-kadra); }
@@ -1274,10 +1325,7 @@
   .najam__panel { justify-self: start; white-space: normal; }
   .najam__galerija { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 599px) {
-  .najam__galerija { grid-template-columns: 1fr; }
-  .alat { aspect-ratio: 4 / 3; }
-}
+
 
 /* ================================================================== */
 /* Zaposlenje                                                          */
@@ -1720,6 +1768,39 @@
  * linije JavaScripta i ispravno se ponasa na tipkovnici.
  */
 .cipovi-upita { display: flex; flex-wrap: wrap; gap: var(--p2); }
+
+/*
+ * Omot cipova. Iznad 600 px ga zapravo nema: summary je skriven, <details>
+ * stoji otvoren (js/interakcije.js), pa se vidi samo red cipova kao i prije.
+ */
+.vrste__naslov { display: none; }
+
+@media (max-width: 599px) {
+  .vrste {
+    border: 1px solid var(--rub);
+    border-radius: var(--r-mali);
+    background: var(--ploha-2);
+  }
+  .vrste__naslov {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--p3);
+    padding: var(--p3) var(--p4);
+    font-size: var(--vel-malo);
+    color: var(--tekst-2);
+    cursor: pointer;
+    list-style: none;
+  }
+  .vrste__naslov::-webkit-details-marker { display: none; }
+  .vrste__naslov::marker { content: ""; }
+  .vrste[open] .vrste__naslov {
+    border-bottom: 1px solid var(--rub);
+    color: var(--hes-tekst);
+  }
+  .vrste[open] .vrste__naslov .chevron { transform: rotate(180deg); }
+  .vrste .cipovi-upita { padding: var(--p3) var(--p4); }
+}
 .cip-upita {
   display: inline-flex;
   align-items: center;
@@ -1824,4 +1905,69 @@ textarea.polje-obrasca__ulaz { resize: vertical; min-height: 108px; }
     margin: calc(-1 * var(--p5)) calc(-1 * var(--p5)) var(--p5);
   }
   .obrazac__red { grid-template-columns: 1fr; }
+}
+
+
+/* ================================================================== */
+/* Karuseli na mobitelu                                                */
+/* ================================================================== */
+/*
+ * OVAJ ODJELJAK MORA STAJATI NA KRAJU DATOTEKE.
+ *
+ * `.skupine` i `.najam__galerija` svoju osnovnu mrezu dobivaju nize u ovoj
+ * datoteci nego sto je stajao ovaj blok. Specificnost im je ista (jedna
+ * klasa), a medijski upit je ne podize — pa je kod jednake specificnosti
+ * odlucivao REDOSLIJED i osnovno pravilo je pobjedivalo. Posljedica se
+ * vidjela tocno onako kako zvuci: staza se nije ni pojavila, a sirina
+ * zadana za karticu ostala je na karticama u mrezi.
+ *
+ * Zato je blok ovdje, iza svih osnovnih pravila, i zato ovaj komentar stoji.
+ *
+ * ---
+ *
+ * Tri mreze na naslovnici — usluge, Loxone skupine i kategorije najma — u
+ * jednom stupcu daju stranicu koja se skrola dvije minute. Vodoravna staza sa
+ * `scroll-snap` drzi ih na jednom ekranu, a kartica koja viri desno kaze da
+ * ih ima jos, sto okomiti popis ne moze.
+ *
+ * Bez ijednog reda JS-a i bez strelica: prst je ovdje jedina kontrola koja
+ * ima smisla. Isto rjesenje kao `.karusel__staza` na stranici proizvoda.
+ *
+ * Negativna margina i jednaki padding vrate stazu na SAM rub ekrana, dok prva
+ * kartica ostaje poravnata s tekstom iznad. Bez toga kartica koja izlazi
+ * izgleda kao da je odrezana rubom sekcije, a ne kao da se nastavlja.
+ */
+@media (max-width: 719px) {
+  .kartice--dvije { grid-template-columns: 1fr; }
+
+  .kartice--tri,
+  .skupine,
+  .najam__galerija {
+    display: flex;
+    gap: var(--p3);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: calc(var(--p5) * -1);
+    padding-inline: var(--p5);
+    scroll-padding-inline: var(--p5);
+    /* Sjena kartice se inace odrezuje na donjem rubu staze. */
+    padding-bottom: var(--p2);
+  }
+  .kartice--tri::-webkit-scrollbar,
+  .skupine::-webkit-scrollbar,
+  .najam__galerija::-webkit-scrollbar { display: none; }
+
+  .kartice--tri > *,
+  .skupine > *,
+  .najam__galerija > * {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  /* Sirine: usluga jedna po ekranu (kartica ima mjerilo i dva gumba),
+     skupine dvije (kadar 3:2 i dva retka teksta), alati nesto uze od jedne. */
+  .kartice--tri > .kartica { width: 84%; }
+  .skupine > .skupina { width: calc((100% - var(--p3)) / 2); }
+  .najam__galerija > .alat { width: 62%; }
 }

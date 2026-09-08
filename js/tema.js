@@ -71,16 +71,25 @@ function osvjeziBojuPreglednika() {
 /**
  * Gumb pokazuje temu u koju vodi, ne onu u kojoj jesi — to je ono sto
  * korisnik od gumba i ocekuje.
+ *
+ * Gumba je od uvodenja dijaloga postavki DVA: jedan u traci (desktop) i jedan
+ * u dijalogu (mobitel). Oba moraju dobiti `data-vodi-u`, jer o njemu visi
+ * prijelaz sunca u mjesec — bez toga bi drugi gumb pokazivao oba znaka
+ * odjednom.
  */
-export function osvjeziGumbTeme(gumb = document.querySelector("[data-tema-gumb]")) {
-  if (!gumb) return;
+export function osvjeziGumbTeme(gumb = null) {
+  const gumbi = gumb ? [gumb] : [...document.querySelectorAll("[data-tema-gumb]")];
+  if (!gumbi.length) return;
+
   const ide_u = trenutnaTema() === "tamna" ? "svijetla" : "tamna";
-  gumb.dataset.vodiU = ide_u;
-  gumb.setAttribute(
-    "aria-label",
-    ide_u === "svijetla" ? "Prebaci na svijetlu temu" : "Prebaci na tamnu temu"
-  );
-  gumb.setAttribute("aria-pressed", String(trenutnaTema() === "svijetla"));
+  for (const kontrola of gumbi) {
+    kontrola.dataset.vodiU = ide_u;
+    kontrola.setAttribute(
+      "aria-label",
+      ide_u === "svijetla" ? "Prebaci na svijetlu temu" : "Prebaci na tamnu temu"
+    );
+    kontrola.setAttribute("aria-pressed", String(trenutnaTema() === "svijetla"));
+  }
 }
 
 export function pokreniTemu() {

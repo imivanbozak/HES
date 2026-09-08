@@ -18,7 +18,7 @@ import { ucitajKatalog, formatCijene } from "./katalog.js";
 import { adresaProizvoda } from "./adrese.js";
 import { galerijaHtml, karuselHtml } from "./pogledi.js";
 import * as kosarica from "./kosarica.js";
-import { otvori as otvoriLadicu } from "./ladica.js";
+import * as potvrda from "./potvrda.js";
 import { pokreniVideoNaHover } from "./interakcije.js";
 
 const MAX_KOLICINA = 99;
@@ -72,7 +72,7 @@ export async function pokreniStranicuProizvoda(korijen) {
 
   function crtajAkcije() {
     if (!akcijeSpremnik) return;
-    const jeU = kosarica.sadrzi(artikl.id);
+    const jeDodan = potvrda.jePotvrden(artikl.id);
 
     akcijeSpremnik.innerHTML = `
       <div class="brojac brojac--veliki">
@@ -80,8 +80,8 @@ export async function pokreniStranicuProizvoda(korijen) {
         <span class="monr" data-prikaz-kolicine>${kolicina}</span>
         <button type="button" data-akcija="vise" aria-label="Više">+</button>
       </div>
-      <button class="gumb ${jeU ? "gumb--sporedni" : "gumb--glavni"} gumb--siroki" type="button" data-akcija="dodaj">
-        ${jeU ? "U košarici — otvorite" : "Dodajte u košaricu"}
+      <button class="gumb ${jeDodan ? "gumb--sporedni" : "gumb--glavni"} gumb--siroki" type="button" data-akcija="dodaj">
+        ${jeDodan ? "Dodano u košaricu" : "Dodajte u košaricu"}
       </button>`;
   }
 
@@ -106,12 +106,14 @@ export async function pokreniStranicuProizvoda(korijen) {
     }
 
     if (meta.dataset.akcija === "dodaj") {
-      if (kosarica.sadrzi(artikl.id)) otvoriLadicu();
-      else kosarica.dodaj(artikl, { kolicina });
+      // Kao i u katalogu: gumb uvijek dodaje, a `kosarica.dodaj` sam zbraja
+      // kolicinu ako artikl vec stoji unutra.
+      if (kosarica.dodaj(artikl, { kolicina }).ok) potvrda.potvrdi(artikl.id);
     }
   });
 
   kosarica.naPromjenu(crtajAkcije);
+  potvrda.naPromjenu(crtajAkcije);
   crtajAkcije();
 
   /* ---------------------------------------------------------------- */
@@ -136,10 +138,30 @@ export async function pokreniStranicuProizvoda(korijen) {
       slicica.setAttribute("aria-pressed", String(odabrana));
     }
 
-    // Video se pauzira kad se s njega ode; inace svira zvukom u pozadini
-    // fotografije koja je upravo dosla na njegovo mjesto.
+    // Video se pauzira kad se s njega ode; inace svira u pozadini fotografije
+    // koja je upravo dosla na njegovo mjesto.
     const video = galerijaSpremnik.querySelector("[data-galerija-video]");
     if (video && kljuc !== "video") video.pause();
+  });
+
+  /*
+   * Klik po kadru pauzira i nastavlja.
+   *
+   * Video vise nema `controls` (klijentov zahtjev), a sam se pokrece svakih
+   * deset sekundi. Bez ovoga bi jedini nacin da se zaustavi bio otici na drugi
+   * kadar. `data-svira` se brise pri pauzi da ga ciklus u js/interakcije.js
+   * moze ponovno pokrenuti kad dode red.
+   */
+  galerijaSpremnik?.addEventListener("click", (dogadaj) => {
+    const video = dogadaj.target.closest("[data-galerija-video]");
+    if (!video) return;
+
+    if (video.paused) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+      delete video.dataset.svira;
+    }
   });
 
   /* ---------------------------------------------------------------- */
@@ -209,7 +231,7 @@ export async function pokreniStranicuProizvoda(korijen) {
 
     const crtajPreporuke = () => {
       preporukeSpremnik.innerHTML = karuselHtml(preporuke, {
-        uKosarici: (kljuc) => kosarica.sadrzi(kljuc),
+        potvrden: (kljuc) => potvrda.jePotvrden(kljuc),
         kolicine,
         podskupinaZa,
         // Svih 59 Loxone artikala ima svoju stranicu; tablica je u
@@ -245,12 +267,14 @@ export async function pokreniStranicuProizvoda(korijen) {
       if (akcija === "dodaj") {
         const nadeni = preporuke.find((a) => a.id === kljuc);
         if (!nadeni) return;
-        if (kosarica.sadrzi(nadeni.id)) otvoriLadicu();
-        else kosarica.dodaj(nadeni, { kolicina: kolicine.get(nadeni.id) ?? 1 });
+        if (kosarica.dodaj(nadeni, { kolicina: kolicine.get(nadeni.id) ?? 1 }).ok) {
+          potvrda.potvrdi(nadeni.id);
+        }
       }
     });
 
     kosarica.naPromjenu(crtajPreporuke);
+    potvrda.naPromjenu(crtajPreporuke);
     crtajPreporuke();
   }
 }

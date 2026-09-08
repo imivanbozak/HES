@@ -3,13 +3,523 @@
  "izvor": [
   "assets/Loxone",
   "assets/old-products",
-  "assets/loxone-trgovina"
+  "assets/loxone-trgovina",
+  "assets/Alati"
  ],
  "sirine": [
   480,
   720
  ],
  "proizvodi": {
+  "1134": {
+   "slika": {
+    "id": "1134-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1134-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1134-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GSR 12V-15 FC/Bosch GSR 12V-15 FC.jpeg",
+    "Alati/Bosch GSR 12V-15 FC/Bosch GSR 12V-15 FC 2.jpeg"
+   ],
+   "slika2": {
+    "id": "1134-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1170": {
+   "slika": {
+    "id": "1170-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1170-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1170-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/GWS 12V-76/GWS 12V-76.jpg",
+    "Alati/GWS 12V-76/GWS 12V-76 2.jpg"
+   ],
+   "slika2": {
+    "id": "1170-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1175": {
+   "slika": {
+    "id": "1175-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1175-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1175-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GDR/Bosch GDR.jpeg",
+    "Alati/Bosch GDR/Bosch GDR 2.jpeg"
+   ],
+   "slika2": {
+    "id": "1175-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1176": {
+   "slika": {
+    "id": "1176-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1176-1",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GDR/Bosch GSR 6-25 TE + MA.jpeg"
+   ]
+  },
+  "1177": {
+   "slika": {
+    "id": "1177-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1177-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1177-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GDS 18V-450 HC (18V)/Bosch GDS 18V-450 HC (18V).jpg",
+    "Alati/Bosch GDS 18V-450 HC (18V)/Bosch GDS 18V-450 HC (18V) 2.jpg"
+   ],
+   "slika2": {
+    "id": "1177-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1180": {
+   "slika": {
+    "id": "1180-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1180-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1180-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GKS 12V-26 (12V)/Bosch GKS 12V-26 (12V).jpg",
+    "Alati/Bosch GKS 12V-26 (12V)/Bosch GKS 12V-26 (12V) 2.jpg"
+   ],
+   "slika2": {
+    "id": "1180-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1185": {
+   "slika": {
+    "id": "1185-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1185-1",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GSR 12V-15 FC/Bosch GSR 12V-15 FC.jpeg"
+   ]
+  },
+  "1188": {
+   "slika": {
+    "id": "1188-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1188-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1188-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GRO 12V-35 (12V)/Bosch GRO 12V-35 (12V).jpg",
+    "Alati/Bosch GRO 12V-35 (12V)/Bosch GRO 12V-35 (12V) 2.jpg"
+   ],
+   "slika2": {
+    "id": "1188-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1191": {
+   "slika": {
+    "id": "1191-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1191-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1191-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GEX 18V-125 (18V)/Bosch GEX 18V-125 (18V).jpeg",
+    "Alati/Bosch GEX 18V-125 (18V)/Bosch GEX 18V-125 (18V) 2.jpg"
+   ],
+   "slika2": {
+    "id": "1191-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1194": {
+   "slika": {
+    "id": "1194-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1194-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1194-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GSR 18V-55/Bosch GSR 18V-55.jpg",
+    "Alati/Bosch GSR 18V-55/Bosch GSR 18V-55 2.jpg"
+   ],
+   "slika2": {
+    "id": "1194-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1197": {
+   "slika": {
+    "id": "1197-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1197-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1197-2",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1197-3",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GWS 18V-10/Bosch GWS 18V-10.webp",
+    "Alati/Bosch GWS 18V-10/Bosch GWS 18V-10 2.jpg",
+    "Alati/Bosch GWS 18V-10/Bosch GWS 18V-10 3.jpg"
+   ],
+   "slika2": {
+    "id": "1197-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1201": {
+   "slika": {
+    "id": "1201-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1201-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1201-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GAS 12-25 PL/Bosch GAS 12-25 PL.png",
+    "Alati/Bosch GAS 12-25 PL/Bosch GAS 12-25 PL2.jpg"
+   ],
+   "slika2": {
+    "id": "1201-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
+  "1205": {
+   "slika": {
+    "id": "1205-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1205-1",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/Bosch GTS 10 J Professional/Bosch GTS 10 J Professional.jpg"
+   ]
+  },
+  "1207": {
+   "slika": {
+    "id": "1207-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1207-1",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/k+k 235636.jpeg"
+   ]
+  },
+  "1209": {
+   "slika": {
+    "id": "1209-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1209-1",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/k+k 235636.jpeg"
+   ]
+  },
+  "1210": {
+   "slika": {
+    "id": "1210-1",
+    "sirine": [
+     480,
+     720
+    ]
+   },
+   "galerija": [
+    {
+     "id": "1210-1",
+     "sirine": [
+      480,
+      720
+     ]
+    },
+    {
+     "id": "1210-2",
+     "sirine": [
+      480,
+      720
+     ]
+    }
+   ],
+   "izvori": [
+    "Alati/PROTUBE-F360/PROTUBE-F360.jpg",
+    "Alati/PROTUBE-F360/PROTUBE-F360 2.jpg"
+   ],
+   "slika2": {
+    "id": "1210-2",
+    "sirine": [
+     480,
+     720
+    ]
+   }
+  },
   "1433": {
    "slika": {
     "id": "1433-1",
