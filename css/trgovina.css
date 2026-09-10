@@ -818,6 +818,50 @@
 .proizvod__kadar--veza { display: block; }
 
 /* ================================================================== */
+/* Svijetla tema - kadrovi proizvoda                                   */
+/* ================================================================== */
+:root[data-theme="svijetla"] .proizvod {
+  --ploha-0: #fffefa;
+  --ploha-2: #fffefa;
+  --ploha-3: #f3f6f2;
+  --rub: #d8dfd5;
+  --rub-jaci: #b7c6bb;
+  background: #fffefa;
+  box-shadow: 0 2px 8px -6px rgba(38, 34, 26, 0.45);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :root[data-theme="svijetla"] .proizvod:hover {
+    border-color: color-mix(in oklab, var(--hes) 36%, var(--rub));
+    box-shadow: 0 4px 10px -8px rgba(38, 34, 26, 0.5);
+  }
+}
+
+:root[data-theme="svijetla"] .proizvod__kadar,
+:root[data-theme="svijetla"] .galerija__glavni,
+:root[data-theme="svijetla"] .galerija__slicica {
+  background: linear-gradient(180deg, #ffffff 0%, #f3f6f2 100%);
+  border-color: #d8dfd5;
+}
+
+:root[data-theme="svijetla"] .proizvod__kadar::after,
+:root[data-theme="svijetla"] .galerija__glavni::after,
+:root[data-theme="svijetla"] .galerija__slicica::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(18, 105, 90, 0.1), inset 0 -42px 60px -54px rgba(18, 105, 90, 0.28);
+  pointer-events: none;
+}
+
+:root[data-theme="svijetla"] .proizvod__kadar img,
+:root[data-theme="svijetla"] .galerija__glavni img,
+:root[data-theme="svijetla"] .galerija__slicica img {
+  filter: contrast(1.035) saturate(1.02);
+}
+
+/* ================================================================== */
 /* Sazetak iznad mreze cjenika                                         */
 /* ================================================================== */
 .sazetak {

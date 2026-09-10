@@ -41,6 +41,34 @@
 </head>
 
 <body>
+<div class="kostur-stranice" data-kostur role="status" aria-live="polite" aria-label="Ucitavanje stranice">
+  <div class="kostur-stranice__traka" aria-hidden="true">
+    <span class="kostur-stranice__znak" data-kostur-oblik></span>
+    <span class="kostur-stranice__nav" data-kostur-oblik></span>
+    <span class="kostur-stranice__alat" data-kostur-oblik></span>
+    <span class="kostur-stranice__alat" data-kostur-oblik></span>
+  </div>
+  <div class="kostur-stranice__sadrzaj" aria-hidden="true">
+    <div class="kostur-stranice__tekst">
+      <span class="kostur-stranice__linija kostur-stranice__linija--oznaka" data-kostur-oblik></span>
+      <span class="kostur-stranice__linija kostur-stranice__linija--naslov" data-kostur-oblik></span>
+      <span class="kostur-stranice__linija" data-kostur-oblik></span>
+      <span class="kostur-stranice__linija kostur-stranice__linija--kratka" data-kostur-oblik></span>
+      <span class="kostur-stranice__gumbi">
+        <span class="kostur-stranice__gumb" data-kostur-oblik></span>
+        <span class="kostur-stranice__gumb" data-kostur-oblik></span>
+      </span>
+    </div>
+    <div class="kostur-stranice__ploca">
+      <span class="kostur-stranice__kadar" data-kostur-oblik></span>
+    </div>
+    <div class="kostur-stranice__kartice">
+      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
+      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
+      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
+    </div>
+  </div>
+</div>
 <a class="preskoci" href="#sadrzaj" data-i18n="opce.preskoci">Preskoči na sadržaj</a>
 
 <!-- Traka napretka skrolanja. Puni se s js/pokret.js; bez JS-a ostaje prazna
@@ -1036,7 +1064,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2A2.8 2.8 0 0 0 12 8c-1.7 0-2.6.9-2.6 2s1 1.6 2.6 2 2.6.9 2.6 2-1 2-2.6 2a2.8 2.8 0 0 1-2.5-1.2M12 6.2v1.6M12 16.2v1.6"/></svg>
           </span>
           <span class="pokazatelj__ime" data-i18n="posao.satnica">Satnica</span>
-          <span class="pokazatelj__vrijednost">10–15 €</span>
+          <span class="pokazatelj__vrijednost pokazatelj__vrijednost--raspon" aria-label="Satnica od 10 do 15 eura">
+            <span class="pokazatelj__granica"><span class="pokazatelj__granica-ime">Od</span><span>10 €</span></span>
+            <span class="pokazatelj__granica"><span class="pokazatelj__granica-ime">Do</span><span>15 €</span></span>
+          </span>
           <span class="pokazatelj__traka" role="img" aria-label="Raspon satnice od 10 do 15 eura, na ljestvici do 20 eura">
             <span class="pokazatelj__ispuna" style="--od: 50%; --do: 75%"></span>
           </span>

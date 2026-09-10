@@ -54,6 +54,10 @@ body {
   overflow-x: hidden;
 }
 
+.js-pokret:not(.stranica-spremna) body {
+  overflow: hidden;
+}
+
 h1, h2, h3, h4 {
   margin: 0;
   font-weight: 600;
@@ -122,6 +126,197 @@ button, input, select, textarea {
 }
 .preskoci:focus {
   transform: translateY(0);
+}
+
+/* ================================================================== */
+/* 1b. Kostur ucitavanja                                                */
+/* ================================================================== */
+.kostur-stranice {
+  display: none;
+}
+
+.js-pokret .kostur-stranice {
+  --kostur-baza: color-mix(in oklab, var(--tekst) 8%, var(--ploha-1));
+  --kostur-sjaj: color-mix(in oklab, var(--sjaj) 20%, var(--kostur-baza));
+
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--p8);
+  min-height: 100dvh;
+  padding: var(--p5);
+  background:
+    radial-gradient(circle at 18% 12%, color-mix(in oklab, var(--hes) 18%, transparent), transparent 30%),
+    linear-gradient(180deg, var(--ploha-0), var(--ploha-1));
+  color: var(--tekst);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity var(--sporo) var(--krivulja),
+    visibility 0s linear var(--sporo);
+}
+
+.stranica-spremna .kostur-stranice {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.kostur-stranice__traka {
+  width: min(calc(100% - 2 * var(--p5)), max(var(--najmanja-sirina-zaglavlja), var(--sirina-zaglavlja)));
+  max-width: calc(100% - 2 * var(--p4));
+  min-height: var(--visina-zaglavlja);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--p4);
+}
+
+.kostur-stranice__sadrzaj {
+  width: min(calc(100% - 2 * var(--p5)), var(--sirina));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.68fr);
+  gap: var(--p7);
+  align-items: start;
+}
+
+.kostur-stranice__tekst,
+.kostur-stranice__ploca,
+.kostur-stranice__kartice {
+  display: grid;
+  gap: var(--p4);
+}
+
+.kostur-stranice__kartice {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-column: 1 / -1;
+  margin-top: var(--p3);
+}
+
+[data-kostur-oblik] {
+  position: relative;
+  overflow: hidden;
+  background: var(--kostur-baza);
+  border: 1px solid color-mix(in oklab, var(--tekst) 7%, transparent);
+  border-radius: var(--r-mali);
+}
+
+.kostur-stranice__znak {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.kostur-stranice__nav {
+  width: min(34vw, 440px);
+  height: 12px;
+  margin-inline: auto;
+}
+
+.kostur-stranice__alat {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-pilula);
+  flex: 0 0 auto;
+}
+
+.kostur-stranice__linija {
+  height: 14px;
+  max-width: var(--sirina-teksta);
+}
+
+.kostur-stranice__linija--oznaka {
+  width: 118px;
+  height: 10px;
+}
+
+.kostur-stranice__linija--naslov {
+  width: min(100%, 720px);
+  height: clamp(42px, 7vw, 68px);
+  border-radius: var(--r-kartica);
+}
+
+.kostur-stranice__linija--kratka {
+  width: min(58%, 360px);
+}
+
+.kostur-stranice__gumbi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p3);
+  margin-top: var(--p2);
+}
+
+.kostur-stranice__gumb {
+  width: 148px;
+  height: 42px;
+  border-radius: var(--r-pilula);
+}
+
+.kostur-stranice__kadar {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-ploha);
+}
+
+.kostur-stranice__kartica {
+  min-height: 176px;
+  border-radius: var(--r-kartica);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-kostur-oblik]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 30%,
+      var(--kostur-sjaj) 48%,
+      transparent 66%
+    );
+    transform: translateX(-120%);
+    animation: kostur-prolaz 1350ms var(--krivulja) infinite;
+  }
+
+  .kostur-stranice__tekst [data-kostur-oblik]::after { animation-delay: 80ms; }
+  .kostur-stranice__ploca [data-kostur-oblik]::after { animation-delay: 180ms; }
+  .kostur-stranice__kartica:nth-child(2)::after { animation-delay: 120ms; }
+  .kostur-stranice__kartica:nth-child(3)::after { animation-delay: 240ms; }
+}
+
+@keyframes kostur-prolaz {
+  to { transform: translateX(120%); }
+}
+
+@media (max-width: 899px) {
+  .js-pokret .kostur-stranice {
+    gap: var(--p6);
+    padding: var(--p4);
+  }
+
+  .kostur-stranice__traka,
+  .kostur-stranice__sadrzaj {
+    width: 100%;
+    max-width: none;
+  }
+
+  .kostur-stranice__nav {
+    width: 36vw;
+    margin-left: var(--p2);
+  }
+
+  .kostur-stranice__sadrzaj {
+    grid-template-columns: 1fr;
+    gap: var(--p5);
+  }
+
+  .kostur-stranice__kartice {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ================================================================== */
@@ -213,6 +408,19 @@ button, input, select, textarea {
 .tekstura--svijetla img {
   mix-blend-mode: multiply;
   opacity: var(--tekstura-jacina, 0.16);
+}
+
+:root[data-theme="svijetla"] .tekstura--svijetla img {
+  filter: saturate(0.72) contrast(0.9);
+  opacity: var(--tekstura-jacina, 0.1);
+}
+
+:root[data-theme="svijetla"] .tekstura--tiha img {
+  opacity: 0.08;
+}
+
+:root[data-theme="svijetla"] .tekstura--jaka img {
+  opacity: 0.15;
 }
 
 /*

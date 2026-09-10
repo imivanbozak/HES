@@ -172,6 +172,34 @@ function glava({ naziv, opis, adresa }) {
 function zaglavlje(adresa) {
   return `
 <body>
+<div class="kostur-stranice" data-kostur role="status" aria-live="polite" aria-label="Ucitavanje stranice">
+  <div class="kostur-stranice__traka" aria-hidden="true">
+    <span class="kostur-stranice__znak" data-kostur-oblik></span>
+    <span class="kostur-stranice__nav" data-kostur-oblik></span>
+    <span class="kostur-stranice__alat" data-kostur-oblik></span>
+    <span class="kostur-stranice__alat" data-kostur-oblik></span>
+  </div>
+  <div class="kostur-stranice__sadrzaj" aria-hidden="true">
+    <div class="kostur-stranice__tekst">
+      <span class="kostur-stranice__linija kostur-stranice__linija--oznaka" data-kostur-oblik></span>
+      <span class="kostur-stranice__linija kostur-stranice__linija--naslov" data-kostur-oblik></span>
+      <span class="kostur-stranice__linija" data-kostur-oblik></span>
+      <span class="kostur-stranice__linija kostur-stranice__linija--kratka" data-kostur-oblik></span>
+      <span class="kostur-stranice__gumbi">
+        <span class="kostur-stranice__gumb" data-kostur-oblik></span>
+        <span class="kostur-stranice__gumb" data-kostur-oblik></span>
+      </span>
+    </div>
+    <div class="kostur-stranice__ploca">
+      <span class="kostur-stranice__kadar" data-kostur-oblik></span>
+    </div>
+    <div class="kostur-stranice__kartice">
+      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
+      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
+      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
+    </div>
+  </div>
+</div>
 <a class="preskoci" href="#sadrzaj">Preskoči na sadržaj</a>
 <div class="platno-pozadina" aria-hidden="true" data-platno></div>
 

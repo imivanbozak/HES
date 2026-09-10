@@ -1420,6 +1420,27 @@
   font-variant-numeric: tabular-nums;
 }
 
+.pokazatelj__vrijednost--raspon {
+  display: grid;
+  gap: var(--p1);
+  max-width: 12ch;
+}
+
+.pokazatelj__granica {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--p3);
+}
+
+.pokazatelj__granica-ime {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: var(--razmak-oznaka);
+  text-transform: uppercase;
+  color: var(--tekst-4);
+}
+
 /* Prijave su trajno otvorene, pa ikona nosi zivu tocku umjesto da ceka svoj
    red u `pokreniZivot()` — jedini pokazatelj na stranici koji javlja STANJE,
    a stanje se ne javlja svakih par sekundi nego stalno. */
@@ -1970,4 +1991,95 @@ textarea.polje-obrasca__ulaz { resize: vertical; min-height: 108px; }
   .kartice--tri > .kartica { width: 84%; }
   .skupine > .skupina { width: calc((100% - var(--p3)) / 2); }
   .najam__galerija > .alat { width: 62%; }
+}
+
+/* ================================================================== */
+/* Svijetla tema - obrada slika                                        */
+/* ================================================================== */
+:root[data-theme="svijetla"] .hero__slika img {
+  filter: brightness(1.08) saturate(0.82) contrast(0.94);
+}
+
+:root[data-theme="svijetla"] .hero::after {
+  background: linear-gradient(
+    100deg,
+    rgba(6, 18, 16, 0.72) 0%,
+    rgba(6, 18, 16, 0.52) 30%,
+    rgba(6, 18, 16, 0.18) 58%,
+    rgba(6, 18, 16, 0.08) 78%,
+    rgba(6, 18, 16, 0.22) 100%
+  );
+}
+
+:root[data-theme="svijetla"] .split__medij,
+:root[data-theme="svijetla"] .kucne__slika img {
+  background: linear-gradient(180deg, #ffffff 0%, #f3f6f2 100%);
+  border: 1px solid color-mix(in oklab, var(--hes) 20%, var(--rub));
+  box-shadow: 0 10px 22px -20px rgba(38, 34, 26, 0.55);
+}
+
+:root[data-theme="svijetla"] .split__slika img,
+:root[data-theme="svijetla"] .kucne__slika img {
+  filter: brightness(1.06) saturate(0.86) contrast(0.96);
+}
+
+:root[data-theme="svijetla"] .traka-loxone__slika {
+  opacity: 0.5;
+}
+
+:root[data-theme="svijetla"] .traka-loxone__mreza-boja {
+  opacity: 0.62;
+}
+
+:root[data-theme="svijetla"] .traka-loxone__zastor {
+  background: linear-gradient(
+    100deg,
+    rgba(7, 24, 22, 0.54) 0%,
+    rgba(7, 24, 22, 0.48) 34%,
+    rgba(7, 24, 22, 0.26) 58%,
+    rgba(7, 24, 22, 0.18) 100%
+  );
+}
+
+:root[data-theme="svijetla"] .skupina,
+:root[data-theme="svijetla"] .alat {
+  background: #fffefa;
+  border-color: color-mix(in oklab, var(--hes) 22%, #d8dfd5);
+  box-shadow: 0 2px 8px -6px rgba(38, 34, 26, 0.5);
+}
+
+:root[data-theme="svijetla"] .skupina__slika,
+:root[data-theme="svijetla"] .alat__slika {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f7f3 100%);
+}
+
+:root[data-theme="svijetla"] .skupina__slika::after,
+:root[data-theme="svijetla"] .alat__slika::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(18, 105, 90, 0.1), inset 0 -42px 58px -52px rgba(18, 105, 90, 0.28);
+  pointer-events: none;
+}
+
+:root[data-theme="svijetla"] .skupina__slika img,
+:root[data-theme="svijetla"] .skupina__video,
+:root[data-theme="svijetla"] .alat__slika img {
+  filter: contrast(1.04) saturate(1.02);
+}
+
+:root[data-theme="svijetla"] .alat__traka {
+  background: rgba(255, 254, 250, 0.94);
+  border-top-color: color-mix(in oklab, var(--hes) 18%, #d8dfd5);
+}
+
+:root[data-theme="svijetla"] .jobs__slika {
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="svijetla"] .jobs__slika img {
+  filter: brightness(1.16) saturate(0.62) contrast(0.88);
 }

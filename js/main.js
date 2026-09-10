@@ -28,6 +28,28 @@ import {
 import { pokreniPlatno } from "./platno.js";
 import { pokreniZaglavlje } from "./zaglavlje.js";
 
+const KOSTUR_NAJMANJE_MS = 420;
+const kosturPocetak = performance.now();
+
+function kadaSeUcitaProzor() {
+  if (document.readyState === "complete") return Promise.resolve();
+  return new Promise((rijesi) => window.addEventListener("load", rijesi, { once: true }));
+}
+
+function sakrijKostur() {
+  const kostur = document.querySelector("[data-kostur]");
+  const proteklo = performance.now() - kosturPocetak;
+  const cekanje = Math.max(0, KOSTUR_NAJMANJE_MS - proteklo);
+
+  window.setTimeout(() => {
+    document.documentElement.classList.add("stranica-spremna");
+    if (!kostur) return;
+
+    kostur.addEventListener("transitionend", () => kostur.remove(), { once: true });
+    window.setTimeout(() => kostur.remove(), 800);
+  }, cekanje);
+}
+
 /* ------------------------------------------------------------------ */
 /* Mobilni izbornik                                                    */
 /* ------------------------------------------------------------------ */
@@ -199,7 +221,15 @@ async function pokreni() {
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", pokreni, { once: true });
+  document.addEventListener("DOMContentLoaded", () => {
+    pokreni()
+      .then(kadaSeUcitaProzor)
+      .catch((greska) => console.error("[main]", greska))
+      .finally(sakrijKostur);
+  }, { once: true });
 } else {
-  pokreni();
+  pokreni()
+    .then(kadaSeUcitaProzor)
+    .catch((greska) => console.error("[main]", greska))
+    .finally(sakrijKostur);
 }
