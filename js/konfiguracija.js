@@ -14,7 +14,7 @@
  */
 
 export const SUPABASE = {
-  url: "sb_publishable_dI5tlXmvebMLwC5NeEQOjw_6saSSaLr",
+  url: "https://xaosdcpblbwtshzznvwg.supabase.co",
   anonKljuc: "sb_publishable_dI5tlXmvebMLwC5NeEQOjw_6saSSaLr",
 };
 
