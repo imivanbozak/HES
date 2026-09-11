@@ -84,6 +84,7 @@ def znakovi_stranice():
     # jedan novi artikl bi inace usao s znakom kojeg font nema, a provjera bi
     # i dalje javljala da je sve u redu.
     stvarni += sorted(glob.glob(os.path.join(KORIJEN, "proizvodi", "*.html")))
+    stvarni += sorted(glob.glob(os.path.join(KORIJEN, "alati", "*.html")))
 
     if stvarni:
         izvori, strogo = stvarni, True
@@ -310,7 +311,8 @@ STRANICE = {
 # Stranica proizvoda ima 59 i generira ih scripts/stranice.mjs, pa se popis
 # gradi iz mape umjesto da se prepisuje. Rucni popis bi zaostao vec kod prvog
 # novog artikla, a zaostali popis izgleda isto kao provjera koja prolazi.
-for _put in sorted(glob.glob(os.path.join(KORIJEN, "proizvodi", "*.html"))):
+for _put in sorted(glob.glob(os.path.join(KORIJEN, "proizvodi", "*.html"))
+                   + glob.glob(os.path.join(KORIJEN, "alati", "*.html"))):
     _ime = os.path.relpath(_put, KORIJEN).replace(os.sep, "/")
     STRANICE[_ime] = "/" + _ime[:-len(".html")]
 

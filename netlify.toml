@@ -29,6 +29,17 @@
   to = "/proizvodi/:splat.html"
   status = 200
 
+# Stranice alata iz najma — isti generator, isti uzorak i isti redoslijed.
+[[redirects]]
+  from = "/alati/*.html"
+  to = "/alati/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/alati/*"
+  to = "/alati/:splat.html"
+  status = 200
+
 # Miniserver je do sada stajao u korijenu. Adresa je objavljena, pa ostaje
 # zivjeti kao trajno preusmjerenje umjesto da postane 404.
 [[redirects]]

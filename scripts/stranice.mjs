@@ -1,5 +1,6 @@
 /**
- * stranice.mjs — generira proizvodi/<ime>.html za svih 59 Loxone artikala.
+ * stranice.mjs — generira proizvodi/<ime>.html za svih 59 Loxone artikala
+ * i alati/<ime>.html za 16 alata iz najma.
  *
  * Pokretanje:  node scripts/stranice.mjs
  *              node scripts/stranice.mjs --provjeri   (samo javi, ne pisi)
@@ -37,10 +38,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { TEKST } from "../data/proizvodi-tekst.mjs";
-import { ADRESE, MAPA } from "../js/adrese.js";
+import { ADRESE, MAPA, ADRESE_ALATA, MAPA_ALATA } from "../js/adrese.js";
 
 const KORIJEN = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const IZLAZ = path.join(KORIJEN, "proizvodi");
+const IZLAZ_ALATA = path.join(KORIJEN, "alati");
 const SAMO_PROVJERA = process.argv.includes("--provjeri");
 
 const BOJA = { zeleno: "\x1b[32m", crveno: "\x1b[31m", zuto: "\x1b[33m", sivo: "\x1b[90m", kraj: "\x1b[0m" };
@@ -127,13 +129,13 @@ const ZNAKOVI = {
 /* ================================================================== */
 
 /** Zaglavlje dokumenta — jedina promjenjiva stvar su meta podaci i adresa. */
-function glava({ naziv, opis, adresa }) {
+function glava({ naslov, opis, adresa }) {
   return `<!doctype html>
 <html lang="hr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Loxone ${esc(naziv)} — cijena i specifikacija | HES</title>
+<title>${esc(naslov)}</title>
 <meta name="description" content="${meta_znakovi(opis)}">
 <meta name="theme-color" content="#0A0908">
 <link rel="canonical" href="https://hes.hr${adresa}">
@@ -168,11 +170,9 @@ function glava({ naziv, opis, adresa }) {
 `;
 }
 
-/** Zaglavlje stranice i oba izbornika. Isto na svih 59, mijenja se samo jezicna traka. */
-function zaglavlje(adresa) {
-  return `
-<body>
-<div class="kostur-stranice" data-kostur role="status" aria-live="polite" aria-label="Ucitavanje stranice">
+/** Skeleton za stranice proizvoda. Prati galeriju, podatke i specifikaciju. */
+function kosturProizvoda() {
+  return `<div class="kostur-stranice" data-kostur data-kostur-tip="proizvod" role="status" aria-live="polite" aria-label="Ucitavanje stranice">
   <div class="kostur-stranice__traka" aria-hidden="true">
     <span class="kostur-stranice__znak" data-kostur-oblik></span>
     <span class="kostur-stranice__nav" data-kostur-oblik></span>
@@ -180,26 +180,30 @@ function zaglavlje(adresa) {
     <span class="kostur-stranice__alat" data-kostur-oblik></span>
   </div>
   <div class="kostur-stranice__sadrzaj" aria-hidden="true">
-    <div class="kostur-stranice__tekst">
-      <span class="kostur-stranice__linija kostur-stranice__linija--oznaka" data-kostur-oblik></span>
-      <span class="kostur-stranice__linija kostur-stranice__linija--naslov" data-kostur-oblik></span>
-      <span class="kostur-stranice__linija" data-kostur-oblik></span>
-      <span class="kostur-stranice__linija kostur-stranice__linija--kratka" data-kostur-oblik></span>
-      <span class="kostur-stranice__gumbi">
-        <span class="kostur-stranice__gumb" data-kostur-oblik></span>
-        <span class="kostur-stranice__gumb" data-kostur-oblik></span>
-      </span>
-    </div>
-    <div class="kostur-stranice__ploca">
-      <span class="kostur-stranice__kadar" data-kostur-oblik></span>
-    </div>
-    <div class="kostur-stranice__kartice">
-      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
-      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
-      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
+    <div class="kostur-predlozak kostur-predlozak--proizvod">
+      <div class="kostur-proizvod__galerija">
+        <span class="kostur-proizvod__glavni" data-kostur-oblik></span>
+        <span class="kostur-proizvod__slicice"><span class="kostur-slicica" data-kostur-oblik></span><span class="kostur-slicica" data-kostur-oblik></span><span class="kostur-slicica" data-kostur-oblik></span><span class="kostur-slicica" data-kostur-oblik></span></span>
+      </div>
+      <div class="kostur-proizvod__podaci">
+        <span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span>
+        <span class="kostur-redak kostur-redak--oznaka" data-kostur-oblik></span>
+        <span class="kostur-naslov" data-kostur-oblik></span>
+        <span class="kostur-proizvod__cijena" data-kostur-oblik></span>
+        <div class="kostur-proizvod__akcije"><span class="kostur-gumb" data-kostur-oblik></span><span class="kostur-gumb" data-kostur-oblik></span></div>
+        <span class="kostur-redak kostur-redak--srednji" data-kostur-oblik></span>
+        <div class="kostur-proizvod__spec"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span></div>
+      </div>
     </div>
   </div>
-</div>
+</div>`;
+}
+
+/** Zaglavlje stranice i oba izbornika. Isto na svih 59, mijenja se samo jezicna traka. */
+function zaglavlje(adresa) {
+  return `
+<body>
+${kosturProizvoda()}
 <a class="preskoci" href="#sadrzaj">Preskoči na sadržaj</a>
 <div class="platno-pozadina" aria-hidden="true" data-platno></div>
 
@@ -290,47 +294,64 @@ function zaglavlje(adresa) {
 
 <div class="zastor" data-izbornik-zastor hidden></div>
 <nav class="mobilni-izbornik" id="mobilni-izbornik" data-mobilni-izbornik hidden aria-label="Glavni izbornik">
-  <details class="mob-skupina">
-    <summary class="mob-skupina__naslov">Usluge <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-    <div class="mob-skupina__sadrzaj">
-      <a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a>
-      <a href="/#zavrsni-radovi">Završni radovi</a>
-      <a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a>
+  <!-- Skupina ima dvije mete: naziv vodi na stranicu, strelica otvara popis.
+       Popis je isti padajuci dio kao u traci na desktopu (js/main.js). -->
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/#usluge">Usluge</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-usluge" aria-label="Prikažite usluge"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
     </div>
-  </details>
-  <details class="mob-skupina">
-    <summary class="mob-skupina__naslov">Loxone smart home <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-    <div class="mob-skupina__sadrzaj">
-      <a href="/webshop">Cijeli katalog</a>
-      <p class="oznaka">Skupine proizvoda</p>
-      <div class="mob-cipovi">
-        <a class="mob-cip" href="/webshop?skupina=miniserveri">Miniserveri</a>
-        <a class="mob-cip" href="/webshop?skupina=prosirenja">Proširenja</a>
-        <a class="mob-cip" href="/webshop?skupina=doticajni-uredaji-i-tipkala">Doticajni uređaji i tipkala</a>
-        <a class="mob-cip" href="/webshop?skupina=senzori">Senzori</a>
-        <a class="mob-cip" href="/webshop?skupina=osvjetljenje">Osvjetljenje</a>
-        <a class="mob-cip" href="/webshop?skupina=upravljanje-osvjetljenjem">Upravljanje osvjetljenjem</a>
-        <a class="mob-cip" href="/webshop?skupina=audio-sustavi">Audio sustavi</a>
-        <a class="mob-cip" href="/webshop?skupina=aktuatori-i-pogoni">Aktuatori i pogoni</a>
-        <a class="mob-cip" href="/webshop?skupina=pametne-uticnice">Pametne utičnice</a>
-        <a class="mob-cip" href="/webshop?skupina=kabeli-i-konektori">Kabeli i konektori</a>
-        <a class="mob-cip" href="/webshop?skupina=dodatni-materijali">Dodatni materijali</a>
+    <div class="mob-pod" id="mob-usluge">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis">
+          <li><a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a></li>
+          <li><a href="/#zavrsni-radovi">Završni radovi</a></li>
+          <li><a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a></li>
+        </ul>
       </div>
     </div>
-  </details>
-  <details class="mob-skupina">
-    <summary class="mob-skupina__naslov">Najam alata <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-    <div class="mob-skupina__sadrzaj">
-      <a href="/najam-alata">Cijeli cjenik</a>
-      <p class="oznaka">Kategorije alata</p>
-      <div class="mob-cipovi">
-        <a class="mob-cip" href="/najam-alata?skupina=ljestve-i-skele">Ljestve i skele</a>
-        <a class="mob-cip" href="/najam-alata?skupina=rezanje-i-brusenje">Rezanje i brušenje</a>
-        <a class="mob-cip" href="/najam-alata?skupina=busenje-i-odvijanje">Bušenje i odvijanje</a>
-        <a class="mob-cip" href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a>
+  </div>
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/webshop">Loxone smart home</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-loxone" aria-label="Prikažite skupine proizvoda"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="mob-pod" id="mob-loxone">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis mob-pod__popis--dvostupacni">
+          <li class="mob-pod__naslov"><p class="oznaka">Skupine proizvoda</p></li>
+          <li><a href="/webshop?skupina=miniserveri">Miniserveri</a></li>
+          <li><a href="/webshop?skupina=prosirenja">Proširenja</a></li>
+          <li><a href="/webshop?skupina=doticajni-uredaji-i-tipkala">Doticajni uređaji i tipkala</a></li>
+          <li><a href="/webshop?skupina=senzori">Senzori</a></li>
+          <li><a href="/webshop?skupina=osvjetljenje">Osvjetljenje</a></li>
+          <li><a href="/webshop?skupina=upravljanje-osvjetljenjem">Upravljanje osvjetljenjem</a></li>
+          <li><a href="/webshop?skupina=audio-sustavi">Audio sustavi</a></li>
+          <li><a href="/webshop?skupina=aktuatori-i-pogoni">Aktuatori i pogoni</a></li>
+          <li><a href="/webshop?skupina=pametne-uticnice">Pametne utičnice</a></li>
+          <li><a href="/webshop?skupina=kabeli-i-konektori">Kabeli i konektori</a></li>
+          <li><a href="/webshop?skupina=dodatni-materijali">Dodatni materijali</a></li>
+        </ul>
       </div>
     </div>
-  </details>
+  </div>
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/najam-alata">Najam alata</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-najam" aria-label="Prikažite kategorije alata"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="mob-pod" id="mob-najam">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis">
+          <li class="mob-pod__naslov"><p class="oznaka">Kategorije alata</p></li>
+          <li><a href="/najam-alata?skupina=ljestve-i-skele">Ljestve i skele</a></li>
+          <li><a href="/najam-alata?skupina=rezanje-i-brusenje">Rezanje i brušenje</a></li>
+          <li><a href="/najam-alata?skupina=busenje-i-odvijanje">Bušenje i odvijanje</a></li>
+          <li><a href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <a href="/#zaposlenje">Zaposlenje</a>
   <div class="mob-red">
     <a href="/#kontakt">Kontakt</a>
@@ -624,9 +645,158 @@ function stranica({ artikl, tekst, skupina, podskupina, adresa }) {
     `${uvodno}. Ovlašteni partneri firme Loxone.`;
 
   return (
-    glava({ naziv: artikl.naziv, opis: meta, adresa }) +
+    glava({ naslov: `Loxone ${artikl.naziv} — cijena i specifikacija | HES`, opis: meta, adresa }) +
     zaglavlje(adresa) +
     tijelo({ artikl, tekst, skupina, podskupina, adresa }) +
+    podnozje()
+  );
+}
+
+/* ================================================================== */
+/* Stranica alata iz najma                                             */
+/* ================================================================== */
+/**
+ * Isti raspored kao stranica Loxone artikla, ali bez proze.
+ *
+ * Za alate izvor nosi samo naziv, marku, kategoriju, cijenu po danu, stanje i
+ * fotografije — ni opisa ni tehnickih podataka. Umjesto izmisljenog teksta
+ * stranica pokazuje tocno to (odluka klijenta). Kad opisi stignu, ovdje se
+ * dodaje blok "Opis" kao u `tijelo()`, iz vlastite datoteke u data/.
+ *
+ * Cijena se ni ovdje ne prepisuje u HTML: crta je js/proizvod.js iz
+ * kataloga, iz istog razloga kao kod Loxone stranica.
+ */
+function tijeloAlata({ artikl, kategorija }) {
+  const naziv = artikl.naziv;
+  const imeKategorije = kategorija?.naziv_hr ?? "Najam alata";
+
+  const cinjenice = [
+    { naziv: "Marka", vrijednost: artikl.marka },
+    { naziv: "Kategorija", vrijednost: imeKategorije },
+    { naziv: "Obračun najma", vrijednost: "Po danu" },
+  ];
+
+  return `
+<main id="sadrzaj">
+
+<!-- ================================================================= -->
+<!-- rental-detail — ${naziv} -->
+<!-- ================================================================= -->
+<!--
+  Isti obrazac kao proizvodi/*.html: sekcija se prepoznaje po
+  \`data-proizvod="${artikl.id}"\`, a js/proizvod.js puni cijenu, stanje,
+  galeriju, kosaricu i preporuke. Dodavanje alata u kosaricu odmah otvara
+  ladicu, jer se najam bez datuma ne moze procijeniti.
+
+  Datoteka je generirana. Ne mijenjati rucno — promjene idu u
+  scripts/stranice.mjs, pa \`npm run stranice\`.
+-->
+<section class="polje polje--zbijeno proizvod-stranica" data-proizvod="${artikl.id}">
+  <div class="stupac">
+
+    <nav class="mrvice" aria-label="Staza">
+      <a href="/najam-alata">Najam alata</a>
+      <span aria-hidden="true">/</span>
+      <a href="/najam-alata?skupina=${esc(kategorija?.id ?? "")}">${esc(imeKategorije)}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">${esc(naziv)}</span>
+    </nav>
+
+    <div class="proizvod-stranica__mreza">
+
+      <!-- Galerija: fotografije, crta je js/proizvod.js -->
+      <div class="proizvod-stranica__medij" data-galerija-nosac></div>
+
+      <div class="proizvod-stranica__podaci">
+        <p class="oznaka">${esc(imeKategorije)}</p>
+        <h1 class="naslov-2">${esc(naziv)}</h1>
+        <p class="jedva monr">Marka: ${esc(artikl.marka)}</p>
+
+        <div class="proizvod-stranica__cijena">
+          <div data-cijena></div>
+          <!-- Samo "po danu": izvor za alate ne navodi PDV, pa se o njemu
+               nista ne tvrdi (hes-content.md, marker 16 / §8.8). -->
+          <p class="jedva">po danu</p>
+        </div>
+
+        <div data-stanje></div>
+
+        <div class="proizvod-stranica__akcije" data-akcije></div>
+
+        <p class="jedva napomena-cijene">
+          Cijene su prema cjeniku. Razdoblje najma birate u košarici, a konačnu ponudu šaljemo e-poštom.
+        </p>
+
+        <div class="akcije">
+          <a class="gumb gumb--tihi van" href="/#kontakt">Zatražite ponudu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================= -->
+<!-- rental-facts — samo podaci koje izvor nosi                         -->
+<!-- ================================================================= -->
+<section class="polje polje--podignuto polje--zbijeno">
+  <div class="stupac">
+    <div class="proizvod-opis proizvod-opis--kratko">
+      <div class="proizvod-opis__stupci">
+        <div data-otkrij>
+          <h2 class="naslov-3">Podaci o najmu</h2>
+          <dl class="cinjenice">
+${cinjenice
+  .map(
+    (c) => `            <div>
+              <dt>${esc(c.naziv)}</dt>
+              <dd>${esc(c.vrijednost)}</dd>
+            </div>`
+  )
+  .join("\n")}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================= -->
+<!-- rental-recommendations — karusel                                   -->
+<!-- ================================================================= -->
+<section class="polje polje--zbijeno">
+  <div class="stupac">
+    <header class="zaglavlje-sekcije" data-otkrij>
+      <p class="oznaka">Uz ovaj alat</p>
+      <h2 class="naslov-2">Ostali alati za najam</h2>
+      <p class="uvod stupac--tekst">
+        Najprije alati iz iste kategorije, zatim ostatak cjenika. Cijene su po danu.
+      </p>
+    </header>
+
+    <!-- Karusel crta js/proizvod.js istim karticama kao i cjenik. -->
+    <div data-preporuke></div>
+
+    <div class="akcije" data-otkrij>
+      <a class="gumb gumb--sporedni" href="/najam-alata">Cijeli cjenik</a>
+    </div>
+  </div>
+</section>
+
+</main>
+`;
+}
+
+function stranicaAlata({ artikl, kategorija, adresa }) {
+  // Svi nazivi alata vec pocinju markom ("Bosch GWS 18V-10", "K+K 235628"),
+  // pa je marka u meta opisu ne ponavlja.
+  const meta =
+    `Najam ${artikl.naziv} po danu: ${cijena(artikl.cijena_cents)} € dnevno. ` +
+    `${kategorija?.naziv_hr ?? "Profesionalni alat"} — odaberite datume u košarici i zatražite ponudu.`;
+
+  return (
+    glava({ naslov: `Najam ${artikl.naziv} — cijena po danu | HES`, opis: meta, adresa }) +
+    zaglavlje(adresa) +
+    tijeloAlata({ artikl, kategorija }) +
     podnozje()
   );
 }
@@ -644,8 +814,14 @@ async function glavni() {
     if (!artikli.has(id)) greske.push(`${id}: nema ga u assets/katalog.json`);
     if (!TEKST[id]) greske.push(`${id}: nema teksta u data/proizvodi-tekst.mjs`);
   }
+  for (const id of ADRESE_ALATA.keys()) {
+    if (!artikli.has(id)) greske.push(`${id}: alata nema u assets/katalog.json`);
+  }
   for (const a of katalog.artikli) {
     if (a.vrsta === "loxone" && !ADRESE.has(a.id)) greske.push(`${a.id} (${a.naziv}): nema adresu u js/adrese.js`);
+    if (a.vrsta === "alat" && !ADRESE_ALATA.has(a.id)) {
+      greske.push(`${a.id} (${a.naziv}): alat nema adresu u js/adrese.js (ADRESE_ALATA)`);
+    }
   }
   if (greske.length) {
     for (const g of greske) console.error(`${BOJA.crveno}✗${BOJA.kraj} ${g}`);
@@ -653,41 +829,76 @@ async function glavni() {
     return;
   }
 
-  if (!SAMO_PROVJERA) await mkdir(IZLAZ, { recursive: true });
+  // Kategorije su poredane: prva je skupina, druga podskupina.
+  const skupinaZa = (artikl) =>
+    artikl.kategorije.map((k) => kategorije.get(k)).find((k) => k && !k.roditelj_id);
+  const podskupinaZa = (artikl) =>
+    artikl.kategorije.map((k) => kategorije.get(k)).find((k) => k && k.roditelj_id);
+
+  const loxone = [...ADRESE].map(([id, ime]) => {
+    const artikl = artikli.get(id);
+    return {
+      ime,
+      naziv: artikl.naziv,
+      html: stranica({
+        artikl,
+        tekst: TEKST[id],
+        skupina: skupinaZa(artikl),
+        podskupina: podskupinaZa(artikl),
+        adresa: `${MAPA}/${ime}`,
+      }),
+    };
+  });
+
+  const alati = [...ADRESE_ALATA].map(([id, ime]) => {
+    const artikl = artikli.get(id);
+    return {
+      ime,
+      naziv: artikl.naziv,
+      html: stranicaAlata({ artikl, kategorija: skupinaZa(artikl), adresa: `${MAPA_ALATA}/${ime}` }),
+    };
+  });
+
+  const brojLoxone = await pisi(IZLAZ, loxone);
+  const brojAlata = await pisi(IZLAZ_ALATA, alati);
+
+  console.log(
+    `\n${BOJA.zeleno}${brojLoxone}${BOJA.kraj} stranica u ${BOJA.sivo}proizvodi/${BOJA.kraj}, ` +
+      `${BOJA.zeleno}${brojAlata}${BOJA.kraj} u ${BOJA.sivo}alati/${BOJA.kraj}`
+  );
+}
+
+/**
+ * Pise stranice jedne mape i brise one koje vise nitko ne generira.
+ *
+ * Datoteka koja je ostala iza preimenovanog artikla bi se i dalje posluzivala
+ * i nitko je ne bi imao odakle primijetiti.
+ */
+async function pisi(mapa, stranice) {
+  const imeMape = path.basename(mapa);
+  if (!SAMO_PROVJERA) await mkdir(mapa, { recursive: true });
 
   const napisane = new Set();
-  for (const [id, ime] of ADRESE) {
-    const artikl = artikli.get(id);
-    const tekst = TEKST[id];
-
-    // Kategorije su poredane: prva je skupina, druga podskupina.
-    const skupina = artikl.kategorije.map((k) => kategorije.get(k)).find((k) => k && !k.roditelj_id);
-    const podskupina = artikl.kategorije.map((k) => kategorije.get(k)).find((k) => k && k.roditelj_id);
-
-    const html = stranica({ artikl, tekst, skupina, podskupina, adresa: `${MAPA}/${ime}` });
-    const put = path.join(IZLAZ, `${ime}.html`);
+  for (const { ime, naziv, html } of stranice) {
     napisane.add(`${ime}.html`);
-
     if (SAMO_PROVJERA) {
-      console.log(`${BOJA.sivo}·${BOJA.kraj} ${ime}.html  ${BOJA.sivo}${artikl.naziv}${BOJA.kraj}`);
+      console.log(`${BOJA.sivo}·${BOJA.kraj} ${imeMape}/${ime}.html  ${BOJA.sivo}${naziv}${BOJA.kraj}`);
       continue;
     }
-    await writeFile(put, html, "utf8");
-    console.log(`${BOJA.zeleno}✓${BOJA.kraj} ${ime}.html  ${BOJA.sivo}${artikl.naziv}${BOJA.kraj}`);
+    await writeFile(path.join(mapa, `${ime}.html`), html, "utf8");
+    console.log(`${BOJA.zeleno}✓${BOJA.kraj} ${imeMape}/${ime}.html  ${BOJA.sivo}${naziv}${BOJA.kraj}`);
   }
 
-  // Datoteka koja je ostala iza preimenovanog artikla bi se i dalje posluzivala
-  // i nitko je ne bi imao odakle primijetiti.
-  if (!SAMO_PROVJERA && existsSync(IZLAZ)) {
-    for (const d of await readdir(IZLAZ)) {
+  if (!SAMO_PROVJERA && existsSync(mapa)) {
+    for (const d of await readdir(mapa)) {
       if (d.endsWith(".html") && !napisane.has(d)) {
-        await unlink(path.join(IZLAZ, d));
-        console.log(`${BOJA.zuto}−${BOJA.kraj} ${d}  ${BOJA.sivo}visak, obrisano${BOJA.kraj}`);
+        await unlink(path.join(mapa, d));
+        console.log(`${BOJA.zuto}−${BOJA.kraj} ${imeMape}/${d}  ${BOJA.sivo}visak, obrisano${BOJA.kraj}`);
       }
     }
   }
 
-  console.log(`\n${BOJA.zeleno}${napisane.size}${BOJA.kraj} stranica u ${BOJA.sivo}proizvodi/${BOJA.kraj}`);
+  return napisane.size;
 }
 
 glavni().catch((greska) => {

@@ -41,7 +41,6 @@ export async function pokreniTrgovinu(korijen) {
   const podTraka = korijen.querySelector("[data-pod-traka]");
   const trazilica = korijen.querySelector("[data-trazilica]");
   const listSpremnik = document.querySelector("[data-filtar-list]");
-  const filtarBrojac = document.querySelector("[data-filtar-brojac]");
 
   // Mreza kartica ima kolicinu PRIJE dodavanja u kosaricu; tablica najma nema.
   // Broj zivi ovdje, a ne u kosarici: dok se ne pritisne gumb, kosarica za
@@ -104,7 +103,7 @@ export async function pokreniTrgovinu(korijen) {
         podskupinaZa,
         // Ime i fotografija vode na stranicu artikla; gumbi za kolicinu i
         // kosaricu ostaju izvan poveznice, pa klik na "+" ne odvodi s kataloga.
-        // Alati nemaju svoju stranicu i adresaProizvoda im vraca null.
+        // Artikl bez stranice dobiva null i kartica ostaje bez poveznice.
         veza: adresaProizvoda,
       });
       if (katTraka) {
@@ -126,13 +125,14 @@ export async function pokreniTrgovinu(korijen) {
       // Ista mreza kartica kao na webshopu. Tablica je ovdje stajala dok alati
       // nisu imali nijednu fotografiju; sada ih imaju svih sesnaest
       // (scripts/proizvodi.mjs), pa nema razloga da cjenik izgleda kao drugi
-      // proizvod. Alati nemaju svoju stranicu, pa `veza` izostaje i naziv
-      // ostaje obican tekst.
+      // proizvod. Svaki alat ima i svoju stranicu (/alati/<ime>, tablica u
+      // js/adrese.js), pa ime i fotografija vode na nju kao i na webshopu.
       popisSpremnik.innerHTML = mrezaHtml(popis, {
         potvrden: (id) => potvrda.jePotvrden(id),
         kolicine,
         podskupinaZa,
         osnova: "dan",
+        veza: adresaProizvoda,
       });
 
       const railKod = railHtml(katalog, filtri, vrsta);
@@ -150,12 +150,6 @@ export async function pokreniTrgovinu(korijen) {
         const novi = katTraka.querySelector(".kat-traka__popis");
         if (novi) novi.scrollLeft = pomak;
       }
-    }
-
-    if (filtarBrojac) {
-      const broj = filtri.brojAktivnih();
-      filtarBrojac.textContent = broj ? String(broj) : "";
-      filtarBrojac.hidden = broj === 0;
     }
 
     // Otkrivanje se veze na novo tijelo popisa: staro je upravo zamijenjeno,
@@ -203,7 +197,26 @@ export async function pokreniTrgovinu(korijen) {
           : ""
       }
 
-      ${sortHtml(stanje)}`;
+      <div class="sazetak__kontrole">
+        ${filtarGumbHtml(filtri.brojAktivnih())}
+        ${sortHtml(stanje)}
+      </div>`;
+  }
+
+  /*
+   * Gumb "Filtri" — lijevo od "Poredaj" i istog oblika, s ikonom lijevka.
+   * Vidi se samo ispod 900 px, gdje rail slijeva nestaje (CSS), a otvara
+   * postojeci donji list (js/main.js, `pokreniFiltarList`). Brojac aktivnih
+   * filtara crta se ovdje, uz gumb, jer se gumb precrtava sa sazetkom.
+   */
+  function filtarGumbHtml(broj) {
+    return `
+      <button class="sort__gumb filtar-gumb" type="button" data-filtar-otvori aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8.5V19l-4 2v-7.5z"/></svg>
+        <span>Filtri</span>
+        ${broj ? `<span class="filtar-brojac monr"><span class="samo-citac">aktivnih:</span> ${broj}</span>` : ""}
+      </button>`;
   }
 
   /* ---------------------------------------------------------------- */

@@ -19,6 +19,7 @@ import { adresaProizvoda } from "./adrese.js";
 import { galerijaHtml, karuselHtml } from "./pogledi.js";
 import * as kosarica from "./kosarica.js";
 import * as potvrda from "./potvrda.js";
+import { otvori as otvoriLadicu } from "./ladica.js";
 import { pokreniVideoNaHover } from "./interakcije.js";
 
 const MAX_KOLICINA = 99;
@@ -108,7 +109,11 @@ export async function pokreniStranicuProizvoda(korijen) {
     if (meta.dataset.akcija === "dodaj") {
       // Kao i u katalogu: gumb uvijek dodaje, a `kosarica.dodaj` sam zbraja
       // kolicinu ako artikl vec stoji unutra.
-      if (kosarica.dodaj(artikl, { kolicina }).ok) potvrda.potvrdi(artikl.id);
+      if (!kosarica.dodaj(artikl, { kolicina }).ok) return;
+      potvrda.potvrdi(artikl.id);
+      // Najam bez datuma se ne moze procijeniti, pa se ladica otvara odmah —
+      // tu su polja datuma. Isto kao na /najam-alata (js/trgovina.js).
+      if (artikl.osnova === "dan") otvoriLadicu();
     }
   });
 
@@ -210,8 +215,10 @@ export async function pokreniStranicuProizvoda(korijen) {
     // ucitavanja umjesto da ovisi o redu kojim je JSON slozen.
     const uKatalogu = new Map(katalog.artikli.map((a, i) => [a.id, i]));
 
+    // Iz iste zalihe: uz Loxone artikl Loxone, uz alat alati. Kupnja po
+    // komadu i najam po danu u istom karuselu bili bi dvije ponude u jednoj.
     const preporuke = katalog.artikli
-      .filter((a) => a.vrsta === "loxone" && a.id !== artikl.id)
+      .filter((a) => a.vrsta === artikl.vrsta && a.id !== artikl.id)
       .sort(
         (x, y) =>
           tezina(x) - tezina(y) ||
@@ -234,7 +241,8 @@ export async function pokreniStranicuProizvoda(korijen) {
         potvrden: (kljuc) => potvrda.jePotvrden(kljuc),
         kolicine,
         podskupinaZa,
-        // Svih 59 Loxone artikala ima svoju stranicu; tablica je u
+        osnova: artikl.osnova === "dan" ? "dan" : "kom",
+        // Svih 59 Loxone artikala i 16 alata ima svoju stranicu; tablice su u
         // js/adrese.js. Artikl kojeg u tablici nema dobiva null i kartica
         // ostaje bez poveznice umjesto da vodi na 404.
         veza: adresaProizvoda,
@@ -269,6 +277,7 @@ export async function pokreniStranicuProizvoda(korijen) {
         if (!nadeni) return;
         if (kosarica.dodaj(nadeni, { kolicina: kolicine.get(nadeni.id) ?? 1 }).ok) {
           potvrda.potvrdi(nadeni.id);
+          if (nadeni.osnova === "dan") otvoriLadicu();
         }
       }
     });

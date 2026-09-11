@@ -127,23 +127,28 @@ export function pokreniNapredakObrasca(korijen = document) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Vrsta upita — sklopivi izbornik na mobitelu                          */
+/* Vrsta upita — padajuci izbornik na mobitelu                          */
 /* ------------------------------------------------------------------ */
 /**
- * Sest cipova vrste upita ispod 600 px stane u cetiri retka usred obrasca.
- * Omot je `<details>` koji ondje stoji zatvoren i u summaryju pokazuje sto je
- * odabrano; iznad 600 px je otvoren, a summary skriven CSS-om.
+ * Sest cipova vrste upita ispod 600 px stane u cetiri retka usred obrasca,
+ * pa se ondje skupljaju iza gumba koji pokazuje sto je odabrano. Popis je
+ * padajuci izbornik istog izgleda i ulaza kao onaj u navigaciji. Iznad
+ * 600 px gumb je skriven CSS-om i cipovi stoje kao i prije, pa klasa koju
+ * ovo postavlja ondje nista ne mijenja.
+ *
+ * Omot je prije bio `<details>`. Zatvaranje njega se ne da animirati, a
+ * izbornik u navigaciji se i otvara i zatvara prijelazom — pa je to sada
+ * gumb s `aria-expanded` i klasom `je-otvoren`.
  *
  * Radio gumbi ostaju netaknuti — stanje i dalje vodi `:checked`, a ovo samo
- * prepisuje natpis i zatvara popis nakon odabira. Bez JS-a popis ostane
- * otvoren, sto je i dalje upotrebljiv obrazac.
+ * prepisuje natpis i otvara i zatvara popis.
  */
 export function pokreniVrsteUpita() {
   const omot = document.querySelector("[data-vrste]");
   if (!omot) return;
 
+  const gumb = omot.querySelector("[data-vrste-gumb]");
   const natpis = omot.querySelector("[data-vrste-natpis]");
-  const usko = window.matchMedia("(max-width: 599px)");
 
   const osvjezi = () => {
     const odabran = omot.querySelector(".cip-upita__ulaz:checked");
@@ -152,20 +157,43 @@ export function pokreniVrsteUpita() {
     if (oznaka) natpis.textContent = oznaka.textContent.trim();
   };
 
-  // Na sirokom ekranu popis mora biti otvoren: ondje summary ne postoji, pa
-  // zatvoren <details> ne bi imao cime biti otvoren.
-  const uskladi = () => {
-    omot.open = !usko.matches;
+  const otvoren = () => omot.classList.contains("je-otvoren");
+  const postavi = (stanje) => {
+    omot.classList.toggle("je-otvoren", stanje);
+    gumb?.setAttribute("aria-expanded", String(stanje));
   };
 
-  omot.addEventListener("change", () => {
-    osvjezi();
-    if (usko.matches) omot.open = false;
+  gumb?.addEventListener("click", () => {
+    const otvara = !otvoren();
+    postavi(otvara);
+    // Fokus na odabranu opciju, da tipkovnica nastavi strelicama. Nakon
+    // klika ili dodira prsten fokusa se ionako ne crta (:focus-visible).
+    if (otvara) omot.querySelector(".cip-upita__ulaz:checked")?.focus({ preventScroll: true });
   });
 
-  usko.addEventListener("change", uskladi);
+  omot.addEventListener("change", osvjezi);
+
+  // Klik ili dodir po retku bira i zatvara. Promjena strelicama NE zatvara —
+  // inace bi se popis gasio pod tipkovnicom na svakom koraku.
+  omot.addEventListener("click", (dogadaj) => {
+    if (!otvoren() || !dogadaj.target.closest(".cip-upita")) return;
+    postavi(false);
+    gumb?.focus({ preventScroll: true });
+  });
+
+  document.addEventListener("click", (dogadaj) => {
+    if (otvoren() && !omot.contains(dogadaj.target)) postavi(false);
+  });
+  omot.addEventListener("focusout", (dogadaj) => {
+    if (otvoren() && !omot.contains(dogadaj.relatedTarget)) postavi(false);
+  });
+  document.addEventListener("keydown", (dogadaj) => {
+    if (dogadaj.key !== "Escape" || !otvoren()) return;
+    postavi(false);
+    gumb?.focus();
+  });
+
   osvjezi();
-  uskladi();
 }
 
 /* ------------------------------------------------------------------ */

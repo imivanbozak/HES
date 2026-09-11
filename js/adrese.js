@@ -106,12 +106,50 @@ export const ADRESE = new Map([
 export const MAPA = "/proizvodi";
 
 /**
+ * Alati iz najma — ista uloga, vlastita mapa.
+ *
+ * Imena su oznake modela malim slovima, s markom ispred. "K+K" gubi plus
+ * ("kk"), jer "+" u adresi preglednik cita kao razmak. Kvaka u izvozu
+ * ("Bosch Professional 12 V System" je naziv serije, ne proizvoda) prelazi
+ * u adresu kakva jest: stranica postoji dok postoji i artikl.
+ */
+export const ADRESE_ALATA = new Map([
+  /* --- ljestve i skele ------------------------------------------------ */
+  ["1210", "protube-f360"],
+  ["1209", "kk-235628"],
+  ["1207", "kk-235636"],
+
+  /* --- rezanje i brusenje --------------------------------------------- */
+  ["1205", "bosch-gts-10-j"],
+  ["1197", "bosch-gws-18v-10"],
+  ["1191", "bosch-gex-18v-125"],
+  ["1188", "bosch-gro-12v-35"],
+  ["1180", "bosch-gks-12v-26"],
+  ["1170", "bosch-gws-12v-76"],
+
+  /* --- busenje i odvijanje -------------------------------------------- */
+  ["1194", "bosch-gsr-18v-55"],
+  ["1185", "bosch-professional-12v-system"],
+  ["1177", "bosch-gds-18v-450-hc"],
+  ["1176", "bosch-ma-55"],
+  ["1175", "bosch-gdr-12v-110"],
+  ["1134", "bosch-gsr-12v-15-fc"],
+
+  /* --- usisavaci i otprasivanje --------------------------------------- */
+  ["1201", "bosch-gas-12-25-pl"],
+]);
+
+export const MAPA_ALATA = "/alati";
+
+/**
  * Adresa stranice artikla, ili null ako je artikl nema.
  *
- * Alati (vrsta "alat") nemaju svoju stranicu, pa im ovo vraca null i kartica
- * ostaje bez poveznice umjesto da vodi na 404.
+ * Artikl kojeg nema ni u jednoj tablici dobiva null i kartica ostaje bez
+ * poveznice umjesto da vodi na 404.
  */
 export function adresaProizvoda(artikl) {
   const ime = ADRESE.get(artikl?.id);
-  return ime ? `${MAPA}/${ime}` : null;
+  if (ime) return `${MAPA}/${ime}`;
+  const alat = ADRESE_ALATA.get(artikl?.id);
+  return alat ? `${MAPA_ALATA}/${alat}` : null;
 }

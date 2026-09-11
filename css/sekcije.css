@@ -507,7 +507,6 @@
  */
 .opseg .zaglavlje-sekcije { justify-items: center; text-align: center; }
 .opseg .zaglavlje-sekcije .stupac--tekst { margin-inline: auto; }
-
 .koraci {
   /*
    * Mjera brojke stoji OVDJE, a ne na `.korak`: crtu crta `.koraci::before` i
@@ -1365,10 +1364,8 @@
 }
 
 .jobs__zaglavlje { justify-items: start; }
-/* Sekcija je najtamnije polje na stranici bez obzira na temu (fotografija
-   je uvijek tamna), pa --tekst iz svijetle teme ovdje ne cita se — natpis
-   gumba treba fiksnu bjelinu, ne varijablu koja prati temu stranice. */
-.jobs .gumb--sporedni { color: #fff; }
+/* Natpis gumba "Nazovi" prati temu (`--tekst`). Fiksna bijela koja je ovdje
+   stajala bila je u svijetloj temi bijelo na bijelom. */
 
 /*
  * Tri plocice umjesto tri pilule.
@@ -1791,36 +1788,93 @@
 .cipovi-upita { display: flex; flex-wrap: wrap; gap: var(--p2); }
 
 /*
- * Omot cipova. Iznad 600 px ga zapravo nema: summary je skriven, <details>
- * stoji otvoren (js/interakcije.js), pa se vidi samo red cipova kao i prije.
+ * Omot cipova. Iznad 600 px ga zapravo nema: gumb je skriven i vidi se samo
+ * red cipova kao i prije.
+ *
+ * Ispod 600 px sest cipova bi zauzelo cetiri retka usred obrasca, pa se
+ * skupljaju u padajuci izbornik — ISTI kao u navigaciji (`.izbornik__pod`):
+ * ploha s rubom i sjenom, retci umjesto pilula i isti ulaz (prozirnost i
+ * pomak od 6 px). Stanje vodi js/interakcije.js (`pokreniVrsteUpita`).
  */
 .vrste__naslov { display: none; }
 
 @media (max-width: 599px) {
-  .vrste {
-    border: 1px solid var(--rub);
-    border-radius: var(--r-mali);
-    background: var(--ploha-2);
-  }
+  .vrste { position: relative; }
   .vrste__naslov {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--p3);
+    width: 100%;
+    min-height: 44px;
     padding: var(--p3) var(--p4);
+    border: 1px solid var(--rub);
+    border-radius: var(--r-mali);
+    background: var(--plohica);
     font-size: var(--vel-malo);
-    color: var(--tekst-2);
+    font-weight: 500;
+    color: var(--tekst);
+    text-align: left;
     cursor: pointer;
-    list-style: none;
+    transition: border-color var(--brzo) var(--krivulja);
   }
-  .vrste__naslov::-webkit-details-marker { display: none; }
-  .vrste__naslov::marker { content: ""; }
-  .vrste[open] .vrste__naslov {
-    border-bottom: 1px solid var(--rub);
+  .vrste.je-otvoren .vrste__naslov { border-color: var(--hes-rub); }
+  .vrste.je-otvoren .vrste__naslov .chevron { transform: rotate(180deg); opacity: 1; }
+
+  .vrste .cipovi-upita {
+    position: absolute;
+    top: calc(100% + var(--p2));
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: grid;
+    gap: 2px;
+    padding: var(--p3);
+    background: var(--ploha-1);
+    border: 1px solid var(--rub);
+    border-radius: var(--r-kartica);
+    box-shadow: var(--sjena-plohe);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+      opacity var(--brzo) var(--krivulja),
+      transform var(--brzo) var(--krivulja),
+      visibility var(--brzo);
+  }
+  .vrste.je-otvoren .cipovi-upita {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Retci kao `.izbornik__pod a`; odabrani nosi kvacicu kao `.sort__opcija`,
+     ne ispunu — ovo je stanje, ne gumb. */
+  .vrste .cip-upita {
+    display: block;
+    padding: var(--p3);
+    border: 0;
+    border-radius: var(--r-mali);
+    background: none;
+    color: var(--tekst-2);
+  }
+  .vrste .cip-upita__ulaz:checked + .cip-upita {
+    background: none;
     color: var(--hes-tekst);
+    font-weight: 600;
   }
-  .vrste[open] .vrste__naslov .chevron { transform: rotate(180deg); }
-  .vrste .cipovi-upita { padding: var(--p3) var(--p4); }
+  .vrste .cip-upita__ulaz:checked + .cip-upita::after {
+    content: "";
+    float: right;
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+    background: currentColor;
+    -webkit-mask: no-repeat center / contain
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E");
+    mask: no-repeat center / contain
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5l5 5L20 6.5'/%3E%3C/svg%3E");
+  }
 }
 .cip-upita {
   display: inline-flex;
@@ -2075,11 +2129,37 @@ textarea.polje-obrasca__ulaz { resize: vertical; min-height: 108px; }
   border-top-color: color-mix(in oklab, var(--hes) 18%, #d8dfd5);
 }
 
+/*
+ * Jacina pozadinskih slika u svijetloj temi, po sekciji (app.css, odjeljak
+ * 2). Odredena na snimkama: tekst mora ostati citljiv i preko najgusceg
+ * dijela slike, a slika se mora vidjeti kao slika, ne kao mrlja.
+ */
+:root[data-theme="svijetla"] #usluge .tekstura img { --tekstura-svijetla: 0.35; }
+:root[data-theme="svijetla"] .opseg .tekstura img { --tekstura-svijetla: 0.45; }
+/* techno-bg3 je zutozelen; nakon okretanja se gura prema brendovskom tealu. */
+:root[data-theme="svijetla"] #zavrsni-radovi .tekstura img {
+  --tekstura-svijetla: 0.55;
+  --tekstura-ton: 205deg;
+}
+/* Val je u donjoj polovici slike. Maska "kut" iz tamne teme ga na papiru
+   skriva iza kartica, pa ga ovdje otkriva odozdo. */
+:root[data-theme="svijetla"] #najam-alata .tekstura img {
+  --tekstura-svijetla: 0.7;
+  --tekstura-maska: linear-gradient(180deg, transparent 25%, #000 70%);
+}
+:root[data-theme="svijetla"] #kontakt .tekstura img { --tekstura-svijetla: 0.4; }
+
+/*
+ * Zaposlenje: fotografija na 90 %, bez zastora. Crni dio fotografije okrece
+ * se u papir (isto kao `.tekstura--obrni`), pa preko vrha sekcije vise nema
+ * sivog gradijenta, a val ostaje tamnoteal linija iza plocica. Maska iz
+ * tamne teme ostaje: slika se prema dnu topi u papir, ne u sivo.
+ * `multiply` radi jer `.jobs` nije kontekst slaganja.
+ */
 :root[data-theme="svijetla"] .jobs__slika {
-  opacity: 0.22;
+  opacity: 0.9;
   mix-blend-mode: multiply;
 }
-
 :root[data-theme="svijetla"] .jobs__slika img {
-  filter: brightness(1.16) saturate(0.62) contrast(0.88);
+  filter: invert(1) hue-rotate(180deg);
 }

@@ -102,8 +102,13 @@
    * svjetlija, isto kao sto svijetla tema ima svoju, tamniju.
    */
   --hes-tekst: #22A88C;                                           /* naglasak kao tekst   */
-  --hes-ploha: var(--hes);                                        /* naglasak kao ispuna  */
-  --hes-na-plohi: #0A0908;                                        /* tekst na toj ispuni  */
+  /*
+   * Tekst na zelenoj ispuni je bijel u obje teme (zahtjev klijenta). Bijelo
+   * na brendovskom #1B9179 daje 3.9:1, ispod AA, pa ispuna ide na tamniju
+   * vrijednost — istu koju svijetla tema vec koristi — i daje 5.8:1.
+   */
+  --hes-ploha: #157260;                                           /* naglasak kao ispuna  */
+  --hes-na-plohi: #FFFFFF;                                        /* tekst na toj ispuni  */
   --hes-rub: color-mix(in oklab, var(--hes) 45%, transparent);
   --hes-pranje: color-mix(in oklab, var(--hes) 14%, transparent);
   --fokus: color-mix(in oklab, var(--sjaj) 65%, transparent);
@@ -278,7 +283,7 @@
 
   --hes-tekst: #12695A;
   --hes-ploha: #157260;
-  --hes-na-plohi: #FAF8F3;
+  --hes-na-plohi: #FFFFFF;
   --hes-rub: color-mix(in oklab, var(--hes) 55%, transparent);
   --hes-pranje: color-mix(in oklab, var(--hes) 12%, transparent);
   --fokus: color-mix(in oklab, #12695A 70%, transparent);

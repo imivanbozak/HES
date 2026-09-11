@@ -34,6 +34,8 @@ html {
    */
   scroll-padding-top: calc(var(--visina-zaglavlja) + var(--p5));
   -webkit-text-size-adjust: 100%;
+  /* Vidi `body` nize: stranica nikad ne klizi vodoravno. */
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -50,8 +52,18 @@ body {
   line-height: var(--red-tekst);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Katalog i tablice imaju svoje vodoravno klizanje; tijelo nikad. */
+  /*
+   * Katalog i tablice imaju svoje vodoravno klizanje; tijelo nikad.
+   *
+   * `clip`, a ne `hidden`. `hidden` pretvara tijelo u spremnik za skrolanje
+   * cim <html> dobije vlastiti overflow — a dobiva ga dok je mobilni izbornik
+   * otvoren (zakljucavanje skrolanja nize). Ljepljivo zaglavlje se tada
+   * lijepi uz tijelo umjesto uz prozor i skoci na vrh dokumenta. `clip`
+   * reze isto, ali spremnik ne stvara. `hidden` ostaje kao zamjena za
+   * preglednike koji `clip` ne znaju.
+   */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .js-pokret:not(.stranica-spremna) body {
@@ -85,6 +97,12 @@ img, svg, video, canvas {
 button, input, select, textarea {
   font: inherit;
   color: inherit;
+}
+
+/* iOS zumira stranicu pri fokusu svakog polja s pismom manjim od 16 px.
+   Na dodirnim ekranima polja zato nikad ne idu ispod te mjere. */
+@media (max-width: 1023px) {
+  input, select, textarea { font-size: max(16px, 1em); }
 }
 
 /* Fokus se vidi samo kad se stvarno navigira tipkovnicom. */
@@ -319,6 +337,373 @@ button, input, select, textarea {
   }
 }
 
+/* Predlosci skeletona prate stvarnu arhitekturu stranica: hero, katalog i
+   proizvod. Markup je isti, a data atribut bira koji se oblik crta. */
+.kostur-stranice__sadrzaj {
+  grid-template-columns: 1fr;
+}
+
+.kostur-predlozak {
+  display: none;
+}
+
+.kostur-stranice[data-kostur-tip="naslovnica"] .kostur-predlozak--naslovnica,
+.kostur-stranice[data-kostur-tip="katalog"] .kostur-predlozak--katalog,
+.kostur-stranice[data-kostur-tip="najam"] .kostur-predlozak--katalog,
+.kostur-stranice[data-kostur-tip="proizvod"] .kostur-predlozak--proizvod {
+  display: grid;
+}
+
+.kostur-hrpa {
+  display: grid;
+  gap: var(--p3);
+}
+
+.kostur-redak {
+  height: 14px;
+  width: min(100%, 58ch);
+}
+
+.kostur-redak--oznaka {
+  width: 120px;
+  height: 10px;
+}
+
+.kostur-redak--kratak { width: min(46%, 320px); }
+.kostur-redak--srednji { width: min(72%, 520px); }
+
+.kostur-naslov {
+  width: min(100%, 700px);
+  height: clamp(42px, 6.5vw, 74px);
+  border-radius: var(--r-kartica);
+}
+
+.kostur-gumbi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p3);
+  margin-top: var(--p2);
+}
+
+.kostur-gumb {
+  width: 148px;
+  height: 42px;
+  border-radius: var(--r-pilula);
+}
+
+.kostur-predlozak--naslovnica {
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.78fr);
+  gap: var(--p7);
+  align-items: end;
+  min-height: min(66vh, 610px);
+}
+
+.kostur-hero__tekst {
+  align-content: end;
+  padding-block: var(--p7) var(--p4);
+}
+
+.kostur-hero__medij {
+  aspect-ratio: 1149 / 1369;
+  align-self: stretch;
+  border-radius: var(--r-ploha);
+}
+
+.kostur-hero__cinjenice {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--p3);
+  grid-column: 1 / -1;
+  padding-top: var(--p4);
+  border-top: 1px solid color-mix(in oklab, var(--tekst) 10%, transparent);
+}
+
+.kostur-cinjenica {
+  display: grid;
+  gap: var(--p2);
+}
+
+.kostur-cinjenica span:first-child {
+  width: 70px;
+  height: 9px;
+}
+
+.kostur-cinjenica span:last-child {
+  width: min(100%, 170px);
+  height: 16px;
+}
+
+.kostur-predlozak--katalog {
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: var(--p7);
+  align-items: start;
+}
+
+.kostur-katalog__rail,
+.kostur-katalog__sadrzaj {
+  display: grid;
+  gap: var(--p4);
+}
+
+.kostur-katalog__rail {
+  position: sticky;
+  top: calc(var(--visina-zaglavlja) + var(--p4));
+}
+
+.kostur-rail-redak {
+  height: 34px;
+  border-radius: var(--r-mali);
+}
+
+.kostur-katalog__glava {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 380px);
+  gap: var(--p3) var(--p6);
+  align-items: center;
+}
+
+.kostur-katalog__glava .kostur-redak--srednji {
+  grid-column: 1 / 2;
+}
+
+.kostur-pretraga {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  height: 46px;
+  border-radius: var(--r-pilula);
+}
+
+.kostur-katalog__traka,
+.kostur-katalog__cipovi {
+  display: flex;
+  gap: var(--p2);
+  overflow: hidden;
+}
+
+.kostur-kat {
+  width: 84px;
+  height: 58px;
+  flex: 0 0 auto;
+  border-radius: var(--r-mali) var(--r-mali) 0 0;
+}
+
+.kostur-cip {
+  width: 104px;
+  height: 32px;
+  flex: 0 0 auto;
+  border-radius: var(--r-pilula);
+}
+
+.kostur-katalog__mreza {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--p4);
+}
+
+.kostur-kartica-proizvoda {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--kostur-baza) 72%, transparent);
+  border: 1px solid color-mix(in oklab, var(--tekst) 7%, transparent);
+  border-radius: var(--r-kartica);
+}
+
+.kostur-kartica-proizvoda__slika {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--r-kartica) var(--r-kartica) 0 0;
+}
+
+.kostur-kartica-proizvoda__tijelo {
+  display: grid;
+  gap: var(--p2);
+  padding: var(--p4);
+  border-top: 1px solid color-mix(in oklab, var(--tekst) 8%, transparent);
+}
+
+.kostur-kartica-proizvoda__akcije {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: var(--p2);
+  margin-top: var(--p1);
+}
+
+.kostur-kartica-proizvoda__akcije .kostur-gumb,
+.kostur-proizvod__akcije .kostur-gumb {
+  width: 100%;
+}
+
+.kostur-kartica-proizvoda__akcije .kostur-gumb {
+  height: 36px;
+  border-radius: var(--r-mali);
+}
+
+.kostur-stranice[data-kostur-tip="najam"] .kostur-katalog__mreza {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.kostur-stranice[data-kostur-tip="najam"] .kostur-kartica-proizvoda__slika {
+  aspect-ratio: 4 / 5;
+}
+
+.kostur-predlozak--proizvod {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--p8);
+  align-items: start;
+}
+
+.kostur-proizvod__galerija,
+.kostur-proizvod__podaci {
+  display: grid;
+  gap: var(--p3);
+}
+
+.kostur-proizvod__glavni {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--r-ploha);
+}
+
+.kostur-proizvod__slicice {
+  display: flex;
+  gap: var(--p2);
+  overflow: hidden;
+}
+
+.kostur-slicica {
+  width: 84px;
+  aspect-ratio: 3 / 2;
+  flex: 0 0 auto;
+  border-radius: var(--r-mali);
+}
+
+.kostur-proizvod__cijena {
+  width: 154px;
+  height: 34px;
+  border-radius: var(--r-mali);
+}
+
+.kostur-proizvod__akcije {
+  display: grid;
+  grid-template-columns: 132px minmax(200px, 1fr);
+  gap: var(--p3);
+  margin-block: var(--p2);
+}
+
+.kostur-proizvod__spec {
+  display: grid;
+  gap: var(--p3);
+  margin-top: var(--p3);
+  padding: var(--p4);
+  border: 1px solid color-mix(in oklab, var(--tekst) 8%, transparent);
+  border-radius: var(--r-kartica);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kostur-kat:nth-child(2)::after,
+  .kostur-cip:nth-child(2)::after,
+  .kostur-kartica-proizvoda:nth-child(2) [data-kostur-oblik]::after,
+  .kostur-slicica:nth-child(2)::after {
+    animation-delay: 120ms;
+  }
+
+  .kostur-kat:nth-child(3)::after,
+  .kostur-cip:nth-child(3)::after,
+  .kostur-kartica-proizvoda:nth-child(3) [data-kostur-oblik]::after,
+  .kostur-slicica:nth-child(3)::after {
+    animation-delay: 240ms;
+  }
+
+  .kostur-kartica-proizvoda:nth-child(4) [data-kostur-oblik]::after,
+  .kostur-kartica-proizvoda:nth-child(7) [data-kostur-oblik]::after {
+    animation-delay: 360ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-kostur-oblik]::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .kostur-predlozak--naslovnica,
+  .kostur-predlozak--katalog,
+  .kostur-predlozak--proizvod {
+    grid-template-columns: 1fr;
+    gap: var(--p5);
+  }
+
+  .kostur-katalog__rail {
+    position: static;
+    display: flex;
+    gap: var(--p2);
+    overflow: hidden;
+  }
+
+  .kostur-rail-redak {
+    width: 112px;
+    flex: 0 0 auto;
+  }
+
+  .kostur-proizvod__akcije {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 719px) {
+  .kostur-stranice__traka {
+    min-height: 64px;
+  }
+
+  .kostur-stranice__nav {
+    display: none;
+  }
+
+  .kostur-predlozak--naslovnica {
+    min-height: auto;
+  }
+
+  .kostur-hero__tekst {
+    padding-block: var(--p4) 0;
+  }
+
+  .kostur-naslov {
+    height: clamp(38px, 14vw, 58px);
+  }
+
+  .kostur-hero__medij {
+    aspect-ratio: 1 / 1;
+    max-height: 44vh;
+  }
+
+  .kostur-hero__cinjenice {
+    grid-template-columns: 1fr;
+  }
+
+  .kostur-katalog__glava {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: var(--p3);
+  }
+
+  .kostur-katalog__glava .kostur-redak--srednji {
+    display: none;
+  }
+
+  .kostur-pretraga {
+    grid-column: 1 / 2;
+    width: 44px;
+    height: 44px;
+  }
+
+  .kostur-katalog__cipovi {
+    grid-column: 1 / -1;
+  }
+
+  .kostur-katalog__mreza {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ================================================================== */
 /* 2. Ukrasni slojevi                                                  */
 /* ================================================================== */
@@ -388,8 +773,12 @@ button, input, select, textarea {
   -webkit-mask-image: var(--tekstura-maska, linear-gradient(180deg, transparent, #000 22%, #000 78%, transparent));
   mask-image: var(--tekstura-maska, linear-gradient(180deg, transparent, #000 22%, #000 78%, transparent));
 }
-/* Sadrzaj sekcije mora ostati iznad teksture. */
-.tekstura ~ * { position: relative; z-index: 1; }
+/* Sadrzaj sekcije mora ostati iznad teksture.
+   `:not(.tekstura)` je bitan: sekcija s parom slika ima dvije teksture
+   jednu do druge, i bez njega bi druga (svijetla) dobila `position:
+   relative`, ispala iz pozadine i stala u tok stranice kao prazan blok
+   visok cijelu sliku — iznad sadrzaja sekcije. */
+.tekstura ~ :not(.tekstura) { position: relative; z-index: 1; }
 
 .tekstura--tiha img { opacity: 0.28; }
 .tekstura--jaka img { opacity: 0.7; }
@@ -403,24 +792,34 @@ button, input, select, textarea {
 :root[data-theme="svijetla"] .tekstura--tamna { display: none; }
 :root:not([data-theme="svijetla"]) .tekstura--svijetla { display: none; }
 
-/* Svijetla parnjakinja nije sjaj na crnom nego tamni crtez na svijetlom, pa
-   ide obrnutim nacinom mijesanja i mnogo tise. */
-.tekstura--svijetla img {
+/*
+ * Svijetla tema: ista kompozicija kao tamna, ali na papiru.
+ *
+ * Svaka sekcija zadrzava sliku, masku i polozaj iz tamne teme. Slike koje su
+ * svjetlost na crnom (valovi, cestice, tamni circuitboard, fotografija
+ * plocice) nose `.tekstura--obrni`: u svijetloj temi CSS ih okrece u tamne
+ * teal linije na svijetlom — `invert` okrene svjetlinu, `hue-rotate(180deg)`
+ * vrati ton — pa ista datoteka sluzi objema temama. Gdje postoji prava
+ * svijetla parnjakinja (`.tekstura--svijetla`), koristi se ona.
+ *
+ * `multiply` polaze linije na papir, a svijetla podloga slike nestaje. Da bi
+ * mijesanje uopce vidjelo plohu sekcije, tekstura ne smije biti vlastiti
+ * kontekst slaganja — zato `z-index: auto`. Sadrzaj ionako stoji iznad nje
+ * (`.tekstura ~ :not(.tekstura)`).
+ *
+ * Nema tamnih zastora ni sivih gradijenata. Jacinu po sekciji odreduje
+ * `--tekstura-svijetla` (sekcije.css, kraj datoteke), mjerena tako da tekst
+ * ostane citljiv i preko najgusceg dijela slike. Jedna jacina za sve (90 %)
+ * probana je i odbacena: gusti valovi su prelazili preko teksta.
+ */
+:root[data-theme="svijetla"] .tekstura { z-index: auto; }
+:root[data-theme="svijetla"] .tekstura img {
   mix-blend-mode: multiply;
-  opacity: var(--tekstura-jacina, 0.16);
+  opacity: var(--tekstura-svijetla, 0.4);
 }
-
-:root[data-theme="svijetla"] .tekstura--svijetla img {
-  filter: saturate(0.72) contrast(0.9);
-  opacity: var(--tekstura-jacina, 0.1);
-}
-
-:root[data-theme="svijetla"] .tekstura--tiha img {
-  opacity: 0.08;
-}
-
-:root[data-theme="svijetla"] .tekstura--jaka img {
-  opacity: 0.15;
+:root[data-theme="svijetla"] .tekstura--obrni { display: block; }
+:root[data-theme="svijetla"] .tekstura--obrni img {
+  filter: invert(1) hue-rotate(var(--tekstura-ton, 180deg));
 }
 
 /*
@@ -1443,67 +1842,100 @@ button, input, select, textarea {
 .mobilni-izbornik .oznaka { padding: var(--p4) var(--p5) var(--p2); }
 
 /*
- * Kategorije na mobitelu idu kao cipovi, ne kao redci.
- *
- * Petnaest kategorija u punoj visini retka od 56 px dalo bi izbornik dug
- * preko dva ekrana i sakrilo "Zaposlenje" i "Kontakt" ispod njih. Cipovi
- * staju u tri-cetiri reda i ostaju meta od 34 px, sto je jos uvijek prst.
- */
-.mob-cipovi {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--p2);
-  padding: 0 var(--p5) var(--p4);
-  border-bottom: 1px solid var(--rub);
-}
-.mobilni-izbornik .mob-cip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: var(--p1) var(--p3);
-  border: 1px solid var(--rub);
-  border-radius: var(--r-pilula);
-  background: var(--plohica);
-  font-size: var(--vel-malo);
-  color: var(--tekst-3);
-  border-bottom: 1px solid var(--rub);
-}
-@media (hover: hover) and (pointer: fine) {
-  .mobilni-izbornik .mob-cip:hover {
-    border-color: var(--hes-rub);
-    color: var(--tekst);
-    transform: var(--pomak-kontrole);
-  }
-}
-/*
  * Skupine u mobilnom izborniku.
  *
- * Ravan popis od dvadesetak redaka trazio je skrolanje da bi se doslo do
- * "Kontakt". Tri sazeta <details> daju istu strukturu koju desktop ima u
- * padajucim izbornicima, a izbornik stane u jedan ekran. Bez JS-a: stanje
- * nosi sam element.
+ * Isti padajuci dio kao na desktopu (`.izbornik__pod`), samo ugraden u
+ * izbornik umjesto da pluta: ploha s rubom i zaobljenim kutovima, retci s
+ * istim razmakom i isti ulaz — prozirnost i pomak od 6 px. Visina se otvara
+ * preko `grid-template-rows`, pa sadrzaj ispod klizne umjesto da skoci.
+ *
+ * Redak ima DVIJE mete: naziv vodi na stranicu (Loxone -> /webshop), a
+ * strelica desno otvara popis. Zato "Cijeli katalog" i "Cijeli cjenik" vise
+ * ne stoje u popisu — do njih vodi sam naziv skupine. Stanje vodi
+ * js/main.js (`pokreniMobilniIzbornik`).
  */
-.mob-skupina {
-  border-bottom: 1px solid var(--rub);
-}
-.mob-skupina__naslov {
+.mob-skupina { border-bottom: 1px solid var(--rub); }
+.mob-skupina__red {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--p3);
-  padding: var(--p4) var(--p5);
-  font-size: 16px;
-  color: var(--tekst-2);
-  cursor: pointer;
-  list-style: none;
+  align-items: stretch;
 }
-.mob-skupina__naslov::-webkit-details-marker { display: none; }
-.mob-skupina__naslov::marker { content: ""; }
-.mob-skupina[open] .mob-skupina__naslov { color: var(--hes-tekst); }
-.mob-skupina[open] .mob-skupina__naslov .chevron { transform: rotate(180deg); }
-/* Zadnji redak skupine ne crta svoju crtu: nosi je sama skupina. */
-.mob-skupina__sadrzaj > :last-child { border-bottom: 0; }
-.mob-skupina__sadrzaj .oznaka { padding-top: var(--p2); }
+.mobilni-izbornik .mob-skupina__veza {
+  flex: 1;
+  border-bottom: 0;
+}
+.mob-skupina__strelica {
+  display: grid;
+  place-items: center;
+  flex: 0 0 56px;
+  border: 0;
+  border-left: 1px solid var(--rub);
+  background: none;
+  color: var(--tekst-3);
+  cursor: pointer;
+}
+.mob-skupina__strelica .chevron { width: 18px; height: 18px; }
+.mob-skupina.je-otvorena .mob-skupina__veza { color: var(--hes-tekst); }
+.mob-skupina.je-otvorena .mob-skupina__strelica .chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.mob-pod {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--srednje) var(--krivulja);
+}
+.mob-skupina.je-otvorena .mob-pod { grid-template-rows: 1fr; }
+/* Okvir reze sadrzaj dok redak raste; plohu nosi popis u njemu. Da je
+   padding na samom retku mreze, `0fr` ga ne bi mogao stisnuti do nule. */
+.mob-pod__okvir { min-height: 0; overflow: hidden; }
+
+.mob-pod__popis {
+  margin: 0 var(--p4) var(--p4);
+  padding: var(--p3);
+  list-style: none;
+  background: var(--ploha-2);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity var(--brzo) var(--krivulja),
+    transform var(--brzo) var(--krivulja),
+    visibility var(--brzo);
+}
+.mob-skupina.je-otvorena .mob-pod__popis {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+/* Jedanaest Loxone skupina u dva stupca, kao `--dvostupacni` na desktopu. */
+.mob-pod__popis--dvostupacni {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--p2);
+}
+.mob-pod__popis--dvostupacni .mob-pod__naslov { grid-column: 1 / -1; }
+@media (max-width: 359px) {
+  .mob-pod__popis--dvostupacni { grid-template-columns: 1fr; }
+}
+.mobilni-izbornik .mob-pod__naslov .oznaka { padding: var(--p2) var(--p3) var(--p3); }
+/* Retci kao `.izbornik__pod a`, samo visi: 44 px je prst, 36 px je mis. */
+.mobilni-izbornik .mob-pod__popis a {
+  display: block;
+  padding: var(--p3);
+  border-bottom: 0;
+  border-radius: var(--r-mali);
+  font-size: 15px;
+  color: var(--tekst-2);
+}
+@media (hover: hover) and (pointer: fine) {
+  .mobilni-izbornik .mob-pod__popis a:hover {
+    background: var(--plohica);
+    color: var(--tekst);
+  }
+}
 
 /*
  * Kontakt i telefon stoje u istom retku. Dvije kratke mete jedna do druge

@@ -59,19 +59,48 @@ function pokreniMobilniIzbornik() {
   const zastor = document.querySelector("[data-izbornik-zastor]");
   if (!prekidac || !izbornik) return;
 
+  // Skupinu otvara strelica; naziv pokraj nje je obicna poveznica.
+  const postaviSkupinu = (skupina, otvorena) => {
+    skupina.classList.toggle("je-otvorena", otvorena);
+    skupina
+      .querySelector(".mob-skupina__strelica")
+      ?.setAttribute("aria-expanded", String(otvorena));
+  };
+
   const postavi = (otvoren) => {
     izbornik.hidden = !otvoren;
     if (zastor) zastor.hidden = !otvoren;
     prekidac.setAttribute("aria-expanded", String(otvoren));
     prekidac.setAttribute("aria-label", otvoren ? "Zatvori izbornik" : "Otvori izbornik");
+
+    // Izbornik se uvijek otvara sazet: skupina ostavljena otvorena od proslog
+    // puta gurnula bi "Zaposlenje" i "Kontakt" ispod ruba ekrana.
+    if (!otvoren) {
+      for (const skupina of izbornik.querySelectorAll(".mob-skupina.je-otvorena")) {
+        postaviSkupinu(skupina, false);
+      }
+    }
   };
 
   prekidac.addEventListener("click", () => postavi(izbornik.hidden));
   zastor?.addEventListener("click", () => postavi(false));
 
-  // Klik na vezu vodi na sidro — izbornik se mora sam maknuti, inace pokrije
-  // sekciju do koje je upravo doveo.
   izbornik.addEventListener("click", (dogadaj) => {
+    const strelica = dogadaj.target.closest(".mob-skupina__strelica");
+    if (strelica) {
+      const skupina = strelica.closest(".mob-skupina");
+      const otvara = !skupina.classList.contains("je-otvorena");
+      // Jedna otvorena skupina odjednom, kao na desktopu gdje se vidi samo
+      // jedan padajuci dio.
+      for (const druga of izbornik.querySelectorAll(".mob-skupina.je-otvorena")) {
+        postaviSkupinu(druga, false);
+      }
+      postaviSkupinu(skupina, otvara);
+      return;
+    }
+
+    // Klik na vezu vodi na sidro — izbornik se mora sam maknuti, inace
+    // pokrije sekciju do koje je upravo doveo.
     if (dogadaj.target.closest("a")) postavi(false);
   });
 
@@ -129,10 +158,14 @@ function pokreniPovratakNaVrh() {
 /* ------------------------------------------------------------------ */
 /* Mobilni list s filtrima                                             */
 /* ------------------------------------------------------------------ */
-function pokreniFiltarList(katalogSekcija) {
+/*
+ * Gumb "Filtri" stoji u sazetku, lijevo od "Poredaj" (js/trgovina.js), i
+ * precrtava se zajedno s njim — zato je slusac delegiran na dokument.
+ * Prikvacena traka na dnu ekrana koja je prije otvarala list je uklonjena.
+ */
+function pokreniFiltarList() {
   const dijalog = document.querySelector("[data-filtar-dijalog]");
-  const traka = document.querySelector("[data-filtar-traka]");
-  if (!dijalog || !traka || !katalogSekcija) return;
+  if (!dijalog) return;
 
   document.addEventListener("click", (dogadaj) => {
     if (dogadaj.target.closest("[data-filtar-otvori]")) {
@@ -145,16 +178,6 @@ function pokreniFiltarList(katalogSekcija) {
   dijalog.addEventListener("click", (dogadaj) => {
     if (dogadaj.target === dijalog) dijalog.close();
   });
-
-  // Traka se pojavljuje samo dok je katalog u vidokrugu. Da stalno stoji,
-  // pokrivala bi podnozje i hero bez ijednog razloga.
-  const promatrac = new IntersectionObserver(
-    ([unos]) => {
-      traka.hidden = !unos.isIntersecting;
-    },
-    { rootMargin: "-20% 0px -10% 0px" }
-  );
-  promatrac.observe(katalogSekcija);
 }
 
 /* ------------------------------------------------------------------ */
@@ -197,7 +220,7 @@ async function pokreni() {
   if (katalogSekcija) {
     const { pokreniTrgovinu } = await import("./trgovina.js");
     await pokreniTrgovinu(katalogSekcija);
-    pokreniFiltarList(katalogSekcija);
+    pokreniFiltarList();
   }
 
   // Stranica jednog artikla. Ucitava se samo ondje gdje postoji, kao i

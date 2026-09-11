@@ -37,7 +37,7 @@
 </head>
 
 <body>
-<div class="kostur-stranice" data-kostur role="status" aria-live="polite" aria-label="Ucitavanje stranice">
+<div class="kostur-stranice" data-kostur data-kostur-tip="najam" role="status" aria-live="polite" aria-label="Ucitavanje stranice">
   <div class="kostur-stranice__traka" aria-hidden="true">
     <span class="kostur-stranice__znak" data-kostur-oblik></span>
     <span class="kostur-stranice__nav" data-kostur-oblik></span>
@@ -45,23 +45,67 @@
     <span class="kostur-stranice__alat" data-kostur-oblik></span>
   </div>
   <div class="kostur-stranice__sadrzaj" aria-hidden="true">
-    <div class="kostur-stranice__tekst">
-      <span class="kostur-stranice__linija kostur-stranice__linija--oznaka" data-kostur-oblik></span>
-      <span class="kostur-stranice__linija kostur-stranice__linija--naslov" data-kostur-oblik></span>
-      <span class="kostur-stranice__linija" data-kostur-oblik></span>
-      <span class="kostur-stranice__linija kostur-stranice__linija--kratka" data-kostur-oblik></span>
-      <span class="kostur-stranice__gumbi">
-        <span class="kostur-stranice__gumb" data-kostur-oblik></span>
-        <span class="kostur-stranice__gumb" data-kostur-oblik></span>
-      </span>
+    <div class="kostur-predlozak kostur-predlozak--naslovnica">
+      <div class="kostur-hero__tekst kostur-hrpa">
+        <span class="kostur-redak kostur-redak--oznaka" data-kostur-oblik></span>
+        <span class="kostur-naslov" data-kostur-oblik></span>
+        <span class="kostur-redak kostur-redak--srednji" data-kostur-oblik></span>
+        <span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span>
+        <span class="kostur-gumbi">
+          <span class="kostur-gumb" data-kostur-oblik></span>
+          <span class="kostur-gumb" data-kostur-oblik></span>
+        </span>
+      </div>
+      <span class="kostur-hero__medij" data-kostur-oblik></span>
+      <div class="kostur-hero__cinjenice">
+        <span class="kostur-cinjenica"><span data-kostur-oblik></span><span data-kostur-oblik></span></span>
+        <span class="kostur-cinjenica"><span data-kostur-oblik></span><span data-kostur-oblik></span></span>
+        <span class="kostur-cinjenica"><span data-kostur-oblik></span><span data-kostur-oblik></span></span>
+      </div>
     </div>
-    <div class="kostur-stranice__ploca">
-      <span class="kostur-stranice__kadar" data-kostur-oblik></span>
+    <div class="kostur-predlozak kostur-predlozak--katalog">
+      <div class="kostur-katalog__rail">
+        <span class="kostur-rail-redak" data-kostur-oblik></span>
+        <span class="kostur-rail-redak" data-kostur-oblik></span>
+        <span class="kostur-rail-redak" data-kostur-oblik></span>
+        <span class="kostur-rail-redak" data-kostur-oblik></span>
+        <span class="kostur-rail-redak" data-kostur-oblik></span>
+        <span class="kostur-rail-redak" data-kostur-oblik></span>
+      </div>
+      <div class="kostur-katalog__sadrzaj">
+        <div class="kostur-katalog__glava">
+          <span class="kostur-redak kostur-redak--srednji" data-kostur-oblik></span>
+          <span class="kostur-pretraga" data-kostur-oblik></span>
+          <span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span>
+        </div>
+        <div class="kostur-katalog__traka">
+          <span class="kostur-kat" data-kostur-oblik></span><span class="kostur-kat" data-kostur-oblik></span><span class="kostur-kat" data-kostur-oblik></span><span class="kostur-kat" data-kostur-oblik></span><span class="kostur-kat" data-kostur-oblik></span><span class="kostur-kat" data-kostur-oblik></span>
+        </div>
+        <div class="kostur-katalog__cipovi">
+          <span class="kostur-cip" data-kostur-oblik></span><span class="kostur-cip" data-kostur-oblik></span><span class="kostur-cip" data-kostur-oblik></span><span class="kostur-cip" data-kostur-oblik></span>
+        </div>
+        <div class="kostur-katalog__mreza">
+          <div class="kostur-kartica-proizvoda"><span class="kostur-kartica-proizvoda__slika" data-kostur-oblik></span><span class="kostur-kartica-proizvoda__tijelo"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span><span class="kostur-kartica-proizvoda__akcije"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-gumb" data-kostur-oblik></span></span></span></div>
+          <div class="kostur-kartica-proizvoda"><span class="kostur-kartica-proizvoda__slika" data-kostur-oblik></span><span class="kostur-kartica-proizvoda__tijelo"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span><span class="kostur-kartica-proizvoda__akcije"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-gumb" data-kostur-oblik></span></span></span></div>
+          <div class="kostur-kartica-proizvoda"><span class="kostur-kartica-proizvoda__slika" data-kostur-oblik></span><span class="kostur-kartica-proizvoda__tijelo"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span><span class="kostur-kartica-proizvoda__akcije"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-gumb" data-kostur-oblik></span></span></span></div>
+          <div class="kostur-kartica-proizvoda"><span class="kostur-kartica-proizvoda__slika" data-kostur-oblik></span><span class="kostur-kartica-proizvoda__tijelo"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span><span class="kostur-kartica-proizvoda__akcije"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-gumb" data-kostur-oblik></span></span></span></div>
+        </div>
+      </div>
     </div>
-    <div class="kostur-stranice__kartice">
-      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
-      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
-      <span class="kostur-stranice__kartica" data-kostur-oblik></span>
+    <div class="kostur-predlozak kostur-predlozak--proizvod">
+      <div class="kostur-proizvod__galerija">
+        <span class="kostur-proizvod__glavni" data-kostur-oblik></span>
+        <span class="kostur-proizvod__slicice"><span class="kostur-slicica" data-kostur-oblik></span><span class="kostur-slicica" data-kostur-oblik></span><span class="kostur-slicica" data-kostur-oblik></span><span class="kostur-slicica" data-kostur-oblik></span></span>
+      </div>
+      <div class="kostur-proizvod__podaci">
+        <span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span>
+        <span class="kostur-redak kostur-redak--oznaka" data-kostur-oblik></span>
+        <span class="kostur-naslov" data-kostur-oblik></span>
+        <span class="kostur-proizvod__cijena" data-kostur-oblik></span>
+        <div class="kostur-proizvod__akcije"><span class="kostur-gumb" data-kostur-oblik></span><span class="kostur-gumb" data-kostur-oblik></span></div>
+        <span class="kostur-redak kostur-redak--srednji" data-kostur-oblik></span>
+        <div class="kostur-proizvod__spec"><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-redak" data-kostur-oblik></span><span class="kostur-redak kostur-redak--kratak" data-kostur-oblik></span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -153,47 +197,64 @@
 
 <div class="zastor" data-izbornik-zastor hidden></div>
 <nav class="mobilni-izbornik" id="mobilni-izbornik" data-mobilni-izbornik hidden aria-label="Glavni izbornik">
-  <details class="mob-skupina">
-    <summary class="mob-skupina__naslov">Usluge <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-    <div class="mob-skupina__sadrzaj">
-      <a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a>
-      <a href="/#zavrsni-radovi">Završni radovi</a>
-      <a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a>
+  <!-- Skupina ima dvije mete: naziv vodi na stranicu, strelica otvara popis.
+       Popis je isti padajuci dio kao u traci na desktopu (js/main.js). -->
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/#usluge">Usluge</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-usluge" aria-label="Prikažite usluge"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
     </div>
-  </details>
-  <details class="mob-skupina">
-    <summary class="mob-skupina__naslov">Loxone smart home <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-    <div class="mob-skupina__sadrzaj">
-      <a href="/webshop">Cijeli katalog</a>
-      <p class="oznaka">Skupine proizvoda</p>
-      <div class="mob-cipovi">
-        <a class="mob-cip" href="/webshop?skupina=miniserveri">Miniserveri</a>
-        <a class="mob-cip" href="/webshop?skupina=prosirenja">Proširenja</a>
-        <a class="mob-cip" href="/webshop?skupina=doticajni-uredaji-i-tipkala">Doticajni uređaji i tipkala</a>
-        <a class="mob-cip" href="/webshop?skupina=senzori">Senzori</a>
-        <a class="mob-cip" href="/webshop?skupina=osvjetljenje">Osvjetljenje</a>
-        <a class="mob-cip" href="/webshop?skupina=upravljanje-osvjetljenjem">Upravljanje osvjetljenjem</a>
-        <a class="mob-cip" href="/webshop?skupina=audio-sustavi">Audio sustavi</a>
-        <a class="mob-cip" href="/webshop?skupina=aktuatori-i-pogoni">Aktuatori i pogoni</a>
-        <a class="mob-cip" href="/webshop?skupina=pametne-uticnice">Pametne utičnice</a>
-        <a class="mob-cip" href="/webshop?skupina=kabeli-i-konektori">Kabeli i konektori</a>
-        <a class="mob-cip" href="/webshop?skupina=dodatni-materijali">Dodatni materijali</a>
+    <div class="mob-pod" id="mob-usluge">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis">
+          <li><a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a></li>
+          <li><a href="/#zavrsni-radovi">Završni radovi</a></li>
+          <li><a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a></li>
+        </ul>
       </div>
     </div>
-  </details>
-  <details class="mob-skupina">
-    <summary class="mob-skupina__naslov">Najam alata <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-    <div class="mob-skupina__sadrzaj">
-      <a href="/najam-alata">Cijeli cjenik</a>
-      <p class="oznaka">Kategorije alata</p>
-      <div class="mob-cipovi">
-        <a class="mob-cip" href="/najam-alata?skupina=ljestve-i-skele">Ljestve i skele</a>
-        <a class="mob-cip" href="/najam-alata?skupina=rezanje-i-brusenje">Rezanje i brušenje</a>
-        <a class="mob-cip" href="/najam-alata?skupina=busenje-i-odvijanje">Bušenje i odvijanje</a>
-        <a class="mob-cip" href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a>
+  </div>
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/webshop">Loxone smart home</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-loxone" aria-label="Prikažite skupine proizvoda"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="mob-pod" id="mob-loxone">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis mob-pod__popis--dvostupacni">
+          <li class="mob-pod__naslov"><p class="oznaka">Skupine proizvoda</p></li>
+          <li><a href="/webshop?skupina=miniserveri">Miniserveri</a></li>
+          <li><a href="/webshop?skupina=prosirenja">Proširenja</a></li>
+          <li><a href="/webshop?skupina=doticajni-uredaji-i-tipkala">Doticajni uređaji i tipkala</a></li>
+          <li><a href="/webshop?skupina=senzori">Senzori</a></li>
+          <li><a href="/webshop?skupina=osvjetljenje">Osvjetljenje</a></li>
+          <li><a href="/webshop?skupina=upravljanje-osvjetljenjem">Upravljanje osvjetljenjem</a></li>
+          <li><a href="/webshop?skupina=audio-sustavi">Audio sustavi</a></li>
+          <li><a href="/webshop?skupina=aktuatori-i-pogoni">Aktuatori i pogoni</a></li>
+          <li><a href="/webshop?skupina=pametne-uticnice">Pametne utičnice</a></li>
+          <li><a href="/webshop?skupina=kabeli-i-konektori">Kabeli i konektori</a></li>
+          <li><a href="/webshop?skupina=dodatni-materijali">Dodatni materijali</a></li>
+        </ul>
       </div>
     </div>
-  </details>
+  </div>
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/najam-alata">Najam alata</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-najam" aria-label="Prikažite kategorije alata"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="mob-pod" id="mob-najam">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis">
+          <li class="mob-pod__naslov"><p class="oznaka">Kategorije alata</p></li>
+          <li><a href="/najam-alata?skupina=ljestve-i-skele">Ljestve i skele</a></li>
+          <li><a href="/najam-alata?skupina=rezanje-i-brusenje">Rezanje i brušenje</a></li>
+          <li><a href="/najam-alata?skupina=busenje-i-odvijanje">Bušenje i odvijanje</a></li>
+          <li><a href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <a href="/#zaposlenje">Zaposlenje</a>
   <div class="mob-red">
     <a href="/#kontakt">Kontakt</a>
@@ -238,15 +299,17 @@
 <!-- ================================================================= -->
 <!-- rental-listing                                                     -->
 <!-- ================================================================= -->
-<section class="polje polje--podignuto katalog" id="cjenik" data-trgovina="alat">
+<!-- Zbijeno polje: stranica pocinje naslovom, pa razmak ispod navigacije
+     ne treba biti onaj izmedu dviju sekcija naslovnice. -->
+<section class="polje polje--podignuto polje--zbijeno katalog" id="cjenik" data-trgovina="alat">
   <div class="stupac">
     <!--
       Jedini naslov na stranici otkako su heroj, ponuda i poziv na upit
       maknuti, pa nosi <h1>. Klasa ostaje `naslov-2`: mijenja se razina u
-      strukturi dokumenta, ne velicina slova.
+      strukturi dokumenta, ne velicina slova. Nadnaslov "Cjenik" je maknut
+      (zahtjev klijenta) — naslov ispod njega kaze isto.
     -->
     <header class="zaglavlje-sekcije" data-otkrij>
-      <p class="oznaka">Cjenik</p>
       <h1 class="naslov-2">Najam alata — cijeli cjenik</h1>
       <p class="uvod stupac--tekst">Šesnaest artikala u četiri kategorije. Cijene su po danu.</p>
     </header>
@@ -272,13 +335,8 @@
 
 </main>
 
-<div class="filtar-traka" data-filtar-traka hidden>
-  <button class="gumb gumb--glavni" type="button" data-filtar-otvori>
-    Filtri
-    <span class="filtar-brojac monr" data-filtar-brojac hidden></span>
-  </button>
-</div>
-
+<!-- List s filtrima otvara gumb "Filtri" u sazetku, lijevo od "Poredaj"
+     (js/trgovina.js). Prikvacena traka na dnu ekrana je uklonjena. -->
 <dialog class="list" data-filtar-dijalog aria-label="Filtri cjenika">
   <header class="list__vrh">
     <h2 class="naslov-3">Filtri</h2>
