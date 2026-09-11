@@ -14,8 +14,8 @@
  */
 
 export const SUPABASE = {
-  url: "",
-  anonKljuc: "",
+  url: "sb_publishable_dI5tlXmvebMLwC5NeEQOjw_6saSSaLr",
+  anonKljuc: "sb_publishable_dI5tlXmvebMLwC5NeEQOjw_6saSSaLr",
 };
 
 export const imaOblak = () => Boolean(SUPABASE.url && SUPABASE.anonKljuc);

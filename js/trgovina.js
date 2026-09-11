@@ -11,6 +11,7 @@
  */
 
 import { ucitajKatalog } from "./katalog.js";
+import { t, formatCijene, lokalno } from "./jezik.js";
 import { adresaProizvoda } from "./adrese.js";
 import { stvoriFiltre } from "./filtri.js";
 import {
@@ -21,8 +22,10 @@ import {
   sortHtml,
   sBrojem,
   esc,
+  dostupnostHtml,
 } from "./pogledi.js";
 import * as kosarica from "./kosarica.js";
+import * as zauzetost from "./zauzetost.js";
 import * as potvrda from "./potvrda.js";
 import { otvori as otvoriLadicu } from "./ladica.js";
 import { pokreniOtkrivanje } from "./pokret.js";
@@ -47,7 +50,7 @@ export async function pokreniTrgovinu(korijen) {
   // njega ne zna, inace bi svaki dodir na "+" mijenjao njezin sadrzaj.
   const kolicine = new Map();
 
-  popisSpremnik.innerHTML = '<p class="tiho">Učitavanje kataloga…</p>';
+  popisSpremnik.innerHTML = `<p class="tiho">${t("katalog.ucitavanje")}</p>`;
 
   let katalog;
   try {
@@ -56,8 +59,8 @@ export async function pokreniTrgovinu(korijen) {
     console.error("[trgovina]", greska);
     popisSpremnik.innerHTML = `
       <div class="prazno">
-        <p class="naslov-3">Katalog se trenutno ne može učitati.</p>
-        <p class="tiho">Pokušajte osvježiti stranicu ili nam se javite na
+        <p class="naslov-3">${t("katalog.greska")}</p>
+        <p class="tiho">${t("katalog.greska_uputa")}
           <a href="mailto:alen.hranj@hes.hr">alen.hranj@hes.hr</a>.</p>
       </div>`;
     return;
@@ -90,7 +93,7 @@ export async function pokreniTrgovinu(korijen) {
   const podskupinaZa = (artikl) => {
     for (const id of artikl.kategorije) {
       const kategorija = katalog.poId.get(id);
-      if (kategorija?.roditeljId) return kategorija.naziv.hr;
+      if (kategorija?.roditeljId) return lokalno(kategorija.naziv);
     }
     return null;
   };
@@ -133,6 +136,9 @@ export async function pokreniTrgovinu(korijen) {
         podskupinaZa,
         osnova: "dan",
         veza: adresaProizvoda,
+        // "Slobodno danas" / "Slobodno od 18. 9." umjesto "Na stanju" cim
+        // zauzetost stigne iz baze.
+        stanjeZa: (artikl) => dostupnostHtml(artikl.id),
       });
 
       const railKod = railHtml(katalog, filtri, vrsta);
@@ -162,15 +168,15 @@ export async function pokreniTrgovinu(korijen) {
     const aktivni = [];
 
     if (stanje.podskupina) {
-      aktivni.push({ kljuc: "podskupina", ime: katalog.poId.get(stanje.podskupina)?.naziv.hr });
+      aktivni.push({ kljuc: "podskupina", ime: lokalno(katalog.poId.get(stanje.podskupina)?.naziv) });
     } else if (stanje.skupina) {
-      aktivni.push({ kljuc: "skupina", ime: katalog.poId.get(stanje.skupina)?.naziv.hr });
+      aktivni.push({ kljuc: "skupina", ime: lokalno(katalog.poId.get(stanje.skupina)?.naziv) });
     }
     if (stanje.marka) aktivni.push({ kljuc: "marka", ime: stanje.marka });
-    if (stanje.samoNaStanju) aktivni.push({ kljuc: "stanje", ime: "Na stanju" });
+    if (stanje.samoNaStanju) aktivni.push({ kljuc: "stanje", ime: t("katalog.na_stanju") });
 
-    const jedinica = vrsta === "alat" ? " / dan" : "";
-    const cijena = (c) => `${Math.trunc(c / 100)},${String(c % 100).padStart(2, "0")} €`;
+    const jedinica = vrsta === "alat" ? ` / ${t("katalog.dan_kratko")}` : "";
+    const cijena = (c) => formatCijene(c);
 
     return `
       <div class="sazetak__lijevo">
@@ -188,7 +194,7 @@ export async function pokreniTrgovinu(korijen) {
                   <button class="cip" type="button" data-akcija="makni-filtar" data-kljuc="${stavka.kljuc}">
                     ${esc(stavka.ime)}
                     <span aria-hidden="true">×</span>
-                    <span class="samo-citac">ukloni filtar</span>
+                    <span class="samo-citac">${t("katalog.ukloni_filtar")}</span>
                   </button>
                 </li>`
                 )
@@ -214,8 +220,8 @@ export async function pokreniTrgovinu(korijen) {
       <button class="sort__gumb filtar-gumb" type="button" data-filtar-otvori aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8.5V19l-4 2v-7.5z"/></svg>
-        <span>Filtri</span>
-        ${broj ? `<span class="filtar-brojac monr"><span class="samo-citac">aktivnih:</span> ${broj}</span>` : ""}
+        <span>${t("katalog.filtri")}</span>
+        ${broj ? `<span class="filtar-brojac monr"><span class="samo-citac">${t("katalog.aktivnih")}</span> ${broj}</span>` : ""}
       </button>`;
   }
 
@@ -415,6 +421,11 @@ export async function pokreniTrgovinu(korijen) {
   const precrtaj = () => crtaj(filtri.rezultat(), filtri.stanje);
   kosarica.naPromjenu(precrtaj);
   potvrda.naPromjenu(precrtaj);
+
+  if (vrsta === "alat") {
+    zauzetost.naPromjenu(precrtaj);
+    zauzetost.ucitaj();
+  }
 
   // Tek nakon sto je sve gore definirano: `postavi` odmah zove crtaj().
   if (prvaSkupina && !filtri.stanje.skupina && !filtri.stanje.pretraga) {

@@ -2054,18 +2054,103 @@ html:has(dialog[open]) {
 .ladica__red .cijena { margin-left: auto; }
 .ladica__dana { white-space: nowrap; }
 
-.ladica__datumi { display: grid; grid-template-columns: 1fr 1fr; gap: var(--p2); }
-.ladica__datumi label { display: grid; gap: 2px; }
-.ladica__datumi input {
+/*
+ * Gumb razdoblja u stavci najma. Otvara js/kalendar.js; zamijenio je dva
+ * polja datuma, koja nisu znala zasiviti dane vec zauzete u bazi.
+ */
+.ladica__razdoblje {
+  display: grid;
+  gap: 2px;
+  width: 100%;
   padding: var(--p2) var(--p3);
   border: 1px solid var(--rub);
   border-radius: var(--r-mali);
   background: var(--ploha-0);
   color: var(--tekst);
-  /* 16 px sprjecava iOS da sam zumira pri fokusu polja. */
-  font-size: 16px;
-  font-variant-numeric: tabular-nums;
+  font: inherit;
+  font-size: var(--vel-malo);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--brzo) var(--krivulja);
 }
+.ladica__razdoblje:hover { border-color: var(--hes-rub); }
+.ladica__razdoblje:focus-visible { outline: 2px solid var(--fokus); outline-offset: 1px; }
+.ladica__razdoblje--sukob { border-color: var(--opasnost); }
+
+/* ------------------------------------------------------------------ */
+/* Kalendar najma (js/kalendar.js)                                     */
+/* ------------------------------------------------------------------ */
+.kalendar {
+  width: min(680px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--rub);
+  border-radius: var(--r-ploha);
+  background: var(--ploha-1);
+  color: var(--tekst);
+  overflow: auto;
+}
+.kalendar::backdrop { background: rgb(0 0 0 / 0.5); }
+.kalendar__tijelo { display: grid; gap: var(--p4); padding: var(--p5); }
+.kalendar__glava { display: flex; align-items: center; justify-content: space-between; gap: var(--p3); }
+.kalendar__uputa { margin: 0; font-size: var(--vel-malo); color: var(--tekst-3); text-align: center; }
+.kalendar__mjeseci {
+  display: grid;
+  grid-template-columns: repeat(var(--broj-mjeseci, 1), minmax(0, 1fr));
+  gap: var(--p5);
+}
+.kalendar__mjesec { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.kalendar__mjesec caption { padding-bottom: var(--p2); font-weight: 600; text-align: left; }
+.kalendar__mjesec caption::first-letter { text-transform: uppercase; }
+.kalendar__mjesec th { padding-bottom: var(--p1); font-size: var(--vel-oznaka); font-weight: 500; color: var(--tekst-4); }
+.kalendar__mjesec td { padding: 1px; }
+.kalendar__dan {
+  width: 100%;
+  min-height: 38px;
+  border: 0;
+  border-radius: var(--r-mali);
+  background: none;
+  color: var(--tekst);
+  font: inherit;
+  font-size: var(--vel-malo);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+  .kalendar__dan:not([aria-disabled="true"]):hover { background: var(--plohica-2); }
+}
+.kalendar__dan:focus-visible { position: relative; z-index: 1; outline: 2px solid var(--fokus); outline-offset: 1px; }
+.kalendar__dan[aria-disabled="true"] { color: var(--tekst-4); cursor: not-allowed; }
+/* Zauzet dan: pruge i precrtan broj — razlika koja se vidi i bez boje. */
+.kalendar__dan--zauzet {
+  background: repeating-linear-gradient(135deg, transparent 0 4px, color-mix(in oklab, var(--opasnost) 26%, transparent) 4px 6px);
+  text-decoration: line-through;
+}
+.kalendar__dan--u-rasponu { border-radius: 0; background: color-mix(in oklab, var(--hes) 22%, transparent); }
+.kalendar__dan--rub { background: var(--hes-ploha); color: var(--hes-na-plohi); font-weight: 600; text-decoration: none; }
+.kalendar__dan--danas:not(.kalendar__dan--rub) { box-shadow: inset 0 0 0 1px var(--hes-rub); }
+.kalendar__dno { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--p2) var(--p4); }
+.kalendar__sazetak { margin: 0; min-height: 1.5em; font-size: var(--vel-malo); }
+.kalendar__legenda { margin: 0; display: flex; align-items: center; gap: var(--p2); font-size: var(--vel-oznaka); color: var(--tekst-3); }
+.kalendar__uzorak {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--rub);
+  border-radius: 3px;
+  background: repeating-linear-gradient(135deg, transparent 0 3px, color-mix(in oklab, var(--opasnost) 40%, transparent) 3px 5px);
+}
+.kalendar__gumbi { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: var(--p2); }
+@media (max-width: 639px) {
+  .kalendar__tijelo { padding: var(--p4); }
+  .kalendar__dno { grid-template-columns: 1fr; }
+  .kalendar__gumbi .gumb { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ladica__razdoblje { transition: none; }
+}
+
+/* Popis vec rezerviranih razdoblja na stranici alata. */
+.zauzetost { margin: var(--p2) 0 0; }
 
 .brojac {
   display: inline-flex;

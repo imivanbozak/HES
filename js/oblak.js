@@ -5,12 +5,16 @@
  * stranici trebaju tocno tri stvari:
  *
  *   1. procitati katalog        GET  /rest/v1/...
- *   2. upisati jedan upit       POST /rest/v1/upiti
- *   3. pozvati slanje e-poste   POST /functions/v1/posalji-upit
+ *   2. poslati upit             POST /rest/v1/rpc/posalji_upit
+ *   3. procitati zauzetost      POST /rest/v1/rpc/zauzeti_termini
  *
  * Sve troje je obican `fetch`. Sluzbeni klijent tezi oko 137 kB i nosi
  * prijave, sesije i realtime — nista od toga ovdje ne postoji, jer je pristup
  * anoniman i bez stanja.
+ *
+ * E-postu vise ne trazi preglednik. Salje je rubna funkcija koju okida
+ * webhook na novom upitu (supabase/README.md): mail tako ode i kad
+ * posjetitelj zatvori karticu odmah nakon klika.
  *
  * Nijedna funkcija ne baca iznimku. Svaka vraca `{ ok: true, podaci }` ili
  * `{ ok: false, mrezna, greska }`. Razlika izmedu mrezne i bazne greske je
@@ -80,24 +84,34 @@ export function povuciArtikle() {
 /* Upiti                                                               */
 /* ------------------------------------------------------------------ */
 /**
- * Upisuje upit i vraca njegov id.
+ * Salje upit kroz posalji_upit() u supabase/shema.sql.
  *
- * Red se upisuje PRIJE slanja e-poste. Ako slanje padne, upit i dalje
- * postoji u bazi — tvrtka ga moze naci, samo o njemu nije obavijestena.
- * Obrnuti redoslijed bi znacio da pad slanja ujedno znaci i gubitak upita.
+ * `podaci` = { vrsta, ime, email, telefon, poruka, jezik, web,
+ *              stavke: [{ id, kolicina, od, do }] }
+ *
+ * Uspjesan HTTP odgovor jos ne znaci upisan upit. `podaci` u odgovoru je
+ *   { ok: true, id }                                upisano
+ *   { ok: false, zauzeto: [...], nedostupno: [...] } nista nije upisano
+ *
+ * Izravan upis u tablicu `upiti` vise ne postoji: zaobisao bi provjeru
+ * zauzetosti i snimku cijena iz baze.
  */
-export function posaljiUpit(upit) {
-  return izvrsi("/rest/v1/upiti", {
+export function posaljiUpit(podaci) {
+  return izvrsi("/rest/v1/rpc/posalji_upit", {
     method: "POST",
-    headers: { Prefer: "return=representation" },
-    body: JSON.stringify(upit),
+    body: JSON.stringify({ podaci }),
   });
 }
 
-/** Trazi od rubne funkcije da posalje e-postu za vec upisani upit. */
-export function javiEPostom(idUpita) {
-  return izvrsi("/functions/v1/posalji-upit", {
+/**
+ * Aktivne rezervacije alata za iducih 180 dana — samo raspon i kolicina.
+ * Bez id-a vraca sve alate odjednom.
+ *
+ * `podaci` = [{ artikl_id, od_datuma, do_datuma, kolicina, kapacitet }]
+ */
+export function zauzetiTermini(artiklId = null) {
+  return izvrsi("/rest/v1/rpc/zauzeti_termini", {
     method: "POST",
-    body: JSON.stringify({ id: idUpita }),
+    body: JSON.stringify({ p_artikl_id: artiklId }),
   });
 }

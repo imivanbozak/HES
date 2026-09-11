@@ -1969,6 +1969,250 @@ textarea.polje-obrasca__ulaz { resize: vertical; min-height: 108px; }
   margin-top: var(--p2);
 }
 
+/*
+ * Slanje (js/obrazac.js). Sazetak kosarice stoji iznad polja, stanje
+ * slanja iznad gumba — ondje gdje je pogled u trenutku klika.
+ */
+.obrazac__kosarica {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p2) var(--p4);
+  padding: var(--p3) var(--p4);
+  border: 1px solid var(--hes-rub);
+  border-radius: var(--r-mali);
+  background: var(--plohica);
+  font-size: var(--vel-malo);
+}
+.obrazac__kosarica[hidden] { display: none; }
+
+.polje-obrasca__ulaz[aria-invalid="true"] { border-color: var(--opasnost); }
+.polje-obrasca__greska { color: var(--opasnost); font-size: 13px; font-weight: 500; }
+
+.obrazac__stanje {
+  display: grid;
+  gap: var(--p2);
+  padding: var(--p3) var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  font-size: var(--vel-malo);
+}
+.obrazac__stanje[hidden] { display: none; }
+.obrazac__stanje .gumb { justify-self: start; }
+.obrazac__stanje a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.obrazac__stanje--uspjeh { border-color: var(--hes-rub); }
+.obrazac__stanje--uspjeh strong { color: var(--hes-tekst); }
+.obrazac__stanje--greska { border-color: color-mix(in oklab, var(--opasnost) 55%, transparent); }
+.obrazac__stanje--greska strong { color: var(--opasnost); }
+
+.kontakt__obrazac [aria-busy="true"] { cursor: progress; opacity: 0.72; }
+
+/* Zamka za automate: izvan ekrana, ali u dokumentu. */
+.obrazac__zamka {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.obrazac__privatnost { margin: 0; }
+
+/* ------------------------------------------------------------------ */
+/* Pravni tekst — /privatnost                                          */
+/* ------------------------------------------------------------------ */
+.pravni-tekst {
+  display: grid;
+  gap: var(--p4);
+  max-width: 70ch;
+}
+.pravni-tekst h2 { margin-top: var(--p5); }
+.pravni-tekst p,
+.pravni-tekst li { color: var(--tekst-2); }
+.pravni-tekst ul { margin: 0; padding-left: 1.2em; display: grid; gap: var(--p2); }
+.pravni-tekst a { color: var(--hes-tekst); text-decoration: underline; text-underline-offset: 2px; }
+.pravni-tekst .cinjenice dd { font-size: var(--vel-malo); }
+
+/*
+ * Podatak koji jos nije dostavljen. Mora upasti u oko: stranica s ovom
+ * oznakom ne smije u objavu (npm run provjeri:objava pada).
+ */
+mark.nedostaje {
+  padding: 0 0.25em;
+  border-radius: 3px;
+  background: color-mix(in oklab, var(--opasnost) 18%, transparent);
+  color: var(--tekst);
+}
+
+/* ------------------------------------------------------------------ */
+/* Galerija radova — /galerija (js/galerija.js)                        */
+/* ------------------------------------------------------------------ */
+/*
+ * Poveznica na galeriju stoji skrivena dok galerija nema fotografija
+ * (scripts/galerija.mjs). Sam `hidden` ne bi bio dovoljan: stavke izbornika
+ * imaju vlastiti `display`, koji nadjaca pravilo preglednika za [hidden].
+ */
+[data-galerija-veza][hidden] { display: none !important; }
+
+.radovi__filtri { display: grid; gap: var(--p3); }
+.radovi__cipovi { display: flex; flex-wrap: wrap; gap: var(--p2); }
+.radovi__cipovi:empty { display: none; }
+.radovi__cip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--p2);
+  padding: var(--p2) var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  background: var(--plohica);
+  color: var(--tekst-3);
+  font: inherit;
+  font-size: var(--vel-malo);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color var(--brzo) var(--krivulja), color var(--brzo) var(--krivulja);
+}
+.radovi__cip span { opacity: 0.75; font-variant-numeric: tabular-nums; }
+.radovi__cip[aria-pressed="true"] {
+  background: var(--hes-ploha);
+  border-color: var(--hes-ploha);
+  color: var(--hes-na-plohi);
+  font-weight: 600;
+}
+.radovi__cip:focus-visible { outline: 2px solid var(--fokus); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  .radovi__cip[aria-pressed="false"]:hover { border-color: var(--hes-rub); color: var(--tekst); }
+}
+
+.radovi-mreza {
+  display: grid;
+  grid-template-columns: repeat(var(--stupaca, 1), minmax(0, 1fr));
+  gap: var(--p3);
+  align-items: start;
+  margin-top: var(--p4);
+}
+.radovi-mreza__stupac { display: grid; gap: var(--p3); }
+.radovi-mreza__slika {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--r-kartica);
+  background: var(--ploha-2);
+  cursor: zoom-in;
+}
+.radovi-mreza__slika img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.6s var(--krivulja);
+}
+.radovi-mreza__slika:focus-visible { outline: 2px solid var(--fokus); outline-offset: 2px; }
+/* Natpis na tamnom prijelazu preko fotografije — bijelo, neovisno o temi. */
+.radovi-mreza__natpis {
+  position: absolute;
+  inset: auto 0 0;
+  padding: var(--p5) var(--p3) var(--p2);
+  background: linear-gradient(to top, rgb(0 0 0 / 0.62), transparent);
+  color: #fff;
+  font-size: 13px;
+  text-align: left;
+  opacity: 0;
+  transition: opacity var(--brzo) var(--krivulja);
+}
+.radovi-mreza__slika:focus-visible .radovi-mreza__natpis { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .radovi-mreza__slika:hover img { transform: scale(1.03); }
+  .radovi-mreza__slika:hover .radovi-mreza__natpis { opacity: 1; }
+}
+/* Na dodirniku nema hovera, pa natpis stoji uvijek. */
+@media (hover: none) {
+  .radovi-mreza__natpis { opacity: 1; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Svjetlo — fotografija preko cijelog ekrana                          */
+/* ------------------------------------------------------------------ */
+/* Uvijek tamno, bez obzira na temu: fotografija se gleda na tamnom. */
+.svjetlo {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgb(10 9 8 / 0.97);
+  color: #F4F1EA;
+}
+.svjetlo::backdrop { background: rgb(0 0 0 / 0.7); }
+.svjetlo__okvir {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+}
+.svjetlo__traka { display: flex; align-items: center; justify-content: space-between; gap: var(--p3); padding: var(--p3) var(--p4); }
+.svjetlo__brojac { font-size: var(--vel-malo); font-variant-numeric: tabular-nums; }
+.svjetlo__kadar { display: grid; place-items: center; min-height: 0; padding: 0 var(--p8); touch-action: pan-y; }
+.svjetlo__kadar picture { display: contents; }
+.svjetlo__kadar img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--r-mali);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.svjetlo__natpis { margin: 0; padding: var(--p3) var(--p4) var(--p5); color: rgb(244 241 234 / 0.82); font-size: var(--vel-malo); text-align: center; }
+.svjetlo__zatvori,
+.svjetlo__strelica {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+}
+.svjetlo__zatvori { width: 44px; height: 44px; border: 0; background: none; }
+.svjetlo__strelica {
+  position: absolute;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  background: rgb(0 0 0 / 0.4);
+  transform: translateY(-50%);
+}
+.svjetlo__zatvori svg,
+.svjetlo__strelica svg { width: 22px; height: 22px; }
+.svjetlo__strelica--natrag { left: var(--p3); }
+.svjetlo__strelica--naprijed { right: var(--p3); }
+.svjetlo__strelica:disabled { opacity: 0.3; cursor: default; }
+.svjetlo__zatvori:focus-visible,
+.svjetlo__strelica:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+@media (max-width: 599px) {
+  .svjetlo__kadar { padding: 0; }
+  .svjetlo__strelica { top: auto; bottom: var(--p3); transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .svjetlo[open] .svjetlo__kadar img { animation: svjetlo-ulaz 0.22s var(--krivulja); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .radovi__cip,
+  .radovi-mreza__slika img,
+  .radovi-mreza__natpis { transition: none; }
+}
+@keyframes svjetlo-ulaz {
+  from { opacity: 0; transform: scale(0.985); }
+}
+.obrazac__privatnost a,
+.podnozje__dno a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
 /* Telefonska publika dobiva broj bez skrolanja kroz obrazac. */
 @media (max-width: 899px) {
   .kontakt__mreza { grid-template-columns: 1fr; gap: var(--p6); }

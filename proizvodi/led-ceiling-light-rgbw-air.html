@@ -37,7 +37,7 @@
 </head>
 
 <body>
-<div class="kostur-stranice" data-kostur data-kostur-tip="proizvod" role="status" aria-live="polite" aria-label="Ucitavanje stranice">
+<div class="kostur-stranice" data-kostur data-kostur-tip="proizvod" role="status" aria-live="polite" aria-label="Učitavanje stranice">
   <div class="kostur-stranice__traka" aria-hidden="true">
     <span class="kostur-stranice__znak" data-kostur-oblik></span>
     <span class="kostur-stranice__nav" data-kostur-oblik></span>
@@ -114,6 +114,9 @@
           <li><a href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a></li>
           <li class="izbornik__pod-sve"><a href="/najam-alata">Cijeli cjenik</a></li>
         </ul>
+      </li>
+      <li class="izbornik__stavka" data-galerija-veza hidden>
+        <a class="izbornik__veza" href="/galerija">Galerija</a>
       </li>
       <li class="izbornik__stavka">
         <a class="izbornik__veza" href="/#zaposlenje">Zaposlenje</a>
@@ -210,6 +213,7 @@
       </div>
     </div>
   </div>
+  <a href="/galerija" data-galerija-veza hidden>Galerija</a>
   <a href="/#zaposlenje">Zaposlenje</a>
   <div class="mob-red">
     <a href="/#kontakt">Kontakt</a>
@@ -431,12 +435,13 @@
         <ul>
           <li><a href="/webshop">Loxone smart home</a></li>
           <li><a href="/najam-alata">Najam alata</a></li>
+          <li data-galerija-veza hidden><a href="/galerija">Galerija</a></li>
           <li><a href="/#zaposlenje">Zaposlenje</a></li>
         </ul>
       </div>
     </div>
     <div class="podnozje__dno">
-      <span>Hranj electrical services d.o.o.</span>
+      <span>Hranj electrical services d.o.o. · <a href="/privatnost">Privatnost</a></span>
       <!-- Jezicna traka je odavde maknuta: ista stoji u zaglavlju, a na dnu
            duge stranice korisnija je tipka koja vraca na vrh. -->
       <button class="na-vrh" type="button" data-na-vrh>

@@ -10,6 +10,8 @@
  * Nema biblioteka, kao ni drugdje u projektu.
  */
 
+import { t } from "./jezik.js";
+
 const smanjenPokret = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ------------------------------------------------------------------ */
@@ -114,7 +116,7 @@ export function pokreniNapredakObrasca(korijen = document) {
     const omjer = gotovo / polja.length;
     ispuna.style.setProperty("--ispuna", String(omjer));
     if (natpis) {
-      natpis.textContent = omjer === 1 ? "Spremno za slanje" : `${gotovo} / ${polja.length}`;
+      natpis.textContent = omjer === 1 ? t("obrazac.spremno") : `${gotovo} / ${polja.length}`;
     }
     mjerilo.classList.toggle("mjerilo--gotovo", omjer === 1);
   };

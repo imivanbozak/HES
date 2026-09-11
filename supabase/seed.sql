@@ -3,60 +3,63 @@
 -- Ponovna izgradnja: python scripts/seed.py
 --
 -- Pokretati NAKON shema.sql. Idempotentno je: ponovno pokretanje
--- osvježava vrijednosti umjesto da padne na duplikatu.
+-- osvježava nazive i kategorije umjesto da padne na duplikatu, a
+-- cijene, stanje i količine ostavlja kakve je postavio admin panel.
 
 begin;
 
 -- Kategorije prije artikala; podskupine referenciraju obitelj.
-insert into kategorije (id, vrsta, roditelj_id, redoslijed, naziv_hr) values
-  ('miniserveri', 'loxone', null, 0, 'Miniserveri'),
-  ('prosirenja', 'loxone', null, 1, 'Proširenja'),
-  ('doticajni-uredaji-i-tipkala', 'loxone', null, 2, 'Doticajni uređaji i tipkala'),
-  ('senzori', 'loxone', null, 3, 'Senzori'),
-  ('osvjetljenje', 'loxone', null, 4, 'Osvjetljenje'),
-  ('upravljanje-osvjetljenjem', 'loxone', null, 5, 'Upravljanje osvjetljenjem'),
-  ('audio-sustavi', 'loxone', null, 6, 'Audio sustavi'),
-  ('aktuatori-i-pogoni', 'loxone', null, 7, 'Aktuatori i pogoni'),
-  ('pametne-uticnice', 'loxone', null, 8, 'Pametne utičnice'),
-  ('kabeli-i-konektori', 'loxone', null, 9, 'Kabeli i konektori'),
-  ('dodatni-materijali', 'loxone', null, 10, 'Dodatni materijali'),
-  ('ljestve-i-skele', 'alat', null, 0, 'Ljestve i skele'),
-  ('rezanje-i-brusenje', 'alat', null, 1, 'Rezanje i brušenje'),
-  ('busenje-i-odvijanje', 'alat', null, 2, 'Bušenje i odvijanje'),
-  ('usisavaci-i-otprasivanje', 'alat', null, 3, 'Usisavači i otprašivanje'),
-  ('upravljacke-jedinice', 'loxone', 'miniserveri', 0, 'Upravljačke jedinice'),
-  ('ulazna-prosirenja', 'loxone', 'prosirenja', 0, 'Ulazna proširenja'),
-  ('izlazna-prosirenja', 'loxone', 'prosirenja', 1, 'Izlazna proširenja'),
-  ('komunikacijska-prosirenja', 'loxone', 'prosirenja', 2, 'Komunikacijska proširenja'),
-  ('specijalizirana-prosirenja', 'loxone', 'prosirenja', 3, 'Specijalizirana proširenja'),
-  ('touch-osnovna-serija', 'loxone', 'doticajni-uredaji-i-tipkala', 0, 'Touch osnovna serija'),
-  ('touch-pure-serija', 'loxone', 'doticajni-uredaji-i-tipkala', 1, 'Touch pure serija'),
-  ('nfc-i-sigurnost', 'loxone', 'doticajni-uredaji-i-tipkala', 2, 'NFC i sigurnost'),
-  ('daljinsko-upravljanje', 'loxone', 'doticajni-uredaji-i-tipkala', 3, 'Daljinsko upravljanje'),
-  ('detektori-pokreta-i-prisutnosti', 'loxone', 'senzori', 0, 'Detektori pokreta i prisutnosti'),
-  ('senzori-klime-i-kvalitete-zraka', 'loxone', 'senzori', 1, 'Senzori klime i kvalitete zraka'),
-  ('ostali-senzori', 'loxone', 'senzori', 2, 'Ostali senzori'),
-  ('stropne-svjetljike', 'loxone', 'osvjetljenje', 0, 'Stropne svjetljike'),
-  ('visece-svjetljike', 'loxone', 'osvjetljenje', 1, 'Viseće svjetljike'),
-  ('stolne-svjetljike', 'loxone', 'osvjetljenje', 2, 'Stolne svjetljike'),
-  ('led-trake', 'loxone', 'osvjetljenje', 3, 'LED trake'),
-  ('led-bodovi-i-spotovi', 'loxone', 'osvjetljenje', 4, 'Led bodovi i spotovi'),
-  ('upravljaci', 'loxone', 'upravljanje-osvjetljenjem', 0, 'Upravljači'),
-  ('regulatori-intenziteta', 'loxone', 'upravljanje-osvjetljenjem', 1, 'Regulatori intenziteta'),
-  ('zvucnici', 'loxone', 'audio-sustavi', 0, 'Zvučnici'),
-  ('centralne-audio-jedinice', 'loxone', 'audio-sustavi', 1, 'Centralne audio jedinice'),
-  ('zasjenjivanje', 'loxone', 'aktuatori-i-pogoni', 0, 'Zasjenjivanje'),
-  ('ventili', 'loxone', 'aktuatori-i-pogoni', 1, 'Ventili'),
-  ('wireless-uticnice', 'loxone', 'pametne-uticnice', 0, 'Wireless utičnice'),
-  ('stezaljke', 'loxone', 'kabeli-i-konektori', 0, 'Stezaljke'),
-  ('loxone-tree', 'loxone', 'kabeli-i-konektori', 1, 'Loxone tree'),
-  ('memorija', 'loxone', 'dodatni-materijali', 0, 'Memorija'),
-  ('nfc-sustav', 'loxone', 'dodatni-materijali', 1, 'NFC sustav')
+insert into kategorije (id, vrsta, roditelj_id, redoslijed, naziv_hr, naziv_de, naziv_en) values
+  ('miniserveri', 'loxone', null, 0, 'Miniserveri', 'Miniserver', 'Miniservers'),
+  ('prosirenja', 'loxone', null, 1, 'Proširenja', 'Extensions', 'Extensions'),
+  ('doticajni-uredaji-i-tipkala', 'loxone', null, 2, 'Doticajni uređaji i tipkala', 'Touch-Bedienelemente und Taster', 'Touch controls and switches'),
+  ('senzori', 'loxone', null, 3, 'Senzori', 'Sensoren', 'Sensors'),
+  ('osvjetljenje', 'loxone', null, 4, 'Osvjetljenje', 'Beleuchtung', 'Lighting'),
+  ('upravljanje-osvjetljenjem', 'loxone', null, 5, 'Upravljanje osvjetljenjem', 'Lichtsteuerung', 'Lighting control'),
+  ('audio-sustavi', 'loxone', null, 6, 'Audio sustavi', 'Audiosysteme', 'Audio systems'),
+  ('aktuatori-i-pogoni', 'loxone', null, 7, 'Aktuatori i pogoni', 'Aktoren und Antriebe', 'Actuators and drives'),
+  ('pametne-uticnice', 'loxone', null, 8, 'Pametne utičnice', 'Smarte Steckdosen', 'Smart sockets'),
+  ('kabeli-i-konektori', 'loxone', null, 9, 'Kabeli i konektori', 'Kabel und Verbinder', 'Cables and connectors'),
+  ('dodatni-materijali', 'loxone', null, 10, 'Dodatni materijali', 'Zubehör', 'Accessories'),
+  ('ljestve-i-skele', 'alat', null, 0, 'Ljestve i skele', 'Leitern und Gerüste', 'Ladders and scaffolding'),
+  ('rezanje-i-brusenje', 'alat', null, 1, 'Rezanje i brušenje', 'Schneiden und Schleifen', 'Cutting and grinding'),
+  ('busenje-i-odvijanje', 'alat', null, 2, 'Bušenje i odvijanje', 'Bohren und Schrauben', 'Drilling and screwdriving'),
+  ('usisavaci-i-otprasivanje', 'alat', null, 3, 'Usisavači i otprašivanje', 'Sauger und Entstaubung', 'Vacuums and dust extraction'),
+  ('upravljacke-jedinice', 'loxone', 'miniserveri', 0, 'Upravljačke jedinice', 'Steuereinheiten', 'Control units'),
+  ('ulazna-prosirenja', 'loxone', 'prosirenja', 0, 'Ulazna proširenja', 'Eingangs-Extensions', 'Input extensions'),
+  ('izlazna-prosirenja', 'loxone', 'prosirenja', 1, 'Izlazna proširenja', 'Ausgangs-Extensions', 'Output extensions'),
+  ('komunikacijska-prosirenja', 'loxone', 'prosirenja', 2, 'Komunikacijska proširenja', 'Kommunikations-Extensions', 'Communication extensions'),
+  ('specijalizirana-prosirenja', 'loxone', 'prosirenja', 3, 'Specijalizirana proširenja', 'Spezial-Extensions', 'Specialised extensions'),
+  ('touch-osnovna-serija', 'loxone', 'doticajni-uredaji-i-tipkala', 0, 'Touch osnovna serija', 'Touch-Serie', 'Touch series'),
+  ('touch-pure-serija', 'loxone', 'doticajni-uredaji-i-tipkala', 1, 'Touch pure serija', 'Touch-Pure-Serie', 'Touch Pure series'),
+  ('nfc-i-sigurnost', 'loxone', 'doticajni-uredaji-i-tipkala', 2, 'NFC i sigurnost', 'NFC und Sicherheit', 'NFC and security'),
+  ('daljinsko-upravljanje', 'loxone', 'doticajni-uredaji-i-tipkala', 3, 'Daljinsko upravljanje', 'Fernbedienung', 'Remote control'),
+  ('detektori-pokreta-i-prisutnosti', 'loxone', 'senzori', 0, 'Detektori pokreta i prisutnosti', 'Bewegungs- und Präsenzmelder', 'Motion and presence detectors'),
+  ('senzori-klime-i-kvalitete-zraka', 'loxone', 'senzori', 1, 'Senzori klime i kvalitete zraka', 'Klima- und Luftgütesensoren', 'Climate and air quality sensors'),
+  ('ostali-senzori', 'loxone', 'senzori', 2, 'Ostali senzori', 'Weitere Sensoren', 'Other sensors'),
+  ('stropne-svjetljike', 'loxone', 'osvjetljenje', 0, 'Stropne svjetljike', 'Deckenleuchten', 'Ceiling lights'),
+  ('visece-svjetljike', 'loxone', 'osvjetljenje', 1, 'Viseće svjetljike', 'Pendelleuchten', 'Pendant lights'),
+  ('stolne-svjetljike', 'loxone', 'osvjetljenje', 2, 'Stolne svjetljike', 'Tischleuchten', 'Table lamps'),
+  ('led-trake', 'loxone', 'osvjetljenje', 3, 'LED trake', 'LED-Streifen', 'LED strips'),
+  ('led-bodovi-i-spotovi', 'loxone', 'osvjetljenje', 4, 'Led bodovi i spotovi', 'LED-Spots', 'LED spots'),
+  ('upravljaci', 'loxone', 'upravljanje-osvjetljenjem', 0, 'Upravljači', 'Steuerungen', 'Controllers'),
+  ('regulatori-intenziteta', 'loxone', 'upravljanje-osvjetljenjem', 1, 'Regulatori intenziteta', 'Dimmer', 'Dimmers'),
+  ('zvucnici', 'loxone', 'audio-sustavi', 0, 'Zvučnici', 'Lautsprecher', 'Speakers'),
+  ('centralne-audio-jedinice', 'loxone', 'audio-sustavi', 1, 'Centralne audio jedinice', 'Zentrale Audioeinheiten', 'Central audio units'),
+  ('zasjenjivanje', 'loxone', 'aktuatori-i-pogoni', 0, 'Zasjenjivanje', 'Beschattung', 'Shading'),
+  ('ventili', 'loxone', 'aktuatori-i-pogoni', 1, 'Ventili', 'Ventile', 'Valves'),
+  ('wireless-uticnice', 'loxone', 'pametne-uticnice', 0, 'Wireless utičnice', 'Funksteckdosen', 'Wireless sockets'),
+  ('stezaljke', 'loxone', 'kabeli-i-konektori', 0, 'Stezaljke', 'Klemmen', 'Clamps'),
+  ('loxone-tree', 'loxone', 'kabeli-i-konektori', 1, 'Loxone tree', 'Loxone Tree', 'Loxone Tree'),
+  ('memorija', 'loxone', 'dodatni-materijali', 0, 'Memorija', 'Speicher', 'Memory'),
+  ('nfc-sustav', 'loxone', 'dodatni-materijali', 1, 'NFC sustav', 'NFC-System', 'NFC system')
 on conflict (id) do update set
   vrsta = excluded.vrsta,
   roditelj_id = excluded.roditelj_id,
   redoslijed = excluded.redoslijed,
-  naziv_hr = excluded.naziv_hr;
+  naziv_hr = excluded.naziv_hr,
+  naziv_de = excluded.naziv_de,
+  naziv_en = excluded.naziv_en;
 
 insert into artikli (id, vrsta, naziv, sku, marka, cijena_cents, osnova, na_stanju, slika, redoslijed) values
   ('1210', 'alat', 'PROTUBE-F360', 'PROTUBE-F360', 'Protube', 5000, 'dan', true, null, 0),
@@ -134,14 +137,14 @@ insert into artikli (id, vrsta, naziv, sku, marka, cijena_cents, osnova, na_stan
   ('1441', 'loxone', 'Miniserver Go', 'Miniserver Go', 'Loxone', 39362, 'kom', true, null, 72),
   ('1438', 'loxone', 'Miniserver Compact', 'Miniserver Compact', 'Loxone', 49500, 'kom', true, null, 73),
   ('1433', 'loxone', 'Miniserver', 'Miniserver', 'Loxone', 65561, 'kom', true, null, 74)
+-- Cijena, stanje, količina i vidljivost se NE prepisuju: od prvog upisa
+-- njima upravlja admin panel.
 on conflict (id) do update set
   vrsta = excluded.vrsta,
   naziv = excluded.naziv,
   sku = excluded.sku,
   marka = excluded.marka,
-  cijena_cents = excluded.cijena_cents,
   osnova = excluded.osnova,
-  na_stanju = excluded.na_stanju,
   redoslijed = excluded.redoslijed;
 
 -- Veze se brišu i pišu iznova: artikl je mogao promijeniti kategoriju,

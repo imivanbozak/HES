@@ -95,6 +95,70 @@ KATEGORIJE_NAJMA = [
 # Kategorije koje su zapravo oznaka vrste, ne kategorija proizvoda.
 NADREDENE = {"Loxone", "Najam alata"}
 
+# Nazivi kategorija na njemackom i engleskom.
+#
+# Izvoz ih nema — stupci za njih postoje, ali su prazni — pa se prevode
+# ovdje. Kljuc je hrvatski naziv tocno kako stoji u hes-content.md.
+# Njemacki bez ß (vidi scripts/provjere.py). "Extensions" ostaje Loxoneov
+# naziv i na njemackom, jer ga tako zove i proizvodac.
+PRIJEVODI_KATEGORIJA = {
+    "Miniserveri": ("Miniserver", "Miniservers"),
+    "Proširenja": ("Extensions", "Extensions"),
+    "Doticajni uređaji i tipkala": ("Touch-Bedienelemente und Taster", "Touch controls and switches"),
+    "Senzori": ("Sensoren", "Sensors"),
+    "Osvjetljenje": ("Beleuchtung", "Lighting"),
+    "Upravljanje osvjetljenjem": ("Lichtsteuerung", "Lighting control"),
+    "Audio sustavi": ("Audiosysteme", "Audio systems"),
+    "Aktuatori i pogoni": ("Aktoren und Antriebe", "Actuators and drives"),
+    "Pametne utičnice": ("Smarte Steckdosen", "Smart sockets"),
+    "Kabeli i konektori": ("Kabel und Verbinder", "Cables and connectors"),
+    "Dodatni materijali": ("Zubehör", "Accessories"),
+
+    "Upravljačke jedinice": ("Steuereinheiten", "Control units"),
+    "Ulazna proširenja": ("Eingangs-Extensions", "Input extensions"),
+    "Izlazna proširenja": ("Ausgangs-Extensions", "Output extensions"),
+    "Komunikacijska proširenja": ("Kommunikations-Extensions", "Communication extensions"),
+    "Specijalizirana proširenja": ("Spezial-Extensions", "Specialised extensions"),
+    "Touch osnovna serija": ("Touch-Serie", "Touch series"),
+    "Touch pure serija": ("Touch-Pure-Serie", "Touch Pure series"),
+    "NFC i sigurnost": ("NFC und Sicherheit", "NFC and security"),
+    "Daljinsko upravljanje": ("Fernbedienung", "Remote control"),
+    "Detektori pokreta i prisutnosti": ("Bewegungs- und Präsenzmelder", "Motion and presence detectors"),
+    "Senzori klime i kvalitete zraka": ("Klima- und Luftgütesensoren", "Climate and air quality sensors"),
+    "Ostali senzori": ("Weitere Sensoren", "Other sensors"),
+    "Stropne svjetljike": ("Deckenleuchten", "Ceiling lights"),
+    "Viseće svjetljike": ("Pendelleuchten", "Pendant lights"),
+    "Stolne svjetljike": ("Tischleuchten", "Table lamps"),
+    "LED trake": ("LED-Streifen", "LED strips"),
+    "Led bodovi i spotovi": ("LED-Spots", "LED spots"),
+    "Upravljači": ("Steuerungen", "Controllers"),
+    "Regulatori intenziteta": ("Dimmer", "Dimmers"),
+    "Zvučnici": ("Lautsprecher", "Speakers"),
+    "Centralne audio jedinice": ("Zentrale Audioeinheiten", "Central audio units"),
+    "Zasjenjivanje": ("Beschattung", "Shading"),
+    "Ventili": ("Ventile", "Valves"),
+    "Wireless utičnice": ("Funksteckdosen", "Wireless sockets"),
+    "Stezaljke": ("Klemmen", "Clamps"),
+    "Loxone tree": ("Loxone Tree", "Loxone Tree"),
+    "Memorija": ("Speicher", "Memory"),
+    "NFC sustav": ("NFC-System", "NFC system"),
+
+    "Ljestve i skele": ("Leitern und Gerüste", "Ladders and scaffolding"),
+    "Rezanje i brušenje": ("Schneiden und Schleifen", "Cutting and grinding"),
+    "Bušenje i odvijanje": ("Bohren und Schrauben", "Drilling and screwdriving"),
+    "Usisavači i otprašivanje": ("Sauger und Entstaubung", "Vacuums and dust extraction"),
+}
+
+
+def nazivi(ime):
+    """{naziv_hr, naziv_de, naziv_en} za kategoriju.
+
+    Kategorija bez prijevoda ne rusi seed — dobiva prazan prijevod, stranica
+    pada na hrvatski naziv, a ispis na kraju je navodi da se ne promakne.
+    """
+    de, en = PRIJEVODI_KATEGORIJA.get(ime, (None, None))
+    return {"naziv_hr": ime, "naziv_de": de, "naziv_en": en}
+
 
 # ----------------------------------------------------------------------
 # Sirovi izvoz — context.md
@@ -244,18 +308,18 @@ def slozi():
     for redoslijed, obitelj in enumerate(obitelji):
         kategorije.append({
             "id": slug(obitelj), "vrsta": "loxone", "roditelj_id": None,
-            "redoslijed": redoslijed, "naziv_hr": obitelj,
+            "redoslijed": redoslijed, **nazivi(obitelj),
         })
         for j, pod in enumerate(stablo[obitelj]):
             kategorije.append({
                 "id": slug(pod), "vrsta": "loxone", "roditelj_id": slug(obitelj),
-                "redoslijed": j, "naziv_hr": pod,
+                "redoslijed": j, **nazivi(pod),
             })
 
     for redoslijed, ime in enumerate(KATEGORIJE_NAJMA):
         kategorije.append({
             "id": slug(ime), "vrsta": "alat", "roditelj_id": None,
-            "redoslijed": redoslijed, "naziv_hr": ime,
+            "redoslijed": redoslijed, **nazivi(ime),
         })
 
     poznate = {k["id"] for k in kategorije}
@@ -292,6 +356,10 @@ def slozi():
             "cijena_cents": artikl["cijena_cents"],
             "osnova": artikl["osnova"],
             "na_stanju": artikl["na_stanju"],
+            # Isti zadani kao u shema.sql. U seed.sql ne ulaze — baza ih
+            # sama postavi pri prvom upisu, a poslije ih vodi admin.
+            "kolicina": 1,
+            "aktivan": True,
             "slika": None,
             "kategorije": list(dict.fromkeys(pripadnosti)),
         })
@@ -319,12 +387,13 @@ def zapisi_sql(kategorije, artikli, veze):
         "-- Ponovna izgradnja: python scripts/seed.py",
         "--",
         "-- Pokretati NAKON shema.sql. Idempotentno je: ponovno pokretanje",
-        "-- osvježava vrijednosti umjesto da padne na duplikatu.",
+        "-- osvježava nazive i kategorije umjesto da padne na duplikatu, a",
+        "-- cijene, stanje i količine ostavlja kakve je postavio admin panel.",
         "",
         "begin;",
         "",
         "-- Kategorije prije artikala; podskupine referenciraju obitelj.",
-        "insert into kategorije (id, vrsta, roditelj_id, redoslijed, naziv_hr) values",
+        "insert into kategorije (id, vrsta, roditelj_id, redoslijed, naziv_hr, naziv_de, naziv_en) values",
     ]
 
     # Obitelji prvo, pa podskupine: strani kljuc na roditelja mora zateci red.
@@ -332,9 +401,10 @@ def zapisi_sql(kategorije, artikli, veze):
     poredane += [k for k in kategorije if k["roditelj_id"] is not None]
 
     stavke = [
-        "  ({}, {}, {}, {}, {})".format(
+        "  ({}, {}, {}, {}, {}, {}, {})".format(
             sql_niz(k["id"]), sql_niz(k["vrsta"]), sql_niz(k["roditelj_id"]),
-            k["redoslijed"], sql_niz(k["naziv_hr"]))
+            k["redoslijed"], sql_niz(k["naziv_hr"]),
+            sql_niz(k["naziv_de"]), sql_niz(k["naziv_en"]))
         for k in poredane
     ]
     redovi.append(",\n".join(stavke))
@@ -343,7 +413,9 @@ def zapisi_sql(kategorije, artikli, veze):
         "  vrsta = excluded.vrsta,",
         "  roditelj_id = excluded.roditelj_id,",
         "  redoslijed = excluded.redoslijed,",
-        "  naziv_hr = excluded.naziv_hr;",
+        "  naziv_hr = excluded.naziv_hr,",
+        "  naziv_de = excluded.naziv_de,",
+        "  naziv_en = excluded.naziv_en;",
         "",
         "insert into artikli (id, vrsta, naziv, sku, marka, cijena_cents, osnova, na_stanju, slika, redoslijed) values",
     ]
@@ -357,15 +429,18 @@ def zapisi_sql(kategorije, artikli, veze):
                 sql_niz(a["osnova"]), sql_niz(a["na_stanju"]), sql_niz(a["slika"]), i)
         )
     redovi.append(",\n".join(stavke))
+    # Cijena i stanje se upisuju samo za NOVE artikle. Postojecima ih je
+    # mozda vec promijenio admin panel, a izvoz za to ne zna — ponovno
+    # pokretanje seed.sql bi tiho vratilo stari cjenik.
     redovi += [
+        "-- Cijena, stanje, količina i vidljivost se NE prepisuju: od prvog upisa",
+        "-- njima upravlja admin panel.",
         "on conflict (id) do update set",
         "  vrsta = excluded.vrsta,",
         "  naziv = excluded.naziv,",
         "  sku = excluded.sku,",
         "  marka = excluded.marka,",
-        "  cijena_cents = excluded.cijena_cents,",
         "  osnova = excluded.osnova,",
-        "  na_stanju = excluded.na_stanju,",
         "  redoslijed = excluded.redoslijed;",
         "",
         "-- Veze se brišu i pišu iznova: artikl je mogao promijeniti kategoriju,",
@@ -383,7 +458,21 @@ def zapisi_sql(kategorije, artikli, veze):
 
 
 def zapisi_json(kategorije, artikli):
+    """Pise assets/katalog.json, osim ako je povucen iz baze.
+
+    Katalog povucen iz baze (scripts/povuci-katalog.mjs) nosi cijene koje je
+    postavio admin. Izvoz za njih ne zna, pa ga seed ne smije tiho pregaziti;
+    `--prepisi` je svjesna iznimka.
+    """
     put = os.path.join(KORIJEN, "assets", "katalog.json")
+    if os.path.exists(put) and "--prepisi" not in sys.argv:
+        try:
+            postojeci = json.load(io.open(put, encoding="utf-8"))
+        except ValueError:
+            postojeci = {}
+        if postojeci.get("generirano") == "scripts/povuci-katalog.mjs":
+            return False
+
     os.makedirs(os.path.dirname(put), exist_ok=True)
     sadrzaj = {
         "generirano": "scripts/seed.py",
@@ -393,13 +482,14 @@ def zapisi_json(kategorije, artikli):
     }
     io.open(put, "w", encoding="utf-8").write(
         json.dumps(sadrzaj, ensure_ascii=False, indent=1))
+    return True
 
 
 def glavno():
     kategorije, artikli, veze, nepoznate = slozi()
 
     zapisi_sql(kategorije, artikli, veze)
-    zapisi_json(kategorije, artikli)
+    json_zapisan = zapisi_json(kategorije, artikli)
     nadeno_defekata = zapisi_defekte(artikli)
 
     loxone = [a for a in artikli if a["vrsta"] == "loxone"]
@@ -420,8 +510,17 @@ def glavno():
         for ime in nepoznate:
             print(f"    {ime}")
 
+    bez_prijevoda = [k["naziv_hr"] for k in kategorije if not k["naziv_de"] or not k["naziv_en"]]
+    if bez_prijevoda:
+        print("\n  UPOZORENJE — kategorije bez prijevoda (PRIJEVODI_KATEGORIJA):")
+        for ime in bez_prijevoda:
+            print(f"    {ime}")
+
     print("\n-> supabase/seed.sql")
-    print("-> assets/katalog.json")
+    if json_zapisan:
+        print("-> assets/katalog.json")
+    else:
+        print("   assets/katalog.json je povučen iz baze i NIJE prepisan (--prepisi za prisilu)")
     print("-> data/defekti-izvoza.md")
 
 

@@ -10,6 +10,8 @@
  * prije stylesheetova. Da ceka na modul, stranica bi bljesnula krivom temom.
  */
 
+import { t } from "./jezik.js";
+
 const KLJUC = "hes.tema";
 const TEME = ["tamna", "svijetla"];
 
@@ -86,7 +88,7 @@ export function osvjeziGumbTeme(gumb = null) {
     kontrola.dataset.vodiU = ide_u;
     kontrola.setAttribute(
       "aria-label",
-      ide_u === "svijetla" ? "Prebaci na svijetlu temu" : "Prebaci na tamnu temu"
+      t(ide_u === "svijetla" ? "tema.na_svijetlu" : "tema.na_tamnu")
     );
     kontrola.setAttribute("aria-pressed", String(trenutnaTema() === "svijetla"));
   }

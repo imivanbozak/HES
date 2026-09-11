@@ -19,6 +19,8 @@
  * pokreta", "Motorni pogon za ventile") se izostavljaju jer u adresi ne nose
  * nista sto ime proizvoda vec ne kaze.
  */
+import { JEZIK, putanja } from "./jezik.js";
+
 export const ADRESE = new Map([
   /* --- miniserveri -------------------------------------------------- */
   ["1433", "miniserver"],
@@ -146,10 +148,13 @@ export const MAPA_ALATA = "/alati";
  *
  * Artikl kojeg nema ni u jednoj tablici dobiva null i kartica ostaje bez
  * poveznice umjesto da vodi na 404.
+ *
+ * Adresa je na jeziku stranice: s /de/webshop kartica vodi na
+ * /de/proizvodi/<ime>, ne natrag na hrvatsku stranicu.
  */
-export function adresaProizvoda(artikl) {
+export function adresaProizvoda(artikl, jezik = JEZIK) {
   const ime = ADRESE.get(artikl?.id);
-  if (ime) return `${MAPA}/${ime}`;
+  if (ime) return putanja(`${MAPA}/${ime}`, jezik);
   const alat = ADRESE_ALATA.get(artikl?.id);
-  return alat ? `${MAPA_ALATA}/${alat}` : null;
+  return alat ? putanja(`${MAPA_ALATA}/${alat}`, jezik) : null;
 }

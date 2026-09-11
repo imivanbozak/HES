@@ -18,14 +18,6 @@ import { povuciArtikle, povuciKategorije } from "./oblak.js";
 
 let ucitano = null;
 
-/** Cijena u centima -> "655,61 €". Hrvatski format, s tvrdim razmakom. */
-export function formatCijene(cente) {
-  const cijeli = Math.trunc(cente / 100);
-  const decimale = String(Math.abs(cente % 100)).padStart(2, "0");
-  const tisucice = String(cijeli).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  return `${tisucice},${decimale} €`;
-}
-
 function normaliziraj(artikl, mediji) {
   return {
     id: String(artikl.id),
@@ -36,6 +28,10 @@ function normaliziraj(artikl, mediji) {
     cijenaCents: Number(artikl.cijena_cents ?? artikl.cijenaCents ?? 0),
     osnova: artikl.osnova,
     naStanju: Boolean(artikl.na_stanju ?? artikl.naStanju ?? true),
+    // Skriveni artikl ostaje u katalogu da njegova stranica i stare kosarice
+    // i dalje znaju sto je, ali ga popisi preskacu (zaVrstu, brojevi).
+    aktivan: artikl.aktivan !== false,
+    kolicina: Number(artikl.kolicina ?? 1),
     slika: artikl.slika ?? null,
     // Fotografije i video ne dolaze iz kataloga nego iz vlastitog manifesta —
     // vidi ucitajMedije() nize.
@@ -124,6 +120,7 @@ export async function ucitajKatalog() {
 
   const brojPoKategoriji = new Map();
   for (const artikl of artikli) {
+    if (!artikl.aktivan) continue;
     for (const kategorijaId of artikl.kategorije) {
       brojPoKategoriji.set(kategorijaId, (brojPoKategoriji.get(kategorijaId) ?? 0) + 1);
     }
@@ -136,9 +133,9 @@ export async function ucitajKatalog() {
     djeca,
     brojPoKategoriji,
 
-    /** Artikli jedne vrste — 'loxone' ili 'alat'. */
+    /** Vidljivi artikli jedne vrste — 'loxone' ili 'alat'. */
     zaVrstu(vrsta) {
-      return artikli.filter((a) => a.vrsta === vrsta);
+      return artikli.filter((a) => a.vrsta === vrsta && a.aktivan);
     },
 
     /** Nadredene kategorije jedne vrste, u zadanom redoslijedu. */
@@ -156,7 +153,7 @@ export async function ucitajKatalog() {
     marke(vrsta) {
       const skup = new Set();
       for (const artikl of artikli) {
-        if (artikl.vrsta === vrsta && artikl.marka) skup.add(artikl.marka);
+        if (artikl.vrsta === vrsta && artikl.marka && artikl.aktivan) skup.add(artikl.marka);
       }
       return [...skup].sort((a, b) => a.localeCompare(b, "hr"));
     },

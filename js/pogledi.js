@@ -8,8 +8,9 @@
  * koji je nacrtan poslije njega.
  */
 
-import { formatCijene } from "./katalog.js";
 import { brojDana, iznosStavke } from "./kosarica.js";
+import { t, mnozina, formatCijene, formatDatuma, lokalno, putanja } from "./jezik.js";
+import * as zauzetost from "./zauzetost.js";
 
 /**
  * Putanja do medija, uvijek od korijena.
@@ -34,25 +35,9 @@ export function esc(vrijednost) {
     .replace(/"/g, "&quot;");
 }
 
-const mnozinaArtikala = (broj) => {
-  // Hrvatski ima tri oblika; Intl.PluralRules ih zna, ali za tri fiksna
-  // niza je izravna tablica citljivija od jos jedne ovisnosti.
-  const zadnja = broj % 10;
-  const zadnje2 = broj % 100;
-  if (zadnja === 1 && zadnje2 !== 11) return "artikl";
-  if (zadnja >= 2 && zadnja <= 4 && (zadnje2 < 12 || zadnje2 > 14)) return "artikla";
-  return "artikala";
-};
-
-export const sBrojem = (broj) => `${broj} ${mnozinaArtikala(broj)}`;
-
-const mnozinaDana = (broj) => {
-  const zadnja = broj % 10;
-  const zadnje2 = broj % 100;
-  if (zadnja === 1 && zadnje2 !== 11) return "dan";
-  if (zadnja >= 2 && zadnja <= 4 && (zadnje2 < 12 || zadnje2 > 14)) return "dana";
-  return "dana";
-};
+// Oblici mnozine stoje u js/prijevodi.js, a bira ih Intl.PluralRules: hrvatski
+// ih ima tri (1 artikl, 2 artikla, 5 artikala), njemacki i engleski dva.
+export const sBrojem = (broj) => `${broj} ${mnozina("mnozina.artikl", broj)}`;
 
 /* ================================================================== */
 /* Rail s kategorijama                                                 */
@@ -84,7 +69,7 @@ export function railHtml(katalog, filtri, vrsta) {
                 data-vrijednost="${esc(obitelj.id)}"
                 aria-pressed="${odabrana}"
                 ${podskupine.length ? `aria-expanded="${otvorena}"` : ""}>
-          <span class="rail__ime">${esc(obitelj.naziv.hr)}</span>
+          <span class="rail__ime">${esc(lokalno(obitelj.naziv))}</span>
           <span class="rail__broj monr">${broj}</span>
         </button>
         ${
@@ -101,7 +86,7 @@ export function railHtml(katalog, filtri, vrsta) {
                                 data-akcija="podskupina"
                                 data-vrijednost="${esc(pod.id)}"
                                 aria-pressed="${podOdabrana}">
-                          <span class="rail__ime">${esc(pod.naziv.hr)}</span>
+                          <span class="rail__ime">${esc(lokalno(pod.naziv))}</span>
                           <span class="rail__broj monr">${podBroj}</span>
                         </button>
                       </li>`;
@@ -115,13 +100,13 @@ export function railHtml(katalog, filtri, vrsta) {
 
   return `
     <div class="rail__skupina">
-      <p class="oznaka">Skupine</p>
+      <p class="oznaka">${t("katalog.skupine")}</p>
       <ul class="rail__popis">
         <li class="rail__stavka">
           <button class="rail__gumb${!stanje.skupina ? " je-odabran" : ""}"
                   type="button" data-akcija="skupina" data-vrijednost=""
                   aria-pressed="${!stanje.skupina}">
-            <span class="rail__ime">Sve</span>
+            <span class="rail__ime">${t("katalog.sve")}</span>
             <span class="rail__broj monr">${ukupno}</span>
           </button>
         </li>
@@ -132,7 +117,7 @@ export function railHtml(katalog, filtri, vrsta) {
     ${
       marke.length > 1
         ? `<div class="rail__skupina">
-            <p class="oznaka">Marka</p>
+            <p class="oznaka">${t("katalog.marka")}</p>
             <ul class="rail__popis">
               ${marke
                 .map(
@@ -154,13 +139,13 @@ export function railHtml(katalog, filtri, vrsta) {
     <div class="rail__skupina">
       <label class="rail__prekidac">
         <input type="checkbox" data-akcija="stanje" ${stanje.samoNaStanju ? "checked" : ""}>
-        <span>Samo na stanju</span>
+        <span>${t("katalog.samo_na_stanju")}</span>
       </label>
     </div>
 
     <button class="gumb gumb--tihi rail__ocisti" type="button" data-akcija="ocisti"
             ${filtri.brojAktivnih() ? "" : "disabled"}>
-      Očistite filtre
+      ${t("katalog.ocisti")}
     </button>`;
 }
 
@@ -254,7 +239,7 @@ export function trakaKategorijaHtml(katalog, filtri, vrsta) {
    * Iznimka je pretraga: dok ona traje nijedna skupina nije odabrana, jer se
    * trazi po cijelom katalogu.
    */
-  const sveSkupine = vrsta !== "loxone" ? stavka("", "Sve", filtri.brojBezKategorije(), !stanje.skupina) : "";
+  const sveSkupine = vrsta !== "loxone" ? stavka("", t("katalog.sve"), filtri.brojBezKategorije(), !stanje.skupina) : "";
 
   return `
     <ul class="kat-traka__popis">
@@ -263,7 +248,7 @@ export function trakaKategorijaHtml(katalog, filtri, vrsta) {
         .map((obitelj) =>
           stavka(
             obitelj.id,
-            obitelj.naziv.hr,
+            lokalno(obitelj.naziv),
             filtri.brojZaKategoriju(obitelj.id),
             stanje.skupina === obitelj.id
           )
@@ -283,10 +268,10 @@ export function trakaKategorijaHtml(katalog, filtri, vrsta) {
  * sortiranjem — mreza ispod ne poskoci pri svakom odabiru.
  */
 const SORTOVI_NATPISI = [
-  ["zadano", "Zadano"],
-  ["cijena-asc", "Cijena rastuće"],
-  ["cijena-desc", "Cijena padajuće"],
-  ["naziv-asc", "Naziv A–Ž"],
+  ["zadano", "katalog.sort_zadano"],
+  ["cijena-asc", "katalog.sort_cijena_asc"],
+  ["cijena-desc", "katalog.sort_cijena_desc"],
+  ["naziv-asc", "katalog.sort_naziv_asc"],
 ];
 
 /**
@@ -306,7 +291,7 @@ const SORTOVI_NATPISI = [
  */
 export function sortHtml(stanje) {
   const aktivni = SORTOVI_NATPISI.find(([kljucSorta]) => kljucSorta === stanje.sort);
-  const natpis = !aktivni || aktivni[0] === "zadano" ? "Poredaj" : aktivni[1];
+  const natpis = !aktivni || aktivni[0] === "zadano" ? t("katalog.poredaj") : t(aktivni[1]);
 
   return `
     <div class="sort" data-sort-izbornik>
@@ -317,13 +302,13 @@ export function sortHtml(stanje) {
         <span>${esc(natpis)}</span>
       </button>
 
-      <ul class="sort__popis" role="listbox" aria-label="Poredaj artikle" hidden>
+      <ul class="sort__popis" role="listbox" aria-label="${t("katalog.poredaj_artikle")}" hidden>
         ${SORTOVI_NATPISI.map(
-          ([kljucSorta, ime]) => `
+          ([kljucSorta, kljucNatpisa]) => `
           <li role="option" aria-selected="${stanje.sort === kljucSorta}">
             <button class="sort__opcija${stanje.sort === kljucSorta ? " je-odabran" : ""}"
                     type="button" data-akcija="sort" data-vrijednost="${kljucSorta}">
-              ${esc(ime)}
+              ${esc(t(kljucNatpisa))}
             </button>
           </li>`
         ).join("")}
@@ -348,12 +333,12 @@ export function trakaPodskupinaHtml(katalog, filtri, popis) {
     ${
       podskupine.length
         ? `<ul class="pod-traka__popis">
-            ${pilula("", "Sve", filtri.brojZaKategoriju(stanje.skupina), !stanje.podskupina)}
+            ${pilula("", t("katalog.sve"), filtri.brojZaKategoriju(stanje.skupina), !stanje.podskupina)}
             ${podskupine
               .map((pod) =>
                 pilula(
                   pod.id,
-                  pod.naziv.hr,
+                  lokalno(pod.naziv),
                   filtri.brojZaKategoriju(pod.id),
                   stanje.podskupina === pod.id
                 )
@@ -468,7 +453,7 @@ function kadarHtml(artikl, adresa = null) {
  * js/potvrda.js. Gumb se zato nakon pet sekundi vrati u stanje koje poziva na
  * dodavanje, a ne ostane trajno zakljucan u "U kosarici".
  */
-export function karticaHtml(artikl, { potvrden, kolicine, podskupinaZa, osnova = "kom", veza = null }) {
+export function karticaHtml(artikl, { potvrden, kolicine, podskupinaZa, osnova = "kom", veza = null, stanjeZa = null }) {
   const jeDodan = potvrden(artikl.id);
   const kolicina = kolicine.get(artikl.id) ?? 1;
   const podskupina = podskupinaZa(artikl);
@@ -488,21 +473,21 @@ export function karticaHtml(artikl, { potvrden, kolicine, podskupinaZa, osnova =
 
         <p class="proizvod__cijena">
           <span class="cijena">${formatCijene(artikl.cijenaCents)}</span>
-          <span class="cijena__osnova">${osnova === "dan" ? "po danu" : "po komadu"}</span>
+          <span class="cijena__osnova">${t(osnova === "dan" ? "katalog.po_danu" : "katalog.po_komadu")}</span>
         </p>
 
         <div class="proizvod__akcije">
           <div class="brojac">
             <button type="button" data-akcija="kolicina-manje" data-artikl="${esc(artikl.id)}"
-                    aria-label="Manje ${esc(artikl.naziv)}" ${kolicina <= 1 ? "disabled" : ""}>−</button>
+                    aria-label="${esc(t("katalog.manje_od", { naziv: artikl.naziv }))}" ${kolicina <= 1 ? "disabled" : ""}>−</button>
             <span class="monr" data-kolicina="${esc(artikl.id)}">${kolicina}</span>
             <button type="button" data-akcija="kolicina-vise" data-artikl="${esc(artikl.id)}"
-                    aria-label="Više ${esc(artikl.naziv)}">+</button>
+                    aria-label="${esc(t("katalog.vise_od", { naziv: artikl.naziv }))}">+</button>
           </div>
 
           <button class="u-kosaricu${jeDodan ? " je-u-kosarici" : ""}" type="button"
                   data-akcija="dodaj" data-artikl="${esc(artikl.id)}"
-                  aria-label="${jeDodan ? "Dodano u košaricu" : `Dodajte ${esc(artikl.naziv)} u košaricu`}">
+                  aria-label="${esc(jeDodan ? t("katalog.dodano") : t("katalog.dodajte_naziv", { naziv: artikl.naziv }))}">
             ${
               jeDodan
                 ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>'
@@ -513,13 +498,30 @@ export function karticaHtml(artikl, { potvrden, kolicine, podskupinaZa, osnova =
 
         <p class="proizvod__stanje">
           ${
-            artikl.naStanju
-              ? '<span class="pilula pilula--stanje">Na stanju</span>'
-              : '<span class="pilula">Na upit</span>'
+            stanjeZa?.(artikl) ??
+            (artikl.naStanju
+              ? `<span class="pilula pilula--stanje">${t("katalog.na_stanju")}</span>`
+              : `<span class="pilula">${t("katalog.na_upit")}</span>`)
           }
         </p>
       </div>
     </li>`;
+}
+
+/**
+ * Pilula dostupnosti alata: "Slobodno danas" ili "Slobodno od 18. 9."
+ *
+ * Vraca null dok zauzetost nije stigla iz baze (ili baze nema) — kartica tada
+ * ostaje na "Na stanju" iz kataloga, umjesto da tvrdi nesto sto ne zna.
+ */
+export function dostupnostHtml(artiklId) {
+  if (!zauzetost.jeUcitano()) return null;
+  const od = zauzetost.slobodnoOd(artiklId);
+  if (od === zauzetost.danasnjiDatum()) {
+    return `<span class="pilula pilula--stanje">${t("najam.slobodno_danas")}</span>`;
+  }
+  if (od) return `<span class="pilula">${t("najam.slobodno_od", { datum: formatDatuma(od) })}</span>`;
+  return `<span class="pilula">${t("katalog.na_upit")}</span>`;
 }
 
 /**
@@ -535,8 +537,8 @@ export function mrezaHtml(popis, postavke) {
   if (!popis.length) {
     return `
       <div class="prazno">
-        <p class="naslov-3">Nema artikala za odabrane filtre.</p>
-        <button class="gumb gumb--sporedni" type="button" data-akcija="ocisti">Očistite filtre</button>
+        <p class="naslov-3">${t("katalog.prazno")}</p>
+        <button class="gumb gumb--sporedni" type="button" data-akcija="ocisti">${t("katalog.ocisti")}</button>
       </div>`;
   }
 
@@ -607,7 +609,7 @@ export function galerijaHtml(artikl) {
            <video class="galerija__video" data-galerija-video
                   poster="${esc(kadar.poster)}" width="1200" height="800"
                   muted playsinline preload="none"
-                  aria-label="${opis} — videoprikaz">
+                  aria-label="${esc(t("galerija.video", { naziv: artikl.naziv }))}">
              <source src="${esc(medij(mediji.video))}" type="video/webm">
            </video>
          </div>`
@@ -625,7 +627,7 @@ export function galerijaHtml(artikl) {
     <li>
       <button class="galerija__slicica${i === 0 ? " je-odabran" : ""}" type="button"
               data-akcija="kadar" data-vrijednost="${esc(kadar.kljuc)}"
-              aria-label="Prikaz ${i + 1} od ${kadrovi.length}" aria-pressed="${i === 0}">
+              aria-label="${t("galerija.prikaz", { i: i + 1, n: kadrovi.length })}" aria-pressed="${i === 0}">
         ${
           kadar.vrsta === "video"
             ? `<img src="${esc(kadar.poster)}" alt="" width="120" height="80" loading="lazy" decoding="async">
@@ -659,15 +661,15 @@ export function galerijaHtml(artikl) {
  * zbrajaju u jedan broj koji bi izgledao kao ukupna cijena narudzbe koju
  * stranica ionako ne prima.
  */
-export function ladicaHtml(stanje) {
+export function ladicaHtml(stanje, { sukobi = new Set() } = {}) {
   if (stanje.prazna) {
     return `
       <div class="ladica__prazno">
-        <p class="naslov-3">Košarica je prazna.</p>
-        <p class="tiho">Dodajte artikle iz Loxone kataloga ili najma alata pa zatražite ponudu.</p>
+        <p class="naslov-3">${t("kosarica.prazna")}</p>
+        <p class="tiho">${t("kosarica.prazna_uputa")}</p>
         <div class="akcije">
-          <a class="gumb gumb--sporedni" href="/webshop">Loxone katalog</a>
-          <a class="gumb gumb--sporedni" href="/najam-alata">Najam alata</a>
+          <a class="gumb gumb--sporedni" href="${putanja("/webshop")}">${t("kosarica.loxone_katalog")}</a>
+          <a class="gumb gumb--sporedni" href="${putanja("/najam-alata")}">${t("kosarica.najam_alata")}</a>
         </div>
       </div>`;
   }
@@ -707,15 +709,15 @@ export function ladicaHtml(stanje) {
           <span class="ladica__ime">${esc(stavka.naziv)}</span>
           <button class="ikona-gumb ikona-gumb--sitni" type="button"
                   data-akcija="makni" data-artikl="${esc(stavka.id)}"
-                  aria-label="Ukloni ${esc(stavka.naziv)}">
+                  aria-label="${esc(t("kosarica.ukloni", { naziv: stavka.naziv }))}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
           </button>
         </div>
         <div class="ladica__red">
           <div class="brojac">
-            <button type="button" data-akcija="manje" data-artikl="${esc(stavka.id)}" aria-label="Manje">−</button>
+            <button type="button" data-akcija="manje" data-artikl="${esc(stavka.id)}" aria-label="${t("kosarica.manje")}">−</button>
             <span class="monr">${stavka.kolicina}</span>
-            <button type="button" data-akcija="vise" data-artikl="${esc(stavka.id)}" aria-label="Više">+</button>
+            <button type="button" data-akcija="vise" data-artikl="${esc(stavka.id)}" aria-label="${t("kosarica.vise")}">+</button>
           </div>
           <span class="cijena">${formatCijene(iznosStavke(stavka))}</span>
         </div>
@@ -730,35 +732,34 @@ export function ladicaHtml(stanje) {
           <span class="ladica__ime">${esc(stavka.naziv)}</span>
           <button class="ikona-gumb ikona-gumb--sitni" type="button"
                   data-akcija="makni" data-artikl="${esc(stavka.id)}"
-                  aria-label="Ukloni ${esc(stavka.naziv)}">
+                  aria-label="${esc(t("kosarica.ukloni", { naziv: stavka.naziv }))}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
           </button>
         </div>
-        <p class="jedva monr">${formatCijene(stavka.cijenaCents)} / dan</p>
-        <div class="ladica__datumi">
-          <label>
-            <span class="oznaka">Od</span>
-            <input type="date" data-akcija="od" data-artikl="${esc(stavka.id)}"
-                   value="${esc(stavka.odDatuma ?? "")}">
-          </label>
-          <label>
-            <span class="oznaka">Do</span>
-            <input type="date" data-akcija="do" data-artikl="${esc(stavka.id)}"
-                   value="${esc(stavka.doDatuma ?? "")}"
-                   ${stavka.odDatuma ? `min="${esc(stavka.odDatuma)}"` : ""}>
-          </label>
-        </div>
+        <p class="jedva monr">${formatCijene(stavka.cijenaCents)} / ${t("katalog.dan_kratko")}</p>
+        <!-- Razdoblje se bira u kalendaru (js/kalendar.js), koji zna
+             zasiviti dane vec zauzete u bazi. Gumb pokazuje odabir. -->
+        <button class="ladica__razdoblje${sukobi.has(stavka.id) ? " ladica__razdoblje--sukob" : ""}" type="button"
+                data-akcija="kalendar" data-artikl="${esc(stavka.id)}" aria-haspopup="dialog">
+          <span class="oznaka">${t("kosarica.razdoblje")}</span>
+          <span class="monr">${
+            stavka.odDatuma && stavka.doDatuma
+              ? `${esc(formatDatuma(stavka.odDatuma))} – ${esc(formatDatuma(stavka.doDatuma, { godina: true }))}`
+              : t("kosarica.odaberite_datume")
+          }</span>
+        </button>
+        ${sukobi.has(stavka.id) ? `<p class="ladica__upozorenje">${t("kosarica.sukob")}</p>` : ""}
         <div class="ladica__red">
           <div class="brojac">
-            <button type="button" data-akcija="manje" data-artikl="${esc(stavka.id)}" aria-label="Manje">−</button>
+            <button type="button" data-akcija="manje" data-artikl="${esc(stavka.id)}" aria-label="${t("kosarica.manje")}">−</button>
             <span class="monr">${stavka.kolicina}</span>
-            <button type="button" data-akcija="vise" data-artikl="${esc(stavka.id)}" aria-label="Više">+</button>
+            <button type="button" data-akcija="vise" data-artikl="${esc(stavka.id)}" aria-label="${t("kosarica.vise")}">+</button>
           </div>
           ${
             dana
-              ? `<span class="ladica__dana jedva monr">${dana} ${mnozinaDana(dana)}</span>
+              ? `<span class="ladica__dana jedva monr">${dana} ${mnozina("mnozina.dan", dana)}</span>
                  <span class="cijena">${formatCijene(iznosStavke(stavka))}</span>`
-              : '<span class="ladica__upozorenje">Odaberite datume</span>'
+              : `<span class="ladica__upozorenje">${t("kosarica.odaberite_datume")}</span>`
           }
         </div>
       </li>`;
@@ -773,15 +774,15 @@ export function ladicaHtml(stanje) {
           </header>
           <ul class="ladica__popis">${popis.map(crtaj).join("")}</ul>
           <p class="ladica__zbroj">
-            <span class="oznaka">Ukupno</span>
+            <span class="oznaka">${t("kosarica.ukupno")}</span>
             <span class="cijena cijena--istaknuta">${formatCijene(ukupno)}</span>
           </p>
         </section>`
       : "";
 
   return `
-    ${skupina("Proizvodi", "Loxone · cijena po komadu", stanje.proizvodi, stanje.ukupnoProizvodi, redakProizvoda)}
-    ${skupina("Najam alata", "cijena po danu", stanje.najam, stanje.ukupnoNajam, redakNajma)}
+    ${skupina(t("kosarica.proizvodi"), t("kosarica.proizvodi_natpis"), stanje.proizvodi, stanje.ukupnoProizvodi, redakProizvoda)}
+    ${skupina(t("kosarica.najam_alata"), t("kosarica.najam_natpis"), stanje.najam, stanje.ukupnoNajam, redakNajma)}
 
     <!--
       Ograda koja se ne smije maknuti: izvor ne sadrzi ni PDV, ni dostavu, ni
@@ -789,22 +790,28 @@ export function ladicaHtml(stanje) {
       tvrdi sto je u iznos ukljuceno.
     -->
     <p class="ladica__ograda tiho">
-      Procjena na temelju cjenika. Konačnu ponudu šaljemo e-poštom.
+      ${t("kosarica.ograda")}
     </p>
 
     ${
       stanje.nepotpuneStavke.length
         ? `<p class="ladica__upozorenje">
-            Za ${sBrojem(stanje.nepotpuneStavke.length)} u najmu nedostaju datumi.
+            ${t("kosarica.nedostaju_datumi", { n: sBrojem(stanje.nepotpuneStavke.length) })}
           </p>`
+        : ""
+    }
+
+    ${
+      sukobi.size
+        ? `<p class="ladica__upozorenje">${t("kosarica.sukobi", { n: sBrojem(sukobi.size) })}</p>`
         : ""
     }
 
     <div class="ladica__dno">
       <button class="gumb gumb--glavni" type="button" data-akcija="ponuda"
-              ${stanje.nepotpuneStavke.length ? "disabled" : ""}>
-        Zatražite ponudu
+              ${stanje.nepotpuneStavke.length || sukobi.size ? "disabled" : ""}>
+        ${t("kosarica.zatrazite_ponudu")}
       </button>
-      <button class="gumb gumb--tihi" type="button" data-akcija="isprazni">Ispraznite košaricu</button>
+      <button class="gumb gumb--tihi" type="button" data-akcija="isprazni">${t("kosarica.isprazni")}</button>
     </div>`;
 }

@@ -67,6 +67,16 @@
   to = "/najam-alata.html"
   status = 200
 
+[[redirects]]
+  from = "/privatnost"
+  to = "/privatnost.html"
+  status = 200
+
+[[redirects]]
+  from = "/galerija"
+  to = "/galerija.html"
+  status = 200
+
 # Suprotan smjer: ako netko dode na .html adresu, preusmjeri ga na cistu, da
 # se ista stranica ne indeksira dvaput.
 [[redirects]]
@@ -80,9 +90,87 @@
   status = 301
 
 [[redirects]]
+  from = "/privatnost.html"
+  to = "/privatnost"
+  status = 301
+
+[[redirects]]
+  from = "/galerija.html"
+  to = "/galerija"
+  status = 301
+
+[[redirects]]
   from = "/index.html"
   to = "/"
   status = 301
+
+# -------------------------------------------------------------------
+# Jezicne inacice — de/ i en/ (scripts/jezici.mjs)
+# -------------------------------------------------------------------
+# Iste stranice kao hrvatske, jednu mapu dublje. Ista pravila i isti
+# redoslijed kao gore: najprije .html -> cista adresa, pa cista -> datoteka.
+[[redirects]]
+  from = "/de/proizvodi/*.html"
+  to = "/de/proizvodi/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/de/proizvodi/*"
+  to = "/de/proizvodi/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/de/alati/*.html"
+  to = "/de/alati/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/de/alati/*"
+  to = "/de/alati/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/proizvodi/*.html"
+  to = "/en/proizvodi/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/en/proizvodi/*"
+  to = "/en/proizvodi/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/alati/*.html"
+  to = "/en/alati/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/en/alati/*"
+  to = "/en/alati/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/de/index.html"
+  to = "/de/"
+  status = 301
+
+[[redirects]]
+  from = "/en/index.html"
+  to = "/en/"
+  status = 301
+
+# Ostale stranice na oba jezika: /de/webshop -> /de/webshop.html. Pravilo
+# bez `force` vrijedi samo kad datoteka pod tom adresom ne postoji, pa
+# /de/ i dalje posluzuje /de/index.html, a /de/assets se ne dira.
+[[redirects]]
+  from = "/de/*"
+  to = "/de/:splat.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/*"
+  to = "/en/:splat.html"
+  status = 200
 
 # -------------------------------------------------------------------
 # Zaglavlja
@@ -94,6 +182,15 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+# Admin panel se ne indeksira i ne sprema u predmemoriju: nakon izmjene
+# koda mora odmah raditi nova verzija, a stranica s upitima kupaca ne smije
+# zapeti ni u jednoj medupohrani.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
 
 # Fontovi i slike nose sadrzaj u imenu ili se ne mijenjaju, pa smiju stajati
 # u predmemoriji godinu dana.
@@ -132,3 +229,16 @@
   for = "/assets/katalog.json"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# Manifest galerije se mijenja svakim `npm run galerija`.
+[[headers]]
+  for = "/assets/galerija.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Fotografije galerije nose ime IZVORNE datoteke, ne otisak sadrzaja: ista
+# zamijenjena fotografija zadrzi ime. Zato tjedan dana, ne godina.
+[[headers]]
+  for = "/assets/galerija/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

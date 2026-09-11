@@ -10,301 +10,387 @@
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 0,
-   "naziv_hr": "Miniserveri"
+   "naziv_hr": "Miniserveri",
+   "naziv_de": "Miniserver",
+   "naziv_en": "Miniservers"
   },
   {
    "id": "upravljacke-jedinice",
    "vrsta": "loxone",
    "roditelj_id": "miniserveri",
    "redoslijed": 0,
-   "naziv_hr": "Upravljačke jedinice"
+   "naziv_hr": "Upravljačke jedinice",
+   "naziv_de": "Steuereinheiten",
+   "naziv_en": "Control units"
   },
   {
    "id": "prosirenja",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 1,
-   "naziv_hr": "Proširenja"
+   "naziv_hr": "Proširenja",
+   "naziv_de": "Extensions",
+   "naziv_en": "Extensions"
   },
   {
    "id": "ulazna-prosirenja",
    "vrsta": "loxone",
    "roditelj_id": "prosirenja",
    "redoslijed": 0,
-   "naziv_hr": "Ulazna proširenja"
+   "naziv_hr": "Ulazna proširenja",
+   "naziv_de": "Eingangs-Extensions",
+   "naziv_en": "Input extensions"
   },
   {
    "id": "izlazna-prosirenja",
    "vrsta": "loxone",
    "roditelj_id": "prosirenja",
    "redoslijed": 1,
-   "naziv_hr": "Izlazna proširenja"
+   "naziv_hr": "Izlazna proširenja",
+   "naziv_de": "Ausgangs-Extensions",
+   "naziv_en": "Output extensions"
   },
   {
    "id": "komunikacijska-prosirenja",
    "vrsta": "loxone",
    "roditelj_id": "prosirenja",
    "redoslijed": 2,
-   "naziv_hr": "Komunikacijska proširenja"
+   "naziv_hr": "Komunikacijska proširenja",
+   "naziv_de": "Kommunikations-Extensions",
+   "naziv_en": "Communication extensions"
   },
   {
    "id": "specijalizirana-prosirenja",
    "vrsta": "loxone",
    "roditelj_id": "prosirenja",
    "redoslijed": 3,
-   "naziv_hr": "Specijalizirana proširenja"
+   "naziv_hr": "Specijalizirana proširenja",
+   "naziv_de": "Spezial-Extensions",
+   "naziv_en": "Specialised extensions"
   },
   {
    "id": "doticajni-uredaji-i-tipkala",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 2,
-   "naziv_hr": "Doticajni uređaji i tipkala"
+   "naziv_hr": "Doticajni uređaji i tipkala",
+   "naziv_de": "Touch-Bedienelemente und Taster",
+   "naziv_en": "Touch controls and switches"
   },
   {
    "id": "touch-osnovna-serija",
    "vrsta": "loxone",
    "roditelj_id": "doticajni-uredaji-i-tipkala",
    "redoslijed": 0,
-   "naziv_hr": "Touch osnovna serija"
+   "naziv_hr": "Touch osnovna serija",
+   "naziv_de": "Touch-Serie",
+   "naziv_en": "Touch series"
   },
   {
    "id": "touch-pure-serija",
    "vrsta": "loxone",
    "roditelj_id": "doticajni-uredaji-i-tipkala",
    "redoslijed": 1,
-   "naziv_hr": "Touch pure serija"
+   "naziv_hr": "Touch pure serija",
+   "naziv_de": "Touch-Pure-Serie",
+   "naziv_en": "Touch Pure series"
   },
   {
    "id": "nfc-i-sigurnost",
    "vrsta": "loxone",
    "roditelj_id": "doticajni-uredaji-i-tipkala",
    "redoslijed": 2,
-   "naziv_hr": "NFC i sigurnost"
+   "naziv_hr": "NFC i sigurnost",
+   "naziv_de": "NFC und Sicherheit",
+   "naziv_en": "NFC and security"
   },
   {
    "id": "daljinsko-upravljanje",
    "vrsta": "loxone",
    "roditelj_id": "doticajni-uredaji-i-tipkala",
    "redoslijed": 3,
-   "naziv_hr": "Daljinsko upravljanje"
+   "naziv_hr": "Daljinsko upravljanje",
+   "naziv_de": "Fernbedienung",
+   "naziv_en": "Remote control"
   },
   {
    "id": "senzori",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 3,
-   "naziv_hr": "Senzori"
+   "naziv_hr": "Senzori",
+   "naziv_de": "Sensoren",
+   "naziv_en": "Sensors"
   },
   {
    "id": "detektori-pokreta-i-prisutnosti",
    "vrsta": "loxone",
    "roditelj_id": "senzori",
    "redoslijed": 0,
-   "naziv_hr": "Detektori pokreta i prisutnosti"
+   "naziv_hr": "Detektori pokreta i prisutnosti",
+   "naziv_de": "Bewegungs- und Präsenzmelder",
+   "naziv_en": "Motion and presence detectors"
   },
   {
    "id": "senzori-klime-i-kvalitete-zraka",
    "vrsta": "loxone",
    "roditelj_id": "senzori",
    "redoslijed": 1,
-   "naziv_hr": "Senzori klime i kvalitete zraka"
+   "naziv_hr": "Senzori klime i kvalitete zraka",
+   "naziv_de": "Klima- und Luftgütesensoren",
+   "naziv_en": "Climate and air quality sensors"
   },
   {
    "id": "ostali-senzori",
    "vrsta": "loxone",
    "roditelj_id": "senzori",
    "redoslijed": 2,
-   "naziv_hr": "Ostali senzori"
+   "naziv_hr": "Ostali senzori",
+   "naziv_de": "Weitere Sensoren",
+   "naziv_en": "Other sensors"
   },
   {
    "id": "osvjetljenje",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 4,
-   "naziv_hr": "Osvjetljenje"
+   "naziv_hr": "Osvjetljenje",
+   "naziv_de": "Beleuchtung",
+   "naziv_en": "Lighting"
   },
   {
    "id": "stropne-svjetljike",
    "vrsta": "loxone",
    "roditelj_id": "osvjetljenje",
    "redoslijed": 0,
-   "naziv_hr": "Stropne svjetljike"
+   "naziv_hr": "Stropne svjetljike",
+   "naziv_de": "Deckenleuchten",
+   "naziv_en": "Ceiling lights"
   },
   {
    "id": "visece-svjetljike",
    "vrsta": "loxone",
    "roditelj_id": "osvjetljenje",
    "redoslijed": 1,
-   "naziv_hr": "Viseće svjetljike"
+   "naziv_hr": "Viseće svjetljike",
+   "naziv_de": "Pendelleuchten",
+   "naziv_en": "Pendant lights"
   },
   {
    "id": "stolne-svjetljike",
    "vrsta": "loxone",
    "roditelj_id": "osvjetljenje",
    "redoslijed": 2,
-   "naziv_hr": "Stolne svjetljike"
+   "naziv_hr": "Stolne svjetljike",
+   "naziv_de": "Tischleuchten",
+   "naziv_en": "Table lamps"
   },
   {
    "id": "led-trake",
    "vrsta": "loxone",
    "roditelj_id": "osvjetljenje",
    "redoslijed": 3,
-   "naziv_hr": "LED trake"
+   "naziv_hr": "LED trake",
+   "naziv_de": "LED-Streifen",
+   "naziv_en": "LED strips"
   },
   {
    "id": "led-bodovi-i-spotovi",
    "vrsta": "loxone",
    "roditelj_id": "osvjetljenje",
    "redoslijed": 4,
-   "naziv_hr": "Led bodovi i spotovi"
+   "naziv_hr": "Led bodovi i spotovi",
+   "naziv_de": "LED-Spots",
+   "naziv_en": "LED spots"
   },
   {
    "id": "upravljanje-osvjetljenjem",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 5,
-   "naziv_hr": "Upravljanje osvjetljenjem"
+   "naziv_hr": "Upravljanje osvjetljenjem",
+   "naziv_de": "Lichtsteuerung",
+   "naziv_en": "Lighting control"
   },
   {
    "id": "upravljaci",
    "vrsta": "loxone",
    "roditelj_id": "upravljanje-osvjetljenjem",
    "redoslijed": 0,
-   "naziv_hr": "Upravljači"
+   "naziv_hr": "Upravljači",
+   "naziv_de": "Steuerungen",
+   "naziv_en": "Controllers"
   },
   {
    "id": "regulatori-intenziteta",
    "vrsta": "loxone",
    "roditelj_id": "upravljanje-osvjetljenjem",
    "redoslijed": 1,
-   "naziv_hr": "Regulatori intenziteta"
+   "naziv_hr": "Regulatori intenziteta",
+   "naziv_de": "Dimmer",
+   "naziv_en": "Dimmers"
   },
   {
    "id": "audio-sustavi",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 6,
-   "naziv_hr": "Audio sustavi"
+   "naziv_hr": "Audio sustavi",
+   "naziv_de": "Audiosysteme",
+   "naziv_en": "Audio systems"
   },
   {
    "id": "zvucnici",
    "vrsta": "loxone",
    "roditelj_id": "audio-sustavi",
    "redoslijed": 0,
-   "naziv_hr": "Zvučnici"
+   "naziv_hr": "Zvučnici",
+   "naziv_de": "Lautsprecher",
+   "naziv_en": "Speakers"
   },
   {
    "id": "centralne-audio-jedinice",
    "vrsta": "loxone",
    "roditelj_id": "audio-sustavi",
    "redoslijed": 1,
-   "naziv_hr": "Centralne audio jedinice"
+   "naziv_hr": "Centralne audio jedinice",
+   "naziv_de": "Zentrale Audioeinheiten",
+   "naziv_en": "Central audio units"
   },
   {
    "id": "aktuatori-i-pogoni",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 7,
-   "naziv_hr": "Aktuatori i pogoni"
+   "naziv_hr": "Aktuatori i pogoni",
+   "naziv_de": "Aktoren und Antriebe",
+   "naziv_en": "Actuators and drives"
   },
   {
    "id": "zasjenjivanje",
    "vrsta": "loxone",
    "roditelj_id": "aktuatori-i-pogoni",
    "redoslijed": 0,
-   "naziv_hr": "Zasjenjivanje"
+   "naziv_hr": "Zasjenjivanje",
+   "naziv_de": "Beschattung",
+   "naziv_en": "Shading"
   },
   {
    "id": "ventili",
    "vrsta": "loxone",
    "roditelj_id": "aktuatori-i-pogoni",
    "redoslijed": 1,
-   "naziv_hr": "Ventili"
+   "naziv_hr": "Ventili",
+   "naziv_de": "Ventile",
+   "naziv_en": "Valves"
   },
   {
    "id": "pametne-uticnice",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 8,
-   "naziv_hr": "Pametne utičnice"
+   "naziv_hr": "Pametne utičnice",
+   "naziv_de": "Smarte Steckdosen",
+   "naziv_en": "Smart sockets"
   },
   {
    "id": "wireless-uticnice",
    "vrsta": "loxone",
    "roditelj_id": "pametne-uticnice",
    "redoslijed": 0,
-   "naziv_hr": "Wireless utičnice"
+   "naziv_hr": "Wireless utičnice",
+   "naziv_de": "Funksteckdosen",
+   "naziv_en": "Wireless sockets"
   },
   {
    "id": "kabeli-i-konektori",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 9,
-   "naziv_hr": "Kabeli i konektori"
+   "naziv_hr": "Kabeli i konektori",
+   "naziv_de": "Kabel und Verbinder",
+   "naziv_en": "Cables and connectors"
   },
   {
    "id": "stezaljke",
    "vrsta": "loxone",
    "roditelj_id": "kabeli-i-konektori",
    "redoslijed": 0,
-   "naziv_hr": "Stezaljke"
+   "naziv_hr": "Stezaljke",
+   "naziv_de": "Klemmen",
+   "naziv_en": "Clamps"
   },
   {
    "id": "loxone-tree",
    "vrsta": "loxone",
    "roditelj_id": "kabeli-i-konektori",
    "redoslijed": 1,
-   "naziv_hr": "Loxone tree"
+   "naziv_hr": "Loxone tree",
+   "naziv_de": "Loxone Tree",
+   "naziv_en": "Loxone Tree"
   },
   {
    "id": "dodatni-materijali",
    "vrsta": "loxone",
    "roditelj_id": null,
    "redoslijed": 10,
-   "naziv_hr": "Dodatni materijali"
+   "naziv_hr": "Dodatni materijali",
+   "naziv_de": "Zubehör",
+   "naziv_en": "Accessories"
   },
   {
    "id": "memorija",
    "vrsta": "loxone",
    "roditelj_id": "dodatni-materijali",
    "redoslijed": 0,
-   "naziv_hr": "Memorija"
+   "naziv_hr": "Memorija",
+   "naziv_de": "Speicher",
+   "naziv_en": "Memory"
   },
   {
    "id": "nfc-sustav",
    "vrsta": "loxone",
    "roditelj_id": "dodatni-materijali",
    "redoslijed": 1,
-   "naziv_hr": "NFC sustav"
+   "naziv_hr": "NFC sustav",
+   "naziv_de": "NFC-System",
+   "naziv_en": "NFC system"
   },
   {
    "id": "ljestve-i-skele",
    "vrsta": "alat",
    "roditelj_id": null,
    "redoslijed": 0,
-   "naziv_hr": "Ljestve i skele"
+   "naziv_hr": "Ljestve i skele",
+   "naziv_de": "Leitern und Gerüste",
+   "naziv_en": "Ladders and scaffolding"
   },
   {
    "id": "rezanje-i-brusenje",
    "vrsta": "alat",
    "roditelj_id": null,
    "redoslijed": 1,
-   "naziv_hr": "Rezanje i brušenje"
+   "naziv_hr": "Rezanje i brušenje",
+   "naziv_de": "Schneiden und Schleifen",
+   "naziv_en": "Cutting and grinding"
   },
   {
    "id": "busenje-i-odvijanje",
    "vrsta": "alat",
    "roditelj_id": null,
    "redoslijed": 2,
-   "naziv_hr": "Bušenje i odvijanje"
+   "naziv_hr": "Bušenje i odvijanje",
+   "naziv_de": "Bohren und Schrauben",
+   "naziv_en": "Drilling and screwdriving"
   },
   {
    "id": "usisavaci-i-otprasivanje",
    "vrsta": "alat",
    "roditelj_id": null,
    "redoslijed": 3,
-   "naziv_hr": "Usisavači i otprašivanje"
+   "naziv_hr": "Usisavači i otprašivanje",
+   "naziv_de": "Sauger und Entstaubung",
+   "naziv_en": "Vacuums and dust extraction"
   }
  ],
  "artikli": [
@@ -317,6 +403,8 @@
    "cijena_cents": 5000,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "ljestve-i-skele"
@@ -331,6 +419,8 @@
    "cijena_cents": 2000,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "ljestve-i-skele"
@@ -345,6 +435,8 @@
    "cijena_cents": 1600,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "ljestve-i-skele"
@@ -359,6 +451,8 @@
    "cijena_cents": 2800,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "rezanje-i-brusenje"
@@ -373,6 +467,8 @@
    "cijena_cents": 2800,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "usisavaci-i-otprasivanje"
@@ -387,6 +483,8 @@
    "cijena_cents": 2200,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "rezanje-i-brusenje"
@@ -401,6 +499,8 @@
    "cijena_cents": 1600,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "busenje-i-odvijanje"
@@ -415,6 +515,8 @@
    "cijena_cents": 2300,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "rezanje-i-brusenje"
@@ -429,6 +531,8 @@
    "cijena_cents": 1600,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "rezanje-i-brusenje"
@@ -443,6 +547,8 @@
    "cijena_cents": 2600,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "busenje-i-odvijanje"
@@ -457,6 +563,8 @@
    "cijena_cents": 1800,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "rezanje-i-brusenje"
@@ -471,6 +579,8 @@
    "cijena_cents": 3300,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "busenje-i-odvijanje"
@@ -485,6 +595,8 @@
    "cijena_cents": 1000,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "busenje-i-odvijanje"
@@ -499,6 +611,8 @@
    "cijena_cents": 1800,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "busenje-i-odvijanje"
@@ -513,6 +627,8 @@
    "cijena_cents": 1800,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "rezanje-i-brusenje"
@@ -527,6 +643,8 @@
    "cijena_cents": 1600,
    "osnova": "dan",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "busenje-i-odvijanje"
@@ -541,6 +659,8 @@
    "cijena_cents": 1284,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "dodatni-materijali",
@@ -556,6 +676,8 @@
    "cijena_cents": 3275,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "dodatni-materijali",
@@ -571,6 +693,8 @@
    "cijena_cents": 3275,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "dodatni-materijali",
@@ -586,6 +710,8 @@
    "cijena_cents": 1725,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "kabeli-i-konektori",
@@ -601,6 +727,8 @@
    "cijena_cents": 1207,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "kabeli-i-konektori",
@@ -616,6 +744,8 @@
    "cijena_cents": 1207,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "kabeli-i-konektori",
@@ -631,6 +761,8 @@
    "cijena_cents": 34637,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "kabeli-i-konektori",
@@ -646,6 +778,8 @@
    "cijena_cents": 6990,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "pametne-uticnice",
@@ -661,6 +795,8 @@
    "cijena_cents": 6990,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "pametne-uticnice",
@@ -676,6 +812,8 @@
    "cijena_cents": 7668,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "pametne-uticnice",
@@ -691,6 +829,8 @@
    "cijena_cents": 15000,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "audio-sustavi",
@@ -706,6 +846,8 @@
    "cijena_cents": 13000,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "audio-sustavi",
@@ -721,6 +863,8 @@
    "cijena_cents": 25275,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "audio-sustavi",
@@ -736,6 +880,8 @@
    "cijena_cents": 50552,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "audio-sustavi",
@@ -751,6 +897,8 @@
    "cijena_cents": 11409,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "aktuatori-i-pogoni",
@@ -766,6 +914,8 @@
    "cijena_cents": 10090,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "aktuatori-i-pogoni",
@@ -781,6 +931,8 @@
    "cijena_cents": 8474,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "aktuatori-i-pogoni",
@@ -796,6 +948,8 @@
    "cijena_cents": 11717,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "ostali-senzori",
@@ -811,6 +965,8 @@
    "cijena_cents": 9084,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "senzori",
@@ -826,6 +982,8 @@
    "cijena_cents": 24670,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "senzori",
@@ -841,6 +999,8 @@
    "cijena_cents": 10960,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "detektori-pokreta-i-prisutnosti",
@@ -856,6 +1016,8 @@
    "cijena_cents": 9807,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "detektori-pokreta-i-prisutnosti",
@@ -871,6 +1033,8 @@
    "cijena_cents": 10832,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "detektori-pokreta-i-prisutnosti",
@@ -886,6 +1050,8 @@
    "cijena_cents": 10900,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "daljinsko-upravljanje",
@@ -901,6 +1067,8 @@
    "cijena_cents": 30227,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "doticajni-uredaji-i-tipkala",
@@ -916,6 +1084,8 @@
    "cijena_cents": 30227,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "doticajni-uredaji-i-tipkala",
@@ -931,6 +1101,8 @@
    "cijena_cents": 11717,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "doticajni-uredaji-i-tipkala",
@@ -946,6 +1118,8 @@
    "cijena_cents": 9084,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "doticajni-uredaji-i-tipkala",
@@ -961,6 +1135,8 @@
    "cijena_cents": 21900,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "doticajni-uredaji-i-tipkala",
@@ -976,6 +1152,8 @@
    "cijena_cents": 21900,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "doticajni-uredaji-i-tipkala",
@@ -991,6 +1169,8 @@
    "cijena_cents": 19276,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "doticajni-uredaji-i-tipkala",
@@ -1006,6 +1186,8 @@
    "cijena_cents": 23362,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "doticajni-uredaji-i-tipkala",
@@ -1021,6 +1203,8 @@
    "cijena_cents": 11900,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "upravljaci",
@@ -1036,6 +1220,8 @@
    "cijena_cents": 12110,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "regulatori-intenziteta",
@@ -1051,6 +1237,8 @@
    "cijena_cents": 9203,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "regulatori-intenziteta",
@@ -1066,6 +1254,8 @@
    "cijena_cents": 7886,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "regulatori-intenziteta",
@@ -1081,6 +1271,8 @@
    "cijena_cents": 29900,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "audio-sustavi",
@@ -1096,6 +1288,8 @@
    "cijena_cents": 12743,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "audio-sustavi",
@@ -1111,6 +1305,8 @@
    "cijena_cents": 18542,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "prosirenja",
@@ -1126,6 +1322,8 @@
    "cijena_cents": 24997,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "osvjetljenje",
@@ -1141,6 +1339,8 @@
    "cijena_cents": 19900,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "osvjetljenje",
@@ -1156,6 +1356,8 @@
    "cijena_cents": 13572,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "led-trake",
@@ -1171,6 +1373,8 @@
    "cijena_cents": 31552,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "osvjetljenje",
@@ -1186,6 +1390,8 @@
    "cijena_cents": 8527,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "led-bodovi-i-spotovi",
@@ -1201,6 +1407,8 @@
    "cijena_cents": 57388,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "specijalizirana-prosirenja",
@@ -1216,6 +1424,8 @@
    "cijena_cents": 27096,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "prosirenja",
@@ -1231,6 +1441,8 @@
    "cijena_cents": 20322,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "prosirenja",
@@ -1246,6 +1458,8 @@
    "cijena_cents": 20000,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "prosirenja",
@@ -1261,6 +1475,8 @@
    "cijena_cents": 55445,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "prosirenja",
@@ -1276,6 +1492,8 @@
    "cijena_cents": 25011,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "prosirenja",
@@ -1291,6 +1509,8 @@
    "cijena_cents": 18542,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "prosirenja",
@@ -1306,6 +1526,8 @@
    "cijena_cents": 28460,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "prosirenja",
@@ -1321,6 +1543,8 @@
    "cijena_cents": 28460,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "izlazna-prosirenja",
@@ -1336,6 +1560,8 @@
    "cijena_cents": 33757,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "izlazna-prosirenja",
@@ -1351,6 +1577,8 @@
    "cijena_cents": 10861,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "komunikacijska-prosirenja",
@@ -1366,6 +1594,8 @@
    "cijena_cents": 10861,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "komunikacijska-prosirenja",
@@ -1381,6 +1611,8 @@
    "cijena_cents": 39362,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "miniserveri",
@@ -1396,6 +1628,8 @@
    "cijena_cents": 49500,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "miniserveri",
@@ -1411,6 +1645,8 @@
    "cijena_cents": 65561,
    "osnova": "kom",
    "na_stanju": true,
+   "kolicina": 1,
+   "aktivan": true,
    "slika": null,
    "kategorije": [
     "miniserveri",

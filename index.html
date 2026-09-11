@@ -41,7 +41,7 @@
 </head>
 
 <body>
-<div class="kostur-stranice" data-kostur data-kostur-tip="naslovnica" role="status" aria-live="polite" aria-label="Ucitavanje stranice">
+<div class="kostur-stranice" data-kostur data-kostur-tip="naslovnica" role="status" aria-live="polite" aria-label="Učitavanje stranice">
   <div class="kostur-stranice__traka" aria-hidden="true">
     <span class="kostur-stranice__znak" data-kostur-oblik></span>
     <span class="kostur-stranice__nav" data-kostur-oblik></span>
@@ -173,6 +173,11 @@
           <li class="izbornik__pod-sve"><a href="/najam-alata">Cijeli cjenik</a></li>
         </ul>
       </li>
+      <!-- Galerija je skrivena dok nema fotografija; atribut prebacuje
+           scripts/galerija.mjs. -->
+      <li class="izbornik__stavka" data-galerija-veza hidden>
+        <a class="izbornik__veza" href="/galerija" data-i18n="izbornik.galerija">Galerija</a>
+      </li>
       <li class="izbornik__stavka">
         <a class="izbornik__veza" href="#zaposlenje" data-spy="zaposlenje" data-i18n="izbornik.zaposlenje">Zaposlenje</a>
       </li>
@@ -271,6 +276,7 @@
       </div>
     </div>
   </div>
+  <a href="/galerija" data-galerija-veza hidden data-i18n="izbornik.galerija">Galerija</a>
   <a href="#zaposlenje" data-i18n="izbornik.zaposlenje">Zaposlenje</a>
   <div class="mob-red">
     <a href="#kontakt" data-i18n="izbornik.kontakt">Kontakt</a>
@@ -1339,12 +1345,12 @@
         cinjenicu da tvrtka radi sest razlicitih stvari upravo od posjetitelja
         koji nije siguran sto mu treba (hes-content.md, vizualna biljeska 4).
 
-        SLANJE: obrazac ide na mailto: i otvara postanski program
-        posjetitelja. Prava izvedba preko baze je pripremljena u js/oblak.js i
-        supabase/shema.sql, ali jos nije ukljucena; hes-content.md je i
-        oznacava blokiranom dok ne postoji tekst o privatnosti.
+        SLANJE (js/obrazac.js): kad je baza podesena u js/konfiguracija.js,
+        upit ide kroz posalji_upit() zajedno s kosaricom, a e-postu salje
+        rubna funkcija. Bez baze, i bez JS-a, obrazac ostaje na mailto: —
+        atribut `action` je ta rezerva i ne smije se maknuti.
       -->
-      <form class="kontakt__obrazac staklo prozor" data-otkrij data-napredak-obrasca
+      <form class="kontakt__obrazac staklo prozor" data-otkrij data-napredak-obrasca data-obrazac-upita
             action="mailto:alen.hranj@hes.hr" method="post" enctype="text/plain">
         <div class="prozor__traka" data-zivo="crta" aria-hidden="true">
           <span class="prozor__tocka"></span><span class="prozor__tocka"></span><span class="prozor__tocka"></span>
@@ -1352,6 +1358,11 @@
         </div>
         <h3 class="naslov-3" data-i18n="kontakt.obrazac_naslov">Pošaljite upit</h3>
         <p class="tiho" data-i18n="kontakt.obrazac_uvod">Odaberite o čemu se radi kako bismo upit odmah usmjerili na pravo mjesto.</p>
+
+        <!-- Sazetak kosarice. Crta ga js/obrazac.js, i to samo kad kosarica
+             nije prazna: posjetitelj koji je dosao iz ladice mora vidjeti da
+             upit nosi i ono sto je odabrao. -->
+        <div class="obrazac__kosarica" data-obrazac-kosarica hidden></div>
 
         <fieldset class="obrazac__vrste">
           <legend class="oznaka" data-i18n="kontakt.vrsta">Vrsta upita</legend>
@@ -1418,10 +1429,28 @@
           <span class="mjerilo__vrijednost" data-obrazac-natpis>0 / 3</span>
         </p>
 
+        <!-- Zamka za automate. Covjek ovo polje ne vidi i ostavlja ga praznim;
+             automat popunjava sve. Popunjeno polje posalji_upit() tiho odbaci.
+             Skriveno je pomakom izvan ekrana, ne s `hidden`: dio automata
+             preskace polja koja su skrivena na ocit nacin. -->
+        <p class="obrazac__zamka" aria-hidden="true">
+          <label>Web stranica <input type="text" name="web" tabindex="-1" autocomplete="off"></label>
+        </p>
+
+        <!-- Sadrzaj kosarice kao tekst, za slanje preko mailto: kad baza nije
+             podesena. Puni ga js/obrazac.js. -->
+        <textarea name="kosarica" hidden data-obrazac-kosarica-tekst></textarea>
+
+        <div class="obrazac__stanje" data-obrazac-stanje role="status" aria-live="polite" hidden></div>
+
         <div class="obrazac__dno">
           <button class="gumb gumb--glavni" type="submit" data-i18n="kontakt.posalji">Pošaljite upit</button>
           <p class="jedva" data-i18n="kontakt.pomoc">Možete nas i nazvati.</p>
         </div>
+
+        <!-- Osnova obrade je upit sam (cl. 6. st. 1. b GDPR-a), ne privola,
+             pa nema kvacice koju bi trebalo oznaciti — samo obavijest. -->
+        <p class="jedva obrazac__privatnost" data-i18n="kontakt.privatnost">Slanjem upita prihvaćate obradu podataka prema <a href="/privatnost">obavijesti o privatnosti</a>.</p>
       </form>
     </div>
   </div>
@@ -1457,13 +1486,14 @@
         <ul>
           <li><a href="/webshop" data-i18n="izbornik.loxone">Loxone smart home</a></li>
           <li><a href="/najam-alata" data-i18n="izbornik.najam">Najam alata</a></li>
+          <li data-galerija-veza hidden><a href="/galerija" data-i18n="izbornik.galerija">Galerija</a></li>
           <li><a href="#zaposlenje" data-i18n="izbornik.zaposlenje">Zaposlenje</a></li>
         </ul>
       </div>
     </div>
 
     <div class="podnozje__dno">
-      <span>Hranj electrical services d.o.o.</span>
+      <span>Hranj electrical services d.o.o. · <a href="/privatnost" data-i18n="podnozje.privatnost">Privatnost</a></span>
       <!-- Jezicna traka je odavde maknuta: ista stoji u zaglavlju, a na dnu
            duge stranice korisnija je tipka koja vraca na vrh. -->
       <button class="na-vrh" type="button" data-na-vrh>

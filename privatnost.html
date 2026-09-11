@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Obavijest o privatnosti | HES</title>
+<meta name="description" content="Koje podatke Hranj Electrical Services obrađuje kada pošaljete upit, zašto, kome ih povjerava i što možete zatražiti.">
+<meta name="theme-color" content="#0A0908">
+<link rel="canonical" href="https://hes.hr/privatnost">
+
+<link rel="alternate" hreflang="hr" href="https://hes.hr/privatnost">
+<link rel="alternate" hreflang="de" href="https://hes.hr/de/privatnost">
+<link rel="alternate" hreflang="en" href="https://hes.hr/en/privatnost">
+<link rel="alternate" hreflang="x-default" href="https://hes.hr/privatnost">
+
+<link rel="icon" href="/assets/logo/logo-mark-color.png">
+
+<script>
+  (function () {
+    var tema = null;
+    try { tema = localStorage.getItem("hes.tema"); } catch (e) {}
+    if (tema !== "tamna" && tema !== "svijetla") {
+      var svijetlo = false;
+      try { svijetlo = window.matchMedia("(prefers-color-scheme: light)").matches; } catch (e) {}
+      tema = svijetlo ? "svijetla" : "tamna";
+    }
+    document.documentElement.dataset.theme = tema;
+    document.documentElement.classList.add("js-pokret");
+  })();
+</script>
+
+<link rel="preload" href="/assets/fonts/hes-regrade.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/sekcije.css">
+</head>
+
+<body>
+<a class="preskoci" href="#sadrzaj">Preskoči na sadržaj</a>
+<div class="platno-pozadina" aria-hidden="true" data-platno></div>
+
+<div class="ljuska">
+
+<header class="zaglavlje">
+  <div class="stupac zaglavlje__sadrzaj">
+    <a class="znak" href="/" aria-label="HES — početna">
+      <img class="znak__svijetli" src="/assets/logo/logo-mark-white.png" alt="Hranj Electrical Services" width="192" height="193">
+      <img class="znak__tamni" src="/assets/logo/logo-mark-color.png" alt="Hranj Electrical Services" width="192" height="193">
+    </a>
+
+    <ul class="izbornik">
+      <li class="izbornik__stavka">
+        <a class="izbornik__veza" href="/#usluge">Usluge <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <ul class="izbornik__pod">
+          <li><p class="oznaka">Tri kategorije usluga</p></li>
+          <li><a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a></li>
+          <li><a href="/#zavrsni-radovi">Završni radovi</a></li>
+          <li><a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a></li>
+        </ul>
+      </li>
+      <li class="izbornik__stavka">
+        <a class="izbornik__veza" href="/webshop">Loxone smart home <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <ul class="izbornik__pod izbornik__pod--dvostupacni">
+          <li class="izbornik__pod-naslov"><p class="oznaka">Skupine proizvoda</p></li>
+          <li><a href="/webshop?skupina=miniserveri">Miniserveri</a></li>
+          <li><a href="/webshop?skupina=prosirenja">Proširenja</a></li>
+          <li><a href="/webshop?skupina=doticajni-uredaji-i-tipkala">Doticajni uređaji i tipkala</a></li>
+          <li><a href="/webshop?skupina=senzori">Senzori</a></li>
+          <li><a href="/webshop?skupina=osvjetljenje">Osvjetljenje</a></li>
+          <li><a href="/webshop?skupina=upravljanje-osvjetljenjem">Upravljanje osvjetljenjem</a></li>
+          <li><a href="/webshop?skupina=audio-sustavi">Audio sustavi</a></li>
+          <li><a href="/webshop?skupina=aktuatori-i-pogoni">Aktuatori i pogoni</a></li>
+          <li><a href="/webshop?skupina=pametne-uticnice">Pametne utičnice</a></li>
+          <li><a href="/webshop?skupina=kabeli-i-konektori">Kabeli i konektori</a></li>
+          <li><a href="/webshop?skupina=dodatni-materijali">Dodatni materijali</a></li>
+          <li class="izbornik__pod-sve"><a href="/webshop">Cijeli katalog</a></li>
+        </ul>
+      </li>
+      <li class="izbornik__stavka">
+        <a class="izbornik__veza" href="/najam-alata">Najam alata <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <ul class="izbornik__pod">
+          <li class="izbornik__pod-naslov"><p class="oznaka">Kategorije alata</p></li>
+          <li><a href="/najam-alata?skupina=ljestve-i-skele">Ljestve i skele</a></li>
+          <li><a href="/najam-alata?skupina=rezanje-i-brusenje">Rezanje i brušenje</a></li>
+          <li><a href="/najam-alata?skupina=busenje-i-odvijanje">Bušenje i odvijanje</a></li>
+          <li><a href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a></li>
+          <li class="izbornik__pod-sve"><a href="/najam-alata">Cijeli cjenik</a></li>
+        </ul>
+      </li>
+      <li class="izbornik__stavka" data-galerija-veza hidden>
+        <a class="izbornik__veza" href="/galerija">Galerija</a>
+      </li>
+      <li class="izbornik__stavka">
+        <a class="izbornik__veza" href="/#zaposlenje">Zaposlenje</a>
+      </li>
+      <li class="izbornik__stavka">
+        <a class="izbornik__veza" href="/#kontakt">Kontakt</a>
+      </li>
+    </ul>
+
+    <div class="alati-zaglavlja">
+      <nav class="jezici staklo" aria-label="Jezik">
+        <a href="/privatnost" hreflang="hr" aria-current="true">hr</a>
+        <a href="/de/privatnost" hreflang="de">de</a>
+        <a href="/en/privatnost" hreflang="en">en</a>
+      </nav>
+      <button class="ikona-gumb tema-gumb" type="button" data-tema-gumb aria-label="Prebaci temu">
+        <svg class="ikona-sunce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ikona-mjesec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="ikona-gumb kosarica-gumb" type="button" data-kosarica-otvori aria-label="Otvori košaricu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.55L21 8H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></svg>
+        <span class="kosarica-brojac monr" data-kosarica-brojac hidden>0</span>
+      </button>
+      <button class="ikona-gumb postavke-gumb" type="button" data-postavke-otvori aria-controls="postavke" aria-label="Otvori postavke">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.1"/><path d="M19.5 12a7.5 7.5 0 0 0-.13-1.36l2-1.55-1.9-3.3-2.36.95a7.5 7.5 0 0 0-2.36-1.36L14.4 2.9h-3.8l-.35 2.48a7.5 7.5 0 0 0-2.36 1.36L5.53 5.79l-1.9 3.3 2 1.55a7.5 7.5 0 0 0 0 2.72l-2 1.55 1.9 3.3 2.36-.95a7.5 7.5 0 0 0 2.36 1.36l.35 2.48h3.8l.35-2.48a7.5 7.5 0 0 0 2.36-1.36l2.36.95 1.9-3.3-2-1.55c.09-.44.13-.9.13-1.36z"/></svg>
+      </button>
+      <button class="ikona-gumb otvori-izbornik" type="button" data-izbornik-prekidac aria-expanded="false" aria-controls="mobilni-izbornik" aria-label="Otvori izbornik">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="zastor" data-izbornik-zastor hidden></div>
+<nav class="mobilni-izbornik" id="mobilni-izbornik" data-mobilni-izbornik hidden aria-label="Glavni izbornik">
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/#usluge">Usluge</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-usluge" aria-label="Prikažite usluge"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="mob-pod" id="mob-usluge">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis">
+          <li><a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a></li>
+          <li><a href="/#zavrsni-radovi">Završni radovi</a></li>
+          <li><a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/webshop">Loxone smart home</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-loxone" aria-label="Prikažite skupine proizvoda"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="mob-pod" id="mob-loxone">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis mob-pod__popis--dvostupacni">
+          <li class="mob-pod__naslov"><p class="oznaka">Skupine proizvoda</p></li>
+          <li><a href="/webshop?skupina=miniserveri">Miniserveri</a></li>
+          <li><a href="/webshop?skupina=prosirenja">Proširenja</a></li>
+          <li><a href="/webshop?skupina=doticajni-uredaji-i-tipkala">Doticajni uređaji i tipkala</a></li>
+          <li><a href="/webshop?skupina=senzori">Senzori</a></li>
+          <li><a href="/webshop?skupina=osvjetljenje">Osvjetljenje</a></li>
+          <li><a href="/webshop?skupina=upravljanje-osvjetljenjem">Upravljanje osvjetljenjem</a></li>
+          <li><a href="/webshop?skupina=audio-sustavi">Audio sustavi</a></li>
+          <li><a href="/webshop?skupina=aktuatori-i-pogoni">Aktuatori i pogoni</a></li>
+          <li><a href="/webshop?skupina=pametne-uticnice">Pametne utičnice</a></li>
+          <li><a href="/webshop?skupina=kabeli-i-konektori">Kabeli i konektori</a></li>
+          <li><a href="/webshop?skupina=dodatni-materijali">Dodatni materijali</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="mob-skupina">
+    <div class="mob-skupina__red">
+      <a class="mob-skupina__veza" href="/najam-alata">Najam alata</a>
+      <button class="mob-skupina__strelica" type="button" aria-expanded="false" aria-controls="mob-najam" aria-label="Prikažite kategorije alata"><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="mob-pod" id="mob-najam">
+      <div class="mob-pod__okvir">
+        <ul class="mob-pod__popis">
+          <li class="mob-pod__naslov"><p class="oznaka">Kategorije alata</p></li>
+          <li><a href="/najam-alata?skupina=ljestve-i-skele">Ljestve i skele</a></li>
+          <li><a href="/najam-alata?skupina=rezanje-i-brusenje">Rezanje i brušenje</a></li>
+          <li><a href="/najam-alata?skupina=busenje-i-odvijanje">Bušenje i odvijanje</a></li>
+          <li><a href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <a href="/galerija" data-galerija-veza hidden>Galerija</a>
+  <a href="/#zaposlenje">Zaposlenje</a>
+  <div class="mob-red">
+    <a href="/#kontakt">Kontakt</a>
+    <a href="tel:0038599 2057845"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.4a12 12 0 0 0 5.6 5.6L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.2 2 2 0 0 1 5.5 3z"/></svg> <span data-i18n="opce.nazovite">Nazovite</span></a>
+  </div>
+</nav>
+
+<dialog class="postavke prozor" id="postavke" data-postavke aria-label="Postavke">
+  <div class="prozor__traka" data-zivo="crta">
+    <span class="prozor__tocka"></span><span class="prozor__tocka"></span><span class="prozor__tocka"></span>
+    <span class="prozor__naslov">postavke.hes</span>
+    <button class="ikona-gumb ikona-gumb--sitni prozor__zatvori" type="button" data-postavke-zatvori aria-label="Zatvori postavke">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="postavke__tijelo">
+    <div class="postavke__red">
+      <span class="oznaka">Tema</span>
+      <button class="ikona-gumb tema-gumb" type="button" data-tema-gumb aria-label="Prebaci temu">
+        <svg class="ikona-sunce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ikona-mjesec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+    <div class="postavke__red">
+      <span class="oznaka">Jezik</span>
+      <nav class="jezici staklo" aria-label="Jezik">
+        <a href="/privatnost" hreflang="hr" aria-current="true">hr</a>
+        <a href="/de/privatnost" hreflang="de">de</a>
+        <a href="/en/privatnost" hreflang="en">en</a>
+      </nav>
+    </div>
+  </div>
+</dialog>
+
+<main id="sadrzaj">
+
+<!-- ================================================================= -->
+<!-- privatnost — obavijest o obradi podataka i podaci o tvrtki          -->
+<!-- ================================================================= -->
+<!--
+  NACRT. Pisan prema onome sto stranica stvarno radi (js/obrazac.js,
+  supabase/shema.sql, rubna funkcija), ali nije pravni savjet: prije objave ga
+  mora potvrditi klijent, a po mogucnosti i pravnik.
+
+  Oznake [NEDOSTAJE: ...] su podaci kojih nema ni u jednom izvoru projekta.
+  Oznake [PROVJERITI: ...] su tvrdnje koje ovise o ugovoru ili postavci koja
+  jos ne postoji. `npm run provjeri:objava` pada dok ijedna stoji na stranici.
+
+  Ako se promijeni sto obrazac salje ili kome, mijenja se i ovaj tekst.
+-->
+<section class="polje polje--zbijeno">
+  <div class="stupac">
+    <article class="pravni-tekst">
+      <header class="zaglavlje-sekcije">
+        <p class="oznaka">Privatnost</p>
+        <h1 class="naslov-2">Obavijest o privatnosti</h1>
+        <p class="uvod">Ovdje piše koje podatke dobivamo kada nam pošaljete upit putem ove stranice, zašto nam trebaju, kome ih povjeravamo i što možete zatražiti.</p>
+        <p class="jedva">Vrijedi od <mark class="nedostaje">[NEDOSTAJE: datum objave]</mark>.</p>
+      </header>
+
+      <h2 class="naslov-3">1. Tko obrađuje podatke</h2>
+      <p>Voditelj obrade je Hranj Electrical Services d.o.o. Podaci o tvrtki navedeni su <a href="#podaci-o-tvrtki">na dnu ove stranice</a>. Za sva pitanja o vašim podacima pišite na <a href="mailto:alen.hranj@hes.hr">alen.hranj@hes.hr</a>.</p>
+
+      <h2 class="naslov-3">2. Koje podatke obrađujemo</h2>
+      <p>Kada pošaljete upit putem obrasca:</p>
+      <ul>
+        <li>ime i prezime te adresu e-pošte,</li>
+        <li>broj telefona, ako ga upišete,</li>
+        <li>vrstu upita i opis posla koji upišete,</li>
+        <li>sadržaj košarice: artikle, količine i cijene iz cjenika, a za najam alata i razdoblje najma,</li>
+        <li>jezik stranice i vrijeme slanja.</li>
+      </ul>
+      <p>Ako nam pišete e-poštom ili nas nazovete, obrađujemo ono što nam tim putem pošaljete ili kažete.</p>
+      <p>Stranica ne koristi kolačiće za praćenje ni oglašavanje. U vašem pregledniku spremaju se samo sadržaj košarice i odabrana tema, svijetla ili tamna. Oni ne napuštaju vaš uređaj dok ne pošaljete upit.</p>
+
+      <h2 class="naslov-3">3. Zašto i na kojoj osnovi</h2>
+      <ul>
+        <li><strong>Odgovor na upit, izrada ponude i rezervacija alata</strong>: radnje koje na vaš zahtjev poduzimamo prije sklapanja ugovora (članak 6. stavak 1. točka (b) Opće uredbe o zaštiti podataka).</li>
+        <li><strong>Prijave za posao</strong>: isto, razmatranje prijave je radnja prije sklapanja ugovora o radu.</li>
+        <li><strong>Zaštita obrasca od zlouporabe</strong> (ograničenje broja upita i skriveno polje za automate): naš legitimni interes (članak 6. stavak 1. točka (f)).</li>
+      </ul>
+      <p>Podatke ne koristimo za oglašavanje i ne prodajemo ih.</p>
+
+      <h2 class="naslov-3">4. Kome povjeravamo podatke</h2>
+      <p>Za rad stranice koristimo tri pružatelja usluga. Oni podatke obrađuju samo po našem nalogu.</p>
+      <dl class="cinjenice">
+        <div>
+          <dt>Supabase</dt>
+          <dd>Baza podataka u koju se spremaju upiti i rezervacije alata. Poslužitelji u Europskoj uniji (Frankfurt). <mark class="nedostaje">[PROVJERITI: regija projekta nakon otvaranja]</mark></dd>
+        </div>
+        <div>
+          <dt>Resend</dt>
+          <dd>Slanje e-pošte: obavijest nama o novom upitu i kopija upita vama. Tvrtka sa sjedištem u SAD-u. <mark class="nedostaje">[PROVJERITI: osnova prijenosa u ugovoru o obradi podataka s Resendom — standardne ugovorne klauzule ili okvir EU–SAD]</mark></dd>
+        </div>
+        <div>
+          <dt>Netlify</dt>
+          <dd>Posluživanje stranice. Bilježi tehničke zapise pristupa: IP adresu, vrijeme i traženu adresu. Tvrtka sa sjedištem u SAD-u. <mark class="nedostaje">[PROVJERITI: osnova prijenosa u Netlifyjevu ugovoru o obradi podataka]</mark></dd>
+        </div>
+      </dl>
+      <p>Osim njima, podatke dajemo samo kada nas na to obvezuje zakon.</p>
+
+      <h2 class="naslov-3">5. Koliko dugo ih čuvamo</h2>
+      <p><mark class="nedostaje">[NEDOSTAJE: rok čuvanja. Prijedlog: upit koji nije prerastao u posao briše se 24 mjeseca nakon zadnjeg kontakta; upit koji je prerastao u ugovor čuva se koliko to traže propisi o poslovnoj dokumentaciji.]</mark></p>
+      <p>Rezervacije alata čuvaju se jednako dugo kao upit iz kojeg su nastale i brišu se zajedno s njim.</p>
+
+      <h2 class="naslov-3">6. Vaša prava</h2>
+      <p>U svakom trenutku možete zatražiti:</p>
+      <ul>
+        <li>uvid u podatke koje o vama imamo,</li>
+        <li>ispravak netočnih podataka,</li>
+        <li>brisanje podataka,</li>
+        <li>ograničenje obrade,</li>
+        <li>prijenos podataka koje ste nam dali.</li>
+      </ul>
+      <p>Obradi koja se temelji na legitimnom interesu možete i prigovoriti. Zahtjev pošaljite na <a href="mailto:alen.hranj@hes.hr">alen.hranj@hes.hr</a>.</p>
+      <p>Ako smatrate da podatke obrađujemo protivno propisima, možete podnijeti pritužbu Agenciji za zaštitu osobnih podataka (AZOP), <a href="https://azop.hr">azop.hr</a>. <mark class="nedostaje">[PROVJERITI: adresa AZOP-a, Selska cesta 136, 10000 Zagreb]</mark></p>
+
+      <h2 class="naslov-3" id="podaci-o-tvrtki">7. Podaci o tvrtki</h2>
+      <dl class="cinjenice">
+        <div><dt>Naziv</dt><dd>Hranj Electrical Services d.o.o.</dd></div>
+        <div><dt>Sjedište</dt><dd><mark class="nedostaje">[NEDOSTAJE: adresa sjedišta]</mark></dd></div>
+        <div><dt>OIB</dt><dd><mark class="nedostaje">[NEDOSTAJE: OIB]</mark></dd></div>
+        <div><dt>Sudski registar</dt><dd><mark class="nedostaje">[NEDOSTAJE: trgovački sud i MBS]</mark></dd></div>
+        <div><dt>Temeljni kapital</dt><dd><mark class="nedostaje">[NEDOSTAJE: iznos, uplaćen u cijelosti ili ne]</mark></dd></div>
+        <div><dt>Uprava</dt><dd><mark class="nedostaje">[NEDOSTAJE: ime i prezime člana uprave]</mark></dd></div>
+        <div><dt>PDV ID</dt><dd><mark class="nedostaje">[NEDOSTAJE: HR i OIB, ako je tvrtka u sustavu PDV-a]</mark></dd></div>
+        <div><dt>E-pošta</dt><dd><a href="mailto:alen.hranj@hes.hr">alen.hranj@hes.hr</a></dd></div>
+        <div><dt>Telefon</dt><dd><a class="monr" href="tel:+385992057845">+385 99 205 7845</a></dd></div>
+      </dl>
+      <p class="jedva">Isti podaci služe i kao podaci o pružatelju usluge (Impressum) koje za posjetitelje iz Njemačke traže tamošnji propisi.</p>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="podnozje">
+  <div class="stupac">
+    <div class="podnozje__stupci">
+      <div>
+        <h3>Kontakt</h3>
+        <ul>
+          <li><a href="mailto:alen.hranj@hes.hr">alen.hranj@hes.hr</a></li>
+          <li><a class="monr" href="tel:0038599 2057845">00385 99 205 7845</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Usluge</h3>
+        <ul>
+          <li><a href="/#industrijske-elektroinstalacije">Industrijske elektroinstalacije</a></li>
+          <li><a href="/#zavrsni-radovi">Završni radovi</a></li>
+          <li><a href="/#kucne-elektroinstalacije">Kućne elektroinstalacije</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ponuda</h3>
+        <ul>
+          <li><a href="/webshop">Loxone smart home</a></li>
+          <li><a href="/najam-alata">Najam alata</a></li>
+          <li data-galerija-veza hidden><a href="/galerija">Galerija</a></li>
+          <li><a href="/#zaposlenje">Zaposlenje</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="podnozje__dno">
+      <span>Hranj electrical services d.o.o. · <a href="/privatnost" aria-current="page">Privatnost</a></span>
+      <button class="na-vrh" type="button" data-na-vrh>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+        <span>Na vrh</span>
+      </button>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /ljuska -->
+
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>

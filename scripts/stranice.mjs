@@ -45,6 +45,13 @@ const IZLAZ = path.join(KORIJEN, "proizvodi");
 const IZLAZ_ALATA = path.join(KORIJEN, "alati");
 const SAMO_PROVJERA = process.argv.includes("--provjeri");
 
+/**
+ * Poveznica "Galerija" stoji skrivena dok galerija nema nijednu fotografiju
+ * — isto pravilo koje scripts/galerija.mjs primjenjuje na rucno pisane
+ * stranice. Postavlja se u glavni(), iz assets/galerija.json.
+ */
+let galerijaSkrivena = " hidden";
+
 const BOJA = { zeleno: "\x1b[32m", crveno: "\x1b[31m", zuto: "\x1b[33m", sivo: "\x1b[90m", kraj: "\x1b[0m" };
 
 /* ================================================================== */
@@ -172,7 +179,7 @@ function glava({ naslov, opis, adresa }) {
 
 /** Skeleton za stranice proizvoda. Prati galeriju, podatke i specifikaciju. */
 function kosturProizvoda() {
-  return `<div class="kostur-stranice" data-kostur data-kostur-tip="proizvod" role="status" aria-live="polite" aria-label="Ucitavanje stranice">
+  return `<div class="kostur-stranice" data-kostur data-kostur-tip="proizvod" role="status" aria-live="polite" aria-label="Učitavanje stranice">
   <div class="kostur-stranice__traka" aria-hidden="true">
     <span class="kostur-stranice__znak" data-kostur-oblik></span>
     <span class="kostur-stranice__nav" data-kostur-oblik></span>
@@ -256,6 +263,9 @@ ${kosturProizvoda()}
           <li><a href="/najam-alata?skupina=usisavaci-i-otprasivanje">Usisavači i otprašivanje</a></li>
           <li class="izbornik__pod-sve"><a href="/najam-alata">Cijeli cjenik</a></li>
         </ul>
+      </li>
+      <li class="izbornik__stavka" data-galerija-veza${galerijaSkrivena}>
+        <a class="izbornik__veza" href="/galerija">Galerija</a>
       </li>
       <li class="izbornik__stavka">
         <a class="izbornik__veza" href="/#zaposlenje">Zaposlenje</a>
@@ -352,6 +362,7 @@ ${kosturProizvoda()}
       </div>
     </div>
   </div>
+  <a href="/galerija" data-galerija-veza${galerijaSkrivena}>Galerija</a>
   <a href="/#zaposlenje">Zaposlenje</a>
   <div class="mob-red">
     <a href="/#kontakt">Kontakt</a>
@@ -419,12 +430,13 @@ function podnozje() {
         <ul>
           <li><a href="/webshop">Loxone smart home</a></li>
           <li><a href="/najam-alata">Najam alata</a></li>
+          <li data-galerija-veza${galerijaSkrivena}><a href="/galerija">Galerija</a></li>
           <li><a href="/#zaposlenje">Zaposlenje</a></li>
         </ul>
       </div>
     </div>
     <div class="podnozje__dno">
-      <span>Hranj electrical services d.o.o.</span>
+      <span>Hranj electrical services d.o.o. · <a href="/privatnost">Privatnost</a></span>
       <!-- Jezicna traka je odavde maknuta: ista stoji u zaglavlju, a na dnu
            duge stranice korisnija je tipka koja vraca na vrh. -->
       <button class="na-vrh" type="button" data-na-vrh>
@@ -632,7 +644,11 @@ function stranica({ artikl, tekst, skupina, podskupina, adresa }) {
   // odmah iza istog tog imena i ponovilo ga u istoj recenici. Kad recenica
   // pocinje necim drugim (npr. "DALI je standardizirano..."), ostaje cijela,
   // jer bi rezanje po sablonu odsjeklo subjekt.
-  const prva = (tekst.opis.split(". ")[0] || tekst.opis).replace(/\.$/, "").trim();
+  //
+  // Recenica zavrsava tockom iza koje slijedi VELIKO slovo. Samo ". " bi
+  // rezalo i kratice: "za Miniserver Gen. 1. Zamjenom..." je davalo meta
+  // opis koji zavrsava na "Gen.".
+  const prva = (tekst.opis.split(/\.\s+(?=[A-ZČĆŠŽĐ])/)[0] || tekst.opis).replace(/\.$/, "").trim();
   const bezImena = prva.replace(
     new RegExp(`^(?:Loxone\\s+)?${artikl.naziv.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s+(?:je|su)\\s+`, "i"),
     ""
@@ -645,7 +661,7 @@ function stranica({ artikl, tekst, skupina, podskupina, adresa }) {
     `${uvodno}. Ovlašteni partneri firme Loxone.`;
 
   return (
-    glava({ naslov: `Loxone ${artikl.naziv} — cijena i specifikacija | HES`, opis: meta, adresa }) +
+    glava({ naslov: `${puniNaziv} — cijena i specifikacija | HES`, opis: meta, adresa }) +
     zaglavlje(adresa) +
     tijelo({ artikl, tekst, skupina, podskupina, adresa }) +
     podnozje()
@@ -806,6 +822,12 @@ function stranicaAlata({ artikl, kategorija, adresa }) {
 /* ================================================================== */
 async function glavni() {
   const katalog = JSON.parse(await readFile(path.join(KORIJEN, "assets", "katalog.json"), "utf8"));
+
+  const manifestGalerije = path.join(KORIJEN, "assets", "galerija.json");
+  if (existsSync(manifestGalerije)) {
+    const galerija = JSON.parse(await readFile(manifestGalerije, "utf8"));
+    galerijaSkrivena = galerija.slike?.length ? "" : " hidden";
+  }
   const kategorije = new Map(katalog.kategorije.map((k) => [k.id, k]));
   const artikli = new Map(katalog.artikli.map((a) => [a.id, a]));
 

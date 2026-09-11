@@ -14,9 +14,11 @@
  * Stranica se prepoznaje po `data-proizvod="<id>"` na korijenu sekcije.
  */
 
-import { ucitajKatalog, formatCijene } from "./katalog.js";
+import { ucitajKatalog } from "./katalog.js";
+import { t, formatCijene, formatDatuma, lokalno } from "./jezik.js";
 import { adresaProizvoda } from "./adrese.js";
-import { galerijaHtml, karuselHtml } from "./pogledi.js";
+import { galerijaHtml, karuselHtml, dostupnostHtml } from "./pogledi.js";
+import * as zauzetost from "./zauzetost.js";
 import * as kosarica from "./kosarica.js";
 import * as potvrda from "./potvrda.js";
 import { otvori as otvoriLadicu } from "./ladica.js";
@@ -60,10 +62,39 @@ export async function pokreniStranicuProizvoda(korijen) {
     )}</span>`;
   }
 
-  if (stanjeSpremnik) {
+  /*
+   * Stanje. Za alat iz najma, cim zauzetost stigne iz baze, to je dostupnost
+   * ("Slobodno od 18. 9.") i popis vec rezerviranih razdoblja — posjetitelj
+   * tako bira datume znajuci sto je uzeto, prije nego otvori kalendar.
+   */
+  const crtajStanje = () => {
+    if (!stanjeSpremnik) return;
+    if (!artikl.aktivan) {
+      stanjeSpremnik.innerHTML = `<span class="pilula">${t("katalog.nedostupno")}</span>`;
+      return;
+    }
+
+    const dostupnost = artikl.osnova === "dan" ? dostupnostHtml(artikl.id) : null;
+    if (dostupnost) {
+      const rasponi = zauzetost.puniRasponi(artikl.id);
+      const popis = rasponi
+        .map((r) => (r.od === r.zadnji ? formatDatuma(r.od) : `${formatDatuma(r.od)} – ${formatDatuma(r.zadnji)}`))
+        .join(", ");
+      stanjeSpremnik.innerHTML = `${dostupnost}${
+        popis ? `<p class="jedva zauzetost">${t("najam.vec_rezervirano")} <span class="monr">${popis}</span></p>` : ""
+      }`;
+      return;
+    }
+
     stanjeSpremnik.innerHTML = artikl.naStanju
-      ? '<span class="pilula pilula--stanje">Na stanju</span>'
-      : '<span class="pilula">Na upit</span>';
+      ? `<span class="pilula pilula--stanje">${t("katalog.na_stanju")}</span>`
+      : `<span class="pilula">${t("katalog.na_upit")}</span>`;
+  };
+
+  crtajStanje();
+  if (artikl.osnova === "dan" && artikl.aktivan) {
+    zauzetost.naPromjenu(crtajStanje);
+    zauzetost.ucitaj();
   }
 
   /* ---------------------------------------------------------------- */
@@ -73,16 +104,22 @@ export async function pokreniStranicuProizvoda(korijen) {
 
   function crtajAkcije() {
     if (!akcijeSpremnik) return;
+    // Skriveni artikl se ne moze naruciti. Stranica ostaje (poveznica na nju
+    // mozda stoji negdje vani), ali bez gumba koji bi ga stavio u kosaricu.
+    if (!artikl.aktivan) {
+      akcijeSpremnik.innerHTML = "";
+      return;
+    }
     const jeDodan = potvrda.jePotvrden(artikl.id);
 
     akcijeSpremnik.innerHTML = `
       <div class="brojac brojac--veliki">
-        <button type="button" data-akcija="manje" aria-label="Manje" ${kolicina <= 1 ? "disabled" : ""}>−</button>
+        <button type="button" data-akcija="manje" aria-label="${t("kosarica.manje")}" ${kolicina <= 1 ? "disabled" : ""}>−</button>
         <span class="monr" data-prikaz-kolicine>${kolicina}</span>
-        <button type="button" data-akcija="vise" aria-label="Više">+</button>
+        <button type="button" data-akcija="vise" aria-label="${t("kosarica.vise")}">+</button>
       </div>
       <button class="gumb ${jeDodan ? "gumb--sporedni" : "gumb--glavni"} gumb--siroki" type="button" data-akcija="dodaj">
-        ${jeDodan ? "Dodano u košaricu" : "Dodajte u košaricu"}
+        ${jeDodan ? t("katalog.dodano") : t("katalog.dodajte")}
       </button>`;
   }
 
@@ -218,7 +255,7 @@ export async function pokreniStranicuProizvoda(korijen) {
     // Iz iste zalihe: uz Loxone artikl Loxone, uz alat alati. Kupnja po
     // komadu i najam po danu u istom karuselu bili bi dvije ponude u jednoj.
     const preporuke = katalog.artikli
-      .filter((a) => a.vrsta === artikl.vrsta && a.id !== artikl.id)
+      .filter((a) => a.vrsta === artikl.vrsta && a.id !== artikl.id && a.aktivan)
       .sort(
         (x, y) =>
           tezina(x) - tezina(y) ||
@@ -231,7 +268,7 @@ export async function pokreniStranicuProizvoda(korijen) {
     const podskupinaZa = (drugi) => {
       for (const kljuc of drugi.kategorije) {
         const kategorija = katalog.poId.get(kljuc);
-        if (kategorija?.roditeljId) return kategorija.naziv.hr;
+        if (kategorija?.roditeljId) return lokalno(kategorija.naziv);
       }
       return null;
     };
@@ -246,6 +283,7 @@ export async function pokreniStranicuProizvoda(korijen) {
         // js/adrese.js. Artikl kojeg u tablici nema dobiva null i kartica
         // ostaje bez poveznice umjesto da vodi na 404.
         veza: adresaProizvoda,
+        stanjeZa: artikl.osnova === "dan" ? (drugi) => dostupnostHtml(drugi.id) : null,
       });
       pokreniVideoNaHover(preporukeSpremnik);
       pokreniKarusel(preporukeSpremnik.querySelector("[data-karusel]"));
@@ -284,6 +322,7 @@ export async function pokreniStranicuProizvoda(korijen) {
 
     kosarica.naPromjenu(crtajPreporuke);
     potvrda.naPromjenu(crtajPreporuke);
+    if (artikl.osnova === "dan") zauzetost.naPromjenu(crtajPreporuke);
     crtajPreporuke();
   }
 }
@@ -307,8 +346,8 @@ function pokreniKarusel(karusel) {
   const natrag = document.createElement("button");
   const naprijed = document.createElement("button");
   for (const [gumb, smjer, natpis] of [
-    [natrag, -1, "Prethodni proizvodi"],
-    [naprijed, 1, "Sljedeći proizvodi"],
+    [natrag, -1, t("proizvod.prethodni")],
+    [naprijed, 1, t("proizvod.sljedeci")],
   ]) {
     gumb.type = "button";
     gumb.className = `karusel__strelica karusel__strelica--${smjer < 0 ? "natrag" : "naprijed"}`;

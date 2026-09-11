@@ -1,0 +1,287 @@
+/* ================================================================== */
+/* admin.css — admin panel (/admin)                                    */
+/* ================================================================== */
+/*
+ * Alat za tvrtku, ne izlog: tablice ispred kartica, gustoca ispred dojma,
+ * bez animacija. Boje, razmaci i gumbi su isti tokeni kao na stranici
+ * (tokens.css, app.css), pa admin postuje obje teme bez ijedne vlastite boje.
+ */
+
+.admin { min-height: 100vh; background: var(--ploha-0); color: var(--tekst); }
+
+/* ------------------------------------------------------------------ */
+/* Traka                                                               */
+/* ------------------------------------------------------------------ */
+.admin__traka {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--p3) var(--p5);
+  padding: var(--p3) var(--p5);
+  border-bottom: 1px solid var(--rub);
+  background: var(--ploha-1);
+}
+.admin__traka .znak img { width: 34px; height: auto; }
+.admin__kartice { display: flex; flex-wrap: wrap; gap: var(--p1); }
+.admin__kartice a {
+  padding: var(--p2) var(--p4);
+  border-radius: var(--r-pilula);
+  color: var(--tekst-3);
+  font-size: var(--vel-malo);
+  font-weight: 500;
+  text-decoration: none;
+}
+.admin__kartice a:hover { background: var(--plohica); color: var(--tekst); }
+.admin__kartice a[aria-current="page"] { background: var(--hes-ploha); color: var(--hes-na-plohi); }
+.admin__korisnik { display: flex; align-items: center; gap: var(--p3); margin-left: auto; }
+
+/* ------------------------------------------------------------------ */
+/* Okvir ekrana                                                        */
+/* ------------------------------------------------------------------ */
+.admin__sadrzaj { padding-block: var(--p6) var(--p8); }
+.admin__ekran { display: grid; gap: var(--p5); }
+
+.admin__prijava {
+  width: min(420px, 100%);
+  margin: var(--p8) auto 0;
+  padding: var(--p6);
+  display: grid;
+  gap: var(--p4);
+  border-radius: var(--r-ploha);
+}
+.admin__prijava .prozor__traka { margin: calc(-1 * var(--p6)) calc(-1 * var(--p6)) var(--p2); }
+
+.admin__glava { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--p3); }
+.admin__natrag { color: var(--tekst-3); font-size: var(--vel-malo); }
+
+.admin__filtri { display: flex; flex-wrap: wrap; gap: var(--p2); }
+.admin__filtri button {
+  padding: var(--p2) var(--p4);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  background: var(--plohica);
+  color: var(--tekst-3);
+  font: inherit;
+  font-size: var(--vel-malo);
+  cursor: pointer;
+}
+.admin__filtri button[aria-pressed="true"] {
+  background: var(--hes-ploha);
+  border-color: var(--hes-ploha);
+  color: var(--hes-na-plohi);
+  font-weight: 600;
+}
+.admin__filtri button:focus-visible { outline: 2px solid var(--fokus); outline-offset: 2px; }
+
+/* ------------------------------------------------------------------ */
+/* Tablice                                                             */
+/* ------------------------------------------------------------------ */
+.admin__omot-tablice { overflow-x: auto; border: 1px solid var(--rub); border-radius: var(--r-kartica); }
+.admin__tablica { width: 100%; border-collapse: collapse; font-size: var(--vel-malo); }
+.admin__tablica th,
+.admin__tablica td {
+  padding: var(--p2) var(--p3);
+  border-bottom: 1px solid var(--rub);
+  text-align: left;
+  vertical-align: middle;
+}
+.admin__tablica th {
+  background: var(--ploha-1);
+  color: var(--tekst-4);
+  font-size: var(--vel-oznaka);
+  font-weight: 500;
+  letter-spacing: var(--razmak-oznaka);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.admin__tablica tbody tr:last-child td { border-bottom: 0; }
+.admin__tablica a { color: var(--tekst); }
+@media (hover: hover) and (pointer: fine) {
+  .admin__tablica tbody tr:hover { background: var(--plohica); }
+}
+.admin__tablica--mala td { padding-inline: 0; }
+.admin__redak--promijenjen { box-shadow: inset 3px 0 0 var(--hes); }
+
+.admin__cijena { display: inline-flex; align-items: center; gap: var(--p2); }
+.admin__cijena .polje-obrasca__ulaz,
+.admin__broj { width: 9ch; min-height: 36px; padding: var(--p1) var(--p2); }
+.admin__broj { width: 7ch; }
+.polje-obrasca__ulaz[aria-invalid="true"] { border-color: var(--opasnost); }
+.admin__kvacica { display: inline-flex; align-items: center; gap: var(--p2); white-space: nowrap; }
+.admin__spremi { white-space: nowrap; }
+.admin__trazi { max-width: 360px; }
+
+/* ------------------------------------------------------------------ */
+/* Znacke stanja                                                       */
+/* ------------------------------------------------------------------ */
+.admin__znacka {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid var(--rub);
+  border-radius: var(--r-pilula);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.admin__znacka--novo { border-color: var(--hes-rub); color: var(--hes-tekst); }
+.admin__znacka--potvrdjeno { background: var(--hes-ploha); border-color: var(--hes-ploha); color: var(--hes-na-plohi); }
+.admin__znacka--na_cekanju { border-style: dashed; border-color: var(--hes-rub); color: var(--tekst-2); }
+.admin__znacka--odbijeno,
+.admin__znacka--otkazano,
+.admin__znacka--zatvoreno { color: var(--tekst-4); }
+.admin__znacka--upozorenje { border-color: color-mix(in oklab, var(--opasnost) 55%, transparent); color: var(--opasnost); }
+
+/* ------------------------------------------------------------------ */
+/* Upit                                                                */
+/* ------------------------------------------------------------------ */
+.admin__mreza {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: var(--p4);
+  align-items: start;
+}
+.admin__kartica {
+  display: grid;
+  gap: var(--p3);
+  padding: var(--p5);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-kartica);
+  background: var(--ploha-1);
+}
+.admin__podaci { display: grid; gap: var(--p2); margin: 0; font-size: var(--vel-malo); }
+.admin__podaci div { display: grid; grid-template-columns: 9rem 1fr; gap: var(--p3); }
+.admin__podaci dt { color: var(--tekst-4); }
+.admin__podaci dd { margin: 0; overflow-wrap: anywhere; }
+.admin__poruka-kupca { margin: 0; white-space: pre-wrap; }
+.admin__crta { width: 100%; margin: var(--p2) 0; border: 0; border-top: 1px solid var(--rub); }
+.admin__opasno { color: var(--opasnost); }
+
+.admin__rezervacije { display: grid; gap: var(--p2); margin: 0; padding: 0; list-style: none; }
+.admin__rezervacija {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--p2) var(--p3);
+  padding: var(--p3);
+  border: 1px solid var(--rub);
+  border-radius: var(--r-mali);
+  font-size: var(--vel-malo);
+}
+.admin__stanje-rezervacije { text-align: right; }
+.admin__akcije { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--p2); }
+
+.admin__nova .admin__polja {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: var(--p3);
+}
+.admin__polje--siroko { grid-column: 1 / -1; }
+
+.admin__poruka { margin: 0; font-size: var(--vel-malo); }
+.admin__poruka--greska { color: var(--opasnost); font-weight: 500; }
+
+/* Kratka poruka u kutu. */
+.admin__obavijest {
+  position: fixed;
+  right: var(--p4);
+  bottom: var(--p4);
+  z-index: 40;
+  max-width: min(420px, calc(100vw - 32px));
+  margin: 0;
+  padding: var(--p3) var(--p4);
+  border: 1px solid var(--hes-rub);
+  border-radius: var(--r-mali);
+  background: var(--ploha-2);
+  color: var(--tekst);
+  font-size: var(--vel-malo);
+  box-shadow: var(--sjena-plohe);
+}
+.admin__obavijest--greska { border-color: var(--opasnost); }
+
+/* ------------------------------------------------------------------ */
+/* Vremenska crta najma                                                */
+/* ------------------------------------------------------------------ */
+.vt { overflow-x: auto; border: 1px solid var(--rub); border-radius: var(--r-kartica); background: var(--ploha-1); }
+.vt__mreza {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) 1fr;
+  min-width: calc(200px + var(--dana) * 30px);
+}
+.vt__kut,
+.vt__alat {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--p2) var(--p3);
+  border-right: 1px solid var(--rub);
+  border-bottom: 1px solid var(--rub);
+  background: var(--ploha-1);
+  font-size: var(--vel-malo);
+}
+.vt__kut { color: var(--tekst-4); font-size: var(--vel-oznaka); letter-spacing: var(--razmak-oznaka); text-transform: uppercase; }
+.vt__dani,
+.vt__staza {
+  display: grid;
+  grid-template-columns: repeat(var(--dana), minmax(0, 1fr));
+  border-bottom: 1px solid var(--rub);
+}
+.vt__dan {
+  padding: var(--p1) 0;
+  border-left: 1px solid var(--rub);
+  color: var(--tekst-4);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+.vt__dan--vikend { background: var(--plohica); }
+.vt__dan--danas { color: var(--hes-tekst); font-weight: 700; }
+.vt__mjesec { display: block; color: var(--tekst-3); font-weight: 600; text-transform: uppercase; }
+.vt__staza {
+  grid-auto-rows: 26px;
+  row-gap: 3px;
+  min-height: 36px;
+  padding: 4px 0;
+  /* Crta svakog dana, bez 42 prazna elementa u svakom redu. */
+  background-image: linear-gradient(to right, var(--rub) 1px, transparent 1px);
+  background-size: calc(100% / var(--dana)) 100%;
+}
+.vt__danas { background: color-mix(in oklab, var(--hes) 14%, transparent); pointer-events: none; }
+.vt__traka {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  margin: 0 1px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 12px;
+  line-height: 26px;
+  text-align: left;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.vt__traka--potvrdjeno { background: var(--hes-ploha); color: var(--hes-na-plohi); }
+.vt__traka--na_cekanju {
+  background: repeating-linear-gradient(135deg, color-mix(in oklab, var(--hes) 30%, transparent) 0 6px, transparent 6px 10px);
+  color: var(--tekst);
+  outline: 1px dashed var(--hes-rub);
+  outline-offset: -1px;
+}
+.vt__traka:focus-visible { outline: 2px solid var(--fokus); outline-offset: 1px; }
+
+@media (max-width: 599px) {
+  .admin__traka { padding: var(--p3); }
+  .admin__podaci div { grid-template-columns: 1fr; gap: 0; }
+  .admin__rezervacija { grid-template-columns: 1fr; }
+  .admin__stanje-rezervacije { text-align: left; }
+}

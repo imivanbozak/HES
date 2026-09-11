@@ -12,7 +12,7 @@
  * pa se pad uvijek moze ponoviti.
  */
 
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -38,6 +38,11 @@ globalThis.history = {
 
 const kosarica = await import("../js/kosarica.js");
 const { stvoriFiltre } = await import("../js/filtri.js");
+const jezik = await import("../js/jezik.js");
+const zauzetost = await import("../js/zauzetost.js");
+const admin = await import("../js/admin/zajednicko.js");
+const { rasporedi } = await import("../js/galerija.js");
+const { PRIJEVODI } = await import("../js/prijevodi.js");
 
 /* ------------------------------------------------------------------ */
 /* Pomocno                                                             */
@@ -311,6 +316,231 @@ globalThis.location.search = "";
 const loxoneMarke = stvoriFiltre({ katalog, vrsta: "loxone", naPromjenu: () => {} });
 loxoneMarke.postavi({ marka: "Loxone" });
 jednako(loxoneMarke.rezultat().length, 58, "58 Loxone artikala ima marku; jedan je bez nje");
+
+/* ================================================================== */
+/* 4. Jezici                                                           */
+/* ================================================================== */
+naslov("4. Jezici — rjecnik, poveznice, cijene i pretraga");
+
+// Svaki jezik mora imati iste kljuceve kao hrvatski. Kljuc koji nedostaje
+// pao bi na hrvatski usred njemacke stranice i nitko ga ne bi primijetio.
+const kljuceviHr = Object.keys(PRIJEVODI.hr);
+for (const oznaka of ["de", "en"]) {
+  const nedostaju = kljuceviHr.filter((k) => !(k in PRIJEVODI[oznaka]));
+  const visak = Object.keys(PRIJEVODI[oznaka]).filter((k) => !(k in PRIJEVODI.hr));
+  tvrdnja(
+    !nedostaju.length && !visak.length,
+    `${oznaka}: isti kljucevi kao hr`,
+    `nedostaju: ${nedostaju.join(", ") || "-"}   visak: ${visak.join(", ") || "-"}`
+  );
+}
+
+// Intl.PluralRules vraca `other` za svaki broj koji nije posebno naveden, pa
+// ga svaki oblik mnozine mora imati.
+for (const [oznaka, rjecnik] of Object.entries(PRIJEVODI)) {
+  const bezOther = Object.entries(rjecnik)
+    .filter(([, v]) => typeof v === "object" && !v.other)
+    .map(([k]) => k);
+  tvrdnja(!bezOther.length, `${oznaka}: svaki oblik mnozine ima "other"`, bezOther.join(", "));
+}
+
+// Neue Regrade nema ß (scripts/provjere.py) i njemacki ga ne smije ni traziti.
+const saSs = Object.entries(PRIJEVODI.de)
+  .filter(([, v]) => JSON.stringify(v).includes("ß"))
+  .map(([k]) => k);
+tvrdnja(!saSs.length, "njemacki rjecnik je bez ß", saSs.join(", "));
+
+jednako(jezik.mnozina("mnozina.artikl", 1, "hr"), "artikl", "hr: 1 artikl");
+jednako(jezik.mnozina("mnozina.artikl", 3, "hr"), "artikla", "hr: 3 artikla");
+jednako(jezik.mnozina("mnozina.artikl", 11, "hr"), "artikala", "hr: 11 artikala");
+jednako(jezik.mnozina("mnozina.artikl", 21, "hr"), "artikl", "hr: 21 artikl");
+jednako(jezik.mnozina("mnozina.dan", 2, "de"), "Tage", "de: 2 Tage");
+
+jednako(jezik.putanja("/webshop", "hr"), "/webshop", "hrvatski ostaje u korijenu");
+jednako(jezik.putanja("/webshop?skupina=senzori", "de"), "/de/webshop?skupina=senzori", "de: prefiks cuva upit");
+jednako(jezik.putanja("/", "en"), "/en/", "en: naslovnica");
+jednako(jezik.putanja("/#kontakt", "de"), "/de/#kontakt", "de: sidro naslovnice");
+jednako(jezik.putanja("/de/webshop", "de"), "/de/webshop", "prefiks se ne dodaje dvaput");
+jednako(jezik.putanja("/assets/katalog.json", "de"), "/assets/katalog.json", "datoteke ostaju bez prefiksa");
+jednako(jezik.putanja("mailto:alen.hranj@hes.hr", "de"), "mailto:alen.hranj@hes.hr", "mailto prolazi netaknut");
+
+jednako(jezik.formatCijene(65561, "hr"), "655,61 €", "hr: 655,61 € s tvrdim razmakom");
+jednako(jezik.formatCijene(123456789, "de"), "1.234.567,89 €", "de: tocke za tisucice");
+jednako(jezik.formatCijene(5, "en"), "€0.05", "en: pet centi");
+jednako(jezik.formatDatuma("2026-09-14", { godina: true }, "hr"), "14. 9. 2026.", "hr: datum s godinom");
+jednako(jezik.formatDatuma("2026-03-29", {}, "de"), "29.3.", "de: datum na dan pomaka sata");
+
+// Pretraga bez dijakritike. "f360" stoji zbog stvarne greske: izraz koji je
+// trebao brisati kvacice jednom je brisao znamenke 0, 3 i 6 i slovo f, pa je
+// ovaj upit postajao prazan i vracao cijeli cjenik.
+globalThis.location.search = "";
+const pretraga = stvoriFiltre({ katalog, vrsta: "alat", naPromjenu: () => {} });
+pretraga.postavi({ pretraga: "f360" });
+jednako(pretraga.rezultat().length, 1, "pretraga 'f360' nalazi tocno PROTUBE-F360");
+pretraga.postavi({ pretraga: "brusenje" });
+jednako(pretraga.rezultat().length, 6, "'brusenje' bez kvacice nalazi Rezanje i brušenje");
+
+/* ================================================================== */
+/* 5. Zauzetost najma                                                  */
+/* ================================================================== */
+/*
+ * Ista pravila koja okidac provjeri_zauzetost primjenjuje u bazi
+ * (supabase/testovi.sql, odjeljci 1-3). Preglednik i baza moraju se slagati:
+ * kalendar koji pusti raspon koji baza odbije salje posjetitelja u poruku
+ * "zauzeto" bez razloga koji je mogao vidjeti.
+ */
+naslov("5. Zauzetost najma — isto pravilo kao u bazi");
+
+zauzetost.postavi([
+  { artikl_id: "jedan", od_datuma: "2030-01-10", do_datuma: "2030-01-15", kolicina: 1, kapacitet: 1 },
+  { artikl_id: "dva", od_datuma: "2030-05-01", do_datuma: "2030-05-03", kolicina: 1, kapacitet: 2 },
+  { artikl_id: "dva", od_datuma: "2030-05-05", do_datuma: "2030-05-07", kolicina: 1, kapacitet: 2 },
+]);
+
+tvrdnja(!zauzetost.slobodno("jedan", "2030-01-14", "2030-01-20"), "preklapanje s rezervacijom je zauzeto");
+tvrdnja(zauzetost.slobodno("jedan", "2030-01-15", "2030-01-20"), "dan povrata je slobodan za iduceg (15.)");
+tvrdnja(zauzetost.slobodno("jedan", "2030-01-05", "2030-01-10"), "raspon koji zavrsava na dan preuzimanja je slobodan");
+tvrdnja(
+  zauzetost.slobodno("dva", "2030-05-02", "2030-05-06"),
+  "dva komada: raspon preko obje rezervacije prolazi, nijedan dan nije pun"
+);
+tvrdnja(!zauzetost.slobodno("dva", "2030-05-02", "2030-05-03", 2), "dva komada odjednom na dan kad je jedan uzet");
+tvrdnja(zauzetost.slobodno("bez-rezervacija", "2030-01-01", "2030-01-05"), "alat bez rezervacija je slobodan");
+jednako(zauzetost.danPun("jedan", "2030-01-14"), true, "zadnji dan rezervacije je pun");
+jednako(zauzetost.danPun("jedan", "2030-01-15"), false, "dan povrata nije pun");
+jednako(zauzetost.slobodnoOd("jedan", "2030-01-12"), "2030-01-15", "slobodno od dana povrata");
+jednako(
+  JSON.stringify(zauzetost.puniRasponi("jedan", { od: "2030-01-01", dana: 60 })),
+  JSON.stringify([{ od: "2030-01-10", zadnji: "2030-01-14" }]),
+  "puni dani spojeni u jedan raspon, do zadnjeg punog dana"
+);
+jednako(zauzetost.pomakni("2028-02-28", 1), "2028-02-29", "pomak kroz prijestupni dan");
+jednako(zauzetost.pomakni("2026-03-28", 1), "2026-03-29", "pomak preko promjene sata");
+jednako(zauzetost.pomakni("2026-12-31", 1), "2027-01-01", "pomak preko kraja godine");
+
+/* ================================================================== */
+/* 6. Admin panel                                                      */
+/* ================================================================== */
+/*
+ * Cijena koju admin upise ide ravno u cjenik. Pogresno procitan zarez tu
+ * nije kozmeticka greska nego cijena deset puta manja.
+ */
+naslov("6. Admin — unos cijene i vremenska crta");
+
+jednako(admin.uCente("655,61"), 65561, "cijena sa zarezom");
+jednako(admin.uCente("655.61"), 65561, "cijena s tockom");
+jednako(admin.uCente("655,6"), 65560, "jedna decimala su desetice centi");
+jednako(admin.uCente("12"), 1200, "cijena bez decimala");
+jednako(admin.uCente(" 50,00 € "), 5000, "razmaci i znak eura se ignoriraju");
+jednako(admin.uCente("0,1"), 10, "0,1 je deset centi — bez decimalnog racuna");
+jednako(admin.uCente("1.234,56"), null, "tocka za tisucice se odbija, ne pogada");
+jednako(admin.uCente("12,345"), null, "tri decimale se odbijaju");
+jednako(admin.uCente("abc"), null, "tekst nije cijena");
+jednako(admin.uCente(""), null, "prazno polje nije cijena");
+jednako(admin.izCenti(65561), "655,61", "cente natrag u polje");
+jednako(admin.izCenti(5), "0,05", "pet centi u polju");
+for (const cente of [0, 1, 99, 100, 65561, 100000000]) {
+  tvrdnja(admin.uCente(admin.izCenti(cente)) === cente, `${cente} centi prezivi put polje -> baza`);
+}
+
+jednako(
+  JSON.stringify(admin.raspon("[2026-09-12,2026-09-15)")),
+  JSON.stringify({ od: "2026-09-12", doo: "2026-09-15" }),
+  "daterange iz baze"
+);
+
+const rasporedeno = admin.trake([
+  { id: "a", od: "2030-05-01", doo: "2030-05-03" },
+  { id: "b", od: "2030-05-02", doo: "2030-05-06" },
+  { id: "c", od: "2030-05-03", doo: "2030-05-05" },
+]);
+jednako(
+  rasporedeno.map((r) => `${r.id}${r.traka}`).join(" "),
+  "a0 b1 c0",
+  "preklapajuce idu u zasebne trake; ona od dana povrata u oslobodenu"
+);
+
+jednako(
+  admin.jeAktivna({ status: "na_cekanju", istice: new Date(Date.now() - 1000).toISOString() }),
+  false,
+  "istekao zahtjev ne drzi termin"
+);
+jednako(admin.jeAktivna({ status: "na_cekanju", istice: null }), true, "rucni zahtjev bez roka drzi termin");
+jednako(admin.jeAktivna({ status: "otkazano" }), false, "otkazana rezervacija ne drzi termin");
+
+/* ================================================================== */
+/* 7. Galerija                                                         */
+/* ================================================================== */
+/*
+ * Raspored u stupce mora citati lijevo-desno: prvi red ide redom kroz
+ * stupce, a iduca slika uvijek u trenutno najkraci. Da ide stupac po
+ * stupac, druga fotografija projekta zavrsila bi na dnu prvog stupca.
+ */
+naslov("7. Galerija — raspored u stupce");
+
+const polozena = (id) => ({ id, sirina: 3, visina: 2 });
+const uspravna = (id) => ({ id, sirina: 2, visina: 3 });
+const imena = (stupci) => JSON.stringify(stupci.map((stupac) => stupac.map((s) => s.id)));
+
+jednako(
+  imena(rasporedi([polozena("a"), polozena("b"), polozena("c")], 3)),
+  JSON.stringify([["a"], ["b"], ["c"]]),
+  "jednake visine: prvi red ide lijevo-desno"
+);
+jednako(
+  imena(rasporedi([polozena("a"), uspravna("b"), polozena("c"), polozena("d")], 2)),
+  JSON.stringify([["a", "c", "d"], ["b"]]),
+  "iduca slika ide u najkraci stupac, ne u sljedeci po redu"
+);
+jednako(
+  imena(rasporedi([polozena("a"), polozena("b")], 1)),
+  JSON.stringify([["a", "b"]]),
+  "jedan stupac zadrzava redoslijed"
+);
+jednako(imena(rasporedi([], 3)), JSON.stringify([[], [], []]), "prazna galerija daje prazne stupce");
+
+/* ================================================================== */
+/* 8. Spremnost za objavu                                              */
+/* ================================================================== */
+/*
+ * Nacrt smije nositi oznake podataka koji jos nisu stigli — [NEDOSTAJE: ...]
+ * i [PROVJERITI: ...] u privatnost.html. Objava ne smije: stranica bi
+ * javno pisala da joj fali OIB.
+ *
+ * Obicno pokretanje ih samo nabroji, da `npm run provjeri` ostane koristan
+ * dok se ceka klijent. `--objava` (npm run provjeri:objava) od njih napravi pad.
+ */
+naslov("8. Oznake [NEDOSTAJE] i [PROVJERITI]");
+
+const OBJAVA = process.argv.includes("--objava");
+const PRESKOCI = new Set(["node_modules", ".git", ".firecrawl", "assets", "provjere", "scripts", "supabase", "data", "css", "js"]);
+
+function htmlDatoteke(mapa) {
+  const popis = [];
+  for (const unos of readdirSync(mapa, { withFileTypes: true })) {
+    const put = path.join(mapa, unos.name);
+    if (unos.isDirectory()) {
+      if (!PRESKOCI.has(unos.name)) popis.push(...htmlDatoteke(put));
+    } else if (unos.name.endsWith(".html")) {
+      popis.push(put);
+    }
+  }
+  return popis;
+}
+
+let oznaka = 0;
+for (const datoteka of htmlDatoteke(KORIJEN)) {
+  const nadene = readFileSync(datoteka, "utf8").match(/\[(NEDOSTAJE|PROVJERITI)[^\]]*\]/g) ?? [];
+  if (!nadene.length) continue;
+  oznaka += nadene.length;
+  const ime = path.relative(KORIJEN, datoteka).replaceAll("\\", "/");
+  if (OBJAVA) {
+    tvrdnja(false, `${ime}: ${nadene.length} oznaka`, nadene.join("\n       "));
+  } else {
+    console.log(`  UPOZ ${ime}: ${nadene.length} oznaka (objava pada dok ih ima)`);
+  }
+}
+if (!oznaka) tvrdnja(true, "nijedna stranica nema oznaku podatka koji nedostaje");
 
 /* ================================================================== */
 naslov("Rezultat");

@@ -13,6 +13,8 @@
  * memoriji.
  */
 
+import { JEZIK } from "./jezik.js";
+
 const ZADANO = {
   skupina: null,
   podskupina: null,
@@ -27,21 +29,25 @@ const ZADANO = {
  *
  * Katalog je hrvatski, tipkovnica cesto nije. Tko upise "prosirenja" mora
  * dobiti "Proširenja", inace pretraga radi samo onima koji vec znaju tocan
- * naziv — a njima ne treba.
+ * naziv — a njima ne treba. Isto vrijedi za njemacki: "zubehor" nalazi
+ * "Zubehör".
+ *
+ * NFD rastavi č, ć, š, ž i preglase na slovo i kvacicu, pa kvacica otpada.
+ * Đ se ne rastavlja (nije slovo s kvacicom nego zasebno slovo) i ide rukom.
  */
-const PRESLOVI = { č: "c", ć: "c", š: "s", ž: "z", đ: "d" };
-
 function kljuc(tekst) {
   return String(tekst ?? "")
     .toLowerCase()
-    .replace(/[čćšžđ]/g, (znak) => PRESLOVI[znak]);
+    .replace(/đ/g, "d")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
 const SORTOVI = {
   zadano: (a, b) => a.redoslijedIzvorni - b.redoslijedIzvorni,
   "cijena-asc": (a, b) => a.cijenaCents - b.cijenaCents,
   "cijena-desc": (a, b) => b.cijenaCents - a.cijenaCents,
-  "naziv-asc": (a, b) => a.naziv.localeCompare(b.naziv, "hr"),
+  "naziv-asc": (a, b) => a.naziv.localeCompare(b.naziv, JEZIK),
 };
 
 export function stvoriFiltre({ katalog, vrsta, naPromjenu }) {
@@ -60,13 +66,16 @@ export function stvoriFiltre({ katalog, vrsta, naPromjenu }) {
        * hrvatske skupine — tko upise "prosirenja" ocekuje sedamnaest
        * prosirenja, a ne prazan popis zato sto ta rijec ne stoji ni u jednom
        * nazivu proizvoda.
+       *
+       * Ulaze imena na SVIM jezicima, ne samo na jeziku stranice: posjetitelj
+       * njemacke stranice koji zna hrvatski naziv skupine i dalje je nade.
        */
       kljucPretrage: kljuc(
         [
           artikl.naziv,
           artikl.sku ?? "",
           artikl.marka ?? "",
-          ...artikl.kategorije.map((id) => katalog.poId.get(id)?.naziv.hr ?? ""),
+          ...artikl.kategorije.flatMap((id) => Object.values(katalog.poId.get(id)?.naziv ?? {})),
         ].join(" ")
       ),
     }));

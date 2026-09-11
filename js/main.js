@@ -27,6 +27,7 @@ import {
 } from "./interakcije.js";
 import { pokreniPlatno } from "./platno.js";
 import { pokreniZaglavlje } from "./zaglavlje.js";
+import { t, putanja } from "./jezik.js";
 
 const KOSTUR_NAJMANJE_MS = 420;
 const kosturPocetak = performance.now();
@@ -71,7 +72,7 @@ function pokreniMobilniIzbornik() {
     izbornik.hidden = !otvoren;
     if (zastor) zastor.hidden = !otvoren;
     prekidac.setAttribute("aria-expanded", String(otvoren));
-    prekidac.setAttribute("aria-label", otvoren ? "Zatvori izbornik" : "Otvori izbornik");
+    prekidac.setAttribute("aria-label", t(otvoren ? "izbornik.zatvori" : "izbornik.otvori"));
 
     // Izbornik se uvijek otvara sazet: skupina ostavljena otvorena od proslog
     // puta gurnula bi "Zaposlenje" i "Kontakt" ispod ruba ekrana.
@@ -216,6 +217,13 @@ async function pokreni() {
   const { pokreniLadicu } = await import("./ladica.js");
   pokreniLadicu();
 
+  // Obrazac upita stoji samo na naslovnici. Bez podesene baze ostaje na
+  // mailto:, a modul mu samo dopise kosaricu u skriveno polje.
+  if (document.querySelector("[data-obrazac-upita]")) {
+    const { pokreniObrazac } = await import("./obrazac.js");
+    pokreniObrazac();
+  }
+
   const katalogSekcija = document.querySelector("[data-trgovina]");
   if (katalogSekcija) {
     const { pokreniTrgovinu } = await import("./trgovina.js");
@@ -231,6 +239,13 @@ async function pokreni() {
     await pokreniStranicuProizvoda(proizvodSekcija);
   }
 
+  // Galerija radova (/galerija). Ni ona se ne ucitava ondje gdje je nema.
+  const radovi = document.querySelector("[data-radovi]");
+  if (radovi) {
+    const { pokreniGaleriju } = await import("./galerija.js");
+    await pokreniGaleriju(radovi);
+  }
+
   // Iz ladice se trazi ponuda: obrazac zivi u sekciji kontakta na naslovnici,
   // pa se s kataloga do njega ide navigacijom. Jedan obrazac, jedno mjesto.
   document.addEventListener("hes:zatrazi-ponudu", () => {
@@ -238,7 +253,7 @@ async function pokreni() {
     if (obrazac) {
       obrazac.scrollIntoView({ behavior: "smooth", block: "center" });
     } else {
-      location.href = "/#kontakt";
+      location.href = putanja("/#kontakt");
     }
   });
 }
