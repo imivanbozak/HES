@@ -26,6 +26,8 @@
 }
 .admin__traka .znak img { width: 34px; height: auto; }
 .admin__kartice { display: flex; flex-wrap: wrap; gap: var(--p1); }
+.admin__kartice[hidden],
+.admin__korisnik[hidden] { display: none; }
 .admin__kartice a {
   padding: var(--p2) var(--p4);
   border-radius: var(--r-pilula);
@@ -52,6 +54,7 @@
   gap: var(--p4);
   border-radius: var(--r-ploha);
 }
+.admin__prijava[hidden] { display: none; }
 .admin__prijava .prozor__traka { margin: calc(-1 * var(--p6)) calc(-1 * var(--p6)) var(--p2); }
 
 .admin__glava { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--p3); }
