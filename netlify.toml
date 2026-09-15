@@ -183,14 +183,9 @@
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
 
-# Admin panel se ne indeksira i ne sprema u predmemoriju: nakon izmjene
-# koda mora odmah raditi nova verzija, a stranica s upitima kupaca ne smije
-# zapeti ni u jednoj medupohrani.
-[[headers]]
-  for = "/admin/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-    Cache-Control = "no-store"
+# Admin panel vise nije ovdje: upiti, najam i artikli vode se u HES
+# dashboardu (../HES-Dash). Kad dashboard ima stalnu domenu, ovdje dodati
+# [[redirects]] from = "/admin/*" to = "https://<dashboard>/upiti" status = 301.
 
 # Fontovi i slike nose sadrzaj u imenu ili se ne mijenjaju, pa smiju stajati
 # u predmemoriji godinu dana.

@@ -40,7 +40,6 @@ const kosarica = await import("../js/kosarica.js");
 const { stvoriFiltre } = await import("../js/filtri.js");
 const jezik = await import("../js/jezik.js");
 const zauzetost = await import("../js/zauzetost.js");
-const admin = await import("../js/admin/zajednicko.js");
 const { rasporedi } = await import("../js/galerija.js");
 const { PRIJEVODI } = await import("../js/prijevodi.js");
 
@@ -422,51 +421,9 @@ jednako(zauzetost.pomakni("2026-12-31", 1), "2027-01-01", "pomak preko kraja god
 /* 6. Admin panel                                                      */
 /* ================================================================== */
 /*
- * Cijena koju admin upise ide ravno u cjenik. Pogresno procitan zarez tu
- * nije kozmeticka greska nego cijena deset puta manja.
+ * Admin panel (upiti, najam, artikli) preselio je u HES dashboard
+ * (../HES-Dash, lib/webshop.ts). Njegove provjere zive ondje.
  */
-naslov("6. Admin — unos cijene i vremenska crta");
-
-jednako(admin.uCente("655,61"), 65561, "cijena sa zarezom");
-jednako(admin.uCente("655.61"), 65561, "cijena s tockom");
-jednako(admin.uCente("655,6"), 65560, "jedna decimala su desetice centi");
-jednako(admin.uCente("12"), 1200, "cijena bez decimala");
-jednako(admin.uCente(" 50,00 € "), 5000, "razmaci i znak eura se ignoriraju");
-jednako(admin.uCente("0,1"), 10, "0,1 je deset centi — bez decimalnog racuna");
-jednako(admin.uCente("1.234,56"), null, "tocka za tisucice se odbija, ne pogada");
-jednako(admin.uCente("12,345"), null, "tri decimale se odbijaju");
-jednako(admin.uCente("abc"), null, "tekst nije cijena");
-jednako(admin.uCente(""), null, "prazno polje nije cijena");
-jednako(admin.izCenti(65561), "655,61", "cente natrag u polje");
-jednako(admin.izCenti(5), "0,05", "pet centi u polju");
-for (const cente of [0, 1, 99, 100, 65561, 100000000]) {
-  tvrdnja(admin.uCente(admin.izCenti(cente)) === cente, `${cente} centi prezivi put polje -> baza`);
-}
-
-jednako(
-  JSON.stringify(admin.raspon("[2026-09-12,2026-09-15)")),
-  JSON.stringify({ od: "2026-09-12", doo: "2026-09-15" }),
-  "daterange iz baze"
-);
-
-const rasporedeno = admin.trake([
-  { id: "a", od: "2030-05-01", doo: "2030-05-03" },
-  { id: "b", od: "2030-05-02", doo: "2030-05-06" },
-  { id: "c", od: "2030-05-03", doo: "2030-05-05" },
-]);
-jednako(
-  rasporedeno.map((r) => `${r.id}${r.traka}`).join(" "),
-  "a0 b1 c0",
-  "preklapajuce idu u zasebne trake; ona od dana povrata u oslobodenu"
-);
-
-jednako(
-  admin.jeAktivna({ status: "na_cekanju", istice: new Date(Date.now() - 1000).toISOString() }),
-  false,
-  "istekao zahtjev ne drzi termin"
-);
-jednako(admin.jeAktivna({ status: "na_cekanju", istice: null }), true, "rucni zahtjev bez roka drzi termin");
-jednako(admin.jeAktivna({ status: "otkazano" }), false, "otkazana rezervacija ne drzi termin");
 
 /* ================================================================== */
 /* 7. Galerija                                                         */
